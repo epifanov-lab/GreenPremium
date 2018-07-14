@@ -1,6 +1,27 @@
 <resources>
     <string name="app_name">GreenPremium</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+
+    <string name="title_login_1">Вход</string>
+    <string name="title_login_2">Войти</string>
+
+    <string name="title_demo">Демо-режим</string>
+    <string name="title_registration">Зарегистрироваться</string>
+
+    <string name="title_email">Email</string>
+    <string name="title_password">Пароль</string>
+    <string name="title_forgot_password">Забыли логин или пароль?</string>
+
+    <string name="title_plants">Растения</string>
+    <string name="title_portfolio">Портфолио</string>
+    <string name="title_profile">Профиль</string>
+    <string name="title_contacts">Контакты</string>
+    <string name="title_map">Карта</string>
+
+    <string name="start_screen_title_1">Ваше помещение.</string>
+    <string name="start_screen_title_2">В зелени.</string>
+    <string name="start_screen_title_3">Поробуйте.</string>
+    <string name="start_screen_support">Обратиться в службу поддержки</string>
+
+    <string name="error_simple">Ошибка!</string>
+
 </resources>

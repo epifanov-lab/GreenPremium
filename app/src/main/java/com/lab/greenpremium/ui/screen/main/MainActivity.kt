@@ -1,4 +1,4 @@
-package com.lab.greenpremium.ui.screen
+package com.lab.greenpremium.ui.screen.main
 
 import android.support.v7.app.AppCompatActivity
 
