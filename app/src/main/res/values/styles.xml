@@ -17,6 +17,7 @@
         <item name="android:layout_height">@dimen/auth_button_height</item>
         <item name="android:fontFamily">@font/sfuitext_semibold</item>
         <item name="android:gravity">center</item>
+        <item name="android:textAllCaps">false</item>
     </style>
 
     <style name="button.green">

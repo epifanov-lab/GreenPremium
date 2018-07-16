@@ -47,17 +47,17 @@
         android:layout_marginBottom="@dimen/space_huge_1"
         android:src="@drawable/logo_1" />
 
-    <TextView
+    <Button
         style="@style/button.green"
         android:layout_marginBottom="@dimen/space_small_4"
         android:text="@string/title_login_1" />
 
-    <TextView
+    <Button
         style="@style/button.green"
         android:layout_marginBottom="@dimen/space_small_4"
         android:text="@string/title_demo" />
 
-    <TextView
+    <Button
         style="@style/button.white"
         android:layout_marginBottom="@dimen/space_medium_1"
         android:text="@string/title_registration" />

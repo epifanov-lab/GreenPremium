@@ -1,8 +1,8 @@
 package com.lab.greenpremium.ui.screen.main
 
-import android.support.v7.app.AppCompatActivity
+import com.lab.greenpremium.ui.base.BaseActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 
 /*    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {

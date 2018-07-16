@@ -1,14 +1,14 @@
-package com.lab.greenpremium.ui.screen.start
+package com.lab.greenpremium.ui.screen.auth
 
 import android.os.Bundle
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.base.BaseActivity
 
-class StartActivity : BaseActivity() {
+class AuthActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_start)
+        setContentView(R.layout.activity_auth)
 
     }
 }
