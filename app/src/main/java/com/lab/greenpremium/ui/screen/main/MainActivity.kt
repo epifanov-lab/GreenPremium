@@ -2,6 +2,8 @@ package com.lab.greenpremium.ui.screen.main
 
 import com.lab.greenpremium.ui.base.BaseActivity
 
+import kotlinx.android.synthetic.main.activity_main.*
+
 class MainActivity : BaseActivity() {
 
 /*    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->

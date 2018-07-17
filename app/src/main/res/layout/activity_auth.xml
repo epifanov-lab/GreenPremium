@@ -1,18 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="@dimen/space_medium_2">
+
+    <ImageView
+        android:id="@+id/button_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_medium_1"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_back"/>
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity=""
+        android:layout_marginBottom="@dimen/space_small_1"
+        android:fontFamily="@font/sfuitext_bold"
+        android:text="@string/title_login_1"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_20"/>
 
     <android.support.design.widget.TextInputLayout
         android:id="@+id/container_login"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_medium_2">
 
         <EditText
             android:id="@+id/input_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/title_email" />
+            android:hint="@string/title_email"/>
 
     </android.support.design.widget.TextInputLayout>
 
@@ -20,14 +43,31 @@
         android:id="@+id/container_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/container_login">
+        android:layout_marginBottom="@dimen/space_medium_1"
+        app:passwordToggleEnabled="true">
 
         <EditText
             android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/title_password" />
+            android:hint="@string/title_password"/>
 
     </android.support.design.widget.TextInputLayout>
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/button_auth"
+        style="@style/button.green"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="@dimen/space_small_2"
+        android:text="@string/title_login_2"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:fontFamily="@font/sfuitext_regular"
+        android:text="@string/title_forgot_password"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/font_size_10"/>
+
+</LinearLayout>

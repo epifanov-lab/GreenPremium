@@ -48,21 +48,25 @@
         android:src="@drawable/logo_1" />
 
     <Button
+        android:id="@+id/button_auth"
         style="@style/button.green"
         android:layout_marginBottom="@dimen/space_small_4"
         android:text="@string/title_login_1" />
 
     <Button
+        android:id="@+id/button_demo"
         style="@style/button.green"
         android:layout_marginBottom="@dimen/space_small_4"
         android:text="@string/title_demo" />
 
     <Button
+        android:id="@+id/button_register"
         style="@style/button.white"
         android:layout_marginBottom="@dimen/space_medium_1"
         android:text="@string/title_registration" />
 
     <TextView
+        android:id="@+id/button_support"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/sfuitext_regular"
