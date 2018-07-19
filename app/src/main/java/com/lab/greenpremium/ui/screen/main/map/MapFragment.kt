@@ -1,21 +1,24 @@
 package com.lab.greenpremium.ui.screen.main.map
 
-import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.lab.greenpremium.R
+import com.lab.greenpremium.ui.base.BaseFragment
 
 
-class MapFragment : Fragment() {
+class MapFragment : BaseFragment() {
 
     companion object {
-        val TAG: String = MapFragment::class.java.simpleName
         fun newInstance() = MapFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_map, container, false)
+    override fun initializeDaggerComponent() {
+        //TODO impl
+    }
+
+    override fun layoutResId(): Int {
+        return R.layout.fragment_map
+    }
+
+    override fun initViews() {
+        //TODO impl
     }
 }

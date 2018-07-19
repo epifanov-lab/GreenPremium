@@ -51,19 +51,19 @@
 
     <Button
         android:id="@+id/button_auth"
-        style="@style/button.green"
+        style="@style/Button.Green"
         android:layout_marginBottom="@dimen/space_small_4"
         android:text="@string/title_login_1"/>
 
     <Button
         android:id="@+id/button_demo"
-        style="@style/button.green"
+        style="@style/Button.Green"
         android:layout_marginBottom="@dimen/space_small_4"
         android:text="@string/title_demo"/>
 
     <Button
         android:id="@+id/button_register"
-        style="@style/button.white"
+        style="@style/Button.White"
         android:layout_marginBottom="@dimen/space_medium_1"
         android:text="@string/title_registration"/>
 

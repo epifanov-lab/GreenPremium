@@ -1,21 +1,24 @@
 package com.lab.greenpremium.ui.screen.main.profile
 
-import android.os.Bundle
-import android.support.v4.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.lab.greenpremium.R
+import com.lab.greenpremium.ui.base.BaseFragment
 
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseFragment() {
 
     companion object {
-        val TAG: String = ProfileFragment::class.java.simpleName
         fun newInstance() = ProfileFragment()
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+    override fun initializeDaggerComponent() {
+        //TODO impl
+    }
+
+    override fun layoutResId(): Int {
+        return R.layout.fragment_profile
+    }
+
+    override fun initViews() {
+        //TODO impl
     }
 }

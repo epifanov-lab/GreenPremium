@@ -56,7 +56,7 @@
 
     <Button
         android:id="@+id/button_auth"
-        style="@style/button.green"
+        style="@style/Button.Green"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/space_small_2"
         android:text="@string/title_login_2"/>

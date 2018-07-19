@@ -57,4 +57,8 @@ class MainActivity : BaseActivity() {
 
         swapFragment(PlantFragment.newInstance())
     }
+
+    override fun onBackPressed() {
+        finishAffinity()
+    }
 }

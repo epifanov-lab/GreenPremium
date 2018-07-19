@@ -54,8 +54,15 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/navigation"
+        android:layout_above="@id/line"
         android:layout_below="@id/toolbar"/>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_thickness"
+        android:background="@color/gray_light_2"
+        android:layout_above="@id/navigation"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"

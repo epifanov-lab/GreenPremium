@@ -1,16 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/test"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_layout"
+        style="@style/TabTextAppearance"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fontFamily="@font/sfuitext_bold"
-        android:gravity="center"
-        android:text="@string/title_portfolio"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_size_20"/>
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        app:tabBackground="@android:color/transparent"
+        app:tabGravity="fill"
+        app:tabIndicatorHeight="@dimen/line_thickness"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/green_2"
+        app:tabTextColor="@color/gray_light_1"/>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_thickness_2"
+        android:layout_below="@id/tab_layout"
+        android:background="@color/gray_light_2"/>
+
+    <android.support.v4.view.ViewPager
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/line"/>
 
 </RelativeLayout>

@@ -13,6 +13,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected fun goToStartScreen() {
         startActivity(Intent(this, StartActivity::class.java))
+        finish()
     }
 
     protected fun goToAuthScreen() {
@@ -21,6 +22,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected fun goToMainScreen() {
         startActivity(Intent(this, MainActivity::class.java))
+        finishAffinity()
     }
 
     protected fun swapFragment(fragment : Fragment) {
