@@ -34,18 +34,18 @@
             <ImageButton
                 android:id="@+id/button_favorites"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bcg_circle_transparent"
+                android:background="?attr/selectableItemBackgroundBorderless"
                 android:src="@drawable/ic_favorites"/>
 
             <ImageButton
                 android:id="@+id/button_basket"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:background="@drawable/bcg_circle_transparent"
-                android:src="@drawable/ic_shopping_basket"/>
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_basket"/>
 
         </LinearLayout>
     </Toolbar>
@@ -61,8 +61,8 @@
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_thickness"
-        android:background="@color/gray_light_2"
-        android:layout_above="@id/navigation"/>
+        android:layout_above="@id/navigation"
+        android:background="@color/gray_light_2"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -70,6 +70,7 @@
         android:layout_height="@dimen/space_huge_6"
         android:layout_alignParentBottom="true"
         android:background="@color/white"
+        android:theme="@style/Widget.BottomNavigationView"
         app:itemIconTint="@drawable/nav_icons_states"
         app:itemTextColor="@drawable/nav_text_states"
         app:menu="@menu/navigation"/>
