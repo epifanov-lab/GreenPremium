@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:showIn="@layout/item_plant">
+
+    <RelativeLayout
+        android:id="@+id/container_image"
+        android:layout_width="@dimen/item_plant_image_container_width"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/item_plant_image_bcg_circle_size"
+            android:layout_height="@dimen/item_plant_image_bcg_circle_size"
+            android:layout_centerInParent="true"
+            android:background="@drawable/bcg_circle_plant" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/container_info"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_toLeftOf="@id/container_controls"
+        android:layout_toRightOf="@id/container_image"
+        android:paddingTop="@dimen/space_small_4">
+
+        <TextView
+            android:id="@+id/text_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_small_1"
+            android:fontFamily="@font/sfuitext_medium"
+            android:gravity="center_vertical"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_12"
+            tools:text="Аглаонема" />
+
+        <TextView
+            android:id="@+id/text_info_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_name"
+            android:layout_marginBottom="@dimen/space_small_1"
+            android:fontFamily="@font/sfuitext_regular"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray_light_1"
+            android:textSize="@dimen/font_size_9"
+            tools:text="Размер кашпо 150*150*150 см" />
+
+        <TextView
+            android:id="@+id/text_info_2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_info_1"
+            android:layout_marginBottom="@dimen/space_small_2"
+            android:fontFamily="@font/sfuitext_regular"
+            android:gravity="center_vertical"
+            android:textColor="@color/gray_light_1"
+            android:textSize="@dimen/font_size_9"
+            tools:text="Высота композиции 1500 мм" />
+
+        <LinearLayout
+            android:id="@+id/container_price"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/text_info_2"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/space_small_3"
+                android:fontFamily="@font/sfuitext_medium"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_12"
+                tools:text="33.000$" />
+
+            <!--TODO implement custom TextView with diagonal line-->
+            <TextView
+                android:id="@+id/text_discount"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bcg_text_discount"
+                android:fontFamily="@font/sfuitext_regular"
+                android:gravity="center"
+                android:textColor="@color/gray_light_1"
+                android:textSize="@dimen/font_size_9"
+                tools:text="33.000$" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/container_controls"
+        android:layout_width="@dimen/item_plant_controls_width"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/bcg_button_green_vertical"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/space_small_3"
+        android:paddingTop="@dimen/space_small_3">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_add_plant" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            android:fontFamily="@font/sfuitext_medium"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_18"
+            tools:text="1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:src="@drawable/ic_remove_plant" />
+
+    </LinearLayout>
+
+</RelativeLayout>

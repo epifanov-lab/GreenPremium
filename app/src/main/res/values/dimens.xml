@@ -40,7 +40,8 @@
     <dimen name="auth_button_height">42dp</dimen>
 
     <dimen name="item_plant_height">110dp</dimen>
-    <dimen name="item_plant_image_width">90dp</dimen>
+    <dimen name="item_plant_image_container_width">90dp</dimen>
+    <dimen name="item_plant_image_bcg_circle_size">58dp</dimen>
     <dimen name="item_plant_controls_width">44dp</dimen>
 
     <dimen name="line_thickness">3dp</dimen>
