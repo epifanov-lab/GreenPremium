@@ -2,9 +2,13 @@ package com.lab.greenpremium.ui.screen.main.plants
 
 import android.content.Context
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
+import android.widget.LinearLayout
 import com.lab.greenpremium.KEY_TYPE
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.base.BaseFragment
+import com.lab.greenpremium.ui.screen.main.plants.adapters.PlantRecyclerAdapter
+import com.lab.greenpremium.utills.getMockPlantList
 import kotlinx.android.synthetic.main.sub_fragment_plants.*
 import java.io.Serializable
 
@@ -25,8 +29,8 @@ class PlantSubFragment : BaseFragment() {
     }
 
     companion object {
-        fun newInstance(type: Int): PortfolioSubFragment {
-            val fragment = PortfolioSubFragment()
+        fun newInstance(type: Int): PlantSubFragment {
+            val fragment = PlantSubFragment()
             val args = Bundle()
             args.putInt(KEY_TYPE, type)
             fragment.arguments = args
@@ -47,6 +51,7 @@ class PlantSubFragment : BaseFragment() {
     override fun initViews() {
         type = PlantType.values()[arguments!!.getInt(KEY_TYPE)]
 
-        test.text = getString(type.titleResId)
+        recycler.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+        recycler.adapter = PlantRecyclerAdapter(getMockPlantList())
     }
 }

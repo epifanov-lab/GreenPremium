@@ -2,7 +2,7 @@ package com.lab.greenpremium.ui.screen.main.portfolio
 
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.base.BaseFragment
-import com.lab.greenpremium.ui.screen.main.plants.PortfolioPagerAdapter
+import com.lab.greenpremium.ui.screen.main.portfolio.adapters.PortfolioPagerAdapter
 import kotlinx.android.synthetic.main.fragment_portfolio.*
 
 

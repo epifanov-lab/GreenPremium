@@ -1,11 +1,11 @@
-package com.lab.greenpremium.ui.screen.main.plants
+package com.lab.greenpremium.ui.screen.main.portfolio
 
 import android.content.Context
 import android.os.Bundle
 import com.lab.greenpremium.KEY_TYPE
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.sub_fragment_plants.*
+import kotlinx.android.synthetic.main.sub_fragment_portfolio.*
 import java.io.Serializable
 
 class PortfolioSubFragment : BaseFragment() {
@@ -42,7 +42,7 @@ class PortfolioSubFragment : BaseFragment() {
     }
 
     override fun layoutResId(): Int {
-        return R.layout.sub_fragment_plants
+        return R.layout.sub_fragment_portfolio
     }
 
     override fun initViews() {

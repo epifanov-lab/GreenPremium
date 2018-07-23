@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container_main"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:showIn="@layout/item_plant">
+    android:layout_height="@dimen/item_plant_height"
+    android:background="@drawable/bcg_plant_item"
+    android:layout_marginTop="@dimen/space_medium_1">
 
     <RelativeLayout
         android:id="@+id/container_image"
