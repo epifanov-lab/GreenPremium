@@ -29,6 +29,8 @@
     <string name="title_plants_big">Крупномеры</string>
     <string name="title_service">Сервис</string>
 
+    <string name="title_height">Высота</string>
+
     <string name="error_simple">Ошибка!</string>
 
 </resources>

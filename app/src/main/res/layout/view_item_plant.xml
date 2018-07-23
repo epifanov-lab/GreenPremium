@@ -4,8 +4,8 @@
     android:id="@+id/container_main"
     android:layout_width="match_parent"
     android:layout_height="@dimen/item_plant_height"
-    android:background="@drawable/bcg_plant_item"
-    android:layout_marginTop="@dimen/space_medium_1">
+    android:layout_marginTop="@dimen/space_medium_1"
+    android:background="@drawable/bcg_plant_item">
 
     <RelativeLayout
         android:id="@+id/container_image"
@@ -52,23 +52,50 @@
             android:textSize="@dimen/font_size_9"
             tools:text="Размер кашпо 150*150*150 см" />
 
-        <TextView
-            android:id="@+id/text_info_2"
+        <LinearLayout
+            android:id="@+id/container_height_selector"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_info_1"
-            android:layout_marginBottom="@dimen/space_small_2"
-            android:fontFamily="@font/sfuitext_regular"
-            android:gravity="center_vertical"
-            android:textColor="@color/gray_light_1"
-            android:textSize="@dimen/font_size_9"
-            tools:text="Высота композиции 1500 мм" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/text_info_2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_small_2"
+                android:layout_weight="4"
+                android:fontFamily="@font/sfuitext_regular"
+                android:gravity="center_vertical"
+                android:textColor="@color/gray_light_1"
+                android:textSize="@dimen/font_size_9"
+                tools:text="Высота" />
+
+            <TextView
+                android:id="@+id/height_selector"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:background="@drawable/bcg_plant_height_selector"
+                android:drawableRight="@drawable/ic_selector"
+                android:fontFamily="@font/sfuitext_regular"
+                android:gravity="center"
+                android:textSize="@dimen/font_size_9"
+                tools:text="15 м" />
+
+            <View
+                android:id="@+id/space"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_weight="8" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/container_price"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/text_info_2"
+            android:layout_below="@id/container_height_selector"
             android:orientation="horizontal">
 
             <TextView
@@ -110,12 +137,14 @@
         android:paddingTop="@dimen/space_small_3">
 
         <ImageView
+            android:id="@+id/button_add"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:src="@drawable/ic_add_plant" />
 
         <TextView
+            android:id="@+id/text_counter"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="2"
@@ -123,9 +152,10 @@
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="@dimen/font_size_18"
-            tools:text="1" />
+            tools:text="0" />
 
         <ImageView
+            android:id="@+id/button_remove"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:layout_weight="1"

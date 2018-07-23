@@ -5,6 +5,7 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
+import com.lab.greenpremium.data.entity.Plant
 import com.lab.greenpremium.ui.screen.main.plants.PlantSubFragment
 
 class PlantsPagerAdapter(fm: FragmentManager?, private val context: Context?) : FragmentStatePagerAdapter(fm) {
@@ -14,10 +15,10 @@ class PlantsPagerAdapter(fm: FragmentManager?, private val context: Context?) : 
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return PlantSubFragment.PlantType.getTitles(context)[position]
+        return Plant.Type.getTitles(context)[position]
     }
 
     override fun getCount(): Int {
-        return PlantSubFragment.PlantType.values().size
+        return Plant.Type.values().size
     }
 }

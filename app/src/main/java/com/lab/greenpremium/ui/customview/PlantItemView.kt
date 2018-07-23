@@ -3,31 +3,18 @@ package com.lab.greenpremium.ui.customview
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Plant
 import com.lab.greenpremium.utills.currencyFormat
-import kotlinx.android.synthetic.main.item_plant_view.view.*
+import kotlinx.android.synthetic.main.view_item_plant.view.*
 
+const val MIN_COUNT = 0
 
 class PlantItemView : RelativeLayout {
 
-    enum class Type {
-        REGULAR;
-
-        companion object {
-            fun fromInt(value: Int): Type {
-                for (type in Type.values()) {
-                    if (value == type.ordinal) {
-                        return type
-                    }
-                }
-                return REGULAR
-            }
-        }
-    }
-
-    lateinit var type: Type
+    private var count: Int = MIN_COUNT
 
     constructor(context: Context) : this(context, null)
 
@@ -35,20 +22,45 @@ class PlantItemView : RelativeLayout {
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
 
-        LayoutInflater.from(context).inflate(R.layout.item_plant_view, this, true)
+        LayoutInflater.from(context).inflate(R.layout.view_item_plant, this, true)
 
-        attrs.let {
-            val a = context.obtainStyledAttributes(attrs, R.styleable.PlantItemView)
-            type = Type.fromInt(a.getInt(R.styleable.PlantItemView_type, Type.REGULAR.ordinal))
-            a.recycle()
+        button_add.setOnClickListener { setCounter(++count) }
+        button_remove.setOnClickListener { setCounter(--count) }
+
+    }
+
+    private fun setCounter(n: Int) {
+        count = if (n < 0) 0 else n
+        text_counter.text = count.toString()
+    }
+
+    private fun updateByType(type: Plant.Type) {
+        when (type) {
+            Plant.Type.LIVING, Plant.Type.ARTIFICIAL -> {
+                showHeightSelector(false)
+            }
+
+            Plant.Type.BIG -> {
+                text_info_2.text = context.getText(R.string.title_height)
+                showHeightSelector(true)
+            }
         }
     }
 
-    fun setData(plant : Plant) {
+    private fun showHeightSelector(enabled : Boolean) {
+        height_selector.visibility = if (enabled) View.VISIBLE else View.GONE
+        space.visibility = if (enabled) View.VISIBLE else View.GONE
+        height_selector.text = "15 м" //TODO прибрать
+    }
+
+
+    fun setData(plant: Plant) {
         text_name.text = plant.name
         text_info_1.text = plant.info1
         text_info_2.text = plant.info2
         text_price.text = currencyFormat(plant.price)
         text_discount.text = currencyFormat(plant.discount)
+        updateByType(plant.type)
+        setCounter(count)
     }
 }
