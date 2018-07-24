@@ -38,6 +38,7 @@ class PlantSubFragment : BaseFragment() {
         type = Plant.Type.values()[arguments!!.getInt(KEY_TYPE)]
 
         recycler.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recycler.adapter = PlantRecyclerAdapter (getMockPlantList(type == Plant.Type.BIG))
+        recycler.adapter = PlantRecyclerAdapter (getMockPlantList(type == Plant.Type.BIG),
+                context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
     }
 }

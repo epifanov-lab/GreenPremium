@@ -4,11 +4,14 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Plant
 import com.lab.greenpremium.utills.currencyFormat
 import kotlinx.android.synthetic.main.view_item_plant.view.*
+
+
 
 const val MIN_COUNT = 0
 
@@ -62,5 +65,13 @@ class PlantItemView : RelativeLayout {
         text_discount.text = currencyFormat(plant.discount)
         updateByType(plant.type)
         setCounter(count)
+    }
+
+    fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {
+        val p = LinearLayout.LayoutParams(LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT))
+        p.setMargins(left, top, right, bottom)
+        this.layoutParams = p
+        this.requestLayout()
     }
 }

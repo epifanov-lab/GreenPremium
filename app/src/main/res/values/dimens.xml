@@ -35,9 +35,10 @@
     <dimen name="font_size_18">18sp</dimen>
     <dimen name="font_size_20">20sp</dimen>
 
-    <!--radius-->
+    <!--other-->
     <dimen name="radius_6">6dp</dimen>
     <dimen name="radius_12">12dp</dimen>
+    <dimen name="elevation">20dp</dimen>
 
     <!--views sizes-->
     <dimen name="auth_button_width">240dp</dimen>
