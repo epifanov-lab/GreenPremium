@@ -1,8 +1,6 @@
 package com.lab.greenpremium.ui.screen.main
 
-import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
-import android.view.View
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.base.BaseActivity
 import com.lab.greenpremium.ui.screen.main.basket.BasketFragment

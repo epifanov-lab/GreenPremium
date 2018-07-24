@@ -109,12 +109,10 @@
                 android:textSize="@dimen/font_size_12"
                 tools:text="33.000$" />
 
-            <!--TODO implement custom TextView with diagonal line-->
-            <TextView
+            <com.lab.greenpremium.ui.customview.DiscountTextView
                 android:id="@+id/text_discount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bcg_text_discount"
                 android:fontFamily="@font/sfuitext_regular"
                 android:gravity="center"
                 android:textColor="@color/gray_light_1"

@@ -54,7 +54,6 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/line"
         android:layout_below="@id/toolbar"/>
 
     <View
@@ -64,13 +63,20 @@
         android:layout_above="@id/navigation"
         android:background="@color/gray_light_2"/>
 
+    <com.github.mmin18.widget.RealtimeBlurView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/space_huge_6"
+        android:layout_alignParentBottom="true"
+        app:realtimeBlurRadius="@dimen/radius_12"/>
+
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_huge_6"
-        android:layout_alignParentBottom="true"
-        android:background="@color/white"
+        android:layout_gravity="bottom"
+        android:background="@color/transparent"
         android:theme="@style/Widget.BottomNavigationView"
+        android:layout_alignParentBottom="true"
         app:itemIconTint="@drawable/nav_icons_states"
         app:itemTextColor="@drawable/nav_text_states"
         app:menu="@menu/navigation"/>

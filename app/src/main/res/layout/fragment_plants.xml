@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                android:background="@color/white_bcg">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/tab_layout"
@@ -11,18 +10,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
-        app:tabBackground="@color/white"
         app:tabGravity="fill"
         app:tabIndicatorHeight="@dimen/line_thickness"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/green_2"
-        app:tabTextColor="@color/gray_light_1"/>
+        app:tabTextColor="@color/gray_light_1"
+        android:layout_marginLeft="@dimen/space_medium_2"/>
 
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_thickness_2"
         android:layout_below="@id/tab_layout"
+        android:layout_marginLeft="@dimen/space_medium_2"
+        android:layout_marginRight="@dimen/space_medium_2"
         android:background="@color/gray_light_2"/>
 
     <android.support.v4.view.ViewPager
@@ -30,7 +31,6 @@
         android:id="@+id/pager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/line"
-        android:background="@color/white_bcg"/>
+        android:layout_below="@id/line"/>
 
 </RelativeLayout>

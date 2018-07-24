@@ -6,7 +6,7 @@ import com.lab.greenpremium.data.entity.Plant
 fun getMockPlantList(enableSelector : Boolean = false) : List<Plant> {
     val result : ArrayList<Plant> = ArrayList()
 
-    for (i in 1..50) {
+    for (i in 1..15) {
         val name = "Аглаонема #$i"
         val info1 = "Размер кашпо 150*150*150 см"
         val info2 = "Высота композиции ${i * 100} мм"
