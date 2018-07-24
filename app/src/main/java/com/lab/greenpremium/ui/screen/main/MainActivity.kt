@@ -63,7 +63,7 @@ class MainActivity : BaseActivity() {
     }
 
     override fun initViews() {
-        swapFragment(PlantFragment.newInstance())
+        swapFragment(ProfileFragment.newInstance())
 
         navigation.itemIconTintList = null
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
