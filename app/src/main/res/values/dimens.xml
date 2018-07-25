@@ -30,7 +30,7 @@
     <dimen name="font_size_7">7sp</dimen>
     <dimen name="font_size_9">9sp</dimen>
     <dimen name="font_size_10">10sp</dimen>
-    <dimen name="font_size_12">14sp</dimen>
+    <dimen name="font_size_12">12sp</dimen>
     <dimen name="font_size_14">14sp</dimen>
     <dimen name="font_size_18">18sp</dimen>
     <dimen name="font_size_20">20sp</dimen>
@@ -47,6 +47,7 @@
     <dimen name="item_plant_height">110dp</dimen>
     <dimen name="item_plant_image_container_width">90dp</dimen>
     <dimen name="item_plant_image_bcg_circle_size">58dp</dimen>
+    <dimen name="item_contact_image_bcg_circle_size">69dp</dimen>
     <dimen name="item_plant_controls_width">44dp</dimen>
 
     <dimen name="line_thickness">3dp</dimen>

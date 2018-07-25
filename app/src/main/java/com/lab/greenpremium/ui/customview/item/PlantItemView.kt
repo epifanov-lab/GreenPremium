@@ -1,4 +1,4 @@
-package com.lab.greenpremium.ui.customview
+package com.lab.greenpremium.ui.customview.item
 
 import android.content.Context
 import android.util.AttributeSet
@@ -17,7 +17,7 @@ const val MIN_COUNT = 0
 
 class PlantItemView : RelativeLayout {
 
-    private var count: Int = MIN_COUNT
+    private lateinit var plant: Plant
 
     constructor(context: Context) : this(context, null)
 
@@ -27,14 +27,22 @@ class PlantItemView : RelativeLayout {
 
         LayoutInflater.from(context).inflate(R.layout.view_item_plant, this, true)
 
-        button_add.setOnClickListener { setCounter(++count) }
-        button_remove.setOnClickListener { setCounter(--count) }
+        button_add.setOnClickListener { setCounter(++plant.count) }
+        button_remove.setOnClickListener { setCounter(--plant.count) }
 
     }
 
-    private fun setCounter(n: Int) {
-        count = if (n < 0) 0 else n
-        text_counter.text = count.toString()
+    fun setData(plant: Plant) {
+        this.plant = plant
+
+        text_name.text = plant.name
+        text_info_1.text = plant.info1
+        text_info_2.text = plant.info2
+        text_price.text = currencyFormat(plant.price)
+        text_discount.text = currencyFormat(plant.discount)
+
+        updateByType(plant.type)
+        setCounter(plant.count)
     }
 
     private fun updateByType(type: Plant.Type) {
@@ -50,21 +58,15 @@ class PlantItemView : RelativeLayout {
         }
     }
 
+    private fun setCounter(n: Int) {
+        plant.count = if (n < 0) 0 else n
+        text_counter.text = plant.count.toString()
+    }
+
     private fun showHeightSelector(enabled : Boolean) {
         height_selector.visibility = if (enabled) View.VISIBLE else View.GONE
         space.visibility = if (enabled) View.VISIBLE else View.GONE
         height_selector.text = "15 м" //TODO прибрать
-    }
-
-
-    fun setData(plant: Plant) {
-        text_name.text = plant.name
-        text_info_1.text = plant.info1
-        text_info_2.text = plant.info2
-        text_price.text = currencyFormat(plant.price)
-        text_discount.text = currencyFormat(plant.discount)
-        updateByType(plant.type)
-        setCounter(count)
     }
 
     fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {

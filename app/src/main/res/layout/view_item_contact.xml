@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="@dimen/elevation"
+    app:cardUseCompatPadding="true">
+
+    <RelativeLayout
+        android:id="@+id/container_main"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/item_plant_height"
+        android:background="@color/white">
+
+        <RelativeLayout
+            android:id="@+id/container_image"
+            android:layout_width="@dimen/item_plant_image_container_width"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/image"
+                android:layout_width="@dimen/item_plant_image_bcg_circle_size"
+                android:layout_height="@dimen/item_contact_image_bcg_circle_size"
+                android:layout_centerInParent="true"
+                android:src="@drawable/dummy_img_contact"
+                android:background="@drawable/bcg_circle_plant" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/container_info"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@id/container_controls"
+            android:layout_toRightOf="@id/container_image"
+            android:layout_marginLeft="@dimen/space_small_1"
+            android:paddingRight="@dimen/space_small_4"
+            android:paddingTop="@dimen/space_small_4">
+
+            <TextView
+                android:id="@+id/text_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_small_1"
+                android:fontFamily="@font/sfuitext_medium"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_14"
+                tools:text="Деракова Зоя" />
+
+            <TextView
+                android:id="@+id/text_post"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/text_name"
+                android:layout_marginBottom="@dimen/space_small_1"
+                android:fontFamily="@font/sfuitext_regular"
+                android:gravity="center_vertical"
+                android:textColor="@color/gray_light_1"
+                android:textSize="@dimen/font_size_9"
+                tools:text="Биолог" />
+
+            <TextView
+                android:id="@+id/text_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_small_2"
+                android:fontFamily="@font/sfuitext_medium"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_12"
+                android:layout_below="@id/text_post"
+                tools:text="+ 7 (495) 994 65 45"/>
+
+            <TextView
+                android:id="@+id/text_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/space_small_2"
+                android:fontFamily="@font/sfuitext_medium"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_9"
+                android:layout_below="@id/text_phone"
+                tools:text="Мы ухаживаем за вашими растениями в пн., чт., с 11:00 - 13:00"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/container_controls"
+            android:layout_width="@dimen/item_plant_controls_width"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/bcg_button_green_vertical"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/button_call"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_phone" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</android.support.v7.widget.CardView>

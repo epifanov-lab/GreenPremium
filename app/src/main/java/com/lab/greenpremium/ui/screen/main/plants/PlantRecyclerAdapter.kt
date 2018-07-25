@@ -1,9 +1,9 @@
-package com.lab.greenpremium.ui.screen.main.plants.adapters
+package com.lab.greenpremium.ui.screen.main.plants
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.lab.greenpremium.data.entity.Plant
-import com.lab.greenpremium.ui.customview.PlantItemView
+import com.lab.greenpremium.ui.customview.item.PlantItemView
 
 
 class PlantRecyclerAdapter(private val list: List<Plant>, private val margin: Int?) : RecyclerView.Adapter<PlantRecyclerAdapter.ViewHolder>() {

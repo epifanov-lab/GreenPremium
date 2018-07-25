@@ -30,15 +30,7 @@ data class Plant(val name: String, val info1: String, val info2: String,
                 }
                 return LIVING
             }
-
         }
     }
-/*    enum class Type {
-        REGULAR, HEIGHT_CHOICE;
-
-        companion object {
-
-        }
-    }*/
 
 }

@@ -7,7 +7,6 @@ import com.lab.greenpremium.KEY_TYPE
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Plant
 import com.lab.greenpremium.ui.base.BaseFragment
-import com.lab.greenpremium.ui.screen.main.plants.adapters.PlantRecyclerAdapter
 import com.lab.greenpremium.utills.getMockPlantList
 import kotlinx.android.synthetic.main.sub_fragment_plants.*
 
@@ -38,7 +37,7 @@ class PlantSubFragment : BaseFragment() {
         type = Plant.Type.values()[arguments!!.getInt(KEY_TYPE)]
 
         recycler.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recycler.adapter = PlantRecyclerAdapter (getMockPlantList(type == Plant.Type.BIG),
+        recycler.adapter = PlantRecyclerAdapter(getMockPlantList(type == Plant.Type.BIG),
                 context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
     }
 }
