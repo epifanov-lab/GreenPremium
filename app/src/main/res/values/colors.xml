@@ -7,6 +7,7 @@
     <color name="transparent">#00ffffff</color>
     <color name="white">#fff</color>
     <color name="white_50">#7fffffff</color>
+    <color name="beige">#eef3ec</color>
 
     <color name="black">#323643</color>
     <color name="black_50">#7f323643</color>
@@ -20,5 +21,6 @@
     <color name="green_2">#276430</color>
     <color name="green_3">#5d9243</color>
     <color name="green_3_10">#195d9243</color>
+    <color name="green_4_60">#b9b9e1a9</color>
     <color name="green_light">#eef4ec</color>
 </resources>

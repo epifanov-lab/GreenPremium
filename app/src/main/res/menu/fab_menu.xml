@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- First button is the initial Fab of the menu -->
+    <!-- Title here can be empty if you don't to add any action in the main button -->
+    <!--    <item
+            android:id="@+id/fab_main"
+            android:icon="@drawable/ic_add"
+            android:title=""/>-->
+
+    <!-- Options buttons of the Fab menu -->
+    <item
+        android:id="@+id/fab_1"
+        android:icon="@drawable/ic_sad"
+        android:orderInCategory="1"
+        android:title="@string/fab_complain"/>
+
+    <item
+        android:id="@+id/fab_2"
+        android:icon="@drawable/ic_smile"
+        android:orderInCategory="2"
+        android:title="@string/fab_praise"/>
+
+    <item
+        android:id="@+id/fab_3"
+        android:icon="@drawable/nav_ic_contacts_unchecked"
+        android:orderInCategory="3"
+        android:title="@string/fab_message"/>
+
+    <item
+        android:id="@+id/fab_4"
+        android:icon="@drawable/ic_add"
+        android:orderInCategory="4"
+        android:title="@string/fab_project"/>
+
+</menu>

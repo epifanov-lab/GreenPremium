@@ -31,6 +31,15 @@
 
     <string name="title_height">Высота</string>
 
+    <string name="profile_calc_service">Рассчитать стоимость сервиса</string>
+    <string name="profile_label_hint">Ваши покупки появятся\nздесь</string>
+    <string name="profile_label_shop">Начать\nпокупки</string>
+
+    <string name="fab_complain">Пожаловаться</string>
+    <string name="fab_praise">Похвалить</string>
+    <string name="fab_message">Написать письмо</string>
+    <string name="fab_project">Новый проект</string>
+
     <string name="error_simple">Ошибка!</string>
 
 </resources>

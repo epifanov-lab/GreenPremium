@@ -1,10 +1,13 @@
 package com.lab.greenpremium.ui.screen.main.profile
 
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
+import com.getbase.floatingactionbutton.FloatingActionsMenu
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.base.BaseFragment
 import com.lab.greenpremium.ui.screen.main.contacts.ContactsRecyclerAdapter
 import com.lab.greenpremium.utills.getMockContactList
+import kotlinx.android.synthetic.main.fab_menu.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
@@ -26,5 +29,16 @@ class ProfileFragment : BaseFragment() {
         recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recycler.adapter = ContactsRecyclerAdapter(getMockContactList(), LinearLayoutManager.HORIZONTAL,
                 context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+
+        fab_menu.setOnFloatingActionsMenuUpdateListener(object : FloatingActionsMenu.OnFloatingActionsMenuUpdateListener {
+            override fun onMenuCollapsed() {
+                obstructor.visibility = View.GONE
+            }
+
+            override fun onMenuExpanded() {
+                obstructor.visibility = View.VISIBLE
+            }
+
+        })
     }
 }
