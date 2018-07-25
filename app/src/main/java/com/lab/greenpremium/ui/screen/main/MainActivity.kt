@@ -1,6 +1,13 @@
 package com.lab.greenpremium.ui.screen.main
 
+import android.animation.Animator
 import android.support.design.widget.BottomNavigationView
+import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
+import android.view.ViewAnimationUtils
+import com.getbase.floatingactionbutton.FloatingActionsMenu
+import com.lab.greenpremium.DURATION_FAST
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.base.BaseActivity
 import com.lab.greenpremium.ui.screen.main.basket.BasketFragment
@@ -29,33 +36,38 @@ class MainActivity : BaseActivity() {
         button_basket.setImageResource(R.drawable.ic_basket)
 
         when (item.itemId) {
+            R.id.nav_profile -> {
+                message.setText(R.string.title_profile)
+                swapFragment(ProfileFragment.newInstance())
+                activateFabMenu(true)
+                return@OnNavigationItemSelectedListener true
+            }
+
             R.id.nav_plants -> {
                 message.setText(R.string.title_plants)
                 swapFragment(PlantFragment.newInstance())
+                activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_portfolio -> {
                 message.setText(R.string.title_portfolio)
                 swapFragment(PortfolioFragment.newInstance())
-                return@OnNavigationItemSelectedListener true
-            }
-
-            R.id.nav_profile -> {
-                message.setText(R.string.title_profile)
-                swapFragment(ProfileFragment.newInstance())
+                activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_contacts -> {
                 message.setText(R.string.title_contacts)
                 swapFragment(ContactsFragment.newInstance())
+                activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_map -> {
                 message.setText(R.string.title_map)
                 swapFragment(MapFragment.newInstance())
+                activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -64,6 +76,7 @@ class MainActivity : BaseActivity() {
 
     override fun initViews() {
         swapFragment(ProfileFragment.newInstance())
+        activateFabMenu(true)
 
         navigation.itemIconTintList = null
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
@@ -84,6 +97,55 @@ class MainActivity : BaseActivity() {
             swapFragment(BasketFragment.newInstance())
             BottomNavigationViewHelper.setUncheckable(navigation, true)
         }
+    }
+
+    private fun activateFabMenu(enabled: Boolean) {
+        fab_menu.visibility = if (enabled) VISIBLE else GONE
+        if (!enabled) {
+            fab_menu.collapse()
+            obstructor.visibility = GONE
+        }
+
+        fab_menu.setOnFloatingActionsMenuUpdateListener(object : FloatingActionsMenu.OnFloatingActionsMenuUpdateListener {
+            override fun onMenuExpanded() {
+                val x = obstructor.right
+                val y = obstructor.bottom
+                val startRadius = 0
+                val endRadius = Math.hypot(obstructor.width.toDouble(), obstructor.height.toDouble())
+                val animation = ViewAnimationUtils.createCircularReveal(obstructor, x, y, startRadius.toFloat(), endRadius.toFloat())
+                animation.duration = DURATION_FAST
+                obstructor.visibility = View.VISIBLE
+                animation.start()
+            }
+
+            override fun onMenuCollapsed() {
+                val x = obstructor.right
+                val y = obstructor.bottom
+                val startRadius = Math.max(obstructor.width, obstructor.height)
+                val endRadius = 0
+                val animation = ViewAnimationUtils.createCircularReveal(obstructor, x, y, startRadius.toFloat(), endRadius.toFloat())
+                animation.duration = DURATION_FAST
+                animation.addListener(object : Animator.AnimatorListener {
+                    override fun onAnimationRepeat(p0: Animator?) {
+                        //ignore
+                    }
+
+                    override fun onAnimationEnd(p0: Animator?) {
+                        obstructor.visibility = View.GONE
+                    }
+
+                    override fun onAnimationCancel(p0: Animator?) {
+                        //ignore
+                    }
+
+                    override fun onAnimationStart(p0: Animator?) {
+                        //ignore
+                    }
+                })
+                animation.start()
+            }
+
+        })
     }
 
     override fun onBackPressed() {
