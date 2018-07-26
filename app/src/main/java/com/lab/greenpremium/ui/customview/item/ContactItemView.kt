@@ -14,7 +14,11 @@ import kotlinx.android.synthetic.main.view_item_contact.view.*
 
 class ContactItemView : RelativeLayout {
 
-    private lateinit var contact: Contact
+    var contact: Contact? = null
+        set(value) {
+            field = value
+            updateView()
+        }
 
     constructor(context: Context) : this(context, null)
 
@@ -31,15 +35,21 @@ class ContactItemView : RelativeLayout {
                 context.startActivity(intent)
             }
         }
+
+        button_mail.setOnClickListener {
+            contact?.mail?.let {
+                val intent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", it, null))
+                context.startActivity(intent)
+            }
+        }
     }
 
-    fun setData(contact: Contact) {
-        this.contact = contact
-
-        text_name.text = contact.name
-        text_post.text = contact.post
-        text_phone.text = contact.phone
-        text_info.text = contact.info
+    private fun updateView() {
+        text_name.text = contact?.name
+        text_position.text = contact?.position
+        text_phone.text = contact?.phone.also { if (contact?.phone == null) button_call.visibility = GONE }
+        text_mail.text = contact?.mail.also { if (contact?.mail == null) button_mail.visibility = GONE }
+        text_info.text = contact?.info
     }
 
     fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {

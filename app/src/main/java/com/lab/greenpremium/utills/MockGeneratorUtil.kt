@@ -24,11 +24,12 @@ fun getMockContactList() : List<Contact> {
     val result : ArrayList<Contact> = ArrayList()
 
     for (i in 1..9) {
-        val name = "Деракова Зоя $i"
-        val post = "Биолог"
+        val name = "Деракова Зоя Борисовна #$i"
+        val position = "Руководитель службы сервиса"
+        val mail = "jb@greenpremium.ru"
         val phone = "+ 7 (495) 994 65 4$i"
         val info = "Мы ухаживаем за вашими растениями в пн., чт., с 11:00 - 13:00"
-        result.add(Contact(name, post, phone, info))
+        result.add(Contact(name, position, mail, phone, null))
     }
 
     return result

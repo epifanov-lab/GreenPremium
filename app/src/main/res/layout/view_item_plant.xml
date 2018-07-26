@@ -10,7 +10,7 @@
     <RelativeLayout
         android:id="@+id/container_main"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_plant_height"
+        android:layout_height="@dimen/item_plant_and_contact_height"
         android:background="@color/white">
 
         <RelativeLayout

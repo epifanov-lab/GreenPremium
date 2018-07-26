@@ -20,7 +20,7 @@ class ContactsRecyclerAdapter(private val list: List<Contact>, private val orien
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.setData(list[position])
+        holder.view.contact = list[position]
 
         if (margin != null) {
 
