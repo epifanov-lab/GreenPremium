@@ -8,7 +8,7 @@
                 android:paddingRight="@dimen/space_medium_2">
 
     <RelativeLayout
-        android:id="@+id/container_appointment"
+        android:id="@+id/container_meeting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_small_3">
@@ -72,11 +72,11 @@
         android:id="@+id/text_message"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/container_appointment"
+        android:layout_below="@id/container_meeting"
         android:layout_marginBottom="@dimen/space_small_4"
         android:fontFamily="@font/sfuitext_medium"
         android:gravity="center"
-        android:text="@string/contacts_message_you_can_make_appointment"
+        android:text="@string/contacts_message_employee_meeting"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_9"/>
 

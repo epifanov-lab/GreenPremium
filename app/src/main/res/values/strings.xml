@@ -36,7 +36,9 @@
     <string name="profile_label_shop">Начать\nпокупки</string>
 
     <string name="contacts_time_choose">Выбор времени</string>
-    <string name="contacts_message_you_can_make_appointment">Вы можете назначит встречу с одним из наших сотрудников</string>
+    <string name="contacts_meet_date_and_time">Дата и время</string>
+    <string name="contacts_schedule_meet">Назначить встречу</string>
+    <string name="contacts_message_employee_meeting">Вы можете назначит встречу с одним из наших сотрудников</string>
 
     <string name="fab_complain">Пожаловаться</string>
     <string name="fab_praise">Похвалить</string>
