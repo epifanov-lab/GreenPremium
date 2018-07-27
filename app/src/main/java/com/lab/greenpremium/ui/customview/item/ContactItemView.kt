@@ -38,8 +38,13 @@ class ContactItemView : RelativeLayout {
 
         button_mail.setOnClickListener {
             contact?.mail?.let {
-                val intent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", it, null))
-                context.startActivity(intent)
+                try {
+                    //todo (CRUSH) проверка на наличие активити которое хэндлит ACTION_SENDTO
+                    val intent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", it, null))
+                    context.startActivity(intent)
+                } catch (e: Exception) {
+                    //todo show snackbar message
+                }
             }
         }
     }

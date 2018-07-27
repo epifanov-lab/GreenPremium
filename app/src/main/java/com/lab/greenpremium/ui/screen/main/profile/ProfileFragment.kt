@@ -23,10 +23,10 @@ class ProfileFragment : BaseFragment() {
     }
 
     override fun initViews() {
-        initializeContactCarousel()
+        initializeContactsCarousel()
     }
 
-    private fun initializeContactCarousel() {
+    private fun initializeContactsCarousel() {
         recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recycler.adapter = ContactsRecyclerAdapter(getMockContactList(), LinearLayoutManager.HORIZONTAL,
                 context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())

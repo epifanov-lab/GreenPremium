@@ -43,6 +43,8 @@
     <!--views sizes-->
     <dimen name="auth_button_width">240dp</dimen>
     <dimen name="auth_button_height">42dp</dimen>
+    <dimen name="contacts_button_width">135dp</dimen>
+    <dimen name="contacts_button_height">42dp</dimen>
 
     <dimen name="item_plant_and_contact_height">110dp</dimen>
     <dimen name="item_plant_image_container_width">90dp</dimen>

@@ -26,9 +26,9 @@ class ContactsRecyclerAdapter(private val list: List<Contact>, private val orien
 
             if (orientation == VERTICAL) {
                 holder.view.setMargins(
+                        0,
                         margin / 2,
-                        margin / 2,
-                        margin / 2,
+                        0,
                         if (position == list.lastIndex) margin * 3 else margin / 2
                 )
 

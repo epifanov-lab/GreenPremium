@@ -1,17 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white"
+                android:paddingLeft="@dimen/space_medium_2"
+                android:paddingRight="@dimen/space_medium_2">
+
+    <RelativeLayout
+        android:id="@+id/container_appointment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_small_3">
+
+        <Button
+            android:id="@+id/button_time_choose"
+            style="@style/Button.Green"
+            android:layout_width="@dimen/contacts_button_width"
+            android:layout_height="@dimen/contacts_button_height"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/contacts_time_choose"/>
+
+        <TextView
+            android:id="@+id/text_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center"
+            android:layout_toLeftOf="@id/container_date"
+            android:layout_toRightOf="@id/button_time_choose"
+            android:fontFamily="@font/sfuitext_medium"
+            android:gravity="center"
+            android:textColor="@color/gray_light_1"
+            android:textSize="@dimen/font_size_18"
+            tools:text="15:30"/>
+
+        <LinearLayout
+            android:id="@+id/container_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/ic_calendar"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/space_small_1">
+
+            <TextView
+                android:id="@+id/text_date_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sfuitext_medium"
+                android:gravity="center"
+                android:textColor="@color/gray_light_1"
+                android:textSize="@dimen/font_size_14"
+                tools:text="10"/>
+
+            <TextView
+                android:id="@+id/text_date_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sfuitext_medium"
+                android:gravity="center"
+                android:textColor="@color/gray_light_1"
+                android:textSize="@dimen/font_size_9"
+                tools:text="июля"/>
+        </LinearLayout>
+
+    </RelativeLayout>
 
     <TextView
-        android:id="@+id/test"
+        android:id="@+id/text_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/container_appointment"
+        android:layout_marginBottom="@dimen/space_small_4"
+        android:fontFamily="@font/sfuitext_medium"
+        android:gravity="center"
+        android:text="@string/contacts_message_you_can_make_appointment"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_9"/>
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/line_thickness_2"
+        android:layout_below="@id/text_message"
+        android:background="@color/gray_light_2"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fontFamily="@font/sfuitext_bold"
-        android:gravity="center"
-        android:text="@string/title_contacts"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_size_20" />
+        android:layout_below="@id/line"
+        android:clipToPadding="false"/>
 
 </RelativeLayout>
