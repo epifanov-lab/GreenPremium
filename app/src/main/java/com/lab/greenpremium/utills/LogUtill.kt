@@ -8,7 +8,7 @@ import java.util.ArrayList
 /**
  * This class wraps [android.util.Log] and automatically adds to log message class name,
  * method name and line number at which log method was invoked. As a tag parameter it uses
- * [.TAG] field to allow filter logcat messages by its value.
+ * [.name] field to allow filter logcat messages by its value.
  * Log output can be completely disabled by setting [.loggingEnabled] to false.
  *
  * Created by shirshov on 12.04.2017.

@@ -1,20 +1,36 @@
 package com.lab.greenpremium.ui.dialog
 
-import android.support.v7.app.AlertDialog
+import android.app.FragmentManager
+import android.widget.NumberPicker
 import com.lab.greenpremium.R
-import com.lab.greenpremium.ui.base.BaseDialogFragment
-
+import kotlinx.android.synthetic.main.dialog_date_time_picker.view.*
+import java.util.*
 
 class DateTimePickerDialog : BaseDialogFragment() {
 
-    override val dialogBuilder: AlertDialog.Builder
-        get() =  AlertDialog.Builder(activity, R.style.TransparentDialogFragment)
+    val name = DateTimePickerDialog::class.simpleName
+    var listener: DateTimePickerListener? = null
+
+    interface DateTimePickerListener {
+        fun onClickAccept(date: Long)
+    }
+
+    companion object {
+        fun show(fragmentManager: FragmentManager, listener: DateTimePickerListener) {
+            val dialog = DateTimePickerDialog()
+            dialog.listener = listener
+            dialog.show(fragmentManager, DateTimePickerDialog::class.simpleName)
+        }
+    }
 
     override fun layoutResId(): Int {
-        return R.layout.dialog_date_titme_picker
+        return R.layout.dialog_date_time_picker
     }
 
     override fun initViews() {
-        //ignore
+        dialogView.ok.setOnClickListener { listener?.onClickAccept(System.currentTimeMillis()).let { dismiss() } }
+
+        val calendar = Calendar.getInstance()
+
     }
 }

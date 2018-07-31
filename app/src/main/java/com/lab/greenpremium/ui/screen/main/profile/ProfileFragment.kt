@@ -2,7 +2,7 @@ package com.lab.greenpremium.ui.screen.main.profile
 
 import android.support.v7.widget.LinearLayoutManager
 import com.lab.greenpremium.R
-import com.lab.greenpremium.ui.base.BaseFragment
+import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.ui.screen.main.contacts.ContactsRecyclerAdapter
 import com.lab.greenpremium.utills.getMockContactList
 import kotlinx.android.synthetic.main.fragment_profile.*

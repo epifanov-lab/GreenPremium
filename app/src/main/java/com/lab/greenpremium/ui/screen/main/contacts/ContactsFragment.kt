@@ -2,9 +2,8 @@ package com.lab.greenpremium.ui.screen.main.contacts
 
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
-import android.view.View
 import com.lab.greenpremium.R
-import com.lab.greenpremium.ui.base.BaseFragment
+import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.ui.screen.main.contacts.meet.MeetingActivity
 import com.lab.greenpremium.utills.getMockContactList
 import kotlinx.android.synthetic.main.fragment_contacts.*

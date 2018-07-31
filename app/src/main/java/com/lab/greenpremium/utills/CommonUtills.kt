@@ -1,8 +1,15 @@
 package com.lab.greenpremium.utills
 
+import android.view.View
+import android.view.ViewGroup
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
+
+operator fun ViewGroup.get(pos: Int): View = getChildAt(pos)
+
+val ViewGroup.views: List<View>
+    get() = (0 until childCount).map { getChildAt(it) }
 
 /**
  * Converts double value to locale independent currency string. Always uses dots as decimal

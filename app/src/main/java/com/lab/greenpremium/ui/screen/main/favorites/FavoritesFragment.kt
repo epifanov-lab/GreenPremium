@@ -1,7 +1,7 @@
 package com.lab.greenpremium.ui.screen.main.favorites
 
 import com.lab.greenpremium.R
-import com.lab.greenpremium.ui.base.BaseFragment
+import com.lab.greenpremium.ui.screen.base.BaseFragment
 
 
 class FavoritesFragment : BaseFragment() {

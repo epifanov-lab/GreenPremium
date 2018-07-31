@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import com.lab.greenpremium.KEY_TYPE
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Plant
-import com.lab.greenpremium.ui.base.BaseFragment
+import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.utills.getMockPlantList
 import kotlinx.android.synthetic.main.sub_fragment_plants.*
 

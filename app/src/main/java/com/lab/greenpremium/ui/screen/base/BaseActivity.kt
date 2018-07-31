@@ -1,4 +1,4 @@
-package com.lab.greenpremium.ui.base
+package com.lab.greenpremium.ui.screen.base
 
 import android.content.Intent
 import android.os.Bundle
