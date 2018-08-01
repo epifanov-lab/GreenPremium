@@ -32,7 +32,7 @@ class DiscountTextView : TextView {
         paint = Paint()
         paint!!.isAntiAlias = true
         paint!!.color = dividerColor
-        paint!!.strokeWidth = resources.getDimension(R.dimen.line_thickness_2)
+        paint!!.strokeWidth = resources.getDimension(R.dimen.line_thickness_1)
     }
 
     override fun onDraw(canvas: Canvas) {

@@ -19,7 +19,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/line_thickness_2"
+        android:layout_height="@dimen/line_thickness_1"
         android:layout_above="@id/navigation"
         android:background="@color/green_5"/>
 
@@ -76,7 +76,7 @@
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="@dimen/line_thickness_2"
+        android:layout_height="@dimen/line_thickness_1"
         android:layout_above="@id/navigation"
         android:background="@color/black"/>
 

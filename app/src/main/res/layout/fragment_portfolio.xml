@@ -13,7 +13,7 @@
         android:layout_marginLeft="@dimen/space_medium_2"
         android:minHeight="?attr/actionBarSize"
         app:tabGravity="fill"
-        app:tabIndicatorHeight="@dimen/line_thickness"
+        app:tabIndicatorHeight="@dimen/line_thickness_3"
         app:tabMode="scrollable"
         app:tabSelectedTextColor="@color/green_2"
         app:tabTextColor="@color/gray_light_1" />

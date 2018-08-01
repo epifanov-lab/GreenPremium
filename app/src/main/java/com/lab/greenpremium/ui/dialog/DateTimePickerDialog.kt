@@ -10,6 +10,7 @@ class DateTimePickerDialog : BaseDialogFragment() {
 
     val name = DateTimePickerDialog::class.simpleName
     var listener: DateTimePickerListener? = null
+    val calendar = Calendar.getInstance()
 
     interface DateTimePickerListener {
         fun onClickAccept(date: Long)
@@ -29,8 +30,5 @@ class DateTimePickerDialog : BaseDialogFragment() {
 
     override fun initViews() {
         dialogView.ok.setOnClickListener { listener?.onClickAccept(System.currentTimeMillis()).let { dismiss() } }
-
-        val calendar = Calendar.getInstance()
-
     }
 }

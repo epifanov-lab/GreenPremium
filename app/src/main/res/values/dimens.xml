@@ -43,7 +43,7 @@
     <!--views sizes-->
     <dimen name="auth_button_width">240dp</dimen>
     <dimen name="auth_button_height">42dp</dimen>
-    <dimen name="contacts_button_width">135dp</dimen>
+    <dimen name="contacts_button_width">170dp</dimen>
     <dimen name="contacts_button_height">42dp</dimen>
 
     <dimen name="item_plant_and_contact_height">110dp</dimen>
@@ -53,8 +53,9 @@
     <dimen name="item_contact_info_container_width">95dp</dimen>
     <dimen name="item_plant_controls_width">44dp</dimen>
 
-    <dimen name="line_thickness">3dp</dimen>
-    <dimen name="line_thickness_2">1dp</dimen>
+    <dimen name="line_thickness_1">1dp</dimen>
+    <dimen name="line_thickness_2">2dp</dimen>
+    <dimen name="line_thickness_3">3dp</dimen>
 
     <!-- default screen margins, per the android design guidelines. -->
     <dimen name="activity_horizontal_margin">16dp</dimen>

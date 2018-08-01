@@ -19,7 +19,7 @@
             android:layout_width="@dimen/contacts_button_width"
             android:layout_height="@dimen/contacts_button_height"
             android:layout_gravity="center_horizontal"
-            android:text="@string/contacts_time_choose"/>
+            android:text="@string/contacts_schedule_meet"/>
 
         <TextView
             android:id="@+id/text_time"
