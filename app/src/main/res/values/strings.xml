@@ -50,5 +50,6 @@
     <string name="fab_project">Новый проект</string>
 
     <string name="error_simple">Ошибка!</string>
+    <string name="today">Сегодня</string>
 
 </resources>

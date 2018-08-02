@@ -2,8 +2,12 @@ package com.lab.greenpremium.ui.screen.base
 
 import android.content.Intent
 import android.os.Bundle
+import android.support.design.widget.Snackbar
+import android.support.design.widget.Snackbar.LENGTH_LONG
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import android.view.View
+import android.view.ViewGroup
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screen.auth.AuthActivity
 import com.lab.greenpremium.ui.screen.main.MainActivity
@@ -44,5 +48,15 @@ abstract class BaseActivity : AppCompatActivity() {
         transaction.replace(R.id.container, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
+    }
+
+    fun showSnackbar(text: String) {
+        val root = (this.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
+        val snackBar = Snackbar.make(root, text, LENGTH_LONG)
+        snackBar.show()
+    }
+
+    fun showSnackbar(textResId: Int) {
+        showSnackbar(getString(textResId))
     }
 }
