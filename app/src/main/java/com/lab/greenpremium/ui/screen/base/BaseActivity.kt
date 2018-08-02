@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screen.auth.AuthActivity
 import com.lab.greenpremium.ui.screen.main.MainActivity
@@ -50,13 +51,14 @@ abstract class BaseActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    fun showSnackbar(text: String) {
+    fun showSnackbar(text: String? = null, textResId: Int? = null) {
         val root = (this.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
-        val snackBar = Snackbar.make(root, text, LENGTH_LONG)
-        snackBar.show()
+        text?.let { Snackbar.make(root, text, LENGTH_LONG).show() }
+        textResId?.let { Snackbar.make(root, textResId, LENGTH_LONG).show() }
     }
 
-    fun showSnackbar(textResId: Int) {
-        showSnackbar(getString(textResId))
+    fun showToast(text: String? = null, textResId: Int? = null) {
+        text?.let { Toast.makeText(this, text, Toast.LENGTH_SHORT).show() }
+        textResId?.let { Toast.makeText(this, textResId, Toast.LENGTH_SHORT).show() }
     }
 }

@@ -1,5 +1,7 @@
 package com.lab.greenpremium.ui.customview.item
 
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -9,6 +11,7 @@ import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Contact
+import com.lab.greenpremium.ui.screen.base.BaseActivity
 import kotlinx.android.synthetic.main.view_item_contact.view.*
 
 
@@ -46,6 +49,18 @@ class ContactItemView : RelativeLayout {
                     //todo show snackbar message
                 }
             }
+        }
+
+        val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+        text_phone.setOnClickListener {
+            clipboardManager.primaryClip = ClipData.newPlainText("phone", text_phone.text)
+            (context as BaseActivity).showToast("Phone ${text_phone.text} copied to clipboard")
+        }
+
+        text_mail.setOnClickListener {
+            clipboardManager.primaryClip = ClipData.newPlainText("mail", text_mail.text)
+            (context as BaseActivity).showToast("Mail ${text_mail.text} copied to clipboard")
         }
     }
 
