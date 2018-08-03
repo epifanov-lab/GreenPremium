@@ -5,9 +5,14 @@ import com.lab.greenpremium.R
 import java.io.Serializable
 
 
-data class Plant(val name: String, val info1: String, val info2: String,
-                 val price: Double, val discount: Double,
-                 val type : Type, var count : Int = 0) {
+data class Plant(val name: String,
+                 val info1: String,
+                 val info2: String,
+                 val price: Double,
+                 val discount: Double,
+                 val type: Type,
+                 val drawableResId: Int? = null, //todo в будущем URL картинки
+                 var count: Int = 0) {
 
     enum class Type(var titleResId: Int) : Serializable {
         LIVING(R.string.title_plants_living),
@@ -16,8 +21,8 @@ data class Plant(val name: String, val info1: String, val info2: String,
 
         companion object {
 
-            fun getTitles(context : Context?) : Array<String> {
-                val titles : Array<String> = Array(Type.values().size) { "" }
+            fun getTitles(context: Context?): Array<String> {
+                val titles: Array<String> = Array(Type.values().size) { "" }
                 enumValues<Type>().forEach { titles[it.ordinal] = context!!.getString(it.titleResId) }
                 return titles
             }

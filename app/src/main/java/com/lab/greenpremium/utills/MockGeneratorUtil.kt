@@ -1,5 +1,6 @@
 package com.lab.greenpremium.utills
 
+import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.data.entity.Plant
 
@@ -14,7 +15,8 @@ fun getMockPlantList(enableSelector : Boolean = false) : List<Plant> {
         val price = Math.random() * 100000
         val discount = Math.random() * 100000 + 100000
         val type = if (enableSelector) Plant.Type.BIG else Plant.Type.LIVING
-        result.add(Plant(name, info1, info2, price, discount, type))
+        val drawableResIdMock = if (i % 3 == 0) R.drawable.dummy_plant_1 else if (i % 2 == 0) R.drawable.dummy_plant_2 else R.drawable.dummy_plant_3
+        result.add(Plant(name, info1, info2, price, discount, type, drawableResId = drawableResIdMock))
     }
 
     return result

@@ -40,6 +40,7 @@ class PlantItemView : RelativeLayout {
         text_info_2.text = plant.info2
         text_price.text = currencyFormat(plant.price)
         text_discount.text = currencyFormat(plant.discount)
+        plant.drawableResId?.let { image.setImageResource(it) }
 
         updateByType(plant.type)
         setCounter(plant.count)

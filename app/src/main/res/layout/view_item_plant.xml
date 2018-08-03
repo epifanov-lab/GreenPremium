@@ -23,7 +23,7 @@
                 android:layout_width="@dimen/item_plant_image_bcg_circle_size"
                 android:layout_height="@dimen/item_plant_image_bcg_circle_size"
                 android:layout_centerInParent="true"
-                android:background="@drawable/bcg_circle_plant" />
+                android:src="@drawable/bcg_circle_plant" />
 
         </RelativeLayout>
 
