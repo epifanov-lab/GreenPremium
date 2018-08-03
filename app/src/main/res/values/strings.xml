@@ -32,7 +32,9 @@
     <string name="title_height">Высота</string>
 
     <string name="profile_calc_service">Рассчитать стоимость сервиса</string>
-    <string name="profile_label_hint">Ваши покупки появятся\nздесь</string>
+    <string name="profile_label_hint_no_events">Ваши покупки появятся\nздесь</string>
+    <string name="profile_label_hint_service_cost">Стоимость обслуживания\nсоставляет</string>
+    <string name="profile_label_hint_delivery_scheduled">Запланирована поставка\nрастений</string>
     <string name="profile_label_shop">Начать\nпокупки</string>
 
     <string name="contacts_time_choose">Выбор времени</string>
@@ -51,5 +53,7 @@
 
     <string name="error_simple">Ошибка!</string>
     <string name="today">Сегодня</string>
+
+    <string name="event_dummy_1">Ваш заказ № 23456 сформирован и отправлен</string>
 
 </resources>

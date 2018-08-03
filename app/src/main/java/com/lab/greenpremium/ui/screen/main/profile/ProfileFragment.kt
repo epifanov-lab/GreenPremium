@@ -28,9 +28,9 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun initializeContactsCarousel() {
-        LinearSnapHelper().attachToRecyclerView(recycler)
-        recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recycler.adapter = ContactsRecyclerAdapter(getMockContactList(), LinearLayoutManager.HORIZONTAL,
+        LinearSnapHelper().attachToRecyclerView(recycler_contacts)
+        recycler_contacts.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recycler_contacts.adapter = ContactsRecyclerAdapter(getMockContactList(), LinearLayoutManager.HORIZONTAL,
                 context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
     }
 

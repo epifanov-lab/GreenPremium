@@ -31,8 +31,8 @@ class ContactsFragment : BaseFragment() {
     }
 
     private fun initializeContactsRecyclerView() {
-        recycler.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recycler.adapter = ContactsRecyclerAdapter(getMockContactList(), LinearLayoutManager.VERTICAL,
+        recycler_contacts.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recycler_contacts.adapter = ContactsRecyclerAdapter(getMockContactList(), LinearLayoutManager.VERTICAL,
                 context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
     }
 

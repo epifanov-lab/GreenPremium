@@ -7,7 +7,6 @@ import com.lab.greenpremium.MEETING_MINUTE_STEP
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.ui.screen.main.contacts.ContactsRecyclerAdapter
-import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.getMockContactList
 import com.shawnlin.numberpicker.NumberPicker
 import kotlinx.android.synthetic.main.activity_meeting.*
@@ -43,15 +42,15 @@ class MeetingActivity : BaseActivity() {
     }
 
     private fun initializeContactsCarousel() {
-        LinearSnapHelper().attachToRecyclerView(recycler)
-        recycler.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recycler.adapter = ContactsRecyclerAdapter(model.contactList, LinearLayoutManager.HORIZONTAL, this.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+        LinearSnapHelper().attachToRecyclerView(recycler_contacts)
+        recycler_contacts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recycler_contacts.adapter = ContactsRecyclerAdapter(model.contactList, LinearLayoutManager.HORIZONTAL, this.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
 
-        recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        recycler_contacts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    model.pickedContactPos = (recycler.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+                    model.pickedContactPos = (recycler_contacts.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
                 }
             }
         })

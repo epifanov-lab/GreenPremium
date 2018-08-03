@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="9"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/space_small_2"
+            android:paddingLeft="@dimen/space_small_4"
+            android:paddingTop="@dimen/space_small_2">
+
+            <TextView
+                android:id="@+id/text_num"
+                android:layout_width="@dimen/item_event_height"
+                android:layout_height="@dimen/item_event_height"
+                android:layout_gravity="center"
+                android:background="@drawable/bcg_circle_event"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_20"
+                tools:text="01"/>
+
+            <TextView
+                android:id="@+id/text_info"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="6"
+                android:fontFamily="@font/sfuitext_medium"
+                android:gravity="left"
+                android:paddingLeft="@dimen/space_medium_1"
+                android:paddingTop="@dimen/space_small_2"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_7"
+                tools:text="@string/event_dummy_1"/>
+
+            <TextView
+                android:id="@+id/text_date_time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:fontFamily="@font/sfuitext_medium"
+                android:gravity="left|bottom"
+                android:textColor="@color/gray"
+                android:textSize="@dimen/font_size_7"
+                tools:text="20.04.2016 16:20"/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/container_pdf"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/bcg_button_green_vertical"
+            android:clickable="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="invisible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:fontFamily="@font/sfuitext_medium"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_size_12"
+                tools:text="PDF"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:scaleType="centerInside"
+                android:src="@drawable/ic_download"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_connection"
+        android:layout_width="@dimen/line_thickness_2"
+        android:layout_height="@dimen/space_medium_1"
+        android:layout_gravity="center"
+        android:background="@color/white"/>
+</LinearLayout>
