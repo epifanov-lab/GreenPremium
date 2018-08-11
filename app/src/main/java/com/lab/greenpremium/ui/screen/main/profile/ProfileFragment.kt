@@ -6,6 +6,7 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.ui.screen.main.contacts.ContactsRecyclerAdapter
 import com.lab.greenpremium.utills.getMockContactList
+import com.lab.greenpremium.utills.getMockEventsList
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
@@ -25,6 +26,7 @@ class ProfileFragment : BaseFragment() {
 
     override fun initViews() {
         initializeContactsCarousel()
+        initializeEventsList()
     }
 
     private fun initializeContactsCarousel() {
@@ -34,4 +36,8 @@ class ProfileFragment : BaseFragment() {
                 context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
     }
 
+    private fun initializeEventsList() {
+        recycler_events.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recycler_events.adapter = EventsRecyclerAdapter(getMockEventsList())
+    }
 }

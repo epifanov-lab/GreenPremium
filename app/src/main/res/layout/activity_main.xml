@@ -9,7 +9,7 @@
     <Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_huge_6"
+        android:layout_height="@dimen/bottom_navigation_bar_height"
         android:background="@color/white"
         android:orientation="horizontal">
 
@@ -65,14 +65,14 @@
 
     <com.github.mmin18.widget.RealtimeBlurView
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_huge_6"
+        android:layout_height="@dimen/bottom_navigation_bar_height"
         android:layout_alignParentBottom="true"
         app:realtimeBlurRadius="@dimen/radius_12" />
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_huge_6"
+        android:layout_height="@dimen/bottom_navigation_bar_height"
         android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:background="@color/transparent"
@@ -85,7 +85,7 @@
         android:id="@+id/obstructor"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/space_huge_6"
+        android:layout_marginBottom="@dimen/bottom_navigation_bar_height"
         android:background="@color/green_4_60"
         android:clickable="true"
         android:focusable="true"
@@ -105,7 +105,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginBottom="@dimen/space_huge_6"
+        android:layout_marginBottom="@dimen/bottom_navigation_bar_height"
         android:visibility="gone"
         app:fab_addButtonColorNormal="@color/green_2"
         app:fab_addButtonColorPressed="@color/green_3"

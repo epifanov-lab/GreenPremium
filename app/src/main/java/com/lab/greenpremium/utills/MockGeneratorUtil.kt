@@ -2,11 +2,12 @@ package com.lab.greenpremium.utills
 
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Contact
+import com.lab.greenpremium.data.entity.Event
 import com.lab.greenpremium.data.entity.Plant
 
 
-fun getMockPlantList(enableSelector : Boolean = false) : List<Plant> {
-    val result : ArrayList<Plant> = ArrayList()
+fun getMockPlantList(enableSelector: Boolean = false): List<Plant> {
+    val result: ArrayList<Plant> = ArrayList()
 
     for (i in 1..15) {
         val name = "Аглаонема #$i"
@@ -22,8 +23,8 @@ fun getMockPlantList(enableSelector : Boolean = false) : List<Plant> {
     return result
 }
 
-fun getMockContactList() : List<Contact> {
-    val result : ArrayList<Contact> = ArrayList()
+fun getMockContactList(): List<Contact> {
+    val result: ArrayList<Contact> = ArrayList()
 
     for (i in 1..9) {
         val name = "Деракова Зоя Борисовна #$i"
@@ -33,6 +34,21 @@ fun getMockContactList() : List<Contact> {
         val info = "Мы ухаживаем за вашими растениями в пн., чт., с 11:00 - 13:00"
         result.add(Contact(name, position, mail, phone, null))
     }
+
+    return result
+}
+
+fun getMockEventsList(): List<Event> {
+    val result: ArrayList<Event> = ArrayList()
+
+    result.add(Event("Ваш заказ № 23456 сформирован и отправлен", System.currentTimeMillis(), false))
+    result.add(Event("Ваша жалоба # 12345 решена", System.currentTimeMillis(), false))
+
+    result.add(Event("Lorem ipsum dolor sit amet, consectetur adipiscing elit," +
+            " sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+            System.currentTimeMillis(), true))
+
+    result.add(Event("Ваша жалоба # 12345 решена", System.currentTimeMillis(), false))
 
     return result
 }

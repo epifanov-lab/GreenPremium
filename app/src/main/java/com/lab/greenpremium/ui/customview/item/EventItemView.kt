@@ -31,11 +31,20 @@ class EventItemView : RelativeLayout {
 
     private fun updateView() {
         text_info.text = event?.info
-        text_date_time.text = SimpleDateFormat("dd.MMMM.YYYY hh : mm", Locale.getDefault()).format(event?.date)
+        text_date_time.text = SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.getDefault()).format(event?.date)
         event?.let { container_pdf.visibility = if (event?.pdf!!) View.VISIBLE else View.INVISIBLE }
     }
 
+    fun setNum(num: Int) {
+        text_num.text = String.format("%02d", num + 1)
+    }
+
+    fun hideLineConnector(hide: Boolean) {
+        line_connection.visibility = if (hide) View.INVISIBLE else View.VISIBLE
+    }
+
     fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {
+        //TODO - make base ItemView
         val p = LinearLayout.LayoutParams(LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT))
         p.setMargins(left, top, right, bottom)

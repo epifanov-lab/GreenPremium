@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,10 +11,10 @@
         android:background="@color/white"
         android:orientation="horizontal">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_weight="9"
+            android:layout_weight="10"
             android:orientation="horizontal"
             android:paddingBottom="@dimen/space_small_2"
             android:paddingLeft="@dimen/space_small_4"
@@ -23,39 +22,41 @@
 
             <TextView
                 android:id="@+id/text_num"
-                android:layout_width="@dimen/item_event_height"
+                android:layout_width="46dp"
                 android:layout_height="@dimen/item_event_height"
                 android:layout_gravity="center"
                 android:background="@drawable/bcg_circle_event"
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_size_20"
-                tools:text="01"/>
+                tools:text="01" />
 
             <TextView
                 android:id="@+id/text_info"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/space_medium_3"
+                android:layout_toRightOf="@id/text_num"
                 android:fontFamily="@font/sfuitext_medium"
                 android:gravity="left"
                 android:paddingLeft="@dimen/space_medium_1"
                 android:paddingTop="@dimen/space_small_2"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_7"
-                tools:text="@string/event_dummy_1"/>
+                tools:text="Ваш заказ № 23456 сформирован и отправлен Ваш заказ № 23456 сформирован и отправлен Ваш заказ № 23456 сформирован и отправлен" />
 
             <TextView
                 android:id="@+id/text_date_time"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/text_num"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="@dimen/space_small_4"
                 android:fontFamily="@font/sfuitext_medium"
-                android:gravity="left|bottom"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/font_size_7"
-                tools:text="20.04.2016 16:20"/>
-        </LinearLayout>
+                tools:text="20.04.2016 16:20" />
+        </RelativeLayout>
 
 
         <LinearLayout
@@ -69,7 +70,7 @@
             android:focusableInTouchMode="true"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:visibility="invisible">
+            android:visibility="visible">
 
             <TextView
                 android:layout_width="match_parent"
@@ -77,16 +78,16 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/sfuitext_medium"
                 android:gravity="center"
+                android:text="PDF"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_size_12"
-                tools:text="PDF"/>
+                android:textSize="@dimen/font_size_12" />
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_download"/>
+                android:src="@drawable/ic_download" />
         </LinearLayout>
 
     </LinearLayout>
@@ -96,5 +97,5 @@
         android:layout_width="@dimen/line_thickness_2"
         android:layout_height="@dimen/space_medium_1"
         android:layout_gravity="center"
-        android:background="@color/white"/>
+        android:background="@color/white" />
 </LinearLayout>
