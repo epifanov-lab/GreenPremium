@@ -6,9 +6,7 @@ import android.support.v7.widget.LinearLayoutManager.VERTICAL
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
 import com.lab.greenpremium.data.entity.Contact
-import com.lab.greenpremium.data.entity.Plant
 import com.lab.greenpremium.ui.customview.item.ContactItemView
-import com.lab.greenpremium.ui.customview.item.PlantItemView
 
 
 class ContactsRecyclerAdapter(private val list: List<Contact>, private val orientation: Int = LinearLayoutManager.VERTICAL, private val margin: Int?) : RecyclerView.Adapter<ContactsRecyclerAdapter.ViewHolder>() {

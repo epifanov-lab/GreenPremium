@@ -10,9 +10,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.lab.greenpremium.R
+import com.lab.greenpremium.SCREEN_KEY
 import com.lab.greenpremium.ui.screen.auth.AuthActivity
 import com.lab.greenpremium.ui.screen.main.MainActivity
+import com.lab.greenpremium.ui.screen.message.MessageActivity
 import com.lab.greenpremium.ui.screen.start.StartActivity
+import java.io.Serializable
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -42,6 +45,12 @@ abstract class BaseActivity : AppCompatActivity() {
     protected fun goToMainScreen() {
         startActivity(Intent(this, MainActivity::class.java))
         finishAffinity()
+    }
+
+    protected fun goToMessageScreen(messageScreenType: Serializable) {
+        val intent = Intent(this, MessageActivity::class.java)
+        intent.putExtra(SCREEN_KEY, messageScreenType)
+        startActivity(intent)
     }
 
     protected fun swapFragment(fragment : Fragment) {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">@color/white</color>
-    <color name="colorPrimaryDark">@color/gray</color>
+    <color name="colorPrimaryDark">@color/gray_light_1</color>
     <color name="colorAccent">@color/green_1</color>
 
     <color name="transparent">#00ffffff</color>
@@ -13,8 +13,9 @@
     <color name="black_50">#7f323643</color>
     <color name="black_25">#39323643</color>
     <color name="gray">#9da3b4</color>
+    <color name="gray_50">#809da3b4</color>
     <color name="gray_light_1">#c5ccd6</color>
-    <color name="gray_light_2">#e7e7e7</color>
+    <color name="gray_light_2">#f2f2f2</color>
 
     <color name="light_green">#eef3ec</color>
     <color name="green_1">#215f2e</color>

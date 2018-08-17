@@ -6,6 +6,7 @@ import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
 import com.lab.greenpremium.ui.screen.main.portfolio.PortfolioSubFragment
+import com.lab.greenpremium.ui.screen.main.portfolio.PortfolioType
 
 class PortfolioPagerAdapter(fm: FragmentManager?, private val context: Context?) : FragmentStatePagerAdapter(fm) {
 
@@ -14,10 +15,10 @@ class PortfolioPagerAdapter(fm: FragmentManager?, private val context: Context?)
     }
 
     override fun getPageTitle(position: Int): CharSequence? {
-        return PortfolioSubFragment.PortfolioType.getTitles(context)[position]
+        return PortfolioType.getTitles(context)[position]
     }
 
     override fun getCount(): Int {
-        return PortfolioSubFragment.PortfolioType.values().size
+        return PortfolioType.values().size
     }
 }

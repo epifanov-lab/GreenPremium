@@ -55,5 +55,6 @@ dependencies {
     implementation 'com.github.mmin18:realtimeblurview:1.1.2' // blur effect
     implementation 'com.getbase:floatingactionbutton:1.10.1' // fab menu
     implementation 'com.shawnlin:number-picker:2.4.6' // picker
+    implementation 'com.github.ome450901:SimpleRatingBar:1.4.2' // rating
 
 }

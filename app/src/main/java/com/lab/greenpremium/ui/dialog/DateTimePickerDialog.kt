@@ -1,7 +1,6 @@
 package com.lab.greenpremium.ui.dialog
 
 import android.app.FragmentManager
-import android.widget.NumberPicker
 import com.lab.greenpremium.R
 import kotlinx.android.synthetic.main.dialog_date_time_picker.view.*
 import java.util.*

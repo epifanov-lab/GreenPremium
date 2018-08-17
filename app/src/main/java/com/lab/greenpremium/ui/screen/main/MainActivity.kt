@@ -17,6 +17,7 @@ import com.lab.greenpremium.ui.screen.main.map.MapFragment
 import com.lab.greenpremium.ui.screen.main.plants.PlantFragment
 import com.lab.greenpremium.ui.screen.main.portfolio.PortfolioFragment
 import com.lab.greenpremium.ui.screen.main.profile.ProfileFragment
+import com.lab.greenpremium.ui.screen.message.MessageScreenType
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity() {
@@ -97,6 +98,11 @@ class MainActivity : BaseActivity() {
             swapFragment(BasketFragment.newInstance())
             BottomNavigationViewHelper.setUncheckable(navigation, true)
         }
+
+        fab_project.setOnClickListener { goToMessageScreen(MessageScreenType.NEW_PROJECT).also { fab_menu.collapse() } }
+        fab_letter.setOnClickListener { goToMessageScreen(MessageScreenType.LETTER).also { fab_menu.collapse() }  }
+        fab_praise.setOnClickListener { goToMessageScreen(MessageScreenType.PRAISE).also { fab_menu.collapse() }  }
+        fab_complain.setOnClickListener { goToMessageScreen(MessageScreenType.COMPLAIN).also { fab_menu.collapse() }  }
     }
 
     private fun activateFabMenu(enabled: Boolean) {

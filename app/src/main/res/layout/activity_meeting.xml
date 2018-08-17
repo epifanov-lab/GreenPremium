@@ -110,7 +110,6 @@
         <Button
             android:id="@+id/button_proceed"
             style="@style/Button.Green"
-            android:layout_width="match_parent"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/space_small_2"
             android:layout_marginLeft="@dimen/space_medium_2"

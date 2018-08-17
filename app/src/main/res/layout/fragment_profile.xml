@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <RelativeLayout
         android:id="@+id/container_main"
@@ -61,7 +61,6 @@
             <TextView
                 android:id="@+id/button_calc_service"
                 style="@style/Button.Green"
-                android:layout_width="match_parent"
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/space_medium_2"
@@ -184,8 +183,8 @@
                 android:id="@+id/recycler_events"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:clipToPadding="false"
-                android:layout_marginBottom="@dimen/bottom_navigation_bar_height"/>
+                android:layout_marginBottom="@dimen/bottom_navigation_bar_height"
+                android:clipToPadding="false" />
 
         </LinearLayout>
 

@@ -43,7 +43,7 @@
                 android:paddingTop="@dimen/space_small_2"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_7"
-                tools:text="Ваш заказ № 23456 сформирован и отправлен Ваш заказ № 23456 сформирован и отправлен Ваш заказ № 23456 сформирован и отправлен" />
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
 
             <TextView
                 android:id="@+id/text_date_time"

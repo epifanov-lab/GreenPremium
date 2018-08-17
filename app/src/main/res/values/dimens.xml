@@ -42,7 +42,7 @@
 
     <!--views sizes-->
     <dimen name="auth_button_width">240dp</dimen>
-    <dimen name="auth_button_height">42dp</dimen>
+    <dimen name="green_button_height">42dp</dimen>
     <dimen name="contacts_button_width">170dp</dimen>
     <dimen name="contacts_button_height">42dp</dimen>
 
@@ -56,6 +56,7 @@
 
     <dimen name="item_event_height">50dp</dimen>
 
+    <dimen name="line_thickness_05">0.5dp</dimen>
     <dimen name="line_thickness_1">1dp</dimen>
     <dimen name="line_thickness_2">2dp</dimen>
     <dimen name="line_thickness_3">3dp</dimen>
@@ -67,5 +68,6 @@
     <!-- override -->
     <dimen name="design_bottom_navigation_text_size" tools:override="true">@dimen/font_size_10</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">@dimen/font_size_10</dimen>
+    <dimen name="rate_star_size">30dp</dimen>
 
 </resources>

@@ -3,7 +3,6 @@ package com.lab.greenpremium.ui.screen.main.contacts.meet
 import com.lab.greenpremium.MEETING_MINUTE_STEP
 import com.lab.greenpremium.data.entity.Contact
 import java.util.*
-import kotlin.math.min
 
 
 class MeetingModel(val contactList: List<Contact>,

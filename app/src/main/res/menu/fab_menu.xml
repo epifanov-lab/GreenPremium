@@ -25,7 +25,7 @@
         android:id="@+id/fab_3"
         android:icon="@drawable/nav_ic_contacts_unchecked"
         android:orderInCategory="3"
-        android:title="@string/fab_message"/>
+        android:title="@string/fab_letter"/>
 
     <item
         android:id="@+id/fab_4"

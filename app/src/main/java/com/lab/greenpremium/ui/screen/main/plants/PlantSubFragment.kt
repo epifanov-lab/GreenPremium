@@ -3,8 +3,8 @@ package com.lab.greenpremium.ui.screen.main.plants
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
-import com.lab.greenpremium.KEY_TYPE
 import com.lab.greenpremium.R
+import com.lab.greenpremium.SCREEN_KEY
 import com.lab.greenpremium.data.entity.Plant
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.utills.getMockPlantList
@@ -17,7 +17,7 @@ class PlantSubFragment : BaseFragment() {
         fun newInstance(type: Int): PlantSubFragment {
             val fragment = PlantSubFragment()
             val args = Bundle()
-            args.putInt(KEY_TYPE, type)
+            args.putInt(SCREEN_KEY, type)
             fragment.arguments = args
             return fragment
         }
@@ -34,7 +34,7 @@ class PlantSubFragment : BaseFragment() {
     }
 
     override fun initViews() {
-        type = Plant.Type.values()[arguments!!.getInt(KEY_TYPE)]
+        type = Plant.Type.values()[arguments!!.getInt(SCREEN_KEY)]
 
         recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         recycler_plants.adapter = PlantRecyclerAdapter(getMockPlantList(type == Plant.Type.BIG),
