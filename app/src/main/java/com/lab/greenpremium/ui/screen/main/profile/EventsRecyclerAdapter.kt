@@ -2,6 +2,7 @@ package com.lab.greenpremium.ui.screen.main.profile
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
+import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Event
 import com.lab.greenpremium.ui.customview.item.EventItemView
 
@@ -15,9 +16,12 @@ class EventsRecyclerAdapter(private val list: List<Event>) : RecyclerView.Adapte
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.event = list[position]
-        holder.view.setNum(position)
-        holder.view.hideLineConnector(position == list.lastIndex)
+        val view = holder.view
+        view.event = list[position]
+        view.setNum(position)
+        view.hideLineConnector(position == list.lastIndex)
+        if (position == list.lastIndex) view.setMargins(0, 0, 0,
+                view.context.resources.getDimension(R.dimen.bottom_navigation_bar_height).toInt())
     }
 
     override fun getItemCount(): Int {

@@ -56,6 +56,10 @@
 
     <dimen name="item_event_height">50dp</dimen>
 
+    <dimen name="rate_star_size">30dp</dimen>
+    <dimen name="back_button_image_minus_padding_left">-12dp</dimen>
+    <dimen name="back_button_area_size">36dp</dimen>
+
     <dimen name="line_thickness_05">0.5dp</dimen>
     <dimen name="line_thickness_1">1dp</dimen>
     <dimen name="line_thickness_2">2dp</dimen>
@@ -68,6 +72,5 @@
     <!-- override -->
     <dimen name="design_bottom_navigation_text_size" tools:override="true">@dimen/font_size_10</dimen>
     <dimen name="design_bottom_navigation_active_text_size" tools:override="true">@dimen/font_size_10</dimen>
-    <dimen name="rate_star_size">30dp</dimen>
 
 </resources>

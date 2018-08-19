@@ -1,8 +1,10 @@
 package com.lab.greenpremium.ui.customview.item
 
 import android.content.Context
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
@@ -12,12 +14,13 @@ import com.lab.greenpremium.utills.currencyFormat
 import kotlinx.android.synthetic.main.view_item_plant.view.*
 
 
-
-const val MIN_COUNT = 0
-
 class PlantItemView : RelativeLayout {
 
     private lateinit var plant: Plant
+
+    private val repeatUpdateHandler = Handler()
+    private var isIncrementing = false
+    private var isDecrementing = false
 
     constructor(context: Context) : this(context, null)
 
@@ -27,9 +30,51 @@ class PlantItemView : RelativeLayout {
 
         LayoutInflater.from(context).inflate(R.layout.view_item_plant, this, true)
 
-        button_add.setOnClickListener { setCounter(++plant.count) }
-        button_remove.setOnClickListener { setCounter(--plant.count) }
+        button_add.run {
+            setOnClickListener { setCounter(++plant.count) }
+            setOnLongClickListener {
+                isIncrementing = true
+                repeatUpdateHandler.post(RptUpdater())
+                false
+            }
 
+            setOnTouchListener { v, event ->
+                if ((event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) && isIncrementing) {
+                    isIncrementing = false
+                }
+                false
+            }
+        }
+
+        button_remove.run {
+            setOnClickListener { setCounter(--plant.count) }
+            setOnLongClickListener {
+                isDecrementing = true
+                repeatUpdateHandler.post(RptUpdater())
+                false
+            }
+
+            setOnTouchListener { v, event ->
+                if ((event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) && isDecrementing) {
+                    isDecrementing = false
+                }
+                false
+            }
+        }
+
+    }
+
+    internal inner class RptUpdater : Runnable {
+        override fun run() {
+            if (isIncrementing) {
+                setCounter(++plant.count)
+                repeatUpdateHandler.postDelayed(RptUpdater(), 100)
+
+            } else if (isDecrementing) {
+                setCounter(--plant.count)
+                repeatUpdateHandler.postDelayed(RptUpdater(), 100)
+            }
+        }
     }
 
     fun setData(plant: Plant) {
@@ -64,7 +109,7 @@ class PlantItemView : RelativeLayout {
         text_counter.text = plant.count.toString()
     }
 
-    private fun showHeightSelector(enabled : Boolean) {
+    private fun showHeightSelector(enabled: Boolean) {
         height_selector.visibility = if (enabled) View.VISIBLE else View.GONE
         space.visibility = if (enabled) View.VISIBLE else View.GONE
         height_selector.text = "15 м" //TODO прибрать

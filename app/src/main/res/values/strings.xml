@@ -3,7 +3,7 @@
 
     <string name="start_screen_title_1">Ваше помещение.</string>
     <string name="start_screen_title_2">В зелени.</string>
-    <string name="start_screen_title_3">Поробуйте.</string>
+    <string name="start_screen_title_3">Попробуйте.</string>
     <string name="start_screen_support">Обратиться в службу поддержки</string>
 
     <string name="title_login_1">Вход</string>
@@ -50,7 +50,7 @@
     <string name="contacts_time_choose_2">Выберите время</string>
     <string name="contacts_meet_date_and_time">Дата и время</string>
     <string name="contacts_schedule_meet">Назначить встречу</string>
-    <string name="contacts_message_employee_meeting">Вы можете назначит встречу с одним из наших сотрудников</string>
+    <string name="contacts_message_employee_meeting">Вы можете назначить встречу с одним из наших сотрудников</string>
 
     <string name="title_today">Сегодня</string>
     <string name="title_ok_1">Готово</string>
