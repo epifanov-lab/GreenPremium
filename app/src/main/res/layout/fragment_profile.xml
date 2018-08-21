@@ -106,85 +106,85 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/container_complex"
         android:background="@color/beige"
-        android:orientation="vertical"
-        android:paddingLeft="@dimen/space_medium_2"
-        android:paddingRight="@dimen/space_medium_2"
-        android:paddingTop="@dimen/space_medium_4">
+        android:overScrollMode="never"
+        android:scrollbars="none">
 
         <LinearLayout
-            android:id="@+id/container_delivery_schedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/space_medium_1"
-            android:orientation="horizontal">
+            android:orientation="vertical"
+            android:paddingLeft="@dimen/space_medium_2"
+            android:paddingRight="@dimen/space_medium_2"
+            android:paddingTop="@dimen/space_medium_4">
 
             <LinearLayout
-                android:id="@+id/container_date"
-                android:layout_width="wrap_content"
+                android:id="@+id/container_delivery_schedule"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginRight="@dimen/space_medium_1"
-                android:background="@drawable/ic_calendar_white"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:paddingTop="@dimen/space_small_1">
+                android:layout_marginBottom="@dimen/space_medium_1"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/text_date_day"
+                <LinearLayout
+                    android:id="@+id/container_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/sfuitext_medium"
+                    android:layout_marginRight="@dimen/space_medium_1"
+                    android:background="@drawable/ic_calendar_white"
                     android:gravity="center"
-                    android:textColor="@color/gray_light_1"
-                    android:textSize="@dimen/font_size_14"
-                    tools:text="10" />
+                    android:orientation="vertical"
+                    android:paddingTop="@dimen/space_small_1">
+
+                    <TextView
+                        android:id="@+id/text_date_day"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfuitext_medium"
+                        android:gravity="center"
+                        android:textColor="@color/gray_light_1"
+                        android:textSize="@dimen/font_size_14"
+                        tools:text="10" />
+
+                    <TextView
+                        android:id="@+id/text_date_month"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/sfuitext_medium"
+                        android:gravity="center"
+                        android:textColor="@color/gray_light_1"
+                        android:textSize="@dimen/font_size_9"
+                        tools:text="июля" />
+                </LinearLayout>
 
                 <TextView
-                    android:id="@+id/text_date_month"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/sfuitext_medium"
-                    android:gravity="center"
-                    android:textColor="@color/gray_light_1"
-                    android:textSize="@dimen/font_size_9"
-                    tools:text="июля" />
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/profile_label_hint_delivery_scheduled"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_12" />
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/ic_list" />
+
             </LinearLayout>
 
-            <TextView
-                android:layout_width="0dp"
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_events"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@id/text_position"
-                android:layout_weight="2"
-                android:fontFamily="@font/sfuitext_regular"
-                android:gravity="center_vertical"
-                android:text="@string/profile_label_hint_delivery_scheduled"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12" />
-
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:scaleType="centerInside"
-                android:src="@drawable/ic_list" />
-
+                android:nestedScrollingEnabled="false" />
         </LinearLayout>
+    </ScrollView>
 
-        <View
-            android:id="@+id/line"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/line_thickness_2"
-            android:background="@color/gray_light_2" />
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recycler_events"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false" />
-    </LinearLayout>
 </RelativeLayout>

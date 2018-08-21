@@ -35,7 +35,7 @@ class MeetingActivity : BaseActivity() {
 
         button_proceed.setOnClickListener {
             showSnackbar("Встреча с ${model.contactList[model.pickedContactPos].name} назначена на" +
-                    " ${SimpleDateFormat("dd MMMM hh : mm", Locale("ru")).format(model.pickedTime)}")
+                    " ${SimpleDateFormat("dd MMMM HH:mm", Locale("ru")).format(model.pickedTime)}")
         }
 
         button_back.setOnClickListener { finish() }

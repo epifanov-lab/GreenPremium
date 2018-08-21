@@ -7,7 +7,7 @@ import java.util.*
 
 class MeetingModel(val contactList: List<Contact>,
                    var pickedContactPos: Int = 0,
-                   var dayPos: Int = 1,
+                   var dayPos: Int = 0,
                    var hour: Int = 12,
                    var minute: Int = 0,
                    var pickedTime: Long = System.currentTimeMillis()) {
@@ -19,7 +19,7 @@ class MeetingModel(val contactList: List<Contact>,
     fun calculateTime() {
         val calendar = Calendar.getInstance()
         calendar.add(Calendar.DAY_OF_MONTH, dayPos)
-        calendar.set(Calendar.HOUR, hour)
+        calendar.set(Calendar.HOUR_OF_DAY, hour)
         calendar.set(Calendar.MINUTE, minute * MEETING_MINUTE_STEP)
         pickedTime = calendar.timeInMillis
     }
