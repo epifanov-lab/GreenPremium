@@ -20,11 +20,6 @@ class EventsRecyclerAdapter(private val list: List<Event>) : RecyclerView.Adapte
         view.event = list[position]
         view.setNum(position)
         view.hideLineConnector(position == list.lastIndex)
-
-        if (position == list.lastIndex) {
-            view.setMargins(0, 0, 0,
-                    view.context.resources.getDimension(R.dimen.bottom_navigation_bar_height).toInt())
-        }
     }
 
     override fun getItemCount(): Int {

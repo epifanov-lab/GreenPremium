@@ -2,7 +2,10 @@ package com.lab.greenpremium.ui.screen.main.profile
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import com.lab.greenpremium.R
+import com.lab.greenpremium.ui.customview.CustomGridLayoutManager
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.ui.screen.main.contacts.ContactsRecyclerAdapter
 import com.lab.greenpremium.utills.getMockContactList
@@ -27,6 +30,16 @@ class ProfileFragment : BaseFragment() {
     override fun initViews() {
         initializeContactsCarousel()
         initializeEventsList()
+
+        button_calc_service.setOnClickListener {
+            button_calc_service.visibility = GONE
+            container_cost.visibility = VISIBLE
+        }
+
+        button_start_shopping.setOnClickListener {
+            container_no_events.visibility = GONE
+            container_events.visibility = VISIBLE
+        }
     }
 
     private fun initializeContactsCarousel() {
@@ -37,7 +50,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun initializeEventsList() {
-        recycler_events.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+        recycler_events.layoutManager = CustomGridLayoutManager(context).also { it.setScrollEnabled(false) }
         recycler_events.adapter = EventsRecyclerAdapter(getMockEventsList())
     }
 }
