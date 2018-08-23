@@ -39,6 +39,7 @@
     <dimen name="radius_6">6dp</dimen>
     <dimen name="radius_12">12dp</dimen>
     <dimen name="elevation">20dp</dimen>
+    <dimen name="minus_16">-16dp</dimen>
 
     <!--views sizes-->
     <dimen name="auth_button_width">240dp</dimen>

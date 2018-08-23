@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="@dimen/space_medium_2">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="@dimen/space_medium_2">
 
     <ImageView
         android:id="@+id/button_back"
@@ -13,7 +13,7 @@
         android:layout_height="@dimen/back_button_area_size"
         android:paddingLeft="@dimen/back_button_image_minus_padding_left"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_back" />
+        android:src="@drawable/ic_back"/>
 
     <TextView
         android:id="@+id/title_label"
@@ -23,13 +23,15 @@
         android:fontFamily="@font/sfuitext_bold"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_20"
-        tools:text="Lorem ipsum" />
+        tools:text="Lorem ipsum"/>
 
     <com.willy.ratingbar.BaseRatingBar
+        android:id="@+id/rating_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_medium_1"
-        android:paddingLeft="-16dp"
+        android:paddingLeft="@dimen/minus_16"
+        android:visibility="gone"
         app:srb_clearRatingEnabled="true"
         app:srb_clickable="true"
         app:srb_drawableEmpty="@drawable/ic_star_empty"
@@ -42,41 +44,55 @@
         app:srb_starHeight="@dimen/rate_star_size"
         app:srb_starPadding="@dimen/space_small_4"
         app:srb_starWidth="@dimen/rate_star_size"
-        app:srb_stepSize="1" />
+        app:srb_stepSize="1"/>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/container_login"
+        android:id="@+id/container_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_medium_2"
         android:hint="@string/title_subject"
-        android:textColorHint="@color/gray_light_1">
+        android:textColorHint="@color/gray_light_1"
+        android:visibility="gone">
 
         <EditText
-            android:id="@+id/input_login"
+            android:id="@+id/input_subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sfuitext_medium"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_12"
-            tools:text="Lorem ipsum" />
+            tools:text="Lorem ipsum"/>
 
     </android.support.design.widget.TextInputLayout>
 
     <com.lab.greenpremium.ui.customview.MessageView
+        android:id="@+id/input_message"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_medium_2"
+        android:visibility="gone"/>
 
     <View
-        android:id="@+id/file"
+        android:id="@+id/file_photo"
         android:layout_width="match_parent"
-        android:layout_height="60dp" />
+        android:layout_height="36dp"
+        android:layout_marginBottom="@dimen/space_medium_2"
+        android:visibility="gone"/>
+
+
+    <View
+        android:id="@+id/file_docs"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginBottom="@dimen/space_medium_2"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/button_auth"
         style="@style/Button.Green"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/space_small_2"
-        android:text="@string/title_sent" />
+        android:text="@string/title_sent"/>
 
 </LinearLayout>
