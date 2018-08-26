@@ -31,8 +31,17 @@
         android:id="@+id/recycler_contacts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_medium_2"
         android:clipToPadding="false" />
+
+
+    <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+        android:id="@+id/indicator_contacts"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/space_medium_2"
+        app:spi_dotColor="@color/green_1_50"
+        app:spi_dotSelectedColor="@color/green_1" />
 
     <LinearLayout
         android:id="@+id/container_date_time"

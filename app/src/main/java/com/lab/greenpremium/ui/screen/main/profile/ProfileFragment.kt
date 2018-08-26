@@ -1,7 +1,7 @@
 package com.lab.greenpremium.ui.screen.main.profile
 
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
+import android.support.v7.widget.PagerSnapHelper
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.lab.greenpremium.R
@@ -43,10 +43,11 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun initializeContactsCarousel() {
-        LinearSnapHelper().attachToRecyclerView(recycler_contacts)
+        PagerSnapHelper().attachToRecyclerView(recycler_contacts)
+
         recycler_contacts.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recycler_contacts.adapter = ContactsRecyclerAdapter(getMockContactList(), LinearLayoutManager.HORIZONTAL,
-                context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+        recycler_contacts.adapter = ContactsRecyclerAdapter(getMockContactList(), LinearLayoutManager.HORIZONTAL, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+        indicator_contacts.attachToRecyclerView(recycler_contacts)
     }
 
     private fun initializeEventsList() {

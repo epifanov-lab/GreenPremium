@@ -1,7 +1,7 @@
 package com.lab.greenpremium.ui.screen.main.contacts.meet
 
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.LinearSnapHelper
+import android.support.v7.widget.PagerSnapHelper
 import android.support.v7.widget.RecyclerView
 import com.lab.greenpremium.MEETING_MINUTE_STEP
 import com.lab.greenpremium.R
@@ -42,9 +42,11 @@ class MeetingActivity : BaseActivity() {
     }
 
     private fun initializeContactsCarousel() {
-        LinearSnapHelper().attachToRecyclerView(recycler_contacts)
+        PagerSnapHelper().attachToRecyclerView(recycler_contacts)
+
         recycler_contacts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
         recycler_contacts.adapter = ContactsRecyclerAdapter(model.contactList, LinearLayoutManager.HORIZONTAL, this.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+        indicator_contacts.attachToRecyclerView(recycler_contacts)
 
         recycler_contacts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
