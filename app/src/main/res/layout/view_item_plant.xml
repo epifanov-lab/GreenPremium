@@ -115,7 +115,7 @@
                     android:textSize="@dimen/font_size_12"
                     tools:text="33.000$" />
 
-                <com.lab.greenpremium.ui.customview.DiscountTextView
+                <com.lab.greenpremium.ui.components.DiscountTextView
                     android:id="@+id/text_discount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"

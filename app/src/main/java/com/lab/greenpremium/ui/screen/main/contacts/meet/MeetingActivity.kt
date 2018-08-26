@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView
 import com.lab.greenpremium.MEETING_MINUTE_STEP
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screen.base.BaseActivity
-import com.lab.greenpremium.ui.screen.main.contacts.ContactsRecyclerAdapter
+import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.utills.getMockContactList
 import com.shawnlin.numberpicker.NumberPicker
 import kotlinx.android.synthetic.main.activity_meeting.*

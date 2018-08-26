@@ -9,6 +9,7 @@ import android.view.ViewAnimationUtils
 import com.getbase.floatingactionbutton.FloatingActionsMenu
 import com.lab.greenpremium.DURATION_FAST
 import com.lab.greenpremium.R
+import com.lab.greenpremium.ui.components.BottomNavigationViewHelper
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.ui.screen.main.basket.BasketFragment
 import com.lab.greenpremium.ui.screen.main.contacts.ContactsFragment

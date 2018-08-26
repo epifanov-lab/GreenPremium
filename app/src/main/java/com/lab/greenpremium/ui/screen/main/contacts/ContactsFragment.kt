@@ -3,6 +3,7 @@ package com.lab.greenpremium.ui.screen.main.contacts
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import com.lab.greenpremium.R
+import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.ui.screen.main.contacts.meet.MeetingActivity
 import com.lab.greenpremium.utills.getMockContactList

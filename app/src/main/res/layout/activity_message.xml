@@ -66,7 +66,7 @@
 
     </android.support.design.widget.TextInputLayout>
 
-    <com.lab.greenpremium.ui.customview.MessageView
+    <com.lab.greenpremium.ui.components.MessageView
         android:id="@+id/input_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

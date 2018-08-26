@@ -1,6 +1,7 @@
 package com.lab.greenpremium.ui.screen.main.plants
 
 import com.lab.greenpremium.R
+import com.lab.greenpremium.ui.components.adapters.PlantsPagerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_plants.*
 

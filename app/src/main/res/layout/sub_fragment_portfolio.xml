@@ -3,14 +3,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/test"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_asymmetric_image_grid"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fontFamily="@font/sfuitext_bold"
-        android:gravity="center"
-        android:text="@string/title_service"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_size_20"/>
+        android:layout_height="match_parent"/>
 
 </RelativeLayout>

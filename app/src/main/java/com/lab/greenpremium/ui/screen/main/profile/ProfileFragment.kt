@@ -5,9 +5,10 @@ import android.support.v7.widget.PagerSnapHelper
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.lab.greenpremium.R
-import com.lab.greenpremium.ui.customview.CustomGridLayoutManager
+import com.lab.greenpremium.ui.components.ScrollLayoutManager
+import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
+import com.lab.greenpremium.ui.components.adapters.EventsRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
-import com.lab.greenpremium.ui.screen.main.contacts.ContactsRecyclerAdapter
 import com.lab.greenpremium.utills.getMockContactList
 import com.lab.greenpremium.utills.getMockEventsList
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -51,7 +52,7 @@ class ProfileFragment : BaseFragment() {
     }
 
     private fun initializeEventsList() {
-        recycler_events.layoutManager = CustomGridLayoutManager(context).also { it.setScrollEnabled(false) }
+        recycler_events.layoutManager = ScrollLayoutManager(context).also { it.setScrollEnabled(false) }
         recycler_events.adapter = EventsRecyclerAdapter(getMockEventsList())
     }
 }

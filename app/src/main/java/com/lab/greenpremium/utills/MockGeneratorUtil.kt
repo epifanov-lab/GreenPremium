@@ -3,6 +3,7 @@ package com.lab.greenpremium.utills
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.data.entity.Event
+import com.lab.greenpremium.data.entity.Image
 import com.lab.greenpremium.data.entity.Plant
 
 
@@ -49,6 +50,18 @@ fun getMockEventsList(): List<Event> {
             System.currentTimeMillis(), true))
 
     result.add(Event("Ваша жалоба # 12345 решена", System.currentTimeMillis(), false))
+
+    return result
+}
+
+fun getMockImageUrlsList(count: Int): List<Image> {
+    val result: ArrayList<Image> = ArrayList()
+
+    for (i in 1..count) {
+        val s1 = 300; val s2 = 200
+        if (i % 2 == 0) result.add(Image(s1, s1, "https://picsum.photos/$s1/$s1/?random"))
+        else result.add(Image(s2, s2, "https://picsum.photos/$s2/$s2/?random"))
+    }
 
     return result
 }

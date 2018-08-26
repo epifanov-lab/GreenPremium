@@ -1,4 +1,4 @@
-package com.lab.greenpremium.ui.customview.item
+package com.lab.greenpremium.ui.components.item
 
 import android.content.Context
 import android.os.Handler

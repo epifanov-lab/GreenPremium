@@ -1,10 +1,9 @@
-package com.lab.greenpremium.ui.screen.main.profile
+package com.lab.greenpremium.ui.components.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Event
-import com.lab.greenpremium.ui.customview.item.EventItemView
+import com.lab.greenpremium.ui.components.item.EventItemView
 
 
 class EventsRecyclerAdapter(private val list: List<Event>) : RecyclerView.Adapter<EventsRecyclerAdapter.ViewHolder>() {

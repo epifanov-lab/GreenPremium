@@ -1,13 +1,13 @@
-package com.lab.greenpremium.ui.customview;
+package com.lab.greenpremium.ui.components;
 
 import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 
 
-public class CustomGridLayoutManager extends LinearLayoutManager {
+public class ScrollLayoutManager extends LinearLayoutManager {
     private boolean isScrollEnabled = true;
 
-    public CustomGridLayoutManager(Context context) {
+    public ScrollLayoutManager(Context context) {
         super(context);
     }
 
@@ -17,7 +17,6 @@ public class CustomGridLayoutManager extends LinearLayoutManager {
 
     @Override
     public boolean canScrollVertically() {
-        //Similarly you can customize "canScrollHorizontally()" for managing horizontal scroll
         return isScrollEnabled && super.canScrollVertically();
     }
 }

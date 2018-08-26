@@ -1,4 +1,4 @@
-package com.lab.greenpremium.ui.screen.main;
+package com.lab.greenpremium.ui.components;
 
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;

@@ -58,6 +58,7 @@
     <string name="error_simple">Ошибка!</string>
     <string name="today">Сегодня</string>
 
+    <!-- DUMMY AREA-->
     <string name="event_dummy_1">Ваш заказ № 23456 сформирован и отправлен</string>
 
 </resources>
