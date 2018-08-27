@@ -25,8 +25,11 @@ class AsymmetricImageGridAdapter(private val context: Context, private val image
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val image = images[position]
+        holder.view.layoutParams.width = image.width
+        holder.view.layoutParams.height = image.height
         Glide.with(context)
-                .load(images[position].url)
+                .load(image.url)
                 .into(holder.view)
     }
 

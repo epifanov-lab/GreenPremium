@@ -7,7 +7,7 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.SCREEN_KEY
 import com.lab.greenpremium.ui.components.adapters.AsymmetricImageGridAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
-import com.lab.greenpremium.utills.getMockImageUrlsList
+import com.lab.greenpremium.utills.getMockImageList
 import kotlinx.android.synthetic.main.sub_fragment_portfolio.*
 
 
@@ -38,8 +38,7 @@ class PortfolioSubFragment : BaseFragment() {
         type = PortfolioType.values()[arguments!!.getInt(SCREEN_KEY)]
 
         //test.text = getString(type.titleResId)
-
-        recycler_asymmetric_image_grid.layoutManager = StaggeredGridLayoutManager(2, LinearLayoutManager.HORIZONTAL)
-        recycler_asymmetric_image_grid.adapter = AsymmetricImageGridAdapter(context!!, getMockImageUrlsList(16))
+        asymmetric_image_grid.layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
+        asymmetric_image_grid.adapter = AsymmetricImageGridAdapter(context!!, getMockImageList(16))
     }
 }

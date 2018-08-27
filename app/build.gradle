@@ -25,7 +25,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$rootProject.support_library_version"
     implementation "com.android.support:design:$rootProject.support_library_version"
     implementation "com.android.support:recyclerview-v7:$rootProject.support_library_version"
@@ -57,6 +57,7 @@ dependencies {
     implementation 'com.shawnlin:number-picker:2.4.6' // picker
     implementation 'com.github.ome450901:SimpleRatingBar:1.4.2' // rating bar
     implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6" // carousel dots indication
+    implementation 'com.felipecsl.asymmetricgridview:library:2.0.1' // asymmetric gird view
 
     implementation 'com.github.bumptech.glide:glide:4.8.0' // image downloading
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
