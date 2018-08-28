@@ -7,17 +7,29 @@ import com.lab.greenpremium.data.entity.Image
 import com.lab.greenpremium.data.entity.Plant
 
 
-fun getMockPlantList(enableSelector: Boolean = false): List<Plant> {
+fun getMockPlantList(): List<Plant> {
+    LogUtil.i("GET MOCK LIST")
     val result: ArrayList<Plant> = ArrayList()
 
-    for (i in 1..15) {
+    for (i in 1..45) {
         val name = "Аглаонема #$i"
         val info1 = "Размер кашпо 150*150*150 см"
         val info2 = "Высота композиции ${i * 100} мм"
-        val price = Math.random() * 100000
-        val discount = Math.random() * 100000 + 100000
-        val type = if (enableSelector) Plant.Type.BIG else Plant.Type.LIVING
-        val drawableResIdMock = if (i % 3 == 0) R.drawable.dummy_plant_1 else if (i % 2 == 0) R.drawable.dummy_plant_2 else R.drawable.dummy_plant_3
+        val price = Math.random() * 30000
+        val discount = Math.random() * 15000 + 30000
+
+        val type = when {
+            i <= 15 -> Plant.Type.LIVING
+            i <= 30 -> Plant.Type.ARTIFICIAL
+            else -> Plant.Type.BIG
+        }
+
+        val drawableResIdMock = when {
+            i % 3 == 0 -> R.drawable.dummy_plant_1
+            i % 2 == 0 -> R.drawable.dummy_plant_2
+            else -> R.drawable.dummy_plant_3
+        }
+
         result.add(Plant(name, info1, info2, price, discount, type, drawableResId = drawableResIdMock))
     }
 
@@ -54,11 +66,12 @@ fun getMockEventsList(): List<Event> {
     return result
 }
 
-fun getMockImageList(count: Int): List<Image> {
+fun getMockImageList(count: Int, s1: Int, s2: Int): List<Image> {
     val result: ArrayList<Image> = ArrayList()
 
     for (i in 1..count) {
-        val s1 = 500; val s2 = 200
+        val s1 = 500;
+        val s2 = 200
         if (i % 2 == 0) result.add(Image(s1, s1, "https://picsum.photos/$s1/$s1/?random"))
         else result.add(Image(s2, s2, "https://picsum.photos/$s2/$s2/?random"))
     }
@@ -67,11 +80,10 @@ fun getMockImageList(count: Int): List<Image> {
 }
 
 
-fun getMockImageUrlsList(count: Int): List<String> {
+fun getMockImageUrlsList(count: Int, s1: Int, s2: Int): List<String> {
     val result: ArrayList<String> = ArrayList()
 
     for (i in 1..count) {
-        val s1 = 500; val s2 = 200
         if (i % 2 == 0) result.add("https://picsum.photos/$s1/$s1/?random")
         else result.add("https://picsum.photos/$s2/$s2/?random")
     }

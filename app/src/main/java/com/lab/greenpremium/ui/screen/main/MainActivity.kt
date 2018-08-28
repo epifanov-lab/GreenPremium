@@ -11,7 +11,7 @@ import com.lab.greenpremium.DURATION_FAST
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.components.BottomNavigationViewHelper
 import com.lab.greenpremium.ui.screen.base.BaseActivity
-import com.lab.greenpremium.ui.screen.main.basket.BasketFragment
+import com.lab.greenpremium.ui.screen.main.cart.CartFragment
 import com.lab.greenpremium.ui.screen.main.contacts.ContactsFragment
 import com.lab.greenpremium.ui.screen.main.favorites.FavoritesFragment
 import com.lab.greenpremium.ui.screen.main.map.MapFragment
@@ -96,7 +96,7 @@ class MainActivity : BaseActivity() {
             message.setText(R.string.title_basket)
             button_basket.setImageResource(R.drawable.ic_basket_choosen)
             button_favorites.setImageResource(R.drawable.ic_favorites)
-            swapFragment(BasketFragment.newInstance())
+            swapFragment(CartFragment.newInstance())
             BottomNavigationViewHelper.setUncheckable(navigation, true)
         }
 

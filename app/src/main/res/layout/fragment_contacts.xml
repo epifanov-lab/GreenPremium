@@ -17,7 +17,7 @@
             android:id="@+id/button_time_choose"
             style="@style/Button.Green"
             android:layout_width="@dimen/contacts_button_width"
-            android:layout_height="@dimen/contacts_button_height"
+            android:layout_height="@dimen/green_button_height"
             android:layout_gravity="center_horizontal"
             android:text="@string/contacts_schedule_meet"/>
 

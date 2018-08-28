@@ -33,5 +33,5 @@ fun currencyFormat(amount: Double, groupingUsed: Boolean = true, decimals: Int =
     formatter.minimumFractionDigits = decimals
     formatter.maximumFractionDigits = decimals
     formatter.isGroupingUsed = groupingUsed
-    return formatter.format(amount)
+    return formatter.format(amount) + " \u20BD"
 }

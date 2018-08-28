@@ -12,7 +12,8 @@ data class Plant(val name: String,
                  val discount: Double,
                  val type: Type,
                  val drawableResId: Int? = null, //todo в будущем URL картинки
-                 var count: Int = 0) {
+                 var count: Int = 0,
+                 var isFavorite: Boolean = false) {
 
     enum class Type(var titleResId: Int) : Serializable {
         LIVING(R.string.title_plants_living),
