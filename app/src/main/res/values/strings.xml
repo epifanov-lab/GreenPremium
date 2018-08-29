@@ -65,4 +65,6 @@
     <!-- DUMMY AREA-->
     <string name="event_dummy_1">Ваш заказ № 23456 сформирован и отправлен</string>
 
+    <string name="title_activity_maps">Map</string>
+
 </resources>

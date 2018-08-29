@@ -24,7 +24,6 @@ class FavoritesFragment : BaseFragment() {
     }
 
     override fun initViews() {
-
         recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         recycler_plants.adapter = PlantRecyclerAdapter(UserRepository.plants.filter { it.isFavorite },
                 context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
