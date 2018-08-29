@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapsInitializer
+import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.MarkerOptions
 import com.lab.greenpremium.GP_OFFICE_LOCATION
@@ -40,14 +41,21 @@ class MapFragment : BaseFragment() {
         map_view.getMapAsync { map ->
 
             // For dropping a marker at a point on the Map
-            map.addMarker(MarkerOptions().position(GP_OFFICE_LOCATION).title("Офис Green Premium")
-            .snippet("Бизнес-центр «Manhattan», офис 211\n" +
+            map.addMarker(MarkerOptions()
+                    .position(GP_OFFICE_LOCATION)
+                    .title("Офис Green Premium")
+                    .snippet("Бизнес-центр «Manhattan», офис 211")
+                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker)))
+
+            /* Доп. инфо:
+            * "Бизнес-центр «Manhattan», офис 211\n" +
                     "Адрес: 105066, г. Москва, ул. Нижняя Красносельская, д. 35, стр. 9\n" +
                     "Режим работы: пн-пт с 10 до 19 часов\n" +
                     "Телефон: +7 495 380-39-59, 8-800-775-70-75\n" +
                     "Факс: +7 495 380-39-59\n" +
                     "E-mail: sale@greenpremium.ru\n" +
-                    "https://greenpremium.ru/")) //TODO довести до ума (поле с инфой маленькое)
+                    "https://greenpremium.ru/"
+            * */
 
             // For zooming automatically to the location of the marker
             val cameraPosition = CameraPosition.Builder().target(GP_OFFICE_LOCATION).zoom(15f).build()
