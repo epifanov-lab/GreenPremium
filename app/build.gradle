@@ -33,6 +33,7 @@ dependencies {
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constraint_layout_version"
     implementation 'com.google.android.gms:play-services-maps:15.0.1'
     implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation "junit:junit:$rootProject.junit_version"
     androidTestImplementation "com.android.support.test:runner:$rootProject.testRunner_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.esspresso_version"
