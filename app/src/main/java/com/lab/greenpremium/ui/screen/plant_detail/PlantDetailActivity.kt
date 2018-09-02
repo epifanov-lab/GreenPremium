@@ -26,7 +26,7 @@ class PlantDetailActivity : BaseActivity() {
 
         button_back.setOnClickListener { onBackPressed() }
 
-        button_basket.setOnClickListener {  }
+        button_cart.setOnClickListener {  }
 
         button_favorite.setOnClickListener {
             plant.isFavorite = !plant.isFavorite

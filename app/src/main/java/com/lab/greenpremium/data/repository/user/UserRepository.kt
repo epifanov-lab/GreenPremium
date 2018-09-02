@@ -9,4 +9,8 @@ object UserRepository : BaseRepository() {
 
     val plants: List<Plant> = getMockPlantList()
 
+    fun getCountOfItemsInCart() : Int {
+        return plants.filter { it.count > 0 }.size
+    }
+
 }

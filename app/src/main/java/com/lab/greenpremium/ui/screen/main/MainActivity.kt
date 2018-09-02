@@ -9,6 +9,7 @@ import android.view.ViewAnimationUtils
 import com.getbase.floatingactionbutton.FloatingActionsMenu
 import com.lab.greenpremium.DURATION_FAST
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.repository.user.UserRepository
 import com.lab.greenpremium.ui.components.BottomNavigationViewHelper
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.ui.screen.main.cart.CartFragment
@@ -19,7 +20,13 @@ import com.lab.greenpremium.ui.screen.main.plants.PlantFragment
 import com.lab.greenpremium.ui.screen.main.portfolio.PortfolioFragment
 import com.lab.greenpremium.ui.screen.main.profile.ProfileFragment
 import com.lab.greenpremium.ui.screen.message.MessageScreenType
+import com.lab.greenpremium.utills.eventbus.BaseEvent
+import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
 import kotlinx.android.synthetic.main.activity_main.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
+
 
 class MainActivity : BaseActivity() {
 
@@ -35,7 +42,7 @@ class MainActivity : BaseActivity() {
 
         BottomNavigationViewHelper.setUncheckable(navigation, false)
         button_favorite.setImageResource(R.drawable.ic_favorites)
-        button_basket.setImageResource(R.drawable.ic_basket)
+        button_cart.setImageResource(R.drawable.ic_cart)
 
         when (item.itemId) {
             R.id.nav_profile -> {
@@ -87,23 +94,23 @@ class MainActivity : BaseActivity() {
         button_favorite.setOnClickListener {
             message.setText(R.string.title_favorites)
             button_favorite.setImageResource(R.drawable.ic_favorites_choosen)
-            button_basket.setImageResource(R.drawable.ic_basket)
+            button_cart.setImageResource(R.drawable.ic_cart)
             swapFragment(FavoritesFragment.newInstance())
             BottomNavigationViewHelper.setUncheckable(navigation, true)
         }
 
-        button_basket.setOnClickListener {
+        button_cart.setOnClickListener {
             message.setText(R.string.title_basket)
-            button_basket.setImageResource(R.drawable.ic_basket_choosen)
+            button_cart.setImageResource(R.drawable.ic_basket_choosen)
             button_favorite.setImageResource(R.drawable.ic_favorites)
             swapFragment(CartFragment.newInstance())
             BottomNavigationViewHelper.setUncheckable(navigation, true)
         }
 
         fab_project.setOnClickListener { goToMessageScreen(MessageScreenType.NEW_PROJECT).also { fab_menu.collapse() } }
-        fab_letter.setOnClickListener { goToMessageScreen(MessageScreenType.LETTER).also { fab_menu.collapse() }  }
-        fab_praise.setOnClickListener { goToMessageScreen(MessageScreenType.PRAISE).also { fab_menu.collapse() }  }
-        fab_complain.setOnClickListener { goToMessageScreen(MessageScreenType.COMPLAIN).also { fab_menu.collapse() }  }
+        fab_letter.setOnClickListener { goToMessageScreen(MessageScreenType.LETTER).also { fab_menu.collapse() } }
+        fab_praise.setOnClickListener { goToMessageScreen(MessageScreenType.PRAISE).also { fab_menu.collapse() } }
+        fab_complain.setOnClickListener { goToMessageScreen(MessageScreenType.COMPLAIN).also { fab_menu.collapse() } }
     }
 
     private fun activateFabMenu(enabled: Boolean) {
@@ -153,6 +160,23 @@ class MainActivity : BaseActivity() {
             }
 
         })
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: BaseEvent) {
+        when (event) {
+            is PlantCountChangedEvent -> button_cart.updateIndicator(UserRepository.getCountOfItemsInCart())
+        }
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    public override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 
     override fun onBackPressed() {

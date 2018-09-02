@@ -28,6 +28,7 @@
 
     <!--font sizes-->
     <dimen name="font_size_7">7sp</dimen>
+    <dimen name="font_size_8">8sp</dimen>
     <dimen name="font_size_9">9sp</dimen>
     <dimen name="font_size_10">10sp</dimen>
     <dimen name="font_size_12">12sp</dimen>

@@ -59,9 +59,9 @@ dependencies {
     implementation 'com.getbase:floatingactionbutton:1.10.1' // fab menu
     implementation 'com.shawnlin:number-picker:2.4.6' // picker
     implementation 'com.github.ome450901:SimpleRatingBar:1.4.2' // rating bar
-    implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6"
-    // carousel dots indication
+    implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6" // carousel dots indication
     implementation 'com.felipecsl.asymmetricgridview:library:2.0.1' // asymmetric gird view
+    implementation 'org.greenrobot:eventbus:3.1.1' // event bus
 
     implementation 'com.github.bumptech.glide:glide:4.8.0' // image downloading
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'

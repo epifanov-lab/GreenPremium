@@ -6,6 +6,8 @@ import android.view.MotionEvent
 import android.view.View
 import android.widget.TextView
 import com.lab.greenpremium.data.entity.Plant
+import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
+import org.greenrobot.eventbus.EventBus
 
 
 fun getRoundedCornerBitmap(bitmap: Bitmap, pixels: Int): Bitmap {
@@ -80,6 +82,7 @@ class PlantItemCountControlsHelper(val plant: Plant,
     private fun setCounter(n: Int) {
         plant.count = if (n < 0) 0 else n
         counter.text = plant.count.toString()
+        EventBus.getDefault().post(PlantCountChangedEvent())
     }
 
     inner class RptUpdater : Runnable {
