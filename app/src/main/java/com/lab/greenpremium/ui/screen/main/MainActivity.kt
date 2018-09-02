@@ -97,6 +97,7 @@ class MainActivity : BaseActivity() {
             button_cart.setImageResource(R.drawable.ic_cart)
             swapFragment(FavoritesFragment.newInstance())
             BottomNavigationViewHelper.setUncheckable(navigation, true)
+            activateFabMenu(false)
         }
 
         button_cart.setOnClickListener {
@@ -105,6 +106,7 @@ class MainActivity : BaseActivity() {
             button_favorite.setImageResource(R.drawable.ic_favorites)
             swapFragment(CartFragment.newInstance())
             BottomNavigationViewHelper.setUncheckable(navigation, true)
+            activateFabMenu(false)
         }
 
         fab_project.setOnClickListener { goToMessageScreen(MessageScreenType.NEW_PROJECT).also { fab_menu.collapse() } }
