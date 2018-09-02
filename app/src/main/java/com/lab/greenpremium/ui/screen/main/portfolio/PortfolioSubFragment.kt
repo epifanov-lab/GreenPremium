@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.StaggeredGridLayoutManager
 import com.lab.greenpremium.R
-import com.lab.greenpremium.SCREEN_KEY
+import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.ui.components.adapters.AsymmetricImageGridAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.utills.getMockImageList
@@ -19,7 +19,7 @@ class PortfolioSubFragment : BaseFragment() {
         fun newInstance(type: Int): PortfolioSubFragment {
             val fragment = PortfolioSubFragment()
             val args = Bundle()
-            args.putInt(SCREEN_KEY, type)
+            args.putInt(KEY_OBJECT, type)
             fragment.arguments = args
             return fragment
         }
@@ -35,7 +35,7 @@ class PortfolioSubFragment : BaseFragment() {
     }
 
     override fun initViews() {
-        type = PortfolioType.values()[arguments!!.getInt(SCREEN_KEY)]
+        type = PortfolioType.values()[arguments!!.getInt(KEY_OBJECT)]
 
         //test.text = getString(type.titleResId)
         asymmetric_image_grid.layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)

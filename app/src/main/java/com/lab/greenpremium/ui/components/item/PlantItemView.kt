@@ -1,15 +1,14 @@
 package com.lab.greenpremium.ui.components.item
 
 import android.content.Context
-import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Plant
+import com.lab.greenpremium.utills.PlantItemCountControlsHelper
 import com.lab.greenpremium.utills.currencyFormat
 import kotlinx.android.synthetic.main.view_item_plant.view.*
 
@@ -17,10 +16,6 @@ import kotlinx.android.synthetic.main.view_item_plant.view.*
 class PlantItemView : RelativeLayout {
 
     private lateinit var plant: Plant
-
-    private val repeatUpdateHandler = Handler()
-    private var isIncrementing = false
-    private var isDecrementing = false
 
     constructor(context: Context) : this(context, null)
 
@@ -30,51 +25,6 @@ class PlantItemView : RelativeLayout {
 
         LayoutInflater.from(context).inflate(R.layout.view_item_plant, this, true)
 
-        button_add.run {
-            setOnClickListener { setCounter(++plant.count) }
-            setOnLongClickListener {
-                isIncrementing = true
-                repeatUpdateHandler.post(RptUpdater())
-                false
-            }
-
-            setOnTouchListener { v, event ->
-                if ((event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) && isIncrementing) {
-                    isIncrementing = false
-                }
-                false
-            }
-        }
-
-        button_remove.run {
-            setOnClickListener { setCounter(--plant.count) }
-            setOnLongClickListener {
-                isDecrementing = true
-                repeatUpdateHandler.post(RptUpdater())
-                false
-            }
-
-            setOnTouchListener { v, event ->
-                if ((event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) && isDecrementing) {
-                    isDecrementing = false
-                }
-                false
-            }
-        }
-
-    }
-
-    internal inner class RptUpdater : Runnable {
-        override fun run() {
-            if (isIncrementing) {
-                setCounter(++plant.count)
-                repeatUpdateHandler.postDelayed(RptUpdater(), 100)
-
-            } else if (isDecrementing) {
-                setCounter(--plant.count)
-                repeatUpdateHandler.postDelayed(RptUpdater(), 100)
-            }
-        }
     }
 
     fun setData(plant: Plant) {
@@ -88,7 +38,9 @@ class PlantItemView : RelativeLayout {
         plant.drawableResId?.let { image.setImageResource(it) }
 
         updateByType(plant.type)
-        setCounter(plant.count)
+
+        PlantItemCountControlsHelper(plant, text_counter, button_add, button_remove)
+
     }
 
     private fun updateByType(type: Plant.Type) {
@@ -104,11 +56,6 @@ class PlantItemView : RelativeLayout {
         }
     }
 
-    private fun setCounter(n: Int) {
-        plant.count = if (n < 0) 0 else n
-        text_counter.text = plant.count.toString()
-    }
-
     private fun showHeightSelector(enabled: Boolean) {
         height_selector.visibility = if (enabled) View.VISIBLE else View.GONE
         space.visibility = if (enabled) View.VISIBLE else View.GONE
@@ -121,5 +68,10 @@ class PlantItemView : RelativeLayout {
         p.setMargins(left, top, right, bottom)
         this.layoutParams = p
         this.requestLayout()
+    }
+
+    override fun setOnClickListener(onClickListener: OnClickListener) {
+        container_image.setOnClickListener(onClickListener)
+        container_info.setOnClickListener(onClickListener)
     }
 }

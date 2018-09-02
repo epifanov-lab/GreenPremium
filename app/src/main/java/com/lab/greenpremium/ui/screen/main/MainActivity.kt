@@ -34,7 +34,7 @@ class MainActivity : BaseActivity() {
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
         BottomNavigationViewHelper.setUncheckable(navigation, false)
-        button_favorites.setImageResource(R.drawable.ic_favorites)
+        button_favorite.setImageResource(R.drawable.ic_favorites)
         button_basket.setImageResource(R.drawable.ic_basket)
 
         when (item.itemId) {
@@ -84,9 +84,9 @@ class MainActivity : BaseActivity() {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
 
-        button_favorites.setOnClickListener {
+        button_favorite.setOnClickListener {
             message.setText(R.string.title_favorites)
-            button_favorites.setImageResource(R.drawable.ic_favorites_choosen)
+            button_favorite.setImageResource(R.drawable.ic_favorites_choosen)
             button_basket.setImageResource(R.drawable.ic_basket)
             swapFragment(FavoritesFragment.newInstance())
             BottomNavigationViewHelper.setUncheckable(navigation, true)
@@ -95,7 +95,7 @@ class MainActivity : BaseActivity() {
         button_basket.setOnClickListener {
             message.setText(R.string.title_basket)
             button_basket.setImageResource(R.drawable.ic_basket_choosen)
-            button_favorites.setImageResource(R.drawable.ic_favorites)
+            button_favorite.setImageResource(R.drawable.ic_favorites)
             swapFragment(CartFragment.newInstance())
             BottomNavigationViewHelper.setUncheckable(navigation, true)
         }

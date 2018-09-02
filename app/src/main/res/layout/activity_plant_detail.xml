@@ -1,172 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/space_medium_2"
-    android:paddingLeft="@dimen/space_medium_2"
-    android:paddingRight="@dimen/space_medium_2">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
-    <ImageView
-        android:id="@+id/button_back"
-        android:layout_width="@dimen/back_button_area_size"
-        android:layout_height="@dimen/back_button_area_size"
-        android:paddingLeft="@dimen/back_button_image_minus_padding_left"
-        android:scaleType="centerInside"
-        android:src="@drawable/ic_back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/text_title"
-        android:layout_width="272dp"
-        android:layout_height="30dp"
-        android:layout_gravity=""
-        android:layout_marginTop="12dp"
-        android:fontFamily="@font/sfuitext_bold"
-        android:textColor="@color/black"
-        android:textSize="@dimen/font_size_20"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_back"
-        tools:text="Homo homini lupus est" />
-
-    <ImageButton
-        android:id="@+id/button_basket"
-        android:layout_width="wrap_content"
+    <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_basket"
-        app:layout_constraintBottom_toBottomOf="@+id/button_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.969"
-        app:layout_constraintStart_toEndOf="@+id/button_back"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
-    <ImageButton
-
-        android:id="@+id/button_favorites"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:background="?attr/selectableItemBackgroundBorderless"
-        android:src="@drawable/ic_favorites"
-        app:layout_constraintBottom_toBottomOf="@+id/title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/title" />
-
-    <ImageView
-        android:id="@+id/image"
-        android:layout_width="155dp"
-        android:layout_height="172dp"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="8dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/dummy_plant_1"
-        app:layout_constraintEnd_toStartOf="@+id/container_controls"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title" />
-
-    <LinearLayout
-        android:id="@+id/container_controls"
-        android:layout_width="64dp"
-        android:layout_height="170dp"
-        android:layout_alignParentRight="true"
-        android:gravity="center_horizontal"
+        android:background="@color/white"
         android:orientation="vertical"
-        android:paddingBottom="@dimen/space_small_3"
-        android:paddingTop="@dimen/space_small_3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/image">
+        android:paddingLeft="@dimen/space_medium_2"
+        android:paddingRight="@dimen/space_medium_2"
+        android:paddingTop="@dimen/space_medium_2">
 
         <ImageView
-            android:id="@+id/button_add"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_add_plant_green" />
+            android:id="@+id/button_back"
+            android:layout_width="@dimen/back_button_area_size"
+            android:layout_height="@dimen/back_button_area_size"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:paddingLeft="@dimen/back_button_image_minus_padding_left"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/text_counter"
+            android:id="@+id/text_title"
+            android:layout_width="272dp"
+            android:layout_height="30dp"
+            android:layout_gravity=""
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/sfuitext_bold"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_back"
+            tools:text="Homo homini lupus est" />
+
+        <ImageButton
+            android:id="@+id/button_basket"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/sfuitext_medium"
-            android:gravity="center"
-            android:textColor="@color/black"
-            android:textSize="@dimen/font_size_36"
-            tools:text="0" />
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_basket"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="@+id/button_back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.969"
+            app:layout_constraintStart_toEndOf="@+id/button_back"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <ImageButton
+            android:id="@+id/button_favorite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="88dp"
+            android:layout_marginStart="8dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_favorites"
+            app:layout_constraintBottom_toBottomOf="@+id/text_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/text_title"
+            app:layout_constraintTop_toTopOf="@+id/text_title" />
 
         <ImageView
-            android:id="@+id/button_remove"
-            android:layout_width="36dp"
-            android:layout_height="36dp"
-            android:layout_weight="1"
-            android:src="@drawable/ic_remove_plant_green" />
+            android:id="@+id/image"
+            android:layout_width="155dp"
+            android:layout_height="172dp"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="8dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/dummy_plant_1"
+            app:layout_constraintEnd_toStartOf="@+id/container_controls"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
-    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/container_controls"
+            android:layout_width="wrap_content"
+            android:layout_height="170dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/space_small_3"
+            android:paddingTop="@dimen/space_small_3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/image">
 
-    <TextView
-        android:id="@+id/text_total_cost"
-        android:layout_width="154dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/sfuitext_bold"
-        android:text="33 000 ₽"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="@+id/image"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image"
-        android:textSize="@dimen/font_size_24" />
+            <ImageView
+                android:id="@+id/button_add"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_add_plant_green" />
 
-    <com.lab.greenpremium.ui.components.DiscountTextView
-        android:id="@+id/text_discount"
-        android:layout_width="wrap_content"
-        android:layout_height="29dp"
-        android:layout_marginTop="4dp"
-        android:fontFamily="@font/sfuitext_regular"
-        android:gravity="center"
-        android:textColor="@color/gray_light_1"
-        android:textSize="@dimen/font_size_18"
-        app:layout_constraintEnd_toEndOf="@+id/text_total_cost"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_total_cost"
-        android:text="50.000$" />
+            <TextView
+                android:id="@+id/text_counter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sfuitext_medium"
+                android:gravity="center"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_size_30"
+                tools:text="0" />
 
-    <TextView
-        android:id="@+id/text_info_short"
-        android:layout_width="157dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/sfuitext_regular"
-        android:text="@string/lorem_ipsum_medium"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/font_size_10"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/text_total_cost"
-        app:layout_constraintTop_toBottomOf="@+id/container_controls" />
+            <ImageView
+                android:id="@+id/button_remove"
+                android:layout_width="28dp"
+                android:layout_height="28dp"
+                android:layout_weight="1"
+                android:src="@drawable/ic_remove_plant_green" />
 
-    <TextView
-        android:id="@+id/text_info_long"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:fontFamily="@font/sfuitext_regular"
-        android:text="@string/lorem_ipsum_long"
-        android:textColor="@color/gray"
-        android:textSize="@dimen/font_size_12"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.764"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_discount" />
+        </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+        <TextView
+            android:id="@+id/text_price"
+            android:layout_width="154dp"
+            android:layout_height="33dp"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/sfuitext_bold"
+            android:text="33 000 ₽"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_24"
+            app:layout_constraintEnd_toEndOf="@+id/image"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image" />
+
+        <com.lab.greenpremium.ui.components.DiscountTextView
+            android:id="@+id/text_discount"
+            android:layout_width="wrap_content"
+            android:layout_height="29dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/sfuitext_regular"
+            android:gravity="center"
+            android:text="50.000$"
+            android:textColor="@color/gray_light_1"
+            android:textSize="@dimen/font_size_18"
+            app:layout_constraintEnd_toEndOf="@+id/text_price"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_price" />
+
+        <TextView
+            android:id="@+id/text_info_short"
+            android:layout_width="157dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="28dp"
+            android:fontFamily="@font/sfuitext_regular"
+            android:text="@string/lorem_ipsum_medium"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/font_size_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/text_price"
+            app:layout_constraintTop_toBottomOf="@+id/container_controls" />
+
+        <TextView
+            android:id="@+id/text_info_long"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/sfuitext_regular"
+            android:text="@string/lorem_ipsum_long"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/font_size_12"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.764"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_discount" />
+
+        <include
+            layout="@layout/view_gallery_preview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:layout_marginTop="24dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_info_long" />
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>

@@ -29,7 +29,7 @@ class CartFragment : BaseFragment() {
 
         recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         recycler_plants.adapter = PlantRecyclerAdapter(plants,
-                context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+                context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt(), this)
 
         var total = 0.0
         plants.forEach { total += it.price * it.count}

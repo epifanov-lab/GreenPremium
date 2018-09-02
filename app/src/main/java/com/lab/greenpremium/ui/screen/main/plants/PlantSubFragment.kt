@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import com.lab.greenpremium.R
-import com.lab.greenpremium.SCREEN_KEY
+import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.data.entity.Plant
 import com.lab.greenpremium.data.repository.user.UserRepository
 import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
@@ -18,7 +18,7 @@ class PlantSubFragment : BaseFragment() {
         fun newInstance(type: Int): PlantSubFragment {
             val fragment = PlantSubFragment()
             val args = Bundle()
-            args.putInt(SCREEN_KEY, type)
+            args.putInt(KEY_OBJECT, type)
             fragment.arguments = args
             return fragment
         }
@@ -35,10 +35,10 @@ class PlantSubFragment : BaseFragment() {
     }
 
     override fun initViews() {
-        type = Plant.Type.values()[arguments!!.getInt(SCREEN_KEY)]
+        type = Plant.Type.values()[arguments!!.getInt(KEY_OBJECT)]
 
         recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         recycler_plants.adapter = PlantRecyclerAdapter(UserRepository.plants.filter { it.type == type },
-                context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+                context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt(), this)
     }
 }

@@ -2,7 +2,7 @@ package com.lab.greenpremium.ui.screen.message
 
 import android.view.View
 import com.lab.greenpremium.R
-import com.lab.greenpremium.SCREEN_KEY
+import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_message.*
 
@@ -21,7 +21,7 @@ class MessageActivity : BaseActivity() {
     override fun initViews() {
         button_back.setOnClickListener { finish() }
 
-        type = intent.extras.getSerializable(SCREEN_KEY) as MessageScreenType
+        type = intent.extras.getSerializable(KEY_OBJECT) as MessageScreenType
         title_label.text = getString(type.titleResId)
         rating_bar.visibility = if (type.hasRatingBar) View.VISIBLE else View.GONE
         container_subject.visibility = if (type.hasSubjectInput) View.VISIBLE else View.GONE

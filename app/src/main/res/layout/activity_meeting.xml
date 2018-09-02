@@ -11,6 +11,7 @@
         android:layout_width="@dimen/back_button_area_size"
         android:layout_height="@dimen/back_button_area_size"
         android:layout_marginLeft="@dimen/space_medium_2"
+        android:background="?attr/selectableItemBackgroundBorderless"
         android:paddingLeft="@dimen/back_button_image_minus_padding_left"
         android:scaleType="centerInside"
         android:src="@drawable/ic_back" />

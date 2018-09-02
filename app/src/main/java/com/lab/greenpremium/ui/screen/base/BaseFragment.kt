@@ -5,9 +5,10 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
 
 
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment : Fragment(), PlantRecyclerAdapter.OnPlantSelectedListener {
 
     lateinit var TAG: String
 
@@ -28,4 +29,7 @@ abstract class BaseFragment : Fragment() {
 
     protected abstract fun initViews()
 
+    override fun onPlantSelected(position: Int) {
+        (activity as BaseActivity).goToPlantDetailActivity(position)
+    }
 }

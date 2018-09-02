@@ -6,7 +6,7 @@ import com.lab.greenpremium.data.entity.Plant
 import com.lab.greenpremium.ui.components.item.PlantItemView
 
 
-class PlantRecyclerAdapter(private val list: List<Plant>, private val margin: Int?) : RecyclerView.Adapter<PlantRecyclerAdapter.ViewHolder>() {
+class PlantRecyclerAdapter(private val list: List<Plant>, private val margin: Int?, private val listener: OnPlantSelectedListener?) : RecyclerView.Adapter<PlantRecyclerAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -17,6 +17,7 @@ class PlantRecyclerAdapter(private val list: List<Plant>, private val margin: In
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.view.setData(list[position])
+        holder.view.setOnClickListener { listener?.onPlantSelected(position) }
 
         if (margin != null) {
             holder.view.setMargins(
@@ -25,7 +26,6 @@ class PlantRecyclerAdapter(private val list: List<Plant>, private val margin: In
                     margin / 2,
                     if (position == list.lastIndex) margin * 3 else margin / 2)
         }
-
     }
 
     override fun getItemCount(): Int {
@@ -33,4 +33,8 @@ class PlantRecyclerAdapter(private val list: List<Plant>, private val margin: In
     }
 
     class ViewHolder(val view: PlantItemView) : RecyclerView.ViewHolder(view)
+
+    interface OnPlantSelectedListener {
+        fun onPlantSelected(position: Int)
+    }
 }

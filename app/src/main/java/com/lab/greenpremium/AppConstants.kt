@@ -2,7 +2,7 @@ package com.lab.greenpremium
 
 
 /*Keys*/
-const val SCREEN_KEY = "screen_key"
+const val KEY_OBJECT = "key_object"
 
 /*Animations*/
 const val DURATION_FAST = 100.toLong()

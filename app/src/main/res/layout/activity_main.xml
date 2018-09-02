@@ -30,13 +30,13 @@
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_20" />
 
-
             <ImageButton
-                android:id="@+id/button_favorites"
+                android:id="@+id/button_favorite"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_favorites" />
 
             <ImageButton
@@ -45,6 +45,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:scaleType="centerInside"
                 android:src="@drawable/ic_basket" />
 
         </LinearLayout>

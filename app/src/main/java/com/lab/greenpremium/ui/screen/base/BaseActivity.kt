@@ -9,11 +9,12 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
-import com.lab.greenpremium.SCREEN_KEY
 import com.lab.greenpremium.ui.screen.auth.AuthActivity
 import com.lab.greenpremium.ui.screen.main.MainActivity
 import com.lab.greenpremium.ui.screen.message.MessageActivity
+import com.lab.greenpremium.ui.screen.plant_detail.PlantDetailActivity
 import com.lab.greenpremium.ui.screen.start.StartActivity
 import java.io.Serializable
 
@@ -49,11 +50,18 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected fun goToMessageScreen(messageScreenType: Serializable) {
         val intent = Intent(this, MessageActivity::class.java)
-        intent.putExtra(SCREEN_KEY, messageScreenType)
+        intent.putExtra(KEY_OBJECT, messageScreenType)
         startActivity(intent)
     }
 
-    protected fun swapFragment(fragment : Fragment) {
+    fun goToPlantDetailActivity(plantIndex: Int) {
+        val intent = Intent(this, PlantDetailActivity::class.java)
+        intent.putExtra(KEY_OBJECT, plantIndex)
+        startActivity(intent)
+    }
+
+
+    protected fun swapFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
         transaction.replace(R.id.container, fragment)
         transaction.addToBackStack(null)

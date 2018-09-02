@@ -8,7 +8,6 @@ import com.lab.greenpremium.data.entity.Plant
 
 
 fun getMockPlantList(): List<Plant> {
-    LogUtil.i("GET MOCK LIST")
     val result: ArrayList<Plant> = ArrayList()
 
     for (i in 1..45) {
