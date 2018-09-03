@@ -17,7 +17,7 @@ class PlantRecyclerAdapter(private val list: List<Plant>, private val margin: In
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.view.setData(list[position])
-        holder.view.setOnClickListener { listener?.onPlantSelected(position) }
+        holder.view.setOnClickListener { listener?.onPlantSelected(list[position]) }
 
         if (margin != null) {
             holder.view.setMargins(
@@ -35,6 +35,6 @@ class PlantRecyclerAdapter(private val list: List<Plant>, private val margin: In
     class ViewHolder(val view: PlantItemView) : RecyclerView.ViewHolder(view)
 
     interface OnPlantSelectedListener {
-        fun onPlantSelected(position: Int)
+        fun onPlantSelected(plant: Plant)
     }
 }
