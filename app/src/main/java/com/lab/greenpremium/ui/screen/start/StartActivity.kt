@@ -6,6 +6,7 @@ import android.support.v4.content.ContextCompat
 import android.view.ViewTreeObserver
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screen.base.BaseActivity
+import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_start.*
 
 class StartActivity : BaseActivity() {
@@ -22,6 +23,10 @@ class StartActivity : BaseActivity() {
         button_auth.setOnClickListener { goToAuthScreen() }
 
         initializeGradientTitle()
+
+        setTouchAnimationShrink(button_auth)
+        setTouchAnimationShrink(button_demo)
+        setTouchAnimationShrink(button_register)
     }
 
     private fun initializeGradientTitle() {

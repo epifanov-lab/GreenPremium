@@ -39,7 +39,7 @@ class PlantDetailActivity : BaseActivity() {
         plant.drawableResId?.let { image.setImageResource(it) }
         text_price.text = currencyFormat(plant.price)
         text_discount.text = currencyFormat(plant.discount)
-        //text_info_short.text = plant.info1
+        text_info_short.text = "${plant.info1}\n${plant.info2}"
         //text_info_long.text = plant.info2
 
         PlantItemCountControlsHelper(plant, text_counter, button_add, button_remove)
