@@ -41,4 +41,9 @@ class PlantSubFragment : BaseFragment() {
         recycler_plants.adapter = PlantRecyclerAdapter(UserRepository.plants.filter { it.type == type },
                 context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt(), this)
     }
+
+    override fun onResume() {
+        super.onResume()
+        recycler_plants.adapter.notifyDataSetChanged()
+    }
 }
