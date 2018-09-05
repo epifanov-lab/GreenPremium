@@ -39,6 +39,6 @@ class PortfolioSubFragment : BaseFragment() {
 
         //test.text = getString(type.titleResId)
         asymmetric_image_grid.layoutManager = StaggeredGridLayoutManager(3, LinearLayoutManager.VERTICAL)
-        asymmetric_image_grid.adapter = AsymmetricImageGridAdapter(context!!, getMockImageList(16, 800, 500))
+        asymmetric_image_grid.adapter = AsymmetricImageGridAdapter(context!!, getMockImageList(16, 1200, 600))
     }
 }

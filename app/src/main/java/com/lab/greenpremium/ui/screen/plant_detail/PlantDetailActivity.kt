@@ -7,7 +7,9 @@ import com.lab.greenpremium.data.repository.user.UserRepository
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.utills.PlantItemCountControlsHelper
 import com.lab.greenpremium.utills.currencyFormat
+import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_plant_detail.*
+import kotlinx.android.synthetic.main.view_gallery_preview.*
 
 class PlantDetailActivity : BaseActivity() {
 
@@ -43,6 +45,10 @@ class PlantDetailActivity : BaseActivity() {
         //text_info_long.text = plant.info2
 
         PlantItemCountControlsHelper(plant, text_counter, button_add, button_remove)
+
+        setTouchAnimationShrink(image_1)
+        setTouchAnimationShrink(image_2)
+        setTouchAnimationShrink(image_else)
     }
 
     private fun updateFavoriteButtonState(isFavorite: Boolean) {

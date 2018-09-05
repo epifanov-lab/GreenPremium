@@ -5,12 +5,15 @@ import android.os.Handler
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AlphaAnimation
+import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.TextView
 import com.lab.greenpremium.*
 import com.lab.greenpremium.data.entity.Plant
 import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
 import org.greenrobot.eventbus.EventBus
+
+const val CLICK_ACTION_THRESHOLD = 200
 
 
 fun getRoundedCornerBitmap(bitmap: Bitmap, pixels: Int): Bitmap {
@@ -36,8 +39,8 @@ fun getRoundedCornerBitmap(bitmap: Bitmap, pixels: Int): Bitmap {
 }
 
 fun setTouchAnimationAlphaChange(view: View) {
-    view.setOnTouchListener(View.OnTouchListener { p0, motionEvent ->
-        val action = motionEvent?.action
+    view.setOnTouchListener(View.OnTouchListener { v, event ->
+        val action = event?.action
         when (action) {
             MotionEvent.ACTION_DOWN -> {
                 animateViewAlphaChange(view, ALPHA_VISIBLE, ALPHA_DISABLED)
@@ -59,26 +62,48 @@ fun setTouchAnimationAlphaChange(view: View) {
     })
 }
 
-fun setTouchAnimationShrink(view: View) {
-    val onTouchListener = View.OnTouchListener { p0, motionEvent ->
-        val action = motionEvent?.action
+private fun animateViewAlphaChange(view: View, fromAlpha: Float, toAlpha: Float) {
+    val animation = AlphaAnimation(fromAlpha, toAlpha)
+    animation.duration = DURATION_FAST
+    animation.fillAfter = true
+    view.startAnimation(animation)
+}
+
+fun setTouchAnimationShrink(view: View, onAnimationEndListener: OnAnimationEndListener? = null) {
+    var startX = 0f
+    var startY = 0f
+
+    val onTouchListener = View.OnTouchListener { v, event ->
+        val action = event?.action
         when (action) {
             MotionEvent.ACTION_DOWN -> {
-                LogUtil.i("ACTION_DOWN")
+                startX = event.x
+                startY = event.y
                 animateViewShrink(view, SCALE_FULL, SCALE_PRESSED)
                 return@OnTouchListener true
             }
 
             MotionEvent.ACTION_UP -> {
-                LogUtil.i("ACTION_UP")
-                animateViewShrink(view, SCALE_PRESSED, SCALE_FULL)
+                val endX = event.x
+                val endY = event.y
+                if (isAClick(startX, endX, startY, endY)) {
+                    animateViewShrink(view, SCALE_PRESSED, SCALE_FULL, DURATION_VERY_FAST,
+                            onAnimationEndListener ?: object : OnAnimationEndListener {
+                                override fun onAnimationEndEvent() {
+                                    view.performClick()
+                                }
+                            })
+                }
                 return@OnTouchListener true
             }
 
             MotionEvent.ACTION_MOVE -> {
-                LogUtil.i("ACTION_MOVE")
-                //animateViewShrink(view, SCALE_PRESSED, SCALE_FULL)
-                return@OnTouchListener false
+                val endX = event.x
+                val endY = event.y
+                if (!isAClick(startX, endX, startY, endY)) {
+                    animateViewShrink(view, SCALE_PRESSED, SCALE_FULL, DURATION_VERY_FAST)
+                }
+                return@OnTouchListener true
             }
         }
         false
@@ -87,19 +112,35 @@ fun setTouchAnimationShrink(view: View) {
     view.setOnTouchListener(onTouchListener)
 }
 
-private fun animateViewAlphaChange(view: View, fromAlpha: Float, toAlpha: Float) {
-    val animation = AlphaAnimation(fromAlpha, toAlpha)
-    animation.duration = DURATION_FAST
+
+private fun animateViewShrink(view: View, fromScale: Float, toScale: Float, duration: Long = DURATION_FAST, onAnimationEndListener: OnAnimationEndListener? = null) {
+    val animation = ScaleAnimation(fromScale, toScale, fromScale, toScale, (view.width / 2).toFloat(), (view.height / 2).toFloat())
+    animation.duration = duration
     animation.fillAfter = true
+    animation.setAnimationListener(object : Animation.AnimationListener {
+        override fun onAnimationRepeat(p0: Animation?) {
+            //ignore
+        }
+
+        override fun onAnimationEnd(p0: Animation?) {
+            onAnimationEndListener?.onAnimationEndEvent()
+        }
+
+        override fun onAnimationStart(p0: Animation?) {
+            //ignore
+        }
+    })
     view.startAnimation(animation)
 }
 
+private fun isAClick(startX: Float, endX: Float, startY: Float, endY: Float): Boolean {
+    val differenceX = Math.abs(startX - endX)
+    val differenceY = Math.abs(startY - endY)
+    return !/* =5 */(differenceX > CLICK_ACTION_THRESHOLD || differenceY > CLICK_ACTION_THRESHOLD)
+}
 
-private fun animateViewShrink(view: View, fromScale: Float, toScale: Float) {
-    val animation = ScaleAnimation(fromScale, toScale, fromScale, toScale, (view.width / 2).toFloat(), (view.height / 2).toFloat())
-    animation.duration = DURATION_FAST
-    animation.fillAfter = true
-    view.startAnimation(animation)
+interface OnAnimationEndListener {
+    fun onAnimationEndEvent()
 }
 
 class PlantItemCountControlsHelper(val plant: Plant,

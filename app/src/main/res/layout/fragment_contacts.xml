@@ -14,7 +14,7 @@
         android:layout_marginBottom="@dimen/space_small_3">
 
         <Button
-            android:id="@+id/button_time_choose"
+            android:id="@+id/button_schedule_meet"
             style="@style/Button.Green"
             android:layout_width="@dimen/contacts_button_width"
             android:layout_height="@dimen/green_button_height"
@@ -28,7 +28,7 @@
             android:layout_centerVertical="true"
             android:layout_gravity="center"
             android:layout_toLeftOf="@id/container_date"
-            android:layout_toRightOf="@id/button_time_choose"
+            android:layout_toRightOf="@id/button_schedule_meet"
             android:fontFamily="@font/sfuitext_medium"
             android:gravity="center"
             android:textColor="@color/gray_light_1"

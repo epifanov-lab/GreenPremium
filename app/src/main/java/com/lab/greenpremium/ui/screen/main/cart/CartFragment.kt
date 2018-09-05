@@ -10,6 +10,7 @@ import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.utills.currencyFormat
 import com.lab.greenpremium.utills.eventbus.BaseEvent
 import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
+import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_cart.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -42,6 +43,8 @@ class CartFragment : BaseFragment() {
         updateTotalCost(plants)
 
         //todo подписаться на изменение полей count
+
+        setTouchAnimationShrink(button_bill)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

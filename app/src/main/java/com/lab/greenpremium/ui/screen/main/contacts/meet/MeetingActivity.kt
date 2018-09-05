@@ -8,6 +8,7 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.utills.getMockContactList
+import com.lab.greenpremium.utills.setTouchAnimationShrink
 import com.shawnlin.numberpicker.NumberPicker
 import kotlinx.android.synthetic.main.activity_meeting.*
 import java.text.SimpleDateFormat
@@ -39,6 +40,8 @@ class MeetingActivity : BaseActivity() {
         }
 
         button_back.setOnClickListener { finish() }
+
+        setTouchAnimationShrink(button_proceed)
     }
 
     private fun initializeContactsCarousel() {

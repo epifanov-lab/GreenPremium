@@ -9,8 +9,10 @@ import com.lab.greenpremium.ui.components.ScrollLayoutManager
 import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.ui.components.adapters.EventsRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
+import com.lab.greenpremium.utills.OnAnimationEndListener
 import com.lab.greenpremium.utills.getMockContactList
 import com.lab.greenpremium.utills.getMockEventsList
+import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_profile.*
 
 
@@ -32,15 +34,19 @@ class ProfileFragment : BaseFragment() {
         initializeContactsCarousel()
         initializeEventsList()
 
-        button_calc_service.setOnClickListener {
-            button_calc_service.visibility = GONE
-            container_cost.visibility = VISIBLE
-        }
-
         button_start_shopping.setOnClickListener {
             container_no_events.visibility = GONE
             container_events.visibility = VISIBLE
         }
+
+        setTouchAnimationShrink(button_calc_service, object: OnAnimationEndListener{
+            override fun onAnimationEndEvent() {
+                button_calc_service.visibility = GONE
+                container_cost.visibility = VISIBLE
+            }
+        })
+
+        setTouchAnimationShrink(button_start_shopping)
     }
 
     private fun initializeContactsCarousel() {

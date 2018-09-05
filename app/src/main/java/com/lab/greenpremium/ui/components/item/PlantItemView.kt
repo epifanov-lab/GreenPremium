@@ -22,9 +22,7 @@ class PlantItemView : RelativeLayout {
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-
         LayoutInflater.from(context).inflate(R.layout.view_item_plant, this, true)
-
     }
 
     fun setData(plant: Plant) {
@@ -73,5 +71,10 @@ class PlantItemView : RelativeLayout {
     override fun setOnClickListener(onClickListener: OnClickListener) {
         container_image.setOnClickListener(onClickListener)
         container_info.setOnClickListener(onClickListener)
+    }
+
+    override fun setOnTouchListener(touchListener: OnTouchListener?) {
+        container_main.setOnTouchListener(touchListener)
+        super.setOnTouchListener(touchListener)
     }
 }

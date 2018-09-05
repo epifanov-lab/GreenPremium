@@ -7,6 +7,7 @@ import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.ui.screen.main.contacts.meet.MeetingActivity
 import com.lab.greenpremium.utills.getMockContactList
+import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_contacts.*
 
 
@@ -28,7 +29,8 @@ class ContactsFragment : BaseFragment() {
         initializeContactsRecyclerView()
         updateTimeLabels(System.currentTimeMillis())
 
-        button_time_choose.setOnClickListener { startActivity(Intent(context, MeetingActivity::class.java)) }
+        button_schedule_meet.setOnClickListener { startActivity(Intent(context, MeetingActivity::class.java)) }
+        setTouchAnimationShrink(button_schedule_meet)
     }
 
     private fun initializeContactsRecyclerView() {

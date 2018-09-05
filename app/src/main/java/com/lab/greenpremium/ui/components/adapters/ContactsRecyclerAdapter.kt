@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.ui.components.item.ContactItemView
 import com.lab.greenpremium.utills.setTouchAnimationAlphaChange
+import com.lab.greenpremium.utills.setTouchAnimationShrink
 
 
 class ContactsRecyclerAdapter(private val list: List<Contact>, private val orientation: Int = LinearLayoutManager.VERTICAL, private val margin: Int?) : RecyclerView.Adapter<ContactsRecyclerAdapter.ViewHolder>() {
@@ -41,7 +42,7 @@ class ContactsRecyclerAdapter(private val list: List<Contact>, private val orien
             }
         }
 
-        setTouchAnimationAlphaChange(holder.view)
+        setTouchAnimationShrink(holder.view)
     }
 
     override fun getItemCount(): Int {

@@ -33,6 +33,7 @@
         app:layout_constraintTop_toTopOf="@+id/image_1" />
 
     <TextView
+        android:id="@+id/image_else"
         android:layout_width="55dp"
         android:layout_height="55dp"
         android:layout_marginStart="24dp"

@@ -37,7 +37,8 @@
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_favorites" />
+                android:src="@drawable/ic_favorites"
+                android:paddingTop="5dp"/>
 
             <com.lab.greenpremium.ui.components.buttons.CartButtonView
                 android:id="@+id/button_cart"

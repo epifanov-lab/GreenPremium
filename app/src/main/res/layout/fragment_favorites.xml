@@ -1,16 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/white">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_plants"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
+        android:overScrollMode="never"
         android:paddingLeft="@dimen/space_small_3"
         android:paddingRight="@dimen/space_small_3"
-        android:overScrollMode="never"/>
+        android:visibility="gone"/>
+
+    <TextView
+        android:id="@+id/label_empty_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_bill"
+        android:layout_marginLeft="@dimen/space_medium_2"
+        android:layout_marginRight="@dimen/space_medium_2"
+        android:layout_marginTop="@dimen/space_small_4"
+        android:fontFamily="@font/sfuitext_regular"
+        android:gravity="left"
+        android:text="@string/favorites_empty"
+        android:textAlignment="center"
+        android:textColor="@color/gray_light_1"
+        android:textSize="@dimen/font_size_12"
+        android:visibility="visible"/>
 
 </RelativeLayout>

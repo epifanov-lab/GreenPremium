@@ -51,7 +51,7 @@ class ContactItemView : RelativeLayout {
             }
         }
 
-        val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+/*        val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
         text_phone.setOnClickListener {
             clipboardManager.primaryClip = ClipData.newPlainText("phone", text_phone.text)
@@ -61,7 +61,7 @@ class ContactItemView : RelativeLayout {
         text_mail.setOnClickListener {
             clipboardManager.primaryClip = ClipData.newPlainText("mail", text_mail.text)
             (context as BaseActivity).showToast("Mail ${text_mail.text} copied to clipboard")
-        }
+        }*/
     }
 
     private fun updateView() {

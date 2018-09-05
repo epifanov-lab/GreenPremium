@@ -9,6 +9,7 @@ import android.widget.RelativeLayout.LayoutParams
 import com.bumptech.glide.Glide
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Image
+import com.lab.greenpremium.utills.setTouchAnimationShrink
 
 
 class AsymmetricImageGridAdapter(private val context: Context, private val images: List<Image>) : RecyclerView.Adapter<AsymmetricImageGridAdapter.ViewHolder>() {
@@ -31,6 +32,8 @@ class AsymmetricImageGridAdapter(private val context: Context, private val image
         Glide.with(context)
                 .load(image.url)
                 .into(holder.view)
+
+        setTouchAnimationShrink(holder.view)
     }
 
     override fun getItemCount(): Int {
