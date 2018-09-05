@@ -65,19 +65,19 @@ fun getMockEventsList(): List<Event> {
     return result
 }
 
-fun getMockImageList(count: Int, s1: Int, s2: Int): List<Image> {
+fun getMockImageList(count: Int, size: Int = 600): List<Image> {
     val result: ArrayList<Image> = ArrayList()
 
     for (i in 1..count) {
-        val s1 = 500;
-        val s2 = 200
-        if (i % 2 == 0) result.add(Image(s1, s1, "https://picsum.photos/$s1/$s1/?random"))
-        else result.add(Image(s2, s2, "https://picsum.photos/$s2/$s2/?random"))
+        when {
+            i % 2 == 0 -> result.add(Image(size, size, "https://picsum.photos/$size/$size/?random"))
+            i % 3 == 0 -> result.add(Image(size, size, "https://picsum.photos/${size + 1}/${size + 1}/?random"))
+            else -> result.add(Image(size, size, "https://picsum.photos/${size + 2}/${size + 2}/?random"))
+        }
     }
 
     return result
 }
-
 
 fun getMockImageUrlsList(count: Int, s1: Int, s2: Int): List<String> {
     val result: ArrayList<String> = ArrayList()

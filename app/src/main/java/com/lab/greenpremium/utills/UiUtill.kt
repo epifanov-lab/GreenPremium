@@ -1,7 +1,10 @@
 package com.lab.greenpremium.utills
 
+import android.app.Activity
+import android.content.Context
 import android.graphics.*
 import android.os.Handler
+import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
 import android.view.animation.AlphaAnimation
@@ -104,6 +107,10 @@ fun setTouchAnimationShrink(view: View, onAnimationEndListener: OnAnimationEndLi
                     animateViewShrink(view, SCALE_PRESSED, SCALE_FULL, DURATION_VERY_FAST)
                 }
                 return@OnTouchListener true
+            }
+
+            MotionEvent.ACTION_CANCEL -> {
+                animateViewShrink(view, SCALE_PRESSED, SCALE_FULL, DURATION_VERY_FAST)
             }
         }
         false
@@ -208,4 +215,10 @@ class PlantItemCountControlsHelper(val plant: Plant,
             }
         }
     }
+}
+
+fun getScreenWidth(context: Context): Int {
+    val displayMetrics = DisplayMetrics()
+    (context as Activity).windowManager.defaultDisplay.getMetrics(displayMetrics)
+    return displayMetrics.widthPixels
 }
