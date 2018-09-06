@@ -124,7 +124,7 @@
             android:layout_marginBottom="@dimen/space_small_2"
             android:layout_marginLeft="@dimen/space_medium_2"
             android:layout_marginRight="@dimen/space_medium_2"
-            android:text="@string/contacts_schedule_meet" />
+            android:text="@string/title_sent" />
 
     </LinearLayout>
 </LinearLayout>

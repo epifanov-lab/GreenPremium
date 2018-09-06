@@ -32,7 +32,6 @@
             android:layout_width="272dp"
             android:layout_height="30dp"
             android:layout_gravity=""
-            android:layout_marginTop="12dp"
             android:fontFamily="@font/sfuitext_bold"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_20"

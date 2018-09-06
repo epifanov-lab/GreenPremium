@@ -52,6 +52,6 @@ class PlantDetailActivity : BaseActivity() {
     }
 
     private fun updateFavoriteButtonState(isFavorite: Boolean) {
-        button_favorite.setImageResource(if (isFavorite) R.drawable.ic_favorites_checked else R.drawable.ic_favorites)
+        button_favorite.setImageResource(if (isFavorite) R.drawable.ic_favorites_choosen else R.drawable.ic_favorites)
     }
 }
