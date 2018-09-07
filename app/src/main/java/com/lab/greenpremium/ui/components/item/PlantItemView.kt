@@ -74,7 +74,7 @@ class PlantItemView : RelativeLayout {
     }
 
     override fun setOnTouchListener(touchListener: OnTouchListener?) {
-        container_main.setOnTouchListener(touchListener)
-        super.setOnTouchListener(touchListener)
+        container_image.setOnTouchListener(touchListener)
+        container_info.setOnTouchListener(touchListener)
     }
 }
