@@ -37,4 +37,9 @@ class FavoritesFragment : BaseFragment() {
             recycler_plants.visibility = View.GONE
         }
     }
+
+    override fun onResume() {
+        super.onResume()
+        recycler_plants.adapter?.notifyDataSetChanged()
+    }
 }

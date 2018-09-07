@@ -1,6 +1,7 @@
 package com.lab.greenpremium.ui.screen.main.cart
 
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View
 import android.widget.LinearLayout
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Plant
@@ -19,7 +20,7 @@ import org.greenrobot.eventbus.ThreadMode
 
 class CartFragment : BaseFragment() {
 
-    private lateinit var plants: List<Plant>
+    private lateinit var list: List<Plant>
 
     companion object {
         fun newInstance() = CartFragment()
@@ -34,13 +35,19 @@ class CartFragment : BaseFragment() {
     }
 
     override fun initViews() {
-        plants = UserRepository.plants.filter { it.count > 0 }
+        list = UserRepository.plants.filter { it.count > 0 }
 
-        recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recycler_plants.adapter = PlantRecyclerAdapter(plants,
-                context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt(), this)
+        if (list.isNotEmpty()) {
+            label_empty_list.visibility = View.GONE
+            recycler_plants.visibility = View.VISIBLE
+            recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+            recycler_plants.adapter = PlantRecyclerAdapter(list, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt(), this)
+        } else {
+            label_empty_list.visibility = View.VISIBLE
+            recycler_plants.visibility = View.GONE
+        }
 
-        updateTotalCost(plants)
+        updateTotalCost(list)
 
         //todo подписаться на изменение полей count
 
@@ -50,7 +57,7 @@ class CartFragment : BaseFragment() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: BaseEvent) {
         when (event) {
-            is PlantCountChangedEvent -> updateTotalCost(plants)
+            is PlantCountChangedEvent -> updateTotalCost(list)
         }
     }
 
@@ -58,6 +65,11 @@ class CartFragment : BaseFragment() {
         var total = 0.0
         plants.forEach { total += it.price * it.count }
         label_total_cost.text = currencyFormat(total)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        recycler_plants.adapter?.notifyDataSetChanged()
     }
 
     override fun onStart() {
