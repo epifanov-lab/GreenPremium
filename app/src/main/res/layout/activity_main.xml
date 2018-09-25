@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            app:realtimeBlurRadius="1dp" />
+            app:realtimeBlurRadius="2dp" />
     </RelativeLayout>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
