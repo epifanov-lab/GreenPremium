@@ -5,8 +5,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
 import com.lab.greenpremium.R
 import com.lab.greenpremium.KEY_OBJECT
-import com.lab.greenpremium.data.entity.Plant
-import com.lab.greenpremium.data.repository.user.UserRepository
+import com.lab.greenpremium.data.entity.raw.Plant
+import com.lab.greenpremium.data.repository.UserRepository
 import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.sub_fragment_plants.*

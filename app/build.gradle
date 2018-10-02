@@ -43,16 +43,16 @@ dependencies {
     implementation "com.google.dagger:dagger:$rootProject.dagger_version"
     kapt "com.google.dagger:dagger-compiler:$rootProject.dagger_version"
 
-    //RX
-    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rx_android_version"
-    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rx_java_version"
-
     //Network
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofit_version"
     implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofit_version"
     implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttp_version"
     implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttp_version"
+
+    //RX
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rx_android_version"
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rx_java_version"
 
     //Tools
     implementation 'com.github.mmin18:realtimeblurview:1.1.2' // blur effect

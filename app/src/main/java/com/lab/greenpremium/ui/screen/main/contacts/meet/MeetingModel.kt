@@ -1,7 +1,7 @@
 package com.lab.greenpremium.ui.screen.main.contacts.meet
 
 import com.lab.greenpremium.MEETING_MINUTE_STEP
-import com.lab.greenpremium.data.entity.Contact
+import com.lab.greenpremium.data.entity.raw.Contact
 import java.util.*
 
 

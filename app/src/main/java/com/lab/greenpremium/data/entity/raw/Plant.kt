@@ -1,4 +1,4 @@
-package com.lab.greenpremium.data.entity
+package com.lab.greenpremium.data.entity.raw
 
 import android.content.Context
 import com.lab.greenpremium.R

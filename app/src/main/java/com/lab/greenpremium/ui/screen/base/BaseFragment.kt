@@ -5,8 +5,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.lab.greenpremium.data.entity.Plant
-import com.lab.greenpremium.data.repository.user.UserRepository
+import com.lab.greenpremium.data.entity.raw.Plant
+import com.lab.greenpremium.data.repository.UserRepository
 import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
 
 

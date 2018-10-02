@@ -1,7 +1,8 @@
 package com.lab.greenpremium.di.module
 
 
-import com.lab.greenpremium.BASE_URL
+import com.lab.greenpremium.TEST_URL
+import com.lab.greenpremium.data.network.GPInterceptor
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -16,6 +17,7 @@ class NetworkModule {
 
     private fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
+                .addInterceptor(GPInterceptor())
                 .addInterceptor(HttpLoggingInterceptor())
                 .build()
     }
@@ -24,7 +26,7 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(BASE_URL)
+                .baseUrl(TEST_URL)
                 .client(provideOkHttpClient())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())

@@ -2,7 +2,7 @@ package com.lab.greenpremium.ui.components.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.lab.greenpremium.data.entity.Event
+import com.lab.greenpremium.data.entity.raw.Event
 import com.lab.greenpremium.ui.components.item.EventItemView
 
 

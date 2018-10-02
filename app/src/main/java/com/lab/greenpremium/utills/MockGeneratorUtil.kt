@@ -1,10 +1,10 @@
 package com.lab.greenpremium.utills
 
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.entity.Contact
-import com.lab.greenpremium.data.entity.Event
-import com.lab.greenpremium.data.entity.Image
-import com.lab.greenpremium.data.entity.Plant
+import com.lab.greenpremium.data.entity.raw.Contact
+import com.lab.greenpremium.data.entity.raw.Event
+import com.lab.greenpremium.data.entity.raw.Image
+import com.lab.greenpremium.data.entity.raw.Plant
 
 
 fun getMockPlantList(): List<Plant> {

@@ -5,9 +5,8 @@ import android.support.v7.widget.LinearLayoutManager.HORIZONTAL
 import android.support.v7.widget.LinearLayoutManager.VERTICAL
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.lab.greenpremium.data.entity.Contact
+import com.lab.greenpremium.data.entity.raw.Contact
 import com.lab.greenpremium.ui.components.item.ContactItemView
-import com.lab.greenpremium.utills.setTouchAnimationAlphaChange
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 
 

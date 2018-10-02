@@ -1,4 +1,4 @@
-package com.lab.greenpremium.data.entity
+package com.lab.greenpremium.data.entity.raw
 
 
 data class Event(val info: String,

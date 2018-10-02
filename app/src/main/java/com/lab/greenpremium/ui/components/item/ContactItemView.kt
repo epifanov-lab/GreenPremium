@@ -1,7 +1,5 @@
 package com.lab.greenpremium.ui.components.item
 
-import android.content.ClipData
-import android.content.ClipboardManager
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -10,8 +8,7 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.entity.Contact
-import com.lab.greenpremium.ui.screen.base.BaseActivity
+import com.lab.greenpremium.data.entity.raw.Contact
 import kotlinx.android.synthetic.main.view_item_contact.view.*
 
 

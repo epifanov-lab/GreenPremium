@@ -5,8 +5,8 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.lab.greenpremium.data.entity.Plant
-import com.lab.greenpremium.data.entity.Plant.Type.Companion.getTitles
+import com.lab.greenpremium.data.entity.raw.Plant
+import com.lab.greenpremium.data.entity.raw.Plant.Type.Companion.getTitles
 import com.lab.greenpremium.ui.screen.main.plants.PlantSubFragment
 
 class PlantsPagerAdapter(fm: FragmentManager?, private val context: Context?) : FragmentStatePagerAdapter(fm) {

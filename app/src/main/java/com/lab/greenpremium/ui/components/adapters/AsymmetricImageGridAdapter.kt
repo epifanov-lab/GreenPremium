@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout.LayoutParams
 import com.bumptech.glide.Glide
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.entity.Image
+import com.lab.greenpremium.data.entity.raw.Image
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 
 

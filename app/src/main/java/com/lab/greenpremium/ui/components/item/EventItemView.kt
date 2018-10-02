@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.entity.Event
+import com.lab.greenpremium.data.entity.raw.Event
 import kotlinx.android.synthetic.main.view_item_event.view.*
 import java.text.SimpleDateFormat
 import java.util.*

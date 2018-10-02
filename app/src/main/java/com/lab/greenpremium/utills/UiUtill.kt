@@ -12,7 +12,7 @@ import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
 import android.widget.TextView
 import com.lab.greenpremium.*
-import com.lab.greenpremium.data.entity.Plant
+import com.lab.greenpremium.data.entity.raw.Plant
 import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
 import org.greenrobot.eventbus.EventBus
 

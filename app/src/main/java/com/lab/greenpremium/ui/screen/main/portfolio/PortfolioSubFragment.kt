@@ -2,7 +2,6 @@ package com.lab.greenpremium.ui.screen.main.portfolio
 
 import android.content.Context
 import android.os.Bundle
-import android.support.v4.content.ContextCompat
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -10,9 +9,8 @@ import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.entity.Image
+import com.lab.greenpremium.data.entity.raw.Image
 import com.lab.greenpremium.ui.screen.base.BaseFragment
-import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.getMockImageList
 import com.lab.greenpremium.utills.getScreenWidth
 import com.lab.greenpremium.utills.setTouchAnimationShrink

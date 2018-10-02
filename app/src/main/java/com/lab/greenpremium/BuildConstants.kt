@@ -1,3 +1,4 @@
 package com.lab.greenpremium
 
-const val BASE_URL = "https://greenpremium/" //todo dummy
+const val PROD_URL = "https://greenpremium.ru/api/v1/"
+const val TEST_URL = "http://test.greenpremium.ru/api/v1/"

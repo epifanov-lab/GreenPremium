@@ -28,7 +28,7 @@
             android:label="@string/app_name" />
         <activity android:name=".ui.screen.message.MessageActivity" />
         <activity android:name=".ui.screen.main.contacts.meet.MeetingActivity" />
-        <activity android:name=".ui.screen.plant_detail.PlantDetailActivity"></activity>
+        <activity android:name=".ui.screen.plant_detail.PlantDetailActivity" />
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

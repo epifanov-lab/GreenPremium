@@ -2,7 +2,7 @@ package com.lab.greenpremium.ui.components.adapters
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.lab.greenpremium.data.entity.Plant
+import com.lab.greenpremium.data.entity.raw.Plant
 import com.lab.greenpremium.ui.components.item.PlantItemView
 import com.lab.greenpremium.utills.OnAnimationEndListener
 import com.lab.greenpremium.utills.setTouchAnimationShrink
