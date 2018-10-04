@@ -19,7 +19,7 @@ import com.lab.greenpremium.ui.screen.start.StartActivity
 import java.io.Serializable
 
 
-abstract class BaseActivity : AppCompatActivity() {
+abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
 
     protected abstract fun layoutResId(): Int
 
@@ -29,8 +29,8 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        initializeDaggerComponent()
         setContentView(layoutResId())
+        initializeDaggerComponent()
         initViews()
     }
 
@@ -68,10 +68,22 @@ abstract class BaseActivity : AppCompatActivity() {
         transaction.commit()
     }
 
-    fun showSnackbar(text: String? = null, textResId: Int? = null) {
+    override fun showError(text: String?, textResId: Int?) {
+        //todo implement
+    }
+
+    override fun showSnackbar(text: String?, textResId: Int?) {
         val root = (this.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
         text?.let { Snackbar.make(root, text, LENGTH_LONG).show() }
         textResId?.let { Snackbar.make(root, textResId, LENGTH_LONG).show() }
+    }
+
+    override fun showDialogMessage(text: String?, textResId: Int?) {
+        //todo implement
+    }
+
+    override fun showLoadingDialog(show: Boolean) {
+        //todo implement
     }
 
     fun showToast(text: String? = null, textResId: Int? = null) {

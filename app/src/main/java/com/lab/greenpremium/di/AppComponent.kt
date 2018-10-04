@@ -10,7 +10,10 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [AppModule::class, NetworkModule::class])
+
 interface AppComponent {
-    fun context() : Context
-    fun retrofit() : Retrofit
+
+    fun context(): Context
+    fun retrofit(): Retrofit
+
 }

@@ -2,7 +2,8 @@ package com.lab.greenpremium.di.module
 
 
 import com.lab.greenpremium.TEST_URL
-import com.lab.greenpremium.data.network.GPInterceptor
+import com.lab.greenpremium.data.network.GpInterceptor
+import com.lab.greenpremium.utills.LogUtil
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -17,8 +18,8 @@ class NetworkModule {
 
     private fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
-                .addInterceptor(GPInterceptor())
-                .addInterceptor(HttpLoggingInterceptor())
+                .addInterceptor(GpInterceptor())
+                .addInterceptor(HttpLoggingInterceptor(LogUtil::d).setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build()
     }
 
