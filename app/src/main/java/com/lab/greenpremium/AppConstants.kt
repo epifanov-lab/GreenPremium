@@ -14,3 +14,5 @@ const val ALPHA_VISIBLE = 1f
 
 const val SCALE_PRESSED = 0.975f
 const val SCALE_FULL = 1f
+
+const val CLICK_ACTION_THRESHOLD = 200

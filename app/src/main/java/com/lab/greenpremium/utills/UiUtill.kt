@@ -1,23 +1,113 @@
 package com.lab.greenpremium.utills
 
 import android.app.Activity
+import android.app.Service
 import android.content.Context
 import android.graphics.*
 import android.os.Handler
 import android.util.DisplayMetrics
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewGroup
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import android.view.animation.ScaleAnimation
-import android.widget.TextView
+import android.view.animation.Transformation
+import android.view.inputmethod.InputMethodManager
+import android.widget.ScrollView
 import com.lab.greenpremium.*
-import com.lab.greenpremium.data.entity.raw.Plant
-import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
-import org.greenrobot.eventbus.EventBus
 
-const val CLICK_ACTION_THRESHOLD = 200
+fun requestFocusAndShowKeyboard(context: Context, view: View?) {
+    if (view != null) {
+        view.requestFocus()
+        val imm = context.getSystemService(Service.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+    }
+}
 
+fun hideKeyboard(context: Context) {
+    if (context is Activity) {
+        val view = context.currentFocus
+        if (view != null) {
+            val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm?.hideSoftInputFromWindow(view.windowToken, 0)
+        }
+    }
+}
+
+interface KeyboardListener {
+    fun onKeyboardOpened()
+    fun onKeyboardClosed()
+}
+
+fun setKeyboardListener(container: ViewGroup, listener: KeyboardListener) {
+    container.viewTreeObserver.addOnGlobalLayoutListener {
+        val r = Rect()
+        container.getWindowVisibleDisplayFrame(r)
+        val screenHeight = container.rootView.height
+
+        // r.bottom is the position above soft keypad or device button.
+        // if keypad is shown, the r.bottom is smaller than that before.
+        val keypadHeight = screenHeight - r.bottom
+
+        if (keypadHeight > screenHeight * 0.15) { // 0.15 ratio is perhaps enough to determine keypad height.
+            listener.onKeyboardOpened()
+
+            if (container is ScrollView) {
+                Handler().post { container.smoothScrollTo(0, keypadHeight) }
+            }
+
+        } else {
+            Handler().post { listener.onKeyboardClosed() }
+        }
+    }
+}
+
+fun expand(v: ViewGroup) {
+    v.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+    val targetHeight = v.measuredHeight
+
+    v.layoutParams.height = 0
+    v.visibility = View.VISIBLE
+    val a = object : Animation() {
+        override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
+            v.layoutParams.height = if (interpolatedTime == 1f)
+                ViewGroup.LayoutParams.WRAP_CONTENT
+            else
+                (targetHeight * interpolatedTime).toInt()
+            v.requestLayout()
+        }
+
+        override fun willChangeBounds(): Boolean {
+            return true
+        }
+    }
+
+    a.duration = (targetHeight / v.context.resources.displayMetrics.density).toInt().toLong() // 1 dp/ms
+    v.startAnimation(a)
+}
+
+fun collapse(v: ViewGroup) {
+    val initialHeight = v.measuredHeight
+
+    val a = object : Animation() {
+        override fun applyTransformation(interpolatedTime: Float, t: Transformation) {
+            if (interpolatedTime == 1f) {
+                v.visibility = View.GONE
+            } else {
+                v.layoutParams.height = initialHeight - (initialHeight * interpolatedTime).toInt()
+                v.requestLayout()
+            }
+        }
+
+        override fun willChangeBounds(): Boolean {
+            return true
+        }
+    }
+
+    a.duration = (initialHeight / v.context.resources.displayMetrics.density).toInt().toLong() // 1 dp/ms
+    v.startAnimation(a)
+}
 
 fun getRoundedCornerBitmap(bitmap: Bitmap, pixels: Int): Bitmap {
     val output = Bitmap.createBitmap(bitmap.width, bitmap
@@ -150,75 +240,16 @@ interface OnAnimationEndListener {
     fun onAnimationEndEvent()
 }
 
-class PlantItemCountControlsHelper(val plant: Plant,
-                                   val counter: TextView,
-                                   val add: View,
-                                   val remove: View) {
-
-
-    val repeatUpdateHandler = Handler()
-    var isIncrementing = false
-    var isDecrementing = false
-
-    init {
-
-        add.run {
-            setOnClickListener { setCounter(++plant.count) }
-            setOnLongClickListener {
-                isIncrementing = true
-                repeatUpdateHandler.post(RptUpdater())
-                false
-            }
-
-            setOnTouchListener { v, event ->
-                if ((event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) && isIncrementing) {
-                    isIncrementing = false
-                }
-                false
-            }
-        }
-
-        remove.run {
-            setOnClickListener { setCounter(--plant.count) }
-            setOnLongClickListener {
-                isDecrementing = true
-                repeatUpdateHandler.post(RptUpdater())
-                false
-            }
-
-            setOnTouchListener { v, event ->
-                if ((event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) && isDecrementing) {
-                    isDecrementing = false
-                }
-                false
-            }
-        }
-
-        setCounter(plant.count)
-    }
-
-    private fun setCounter(n: Int) {
-        plant.count = if (n < 0) 0 else n
-        counter.text = plant.count.toString()
-        EventBus.getDefault().post(PlantCountChangedEvent())
-    }
-
-    inner class RptUpdater : Runnable {
-        override fun run() {
-            if (isIncrementing) {
-                setCounter(++plant.count)
-                repeatUpdateHandler.postDelayed(RptUpdater(), 100)
-
-            } else if (isDecrementing) {
-                setCounter(--plant.count)
-                repeatUpdateHandler.postDelayed(RptUpdater(), 100)
-            }
-        }
-    }
-}
-
 fun getScreenWidth(context: Context): Int {
     val displayMetrics = DisplayMetrics()
     (context as Activity).windowManager.defaultDisplay.getMetrics(displayMetrics)
     return displayMetrics.widthPixels
+}
+
+fun getScreenWidthPx(context: Context): Int {
+    return context.resources.displayMetrics.widthPixels
+}
+
+fun getScreenHeightPx(context: Context): Int {
+    return context.resources.displayMetrics.heightPixels
 }

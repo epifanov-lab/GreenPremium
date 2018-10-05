@@ -69,6 +69,7 @@
         android:text="@string/title_login_2" />
 
     <TextView
+        android:id="@+id/button_forgot_pass"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"

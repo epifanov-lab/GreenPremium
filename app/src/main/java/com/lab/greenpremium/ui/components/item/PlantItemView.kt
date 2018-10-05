@@ -1,16 +1,20 @@
 package com.lab.greenpremium.ui.components.item
 
 import android.content.Context
+import android.os.Handler
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
+import android.widget.TextView
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.raw.Plant
-import com.lab.greenpremium.utills.PlantItemCountControlsHelper
 import com.lab.greenpremium.utills.currencyFormat
+import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
 import kotlinx.android.synthetic.main.view_item_plant.view.*
+import org.greenrobot.eventbus.EventBus
 
 
 class PlantItemView : RelativeLayout {
@@ -76,5 +80,72 @@ class PlantItemView : RelativeLayout {
     override fun setOnTouchListener(touchListener: OnTouchListener?) {
         container_image.setOnTouchListener(touchListener)
         container_info.setOnTouchListener(touchListener)
+    }
+}
+
+class PlantItemCountControlsHelper(val plant: Plant,
+                                   val counter: TextView,
+                                   val add: View,
+                                   val remove: View) {
+
+
+    val repeatUpdateHandler = Handler()
+    var isIncrementing = false
+    var isDecrementing = false
+
+    init {
+
+        add.run {
+            setOnClickListener { setCounter(++plant.count) }
+            setOnLongClickListener {
+                isIncrementing = true
+                repeatUpdateHandler.post(RptUpdater())
+                false
+            }
+
+            setOnTouchListener { v, event ->
+                if ((event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) && isIncrementing) {
+                    isIncrementing = false
+                }
+                false
+            }
+        }
+
+        remove.run {
+            setOnClickListener { setCounter(--plant.count) }
+            setOnLongClickListener {
+                isDecrementing = true
+                repeatUpdateHandler.post(RptUpdater())
+                false
+            }
+
+            setOnTouchListener { v, event ->
+                if ((event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) && isDecrementing) {
+                    isDecrementing = false
+                }
+                false
+            }
+        }
+
+        setCounter(plant.count)
+    }
+
+    private fun setCounter(n: Int) {
+        plant.count = if (n < 0) 0 else n
+        counter.text = plant.count.toString()
+        EventBus.getDefault().post(PlantCountChangedEvent())
+    }
+
+    inner class RptUpdater : Runnable {
+        override fun run() {
+            if (isIncrementing) {
+                setCounter(++plant.count)
+                repeatUpdateHandler.postDelayed(RptUpdater(), 100)
+
+            } else if (isDecrementing) {
+                setCounter(--plant.count)
+                repeatUpdateHandler.postDelayed(RptUpdater(), 100)
+            }
+        }
     }
 }

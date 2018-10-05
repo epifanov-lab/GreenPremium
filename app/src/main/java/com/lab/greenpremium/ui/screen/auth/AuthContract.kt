@@ -8,7 +8,7 @@ import com.lab.greenpremium.ui.screen.base.BaseContract
  */
 interface AuthContract {
     interface View : BaseContract.BaseView{
-
+        fun goToMain()
     }
 
     interface Presenter {

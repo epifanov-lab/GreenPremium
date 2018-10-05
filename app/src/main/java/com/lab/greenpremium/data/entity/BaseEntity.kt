@@ -1,8 +1,8 @@
 package com.lab.greenpremium.data.entity
 
 
-open class BaseResponse<T>(val status: String,
+open class BodyRequest
+
+open class BaseResponse<T>(val status: Int,
                            val title: String,
                            val data: T)
-
-open class BodyRequest

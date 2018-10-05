@@ -5,7 +5,7 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.raw.Plant
 import com.lab.greenpremium.data.repository.UserRepository
 import com.lab.greenpremium.ui.screen.base.BaseActivity
-import com.lab.greenpremium.utills.PlantItemCountControlsHelper
+import com.lab.greenpremium.ui.components.item.PlantItemCountControlsHelper
 import com.lab.greenpremium.utills.currencyFormat
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_plant_detail.*

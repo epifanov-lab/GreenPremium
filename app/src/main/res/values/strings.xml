@@ -65,6 +65,8 @@
     <string name="favorites_empty">Список избранных растений пуст</string>
     <string name="cart_empty">Список покупок пуст</string>
 
+    <string name="dialog_please_wait">Пожалуйста, подождите…</string>
+
     <!-- DUMMY AREA-->
     <string name="event_dummy_1">Ваш заказ № 23456 сформирован и отправлен</string>
 

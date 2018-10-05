@@ -1,10 +1,14 @@
 package com.lab.greenpremium.ui.screen.base
 
+import android.app.Dialog
+
+
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.Snackbar.LENGTH_LONG
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
@@ -16,9 +20,8 @@ import com.lab.greenpremium.ui.screen.main.MainActivity
 import com.lab.greenpremium.ui.screen.message.MessageActivity
 import com.lab.greenpremium.ui.screen.plant_detail.PlantDetailActivity
 import com.lab.greenpremium.ui.screen.start.StartActivity
+import com.lab.greenpremium.utills.hideKeyboard
 import java.io.Serializable
-
-
 abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
 
     protected abstract fun layoutResId(): Int
@@ -26,6 +29,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
     protected abstract fun initializeDaggerComponent()
 
     protected abstract fun initViews()
+
+    private val progressDialog: Dialog by lazy {
+        AlertDialog.Builder(this).let {
+            it.setView(R.layout.dialog_progress)
+            it.setCancelable(false)
+        }.create()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -69,10 +79,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
     }
 
     override fun showError(text: String?, textResId: Int?) {
-        //todo implement
+        showSnackbar(text, textResId)
     }
 
     override fun showSnackbar(text: String?, textResId: Int?) {
+        hideKeyboard(this)
         val root = (this.findViewById<View>(android.R.id.content) as ViewGroup).getChildAt(0) as ViewGroup
         text?.let { Snackbar.make(root, text, LENGTH_LONG).show() }
         textResId?.let { Snackbar.make(root, textResId, LENGTH_LONG).show() }
@@ -83,7 +94,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
     }
 
     override fun showLoadingDialog(show: Boolean) {
-        //todo implement
+        if (show) progressDialog.show()
+        else progressDialog.dismiss()
     }
 
     fun showToast(text: String? = null, textResId: Int? = null) {
