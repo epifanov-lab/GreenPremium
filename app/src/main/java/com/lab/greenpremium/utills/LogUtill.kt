@@ -267,14 +267,14 @@ object LogUtil {
     }
 
     private fun splitLongLogMessages(logMessage: String): List<String> {
-        var logMessage = logMessage
+        var message = logMessage
         val splittedMessages = ArrayList<String>()
         while (true) {
-            if (logMessage.length > MAX_LOG_ENTRY_SIZE) {
-                splittedMessages.add(logMessage.substring(0, MAX_LOG_ENTRY_SIZE))
-                logMessage = CONTINUE_TAG + logMessage.substring(MAX_LOG_ENTRY_SIZE, logMessage.length)
+            if (message.length > MAX_LOG_ENTRY_SIZE) {
+                splittedMessages.add(message.substring(0, MAX_LOG_ENTRY_SIZE))
+                message = CONTINUE_TAG + message.substring(MAX_LOG_ENTRY_SIZE, message.length)
             } else {
-                splittedMessages.add(logMessage)
+                splittedMessages.add(message)
                 return splittedMessages
             }
         }

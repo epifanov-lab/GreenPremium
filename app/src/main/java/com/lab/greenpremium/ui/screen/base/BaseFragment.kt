@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lab.greenpremium.data.entity.raw.Plant
-import com.lab.greenpremium.data.repository.UserRepository
+import com.lab.greenpremium.data.repository.UserModel
 import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
 
 
@@ -32,6 +32,6 @@ abstract class BaseFragment : Fragment(), PlantRecyclerAdapter.OnPlantSelectedLi
     protected abstract fun initViews()
 
     override fun onPlantSelected(plant: Plant) {
-        (activity as BaseActivity).goToPlantDetailActivity(UserRepository.plants.indexOf(plant))
+        (activity as BaseActivity).goToPlantDetailActivity(UserModel.plants.indexOf(plant))
     }
 }

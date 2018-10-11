@@ -132,7 +132,7 @@ fun getRoundedCornerBitmap(bitmap: Bitmap, pixels: Int): Bitmap {
 }
 
 fun setTouchAnimationAlphaChange(view: View) {
-    view.setOnTouchListener(View.OnTouchListener { v, event ->
+    view.setOnTouchListener(View.OnTouchListener { _, event ->
         val action = event?.action
         when (action) {
             MotionEvent.ACTION_DOWN -> {
@@ -166,7 +166,7 @@ fun setTouchAnimationShrink(view: View, onAnimationEndListener: OnAnimationEndLi
     var startX = 0f
     var startY = 0f
 
-    val onTouchListener = View.OnTouchListener { v, event ->
+    val onTouchListener = View.OnTouchListener { _, event ->
         val action = event?.action
         when (action) {
             MotionEvent.ACTION_DOWN -> {

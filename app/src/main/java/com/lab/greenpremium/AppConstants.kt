@@ -4,6 +4,9 @@ package com.lab.greenpremium
 /*Keys*/
 const val KEY_OBJECT = "key_object"
 
+/*Data*/
+const val NO_DATA = -1
+
 /*UI*/
 const val DURATION_FAST = 100.toLong()
 const val DURATION_VERY_FAST = 50.toLong()

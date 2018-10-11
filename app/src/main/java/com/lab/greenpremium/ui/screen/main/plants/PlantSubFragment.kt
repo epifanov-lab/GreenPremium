@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import com.lab.greenpremium.R
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.data.entity.raw.Plant
-import com.lab.greenpremium.data.repository.UserRepository
+import com.lab.greenpremium.data.repository.UserModel
 import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.sub_fragment_plants.*
@@ -38,7 +38,7 @@ class PlantSubFragment : BaseFragment() {
         type = Plant.Type.values()[arguments!!.getInt(KEY_OBJECT)]
 
         recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recycler_plants.adapter = PlantRecyclerAdapter(UserRepository.plants.filter { it.type == type },
+        recycler_plants.adapter = PlantRecyclerAdapter(UserModel.plants.filter { it.type == type },
                 context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt(), this)
     }
 

@@ -4,6 +4,7 @@ package com.lab.greenpremium.ui.components
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
+import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.widget.TextView
 import com.lab.greenpremium.R
@@ -27,7 +28,7 @@ class DiscountTextView : TextView {
 
     private fun init(context: Context) {
         val resources = context.resources
-        dividerColor = resources.getColor(R.color.green_3)
+        dividerColor = ContextCompat.getColor(context, R.color.green_3)
 
         paint = Paint()
         paint!!.isAntiAlias = true

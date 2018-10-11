@@ -9,7 +9,7 @@ import android.view.ViewAnimationUtils
 import com.getbase.floatingactionbutton.FloatingActionsMenu
 import com.lab.greenpremium.DURATION_FAST
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.repository.UserRepository
+import com.lab.greenpremium.data.repository.UserModel
 import com.lab.greenpremium.ui.components.BottomNavigationViewHelper
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.ui.screen.main.cart.CartFragment
@@ -167,7 +167,7 @@ class MainActivity : BaseActivity() {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: BaseEvent) {
         when (event) {
-            is PlantCountChangedEvent -> button_cart.updateIndicator(UserRepository.getCountOfItemsInCart())
+            is PlantCountChangedEvent -> button_cart.updateIndicator(UserModel.getCountOfItemsInCart())
         }
     }
 

@@ -103,7 +103,7 @@ class PlantItemCountControlsHelper(val plant: Plant,
                 false
             }
 
-            setOnTouchListener { v, event ->
+            setOnTouchListener { _, event ->
                 if ((event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) && isIncrementing) {
                     isIncrementing = false
                 }
@@ -119,7 +119,7 @@ class PlantItemCountControlsHelper(val plant: Plant,
                 false
             }
 
-            setOnTouchListener { v, event ->
+            setOnTouchListener { _, event ->
                 if ((event.action == MotionEvent.ACTION_UP || event.action == MotionEvent.ACTION_CANCEL) && isDecrementing) {
                     isDecrementing = false
                 }

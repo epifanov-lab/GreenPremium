@@ -5,6 +5,7 @@ import com.lab.greenpremium.di.AppComponent
 import com.lab.greenpremium.di.DaggerAppComponent
 import com.lab.greenpremium.di.module.AppModule
 import com.lab.greenpremium.di.module.NetworkModule
+import com.lab.greenpremium.di.module.PreferencesModule
 
 lateinit var APP: App
 
@@ -19,6 +20,7 @@ class App : Application() {
         component = DaggerAppComponent.builder()
                 .appModule(AppModule(this))
                 .networkModule(NetworkModule())
+                .preferencesModule(PreferencesModule(this))
                 .build()
     }
 }
