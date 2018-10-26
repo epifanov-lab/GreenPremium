@@ -6,10 +6,9 @@ import devliving.online.securedpreferencestore.DefaultRecoveryHandler
 import devliving.online.securedpreferencestore.SecuredPreferenceStore
 import javax.inject.Inject
 
+const val KEY_AUTH_TOKEN = "key_auth_token"
 
 class PreferencesManager @Inject constructor(val context: Context) {
-
-    val KEY_AUTH_TOKEN = "key_auth_token"
 
     private val preferences: SecuredPreferenceStore by lazy {
         SecuredPreferenceStore.init(context, DefaultRecoveryHandler())
