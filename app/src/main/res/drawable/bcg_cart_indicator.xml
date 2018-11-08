@@ -3,9 +3,9 @@
 
     <item android:state_enabled="true">
         <shape xmlns:android="http://schemas.android.com/apk/res/android"
-            android:shape="oval">
-            <solid android:color="@color/green_2" />
-            <corners android:radius="@dimen/radius_6" />
+               android:shape="oval">
+            <solid android:color="@color/green_2"/>
+            <corners android:radius="@dimen/radius_6"/>
         </shape>
     </item>
 

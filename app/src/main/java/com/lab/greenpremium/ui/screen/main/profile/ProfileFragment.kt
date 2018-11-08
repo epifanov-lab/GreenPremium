@@ -4,6 +4,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.components.ScrollLayoutManager
 import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
@@ -14,16 +15,24 @@ import com.lab.greenpremium.utills.getMockContactList
 import com.lab.greenpremium.utills.getMockEventsList
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_profile.*
+import javax.inject.Inject
 
 
-class ProfileFragment : BaseFragment() {
+class ProfileFragment : BaseFragment(), ProfileContract.View {
+
+    @Inject
+    internal lateinit var presenter: ProfilePresenter
 
     companion object {
         fun newInstance() = ProfileFragment()
     }
 
     override fun initializeDaggerComponent() {
-        //TODO impl
+        DaggerProfileComponent.builder()
+                .appComponent((activity?.application as App).component)
+                .profileModule(ProfileModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun layoutResId(): Int {
@@ -39,7 +48,7 @@ class ProfileFragment : BaseFragment() {
             container_events.visibility = VISIBLE
         }
 
-        setTouchAnimationShrink(button_calc_service, object: OnAnimationEndListener{
+        setTouchAnimationShrink(button_calc_service, object : OnAnimationEndListener {
             override fun onAnimationEndEvent() {
                 button_calc_service.visibility = GONE
                 container_cost.visibility = VISIBLE

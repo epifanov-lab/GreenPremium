@@ -2,7 +2,7 @@
 <resources>
 
     <declare-styleable name="PlantItemView">
-        <attr name="type" format="enum" >
+        <attr name="type" format="enum">
             <enum name="type_living" value="0"/>
             <enum name="type_artificial" value="1"/>
             <enum name="type_big" value="2"/>

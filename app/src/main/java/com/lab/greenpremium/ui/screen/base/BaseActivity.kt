@@ -22,6 +22,7 @@ import com.lab.greenpremium.ui.screen.plant_detail.PlantDetailActivity
 import com.lab.greenpremium.ui.screen.start.StartActivity
 import com.lab.greenpremium.utills.hideKeyboard
 import java.io.Serializable
+
 abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
 
     protected abstract fun layoutResId(): Int

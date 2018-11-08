@@ -1,19 +1,27 @@
 package com.lab.greenpremium.ui.screen.main.portfolio
 
+import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.components.adapters.PortfolioPagerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_portfolio.*
+import javax.inject.Inject
 
+class PortfolioFragment : BaseFragment(), PortfolioContract.View {
 
-class PortfolioFragment : BaseFragment() {
+    @Inject
+    internal lateinit var presenter: PortfolioPresenter
 
     companion object {
         fun newInstance() = PortfolioFragment()
     }
 
     override fun initializeDaggerComponent() {
-        //TODO impl
+        DaggerPortfolioComponent.builder()
+                .appComponent((activity?.application as App).component)
+                .portfolioModule(PortfolioModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun layoutResId(): Int {

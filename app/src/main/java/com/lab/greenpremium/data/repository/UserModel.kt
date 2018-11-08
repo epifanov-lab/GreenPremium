@@ -11,7 +11,8 @@ object UserModel {
 
     //TODO move to another repo
     val plants: List<Plant> = getMockPlantList()
-    fun getCountOfItemsInCart() : Int {
+
+    fun getCountOfItemsInCart(): Int {
         return plants.filter { it.count > 0 }.size
     }
 

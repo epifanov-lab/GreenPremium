@@ -35,7 +35,7 @@ ext {
     testRunner_version = "1.0.2"
     esspresso_version = "3.0.2"
 
-    dagger_version = "2.13"
+    dagger_version = "2.15"
 
     rx_android_version = "2.0.1"
     rx_java_version = "2.1.8"

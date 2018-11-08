@@ -7,20 +7,29 @@ import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
 import com.google.android.gms.maps.model.MarkerOptions
+import com.lab.greenpremium.App
 import com.lab.greenpremium.GP_OFFICE_LOCATION
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_map.*
+import javax.inject.Inject
 
 
-class MapFragment : BaseFragment() {
+class MapFragment : BaseFragment(), MapContract.View {
+
+    @Inject
+    internal lateinit var presenter: MapPresenter
 
     companion object {
         fun newInstance() = MapFragment()
     }
 
     override fun initializeDaggerComponent() {
-        //TODO impl
+        DaggerMapComponent.builder()
+                .appComponent((activity?.application as App).component)
+                .mapModule(MapModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun layoutResId(): Int {

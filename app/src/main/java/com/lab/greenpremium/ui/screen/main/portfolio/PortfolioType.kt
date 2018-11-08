@@ -11,8 +11,8 @@ enum class PortfolioType(var titleResId: Int) : Serializable {
     SERVICE(R.string.title_service);
 
     companion object {
-        fun getTitles(context : Context?) : Array<String> {
-            val titles : Array<String> = Array(PortfolioType.values().size) { "" }
+        fun getTitles(context: Context?): Array<String> {
+            val titles: Array<String> = Array(PortfolioType.values().size) { "" }
             enumValues<PortfolioType>().forEach { titles[it.ordinal] = context!!.getString(it.titleResId) }
             return titles
         }

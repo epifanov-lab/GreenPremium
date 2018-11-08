@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:paddingTop="@dimen/space_medium_2">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:paddingTop="@dimen/space_medium_2">
 
     <ImageView
         android:id="@+id/button_back"
@@ -14,7 +14,7 @@
         android:background="?attr/selectableItemBackgroundBorderless"
         android:paddingLeft="@dimen/back_button_image_minus_padding_left"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_back" />
+        android:src="@drawable/ic_back"/>
 
     <TextView
         android:id="@+id/title"
@@ -26,13 +26,13 @@
         android:fontFamily="@font/sfuitext_bold"
         android:text="@string/contacts_schedule_meet"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_size_20" />
+        android:textSize="@dimen/font_size_20"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_contacts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipToPadding="false" />
+        android:clipToPadding="false"/>
 
 
     <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
@@ -42,7 +42,7 @@
         android:layout_gravity="center"
         android:layout_marginBottom="@dimen/space_medium_2"
         app:spi_dotColor="@color/green_1_50"
-        app:spi_dotSelectedColor="@color/green_1" />
+        app:spi_dotSelectedColor="@color/green_1"/>
 
     <LinearLayout
         android:id="@+id/container_date_time"
@@ -61,7 +61,7 @@
             android:gravity="left"
             android:text="@string/contacts_meet_date_and_time"
             android:textColor="@color/gray_light_1"
-            android:textSize="@dimen/font_size_12" />
+            android:textSize="@dimen/font_size_12"/>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
                 app:np_dividerThickness="@dimen/line_thickness_2"
                 app:np_selectedTextSize="@dimen/font_size_18"
                 app:np_textColor="@color/black"
-                app:np_textSize="@dimen/font_size_18" />
+                app:np_textSize="@dimen/font_size_18"/>
 
             <com.shawnlin.numberpicker.NumberPicker
                 android:id="@+id/picker_hour"
@@ -93,7 +93,7 @@
                 app:np_dividerThickness="@dimen/line_thickness_2"
                 app:np_selectedTextSize="@dimen/font_size_18"
                 app:np_textColor="@color/black"
-                app:np_textSize="@dimen/font_size_18" />
+                app:np_textSize="@dimen/font_size_18"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                 android:gravity="center"
                 android:text=":"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_18" />
+                android:textSize="@dimen/font_size_18"/>
 
             <com.shawnlin.numberpicker.NumberPicker
                 android:id="@+id/picker_minute"
@@ -113,7 +113,7 @@
                 app:np_dividerThickness="@dimen/line_thickness_2"
                 app:np_selectedTextSize="@dimen/font_size_18"
                 app:np_textColor="@color/black"
-                app:np_textSize="@dimen/font_size_18" />
+                app:np_textSize="@dimen/font_size_18"/>
 
         </LinearLayout>
 
@@ -124,7 +124,7 @@
             android:layout_marginBottom="@dimen/space_small_2"
             android:layout_marginLeft="@dimen/space_medium_2"
             android:layout_marginRight="@dimen/space_medium_2"
-            android:text="@string/title_sent" />
+            android:text="@string/title_sent"/>
 
     </LinearLayout>
 </LinearLayout>

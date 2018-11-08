@@ -10,7 +10,7 @@ import com.lab.greenpremium.data.repository.UserModel
 import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
 
 
-abstract class BaseFragment : Fragment(), PlantRecyclerAdapter.OnPlantSelectedListener {
+abstract class BaseFragment : Fragment(), PlantRecyclerAdapter.OnPlantSelectedListener, BaseContract.BaseView {
 
     lateinit var TAG: String
 
@@ -33,5 +33,21 @@ abstract class BaseFragment : Fragment(), PlantRecyclerAdapter.OnPlantSelectedLi
 
     override fun onPlantSelected(plant: Plant) {
         (activity as BaseActivity).goToPlantDetailActivity(UserModel.plants.indexOf(plant))
+    }
+
+    override fun showError(text: String?, textResId: Int?) {
+        //todo implement
+    }
+
+    override fun showSnackbar(text: String?, textResId: Int?) {
+        //todo implement
+    }
+
+    override fun showDialogMessage(text: String?, textResId: Int?) {
+        //todo implement
+    }
+
+    override fun showLoadingDialog(show: Boolean) {
+        //todo implement
     }
 }

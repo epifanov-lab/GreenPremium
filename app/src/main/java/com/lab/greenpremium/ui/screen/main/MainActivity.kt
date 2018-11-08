@@ -7,6 +7,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewAnimationUtils
 import com.getbase.floatingactionbutton.FloatingActionsMenu
+import com.lab.greenpremium.App
 import com.lab.greenpremium.DURATION_FAST
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.repository.UserModel
@@ -16,7 +17,7 @@ import com.lab.greenpremium.ui.screen.main.cart.CartFragment
 import com.lab.greenpremium.ui.screen.main.contacts.ContactsFragment
 import com.lab.greenpremium.ui.screen.main.favorites.FavoritesFragment
 import com.lab.greenpremium.ui.screen.main.map.MapFragment
-import com.lab.greenpremium.ui.screen.main.plants.PlantFragment
+import com.lab.greenpremium.ui.screen.main.plants.PlantsFragment
 import com.lab.greenpremium.ui.screen.main.portfolio.PortfolioFragment
 import com.lab.greenpremium.ui.screen.main.profile.ProfileFragment
 import com.lab.greenpremium.ui.screen.message.MessageScreenType
@@ -26,16 +27,24 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import javax.inject.Inject
 
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity(), MainContract.View {
+
+    @Inject
+    internal lateinit var presenter: MainPresenter
 
     override fun layoutResId(): Int {
         return R.layout.activity_main
     }
 
     override fun initializeDaggerComponent() {
-        //ignore
+        DaggerMainComponent.builder()
+                .appComponent((application as App).component)
+                .mainModule(MainModule(this))
+                .build()
+                .inject(this)
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -54,7 +63,7 @@ class MainActivity : BaseActivity() {
 
             R.id.nav_plants -> {
                 message.setText(R.string.title_plants)
-                swapFragment(PlantFragment.newInstance())
+                swapFragment(PlantsFragment.newInstance())
                 activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
             }

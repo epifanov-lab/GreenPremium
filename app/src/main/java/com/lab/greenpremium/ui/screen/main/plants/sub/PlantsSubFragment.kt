@@ -1,22 +1,27 @@
-package com.lab.greenpremium.ui.screen.main.plants
+package com.lab.greenpremium.ui.screen.main.plants.sub
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.widget.LinearLayout
-import com.lab.greenpremium.R
+import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
+import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.raw.Plant
 import com.lab.greenpremium.data.repository.UserModel
 import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.sub_fragment_plants.*
+import javax.inject.Inject
 
 
-class PlantSubFragment : BaseFragment() {
+class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
+
+    @Inject
+    internal lateinit var presenter: PlantsSubPresenter
 
     companion object {
-        fun newInstance(type: Int): PlantSubFragment {
-            val fragment = PlantSubFragment()
+        fun newInstance(type: Int): PlantsSubFragment {
+            val fragment = PlantsSubFragment()
             val args = Bundle()
             args.putInt(KEY_OBJECT, type)
             fragment.arguments = args
@@ -27,7 +32,11 @@ class PlantSubFragment : BaseFragment() {
     lateinit var type: Plant.Type
 
     override fun initializeDaggerComponent() {
-        //TODO impl
+        DaggerPlantsSubComponent.builder()
+                .appComponent((activity?.application as App).component)
+                .plantsSubModule(PlantsSubModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun layoutResId(): Int {

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.screen.main.MainActivity">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.screen.main.MainActivity">
 
     <Toolbar
         android:id="@+id/toolbar"
@@ -28,7 +28,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/title_profile"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_20" />
+                android:textSize="@dimen/font_size_20"/>
 
             <ImageButton
                 android:id="@+id/button_favorite"
@@ -36,9 +36,9 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
+                android:paddingTop="5dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_favorites"
-                android:paddingTop="5dp"/>
+                android:src="@drawable/ic_favorites"/>
 
             <com.lab.greenpremium.ui.components.buttons.CartButtonView
                 android:id="@+id/button_cart"
@@ -46,7 +46,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center" />
+                android:gravity="center"/>
 
         </LinearLayout>
     </Toolbar>
@@ -55,20 +55,20 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/toolbar" />
+        android:layout_below="@id/toolbar"/>
 
     <View
         android:id="@+id/line"
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_thickness_2"
         android:layout_above="@id/navigation"
-        android:background="@color/gray_light_2" />
+        android:background="@color/gray_light_2"/>
 
     <com.github.mmin18.widget.RealtimeBlurView
         android:layout_width="match_parent"
         android:layout_height="@dimen/bottom_navigation_bar_height"
         android:layout_alignParentBottom="true"
-        app:realtimeBlurRadius="@dimen/radius_12" />
+        app:realtimeBlurRadius="@dimen/radius_12"/>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
@@ -80,7 +80,7 @@
         android:theme="@style/Widget.BottomNavigationView"
         app:itemIconTint="@drawable/nav_icons_states"
         app:itemTextColor="@drawable/nav_text_states"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/navigation"/>
 
     <RelativeLayout
         android:id="@+id/obstructor"
@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentBottom="true"
-            app:realtimeBlurRadius="2dp" />
+            app:realtimeBlurRadius="2dp"/>
     </RelativeLayout>
 
     <com.getbase.floatingactionbutton.FloatingActionsMenu
@@ -122,7 +122,7 @@
             app:fab_colorPressed="@color/green_3"
             app:fab_icon="@drawable/ic_add"
             app:fab_size="mini"
-            app:fab_title="@string/fab_project" />
+            app:fab_title="@string/fab_project"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_letter"
@@ -132,7 +132,7 @@
             app:fab_colorPressed="@color/green_3"
             app:fab_icon="@drawable/ic_mail"
             app:fab_size="mini"
-            app:fab_title="@string/fab_letter" />
+            app:fab_title="@string/fab_letter"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_praise"
@@ -142,7 +142,7 @@
             app:fab_colorPressed="@color/green_3"
             app:fab_icon="@drawable/ic_smile"
             app:fab_size="mini"
-            app:fab_title="@string/fab_praise" />
+            app:fab_title="@string/fab_praise"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_complain"
@@ -152,7 +152,7 @@
             app:fab_colorPressed="@color/green_3"
             app:fab_icon="@drawable/ic_sad"
             app:fab_size="mini"
-            app:fab_title="@string/fab_complain" />
+            app:fab_title="@string/fab_complain"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 

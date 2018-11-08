@@ -1,4 +1,4 @@
-package com.lab.greenpremium.ui.screen.main.portfolio
+package com.lab.greenpremium.ui.screen.main.portfolio.sub
 
 import android.content.Context
 import android.os.Bundle
@@ -7,17 +7,23 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
+import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.raw.Image
 import com.lab.greenpremium.ui.screen.base.BaseFragment
+import com.lab.greenpremium.ui.screen.main.portfolio.PortfolioType
 import com.lab.greenpremium.utills.getMockImageList
 import com.lab.greenpremium.utills.getScreenWidth
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.sub_fragment_portfolio.*
+import javax.inject.Inject
 
 
-class PortfolioSubFragment : BaseFragment() {
+class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
+
+    @Inject
+    internal lateinit var presenter: PortfolioSubPresenter
 
     lateinit var type: PortfolioType
     private var paddingMedium = 0
@@ -35,7 +41,11 @@ class PortfolioSubFragment : BaseFragment() {
     }
 
     override fun initializeDaggerComponent() {
-        //TODO impl
+        DaggerPortfolioSubComponent.builder()
+                .appComponent((activity?.application as App).component)
+                .portfolioSubModule(PortfolioSubModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun layoutResId(): Int {
@@ -60,7 +70,7 @@ class PortfolioSubFragment : BaseFragment() {
                 if (i == 0) {
                     container_grid.addView(getOneBigImage(list[i]))
                 } else {
-                    container_grid.addView(getTwoSmallImagesInContainer(list[i-2], list[i-1]))
+                    container_grid.addView(getTwoSmallImagesInContainer(list[i - 2], list[i - 1]))
                     container_grid.addView(getOneBigImage(list[i]))
                 }
 
@@ -76,7 +86,7 @@ class PortfolioSubFragment : BaseFragment() {
         }
     }
 
-    private fun getOneBigImage(image: Image) : View {
+    private fun getOneBigImage(image: Image): View {
         val view = ImageView(context)
         val layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
         view.layoutParams = layoutParams
@@ -87,7 +97,7 @@ class PortfolioSubFragment : BaseFragment() {
         return view
     }
 
-    private fun getTwoSmallImagesInContainer(image1: Image, image2: Image) : View {
+    private fun getTwoSmallImagesInContainer(image1: Image, image2: Image): View {
         val inflater = layoutInflater
         val container = inflater.inflate(R.layout.layout_2_images, null)
 

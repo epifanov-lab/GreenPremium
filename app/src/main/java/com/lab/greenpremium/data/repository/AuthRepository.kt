@@ -2,8 +2,8 @@ package com.lab.greenpremium.data.repository
 
 import com.lab.greenpremium.data.entity.AuthRequest
 import com.lab.greenpremium.data.local.PreferencesManager
-import com.lab.greenpremium.data.network.CallbackListener
 import com.lab.greenpremium.data.network.ApiMethods
+import com.lab.greenpremium.data.network.CallbackListener
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject

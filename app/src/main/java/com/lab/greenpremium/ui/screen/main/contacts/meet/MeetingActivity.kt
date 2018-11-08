@@ -3,20 +3,25 @@ package com.lab.greenpremium.ui.screen.main.contacts.meet
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
 import android.support.v7.widget.RecyclerView
+import com.lab.greenpremium.App
 import com.lab.greenpremium.MEETING_MINUTE_STEP
 import com.lab.greenpremium.R
-import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
+import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.utills.getMockContactList
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import com.shawnlin.numberpicker.NumberPicker
 import kotlinx.android.synthetic.main.activity_meeting.*
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 import kotlin.collections.ArrayList
 
 
-class MeetingActivity : BaseActivity() {
+class MeetingActivity : BaseActivity(), MeetingContract.View {
+
+    @Inject
+    internal lateinit var presenter: MeetingPresenter
 
     private lateinit var model: MeetingModel
 
@@ -25,7 +30,11 @@ class MeetingActivity : BaseActivity() {
     }
 
     override fun initializeDaggerComponent() {
-        //ignore
+        DaggerMeetingComponent.builder()
+                .appComponent((application as App).component)
+                .meetingModule(MeetingModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun initViews() {
@@ -74,12 +83,12 @@ class MeetingActivity : BaseActivity() {
             }
 
             picker.setOnValueChangedListener { _, _, newVal ->
-                    when (picker.id) {
-                        R.id.picker_day -> model.dayPos = newVal
-                        R.id.picker_hour -> model.hour = newVal
-                        R.id.picker_minute -> model.minute = newVal
-                    }
-                    model.calculateTime()
+                when (picker.id) {
+                    R.id.picker_day -> model.dayPos = newVal
+                    R.id.picker_hour -> model.hour = newVal
+                    R.id.picker_minute -> model.minute = newVal
+                }
+                model.calculateTime()
             }
         }
 

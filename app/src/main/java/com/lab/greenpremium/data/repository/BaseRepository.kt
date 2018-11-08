@@ -9,7 +9,7 @@ import com.lab.greenpremium.utills.LogUtil
 import javax.inject.Inject
 
 
-open class BaseRepository @Inject constructor(val preferences: PreferencesManager){
+open class BaseRepository @Inject constructor(val preferences: PreferencesManager) {
 
     protected inline fun <reified T> handleResponse(response: BaseResponse<T>, listener: CallbackListener) {
         LogUtil.i(response.toString())

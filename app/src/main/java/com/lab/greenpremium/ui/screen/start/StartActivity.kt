@@ -4,19 +4,28 @@ import android.graphics.LinearGradient
 import android.graphics.Shader
 import android.support.v4.content.ContextCompat
 import android.view.ViewTreeObserver
+import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_start.*
+import javax.inject.Inject
 
-class StartActivity : BaseActivity() {
+class StartActivity : BaseActivity(), StartContract.View {
+
+    @Inject
+    internal lateinit var presenter: StartPresenter
 
     override fun layoutResId(): Int {
         return R.layout.activity_start
     }
 
     override fun initializeDaggerComponent() {
-        //ignore
+        DaggerStartComponent.builder()
+                .appComponent((application as App).component)
+                .startModule(StartModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun initViews() {

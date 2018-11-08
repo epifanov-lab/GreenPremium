@@ -2,6 +2,7 @@ package com.lab.greenpremium.ui.screen.main.contacts
 
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
+import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
@@ -9,16 +10,24 @@ import com.lab.greenpremium.ui.screen.main.contacts.meet.MeetingActivity
 import com.lab.greenpremium.utills.getMockContactList
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_contacts.*
+import javax.inject.Inject
 
 
-class ContactsFragment : BaseFragment() {
+class ContactsFragment : BaseFragment(), ContactsContract.View {
+
+    @Inject
+    internal lateinit var presenter: ContactsPresenter
 
     companion object {
         fun newInstance() = ContactsFragment()
     }
 
     override fun initializeDaggerComponent() {
-        //TODO impl
+        DaggerContactsComponent.builder()
+                .appComponent((activity?.application as App).component)
+                .contactsModule(ContactsModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun layoutResId(): Int {

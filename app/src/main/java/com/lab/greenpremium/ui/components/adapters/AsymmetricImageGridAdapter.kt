@@ -21,7 +21,7 @@ class AsymmetricImageGridAdapter(private val context: Context, private val image
 
         val scale = context.resources.displayMetrics.density
         val padding = (2 * scale + 0.5f).toInt()
-        view.setPadding(padding, padding, padding,   padding)
+        view.setPadding(padding, padding, padding, padding)
         return ViewHolder(view)
     }
 

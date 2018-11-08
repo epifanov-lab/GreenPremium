@@ -5,8 +5,8 @@ import android.content.Context
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentStatePagerAdapter
-import com.lab.greenpremium.ui.screen.main.portfolio.PortfolioSubFragment
 import com.lab.greenpremium.ui.screen.main.portfolio.PortfolioType
+import com.lab.greenpremium.ui.screen.main.portfolio.sub.PortfolioSubFragment
 
 class PortfolioPagerAdapter(fm: FragmentManager?, private val context: Context?) : FragmentStatePagerAdapter(fm) {
 

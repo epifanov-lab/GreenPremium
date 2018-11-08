@@ -3,6 +3,7 @@ package com.lab.greenpremium.ui.screen.main.cart
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.LinearLayout
+import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.raw.Plant
 import com.lab.greenpremium.data.repository.UserModel
@@ -16,9 +17,13 @@ import kotlinx.android.synthetic.main.fragment_cart.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import javax.inject.Inject
 
 
-class CartFragment : BaseFragment() {
+class CartFragment : BaseFragment(), CartContract.View {
+
+    @Inject
+    internal lateinit var presenter: CartPresenter
 
     private lateinit var list: List<Plant>
 
@@ -27,7 +32,11 @@ class CartFragment : BaseFragment() {
     }
 
     override fun initializeDaggerComponent() {
-        //TODO impl
+        DaggerCartComponent.builder()
+                .appComponent((activity?.application as App).component)
+                .cartModule(CartModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun layoutResId(): Int {
@@ -81,4 +90,5 @@ class CartFragment : BaseFragment() {
         super.onStop()
         EventBus.getDefault().unregister(this)
     }
+
 }

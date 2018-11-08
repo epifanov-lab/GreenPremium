@@ -5,10 +5,6 @@ import com.lab.greenpremium.di.AppComponent
 import com.lab.greenpremium.di.module.GpApiModule
 import dagger.Component
 
-/**
- * Created by user on 7/14/17.
- */
-
 @ActivityScope
 @Component(dependencies = [AppComponent::class], modules = [AuthModule::class, GpApiModule::class])
 internal interface AuthComponent {

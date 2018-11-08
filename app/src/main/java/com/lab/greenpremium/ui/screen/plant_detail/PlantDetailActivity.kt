@@ -1,26 +1,35 @@
 package com.lab.greenpremium.ui.screen.plant_detail
 
+import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.raw.Plant
 import com.lab.greenpremium.data.repository.UserModel
-import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.ui.components.item.PlantItemCountControlsHelper
+import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.utills.currencyFormat
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_plant_detail.*
 import kotlinx.android.synthetic.main.view_gallery_preview.*
+import javax.inject.Inject
 
-class PlantDetailActivity : BaseActivity() {
+class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
 
-    private lateinit var plant : Plant
+    @Inject
+    internal lateinit var presenter: PlantDetailPresenter
+
+    private lateinit var plant: Plant
 
     override fun layoutResId(): Int {
         return R.layout.activity_plant_detail
     }
 
     override fun initializeDaggerComponent() {
-        //ignore
+        DaggerPlantDetailComponent.builder()
+                .appComponent((application as App).component)
+                .plantDetailModule(PlantDetailModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun initViews() {
@@ -28,7 +37,7 @@ class PlantDetailActivity : BaseActivity() {
 
         button_back.setOnClickListener { onBackPressed() }
 
-        button_cart.setOnClickListener {  }
+        button_cart.setOnClickListener { }
 
         button_favorite.setOnClickListener {
             plant.isFavorite = !plant.isFavorite

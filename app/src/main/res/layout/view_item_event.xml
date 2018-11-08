@@ -3,10 +3,10 @@
 <!-- TODO ConstraintLayout -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -32,7 +32,7 @@
                 android:gravity="center"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_size_20"
-                tools:text="01" />
+                tools:text="01"/>
 
             <TextView
                 android:id="@+id/text_info"
@@ -46,7 +46,7 @@
                 android:paddingTop="@dimen/space_small_2"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_9"
-                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."/>
 
             <TextView
                 android:id="@+id/text_date_time"
@@ -58,7 +58,7 @@
                 android:fontFamily="@font/sfuitext_medium"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/font_size_9"
-                tools:text="20.04.2016 16:20" />
+                tools:text="20.04.2016 16:20"/>
         </RelativeLayout>
 
 
@@ -83,14 +83,14 @@
                 android:gravity="center"
                 android:text="PDF"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_size_12" />
+                android:textSize="@dimen/font_size_12"/>
 
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_download" />
+                android:src="@drawable/ic_download"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -100,5 +100,5 @@
         android:layout_width="@dimen/line_thickness_2"
         android:layout_height="@dimen/space_medium_1"
         android:layout_gravity="center"
-        android:background="@color/white" />
+        android:background="@color/white"/>
 </LinearLayout>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container_cart"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/selectableItemBackgroundBorderless">
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/container_cart"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless">
 
     <ImageButton
         android:id="@+id/icon"
@@ -15,12 +15,13 @@
         android:clickable="false"
         android:focusable="false"
         android:scaleType="centerInside"
-        android:src="@drawable/ic_cart" />
+        android:src="@drawable/ic_cart"/>
 
     <TextView
         android:id="@+id/indicator"
         android:layout_width="16dp"
         android:layout_height="16dp"
+        android:layout_alignTop="@id/icon"
         android:layout_centerInParent="true"
         android:background="@drawable/bcg_cart_indicator"
         android:clickable="false"
@@ -29,7 +30,6 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="@dimen/font_size_7"
-        tools:text="12"
-        android:layout_alignTop="@id/icon"/>
+        tools:text="12"/>
 
 </RelativeLayout>

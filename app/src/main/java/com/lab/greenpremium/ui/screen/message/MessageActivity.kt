@@ -1,13 +1,18 @@
 package com.lab.greenpremium.ui.screen.message
 
 import android.view.View
-import com.lab.greenpremium.R
+import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
+import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_message.*
+import javax.inject.Inject
 
-class MessageActivity : BaseActivity() {
+class MessageActivity : BaseActivity(), MessageContract.View {
+
+    @Inject
+    internal lateinit var presenter: MessagePresenter
 
     private lateinit var type: MessageScreenType
 
@@ -16,7 +21,11 @@ class MessageActivity : BaseActivity() {
     }
 
     override fun initializeDaggerComponent() {
-        //ignore
+        DaggerMessageComponent.builder()
+                .appComponent((application as App).component)
+                .messageModule(MessageModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun initViews() {
@@ -33,4 +42,5 @@ class MessageActivity : BaseActivity() {
 
         setTouchAnimationShrink(button_send)
     }
+
 }

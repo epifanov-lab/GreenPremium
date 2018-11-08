@@ -1,18 +1,27 @@
 package com.lab.greenpremium.ui.screen.main.plants
 
+import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.components.adapters.PlantsPagerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_plants.*
+import javax.inject.Inject
 
-class PlantFragment : BaseFragment() {
+class PlantsFragment : BaseFragment(), PlantsContract.View {
+
+    @Inject
+    internal lateinit var presenter: PlantsPresenter
 
     companion object {
-        fun newInstance() = PlantFragment()
+        fun newInstance() = PlantsFragment()
     }
 
     override fun initializeDaggerComponent() {
-        //TODO impl
+        DaggerPlantsComponent.builder()
+                .appComponent((activity?.application as App).component)
+                .plantsModule(PlantsModule(this))
+                .build()
+                .inject(this)
     }
 
     override fun layoutResId(): Int {
