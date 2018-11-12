@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/title"
@@ -13,7 +13,7 @@
         android:fontFamily="@font/sfuitext_regular"
         android:text="@string/title_message"
         android:textColor="@color/gray_light_1"
-        android:textSize="@dimen/font_size_12"/>
+        android:textSize="@dimen/font_size_12" />
 
     <EditText
         android:id="@+id/text"
@@ -26,6 +26,7 @@
         android:padding="@dimen/space_small_2"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_12"
-        tools:text="Lorem ipsum"/>
+        tools:text="Lorem ipsum"
+        android:inputType="text" />
 
 </LinearLayout>

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white"
-                android:paddingTop="@dimen/space_medium_1">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:paddingTop="@dimen/space_medium_1">
 
     <Button
         android:id="@+id/button_bill"
@@ -12,14 +12,14 @@
         android:layout_width="@dimen/card_button_width"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/space_medium_2"
-        android:layout_marginLeft="@dimen/space_medium_2"
-        android:text="@string/cart_get_bill"/>
+        android:layout_marginStart="@dimen/space_medium_2"
+        android:text="@string/cart_get_bill" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/space_large_1"
-        android:layout_toRightOf="@id/button_bill"
+        android:layout_marginStart="@dimen/space_large_1"
+        android:layout_toEndOf="@id/button_bill"
         android:gravity="center"
         android:orientation="vertical">
 
@@ -27,19 +27,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sfuitext_regular"
-            android:gravity="left"
+            android:gravity="start"
             android:text="@string/cart_title_total"
             android:textColor="@color/gray_light_1"
-            android:textSize="@dimen/font_size_12"/>
+            android:textSize="@dimen/font_size_12" />
 
         <TextView
             android:id="@+id/label_total_cost"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sfuitext_bold"
-            android:text="33 000 ₽"
+            tools:text="33 000 ₽"
             android:textColor="@color/black"
-            tools:textSize="@dimen/font_size_18"/>
+            tools:textSize="@dimen/font_size_18" />
 
     </LinearLayout>
 
@@ -53,10 +53,10 @@
         android:layout_marginLeft="@dimen/space_medium_2"
         android:layout_marginRight="@dimen/space_medium_2"
         android:fontFamily="@font/sfuitext_regular"
-        android:gravity="left"
+        android:gravity="start"
         android:text="@string/cart_service"
         android:textColor="@color/gray_light_1"
-        android:textSize="@dimen/font_size_9"/>
+        android:textSize="@dimen/font_size_9" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_plants"
@@ -66,7 +66,7 @@
         android:clipToPadding="false"
         android:overScrollMode="never"
         android:paddingLeft="@dimen/space_small_3"
-        android:paddingRight="@dimen/space_small_3"/>
+        android:paddingRight="@dimen/space_small_3" />
 
     <TextView
         android:id="@+id/label_empty_list"
@@ -77,11 +77,11 @@
         android:layout_marginRight="@dimen/space_medium_2"
         android:layout_marginTop="@dimen/space_small_4"
         android:fontFamily="@font/sfuitext_regular"
-        android:gravity="left"
+        android:gravity="start"
         android:text="@string/cart_empty"
         android:textAlignment="center"
         android:textColor="@color/gray_light_1"
         android:textSize="@dimen/font_size_12"
-        android:visibility="visible"/>
+        android:visibility="visible" />
 
 </RelativeLayout>

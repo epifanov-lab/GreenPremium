@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/container_main"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/light_green"
-              android:gravity="center_horizontal"
-              android:orientation="vertical">
+    android:id="@+id/container_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/light_green"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -22,7 +22,7 @@
             android:fontFamily="@font/sfuitext_bold"
             android:text="@string/start_screen_title_1"
             android:textColor="@color/black"
-            android:textSize="@dimen/font_size_18"/>
+            android:textSize="@dimen/font_size_18" />
 
         <TextView
             android:id="@+id/title_gradient"
@@ -31,7 +31,7 @@
             android:fontFamily="@font/sfuitext_bold"
             android:text="@string/start_screen_title_2"
             android:textColor="@color/black"
-            android:textSize="@dimen/font_size_18"/>
+            android:textSize="@dimen/font_size_18" />
 
     </LinearLayout>
 
@@ -42,13 +42,13 @@
         android:fontFamily="@font/sfuitext_regular"
         android:text="@string/start_screen_title_3"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_size_14"/>
+        android:textSize="@dimen/font_size_14" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_huge_1"
-        android:src="@drawable/logo"/>
+        android:src="@drawable/logo" />
 
     <Button
         android:id="@+id/button_auth"
@@ -56,7 +56,7 @@
         android:layout_marginBottom="@dimen/space_small_4"
         android:layout_marginLeft="@dimen/space_huge_3"
         android:layout_marginRight="@dimen/space_huge_3"
-        android:text="@string/title_login_1"/>
+        android:text="@string/title_login_1" />
 
     <Button
         android:id="@+id/button_demo"
@@ -64,7 +64,7 @@
         android:layout_marginBottom="@dimen/space_small_4"
         android:layout_marginLeft="@dimen/space_huge_3"
         android:layout_marginRight="@dimen/space_huge_3"
-        android:text="@string/title_demo"/>
+        android:text="@string/title_demo" />
 
     <Button
         android:id="@+id/button_register"
@@ -72,7 +72,7 @@
         android:layout_marginBottom="@dimen/space_medium_1"
         android:layout_marginLeft="@dimen/space_huge_3"
         android:layout_marginRight="@dimen/space_huge_3"
-        android:text="@string/title_registration"/>
+        android:text="@string/title_registration" />
 
     <TextView
         android:id="@+id/button_support"
@@ -81,6 +81,6 @@
         android:fontFamily="@font/sfuitext_regular"
         android:text="@string/start_screen_support"
         android:textColor="@color/gray"
-        android:textSize="@dimen/font_size_10"/>
+        android:textSize="@dimen/font_size_10" />
 
 </LinearLayout>

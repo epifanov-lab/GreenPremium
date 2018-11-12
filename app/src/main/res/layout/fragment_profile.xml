@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:app="http://schemas.android.com/apk/res-auto"
-                xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/container_main"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_contacts"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:clipToPadding="false"/>
+        android:clipToPadding="false" />
 
     <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
         android:id="@+id/indicator_contacts"
@@ -21,7 +21,7 @@
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="@dimen/space_medium_2"
         app:spi_dotColor="@color/green_1_50"
-        app:spi_dotSelectedColor="@color/green_1"/>
+        app:spi_dotSelectedColor="@color/green_1" />
 
     <LinearLayout
         android:id="@+id/container_complex"
@@ -33,14 +33,13 @@
         <TextView
             android:id="@+id/button_calc_service"
             style="@style/Button.Green"
-            android:layout_centerHorizontal="true"
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="@dimen/space_medium_2"
             android:layout_marginLeft="@dimen/space_medium_3"
             android:layout_marginRight="@dimen/space_medium_3"
             android:gravity="center"
             android:text="@string/profile_calc_service"
-            android:visibility="visible"/>
+            android:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/container_cost"
@@ -56,25 +55,24 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_below="@id/text_position"
                 android:layout_weight="3"
                 android:fontFamily="@font/sfuitext_regular"
-                android:gravity="right|center_vertical"
+                android:gravity="end|center_vertical"
                 android:text="@string/profile_label_hint_service_cost"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12"/>
+                android:textSize="@dimen/font_size_12" />
 
             <TextView
                 android:id="@+id/text_service_price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="@dimen/space_small_3"
+                android:layout_marginEnd="@dimen/space_small_3"
                 android:layout_weight="2"
                 android:fontFamily="@font/sfuitext_medium"
                 android:gravity="center"
-                android:text="33.000$"
+                tools:text="33.000$"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_20"/>
+                android:textSize="@dimen/font_size_20" />
 
         </LinearLayout>
 
@@ -97,7 +95,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/profile_label_hint_no_events"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12"/>
+                android:textSize="@dimen/font_size_12" />
 
             <TextView
                 android:id="@+id/button_start_shopping"
@@ -105,13 +103,13 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@color/white"
-                android:drawableRight="@drawable/ic_next"
+                android:drawableEnd="@drawable/ic_next"
                 android:fontFamily="@font/sfuitext_regular"
                 android:gravity="start"
                 android:padding="@dimen/space_small_2"
                 android:text="@string/profile_label_shop"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12"/>
+                android:textSize="@dimen/font_size_12" />
 
         </LinearLayout>
     </LinearLayout>
@@ -148,7 +146,7 @@
                     android:id="@+id/container_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="@dimen/space_medium_1"
+                    android:layout_marginEnd="@dimen/space_medium_1"
                     android:background="@drawable/ic_calendar_white"
                     android:gravity="center"
                     android:orientation="vertical"
@@ -162,7 +160,7 @@
                         android:gravity="center"
                         android:textColor="@color/gray_light_1"
                         android:textSize="@dimen/font_size_14"
-                        tools:text="10"/>
+                        tools:text="10" />
 
                     <TextView
                         android:id="@+id/text_date_month"
@@ -172,7 +170,7 @@
                         android:gravity="center"
                         android:textColor="@color/gray_light_1"
                         android:textSize="@dimen/font_size_9"
-                        tools:text="июля"/>
+                        tools:text="июля" />
                 </LinearLayout>
 
                 <TextView
@@ -183,14 +181,14 @@
                     android:gravity="center_vertical"
                     android:text="@string/profile_label_hint_delivery_scheduled"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_size_12"/>
+                    android:textSize="@dimen/font_size_12" />
 
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:scaleType="centerInside"
-                    android:src="@drawable/ic_list"/>
+                    android:src="@drawable/ic_list" />
 
             </LinearLayout>
 
@@ -198,7 +196,7 @@
                 android:id="@+id/recycler_events"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/bottom_navigation_bar_height"/>
+                android:paddingBottom="@dimen/bottom_navigation_bar_height" />
         </LinearLayout>
 
     </ScrollView>

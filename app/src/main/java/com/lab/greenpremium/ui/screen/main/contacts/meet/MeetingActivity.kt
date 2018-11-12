@@ -61,7 +61,7 @@ class MeetingActivity : BaseActivity(), MeetingContract.View {
         indicator_contacts.attachToRecyclerView(recycler_contacts)
 
         recycler_contacts.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
                     model.pickedContactPos = (recycler_contacts.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()

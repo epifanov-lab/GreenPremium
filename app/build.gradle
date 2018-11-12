@@ -4,11 +4,11 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "com.lab.greenpremium"
         minSdkVersion 21
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -27,17 +27,20 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:$rootProject.support_library_version"
+    implementation "com.android.support:support-vector-drawable:$rootProject.support_library_version"
+    implementation "com.android.support:animated-vector-drawable:$rootProject.support_library_version"
+    implementation "com.android.support:support-media-compat:$rootProject.support_library_version"
+    implementation "com.android.support:support-v4:$rootProject.support_library_version"
     implementation "com.android.support:design:$rootProject.support_library_version"
     implementation "com.android.support:recyclerview-v7:$rootProject.support_library_version"
     implementation "com.android.support:cardview-v7:$rootProject.support_library_version"
+    implementation "com.android.support:appcompat-v7:$rootProject.support_library_version"
     implementation "com.android.support.constraint:constraint-layout:$rootProject.constraint_layout_version"
-    implementation 'com.google.android.gms:play-services-maps:15.0.1'
-    implementation 'com.android.support:appcompat-v7:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    implementation "com.google.android.gms:play-services-maps:$rootProject.google_maps_version"
     testImplementation "junit:junit:$rootProject.junit_version"
     androidTestImplementation "com.android.support.test:runner:$rootProject.testRunner_version"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.esspresso_version"
-    implementation "org.jetbrains.kotlin:kotlin-reflect:1.2.51"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
     //DI
     implementation "com.google.dagger:dagger:$rootProject.dagger_version"
@@ -59,7 +62,7 @@ dependencies {
     implementation 'com.getbase:floatingactionbutton:1.10.1' // fab menu
     implementation 'com.shawnlin:number-picker:2.4.6' // picker
     implementation 'com.github.ome450901:SimpleRatingBar:1.4.2' // rating bar
-    implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6"// carousel dots indication
+    implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6" // carousel dots indication
     implementation 'com.felipecsl.asymmetricgridview:library:2.0.1' // asymmetric gird view
     implementation 'org.greenrobot:eventbus:3.1.1' // event bus
     implementation 'online.devliving:securedpreferencestore:0.5.0' // secured preferences

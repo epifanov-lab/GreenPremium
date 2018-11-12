@@ -53,6 +53,6 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
 
     override fun onResume() {
         super.onResume()
-        recycler_plants.adapter.notifyDataSetChanged()
+        recycler_plants.adapter?.notifyDataSetChanged()
     }
 }

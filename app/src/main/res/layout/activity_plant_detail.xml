@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                 xmlns:tools="http://schemas.android.com/tools"
-                                                 android:layout_width="match_parent"
-                                                 android:layout_height="wrap_content"
-                                                 android:background="@color/white"
-                                                 android:orientation="vertical"
-                                                 android:paddingLeft="@dimen/space_medium_2"
-                                                 android:paddingRight="@dimen/space_medium_2"
-                                                 android:paddingTop="@dimen/space_medium_2">
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:paddingLeft="@dimen/space_medium_2"
+        android:paddingRight="@dimen/space_medium_2"
+        android:paddingTop="@dimen/space_medium_2">
 
         <ImageView
             android:id="@+id/button_back"
             android:layout_width="@dimen/back_button_area_size"
             android:layout_height="@dimen/back_button_area_size"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:paddingLeft="@dimen/back_button_image_minus_padding_left"
+            android:paddingStart="@dimen/back_button_image_minus_padding_left"
             android:scaleType="centerInside"
             android:src="@drawable/ic_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/text_title"
@@ -37,7 +37,7 @@
             android:textSize="@dimen/font_size_20"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_back"
-            tools:text="Homo homini lupus est"/>
+            tools:text="Homo homini lupus est" />
 
         <ImageButton
             android:id="@+id/button_cart"
@@ -54,7 +54,7 @@
             app:layout_constraintHorizontal_bias="0.969"
             app:layout_constraintStart_toEndOf="@+id/button_back"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"/>
+            app:layout_constraintVertical_bias="1.0" />
 
         <ImageButton
             android:id="@+id/button_favorite"
@@ -68,7 +68,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/text_title"
-            app:layout_constraintTop_toTopOf="@+id/text_title"/>
+            app:layout_constraintTop_toTopOf="@+id/text_title" />
 
         <ImageView
             android:id="@+id/image"
@@ -81,13 +81,13 @@
             app:layout_constraintEnd_toStartOf="@+id/container_controls"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_title"/>
+            app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
         <LinearLayout
             android:id="@+id/container_controls"
             android:layout_width="wrap_content"
             android:layout_height="170dp"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginEnd="8dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
@@ -101,7 +101,7 @@
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_add_plant_green"/>
+                android:src="@drawable/ic_add_plant_green" />
 
             <TextView
                 android:id="@+id/text_counter"
@@ -111,14 +111,14 @@
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_30"
-                tools:text="0"/>
+                tools:text="0" />
 
             <ImageView
                 android:id="@+id/button_remove"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_weight="1"
-                android:src="@drawable/ic_remove_plant_green"/>
+                android:src="@drawable/ic_remove_plant_green" />
 
         </LinearLayout>
 
@@ -128,12 +128,12 @@
             android:layout_height="33dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/sfuitext_bold"
-            android:text="33 000 ₽"
+            tools:text="33 000 ₽"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_24"
             app:layout_constraintEnd_toEndOf="@+id/image"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image"/>
+            app:layout_constraintTop_toBottomOf="@+id/image" />
 
         <com.lab.greenpremium.ui.components.DiscountTextView
             android:id="@+id/text_discount"
@@ -142,13 +142,13 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/sfuitext_regular"
             android:gravity="center"
-            android:text="50.000$"
+            tools:text="50.000$"
             android:textColor="@color/gray_light_1"
             android:textSize="@dimen/font_size_18"
             app:layout_constraintEnd_toEndOf="@+id/text_price"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_price"/>
+            app:layout_constraintTop_toBottomOf="@+id/text_price" />
 
         <TextView
             android:id="@+id/text_info_short"
@@ -163,7 +163,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/text_price"
-            app:layout_constraintTop_toBottomOf="@+id/container_controls"/>
+            app:layout_constraintTop_toBottomOf="@+id/container_controls" />
 
         <TextView
             android:id="@+id/text_info_long"
@@ -177,7 +177,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.764"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_discount"/>
+            app:layout_constraintTop_toBottomOf="@+id/text_discount" />
 
         <include
             layout="@layout/view_gallery_preview"
@@ -188,7 +188,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_info_long"/>
+            app:layout_constraintTop_toBottomOf="@+id/text_info_long" />
     </android.support.constraint.ConstraintLayout>
 
 </ScrollView>
