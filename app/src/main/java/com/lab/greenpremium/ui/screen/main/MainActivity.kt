@@ -10,7 +10,7 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu
 import com.lab.greenpremium.App
 import com.lab.greenpremium.DURATION_FAST
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.repository.UserModel
+import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.ui.components.BottomNavigationViewHelper
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.ui.screen.main.cart.CartFragment
@@ -55,35 +55,35 @@ class MainActivity : BaseActivity(), MainContract.View {
 
         when (item.itemId) {
             R.id.nav_profile -> {
-                message.setText(R.string.title_profile)
+                title_text.setText(R.string.title_profile)
                 swapFragment(ProfileFragment.newInstance())
                 activateFabMenu(true)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_plants -> {
-                message.setText(R.string.title_plants)
+                title_text.setText(R.string.title_plants)
                 swapFragment(PlantsFragment.newInstance())
                 activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_portfolio -> {
-                message.setText(R.string.title_portfolio)
+                title_text.setText(R.string.title_portfolio)
                 swapFragment(PortfolioFragment.newInstance())
                 activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_contacts -> {
-                message.setText(R.string.title_contacts)
+                title_text.setText(R.string.title_contacts)
                 swapFragment(ContactsFragment.newInstance())
                 activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_map -> {
-                message.setText(R.string.title_map)
+                title_text.setText(R.string.title_map)
                 swapFragment(MapFragment.newInstance())
                 activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
@@ -94,14 +94,13 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     override fun initViews() {
         swapFragment(ProfileFragment.newInstance())
-        activateFabMenu(true)
 
         navigation.itemIconTintList = null
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
 
         button_favorite.setOnClickListener {
-            message.setText(R.string.title_favorites)
+            title_text.setText(R.string.title_favorites)
             button_favorite.setImageResource(R.drawable.ic_favorites_choosen)
             button_cart.setImageResource(R.drawable.ic_cart)
             swapFragment(FavoritesFragment.newInstance())
@@ -110,7 +109,7 @@ class MainActivity : BaseActivity(), MainContract.View {
         }
 
         button_cart.setOnClickListener {
-            message.setText(R.string.title_basket)
+            title_text.setText(R.string.title_basket)
             button_cart.setImageResource(R.drawable.ic_basket_choosen)
             button_favorite.setImageResource(R.drawable.ic_favorites)
             swapFragment(CartFragment.newInstance())
@@ -118,6 +117,7 @@ class MainActivity : BaseActivity(), MainContract.View {
             activateFabMenu(false)
         }
 
+        activateFabMenu(true)
         fab_project.setOnClickListener { goToMessageScreen(MessageScreenType.NEW_PROJECT).also { fab_menu.collapse() } }
         fab_letter.setOnClickListener { goToMessageScreen(MessageScreenType.LETTER).also { fab_menu.collapse() } }
         fab_praise.setOnClickListener { goToMessageScreen(MessageScreenType.PRAISE).also { fab_menu.collapse() } }

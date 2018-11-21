@@ -17,7 +17,7 @@
         android:src="@drawable/ic_back" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_small_1"

@@ -4,7 +4,7 @@ import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.raw.Plant
-import com.lab.greenpremium.data.repository.UserModel
+import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.ui.components.item.PlantItemCountControlsHelper
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.utills.currencyFormat

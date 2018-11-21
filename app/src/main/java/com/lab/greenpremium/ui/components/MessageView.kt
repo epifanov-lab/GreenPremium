@@ -18,7 +18,7 @@ class MessageView : RelativeLayout {
         LayoutInflater.from(context).inflate(R.layout.view_message, this, true)
 
         text.setOnFocusChangeListener { _, focused ->
-            title.setTextColor(ContextCompat.getColor(context, if (focused) R.color.colorAccent else R.color.gray))
+            title_text.setTextColor(ContextCompat.getColor(context, if (focused) R.color.colorAccent else R.color.gray))
             text.background = ContextCompat.getDrawable(context, if (focused) R.drawable.bcg_message_active else R.drawable.bcg_message_passive)
         }
     }

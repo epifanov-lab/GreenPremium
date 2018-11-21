@@ -3,6 +3,7 @@ package com.lab.greenpremium.data.network
 import com.lab.greenpremium.data.entity.AuthData
 import com.lab.greenpremium.data.entity.AuthRequest
 import com.lab.greenpremium.data.entity.BaseResponse
+import com.lab.greenpremium.data.entity.Contacts
 import com.lab.greenpremium.utills.LogUtil
 import io.reactivex.Single
 import retrofit2.http.Field
@@ -18,6 +19,10 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
         return api.auth(request.login, request.password)
     }
 
+    fun getContacts(): Single<BaseResponse<Contacts>> {
+        return api.getContacts()
+    }
+
 }
 
 interface GpApi {
@@ -26,5 +31,9 @@ interface GpApi {
     @POST("auth")
     fun auth(@Field("login") login: String,
              @Field("password") password: String): Single<BaseResponse<AuthData>>
+
+    @FormUrlEncoded
+    @POST("contacts")
+    fun getContacts(): Single<BaseResponse<Contacts>>
 
 }

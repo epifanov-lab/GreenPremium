@@ -1,7 +1,7 @@
 package com.lab.greenpremium.data.entity
 
 data class AuthRequest(val login: String,
-                       val password: String) : BodyRequest()
+                       val password: String)
 
 data class AuthData(val id: String,
                     val name: String,

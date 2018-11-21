@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.lab.greenpremium.data.entity.raw.Plant
-import com.lab.greenpremium.data.repository.UserModel
+import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
 
 
