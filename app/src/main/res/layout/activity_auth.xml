@@ -30,9 +30,12 @@
         android:id="@+id/container_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_medium_2">
+        android:layout_marginBottom="@dimen/space_medium_2"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/AppTheme.TextInputLayoutError"
+        app:hintTextAppearance="@style/TextAppearance.App.InputView">
 
-        <EditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/input_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,9 +51,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_medium_1"
+        app:errorEnabled="true"
+        app:errorTextAppearance="@style/AppTheme.TextInputLayoutError"
+        app:hintTextAppearance="@style/TextAppearance.App.InputView"
         app:passwordToggleEnabled="true">
 
-        <EditText
+        <android.support.design.widget.TextInputEditText
             android:id="@+id/input_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

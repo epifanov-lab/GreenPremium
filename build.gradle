@@ -41,6 +41,7 @@ ext {
 
     rx_android_version = "2.0.2"
     rx_java_version = "2.1.8"
+    rxBindingVersion = '2.0.0'
 
     retrofit_version = "2.3.0"
     okhttp_version = "3.9.0"

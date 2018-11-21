@@ -1,5 +1,6 @@
 package com.lab.greenpremium.ui.screen.auth
 
+import com.jakewharton.rxbinding2.widget.RxTextView
 import com.lab.greenpremium.*
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.utills.setTouchAnimationShrink
@@ -24,9 +25,12 @@ class AuthActivity : BaseActivity(), AuthContract.View {
     }
 
     override fun initViews() {
+        presenter.initializeDataInput(
+                RxTextView.textChanges(input_login).map { it.toString() },
+                RxTextView.textChanges(input_password).map { it.toString() }
+        )
 
-        button_back.setOnClickListener { finish() }
-        button_auth.setOnClickListener { presenter.auth(input_login.text.toString(), input_password.text.toString()) }
+        button_auth.setOnClickListener { presenter.validateDataAndProceedAuth() }
 
         button_forgot_pass.setOnClickListener {
             if (DEBUG_MODE) { //todo исправить когда будешь реализовывать ссылки
@@ -35,7 +39,27 @@ class AuthActivity : BaseActivity(), AuthContract.View {
             }
         }
 
+        button_back.setOnClickListener { finish() }
+
         setTouchAnimationShrink(button_auth)
+    }
+
+    override fun setLoginInputError(textResId: Int?, formatStr: Int?) {
+        container_login.error = getErrorText(textResId, formatStr)
+        input_login.requestFocus()
+    }
+
+    override fun setPasswordInputError(textResId: Int?, formatStr: Int?) {
+        container_password.error = getErrorText(textResId, formatStr)
+        input_password.requestFocus()
+    }
+
+    private fun getErrorText(textResId: Int?, formatStr: Int?): CharSequence? {
+        return when {
+            textResId != null && formatStr == null -> getString(textResId)
+            textResId != null && formatStr != null -> getString(textResId, getString(formatStr))
+            else -> null
+        }
     }
 
     override fun goToMain() {

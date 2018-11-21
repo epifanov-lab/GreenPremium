@@ -12,6 +12,20 @@
         <item name="android:windowBackground">@drawable/splash</item>
     </style>
 
+    <style name="TextAppearance.App.InputView" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textColorHint">@color/gray</item>
+        <item name="android:textSize">@dimen/font_size_14</item>
+        <item name="android:fontFamily">@font/sfuitext_regular</item>
+    </style>
+
+    <style name="AppTheme.TextInputLayoutError" parent="@android:style/TextAppearance">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:textSize">@dimen/font_size_12</item>
+        <item name="android:fontFamily">@font/sfuitext_regular</item>
+    </style>
+
     <style name="TransparentDialogFragment" parent="@android:style/Theme.Dialog">
         <item name="android:windowBackground">@color/transparent</item>
         <item name="android:windowAnimationStyle">@null</item>
