@@ -20,6 +20,7 @@ import com.lab.greenpremium.ui.screen.main.MainActivity
 import com.lab.greenpremium.ui.screen.message.MessageActivity
 import com.lab.greenpremium.ui.screen.plant_detail.PlantDetailActivity
 import com.lab.greenpremium.ui.screen.start.StartActivity
+import com.lab.greenpremium.utills.getErrorMessage
 import com.lab.greenpremium.utills.hideKeyboard
 import java.io.Serializable
 
@@ -79,8 +80,8 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
         transaction.commit()
     }
 
-    override fun showError(text: String?, textResId: Int?) {
-        showSnackbar(text, textResId)
+    override fun showError(throwable: Throwable) {
+        showSnackbar(getErrorMessage(throwable))
     }
 
     override fun showSnackbar(text: String?, textResId: Int?) {
@@ -94,13 +95,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
         //todo implement
     }
 
-    override fun showLoadingDialog(show: Boolean) {
-        if (show) progressDialog.show()
-        else progressDialog.dismiss()
-    }
-
     fun showToast(text: String? = null, textResId: Int? = null) {
         text?.let { Toast.makeText(this, text, Toast.LENGTH_SHORT).show() }
         textResId?.let { Toast.makeText(this, textResId, Toast.LENGTH_SHORT).show() }
+    }
+
+    override fun showLoadingDialog(show: Boolean) {
+        if (show) progressDialog.show()
+        else progressDialog.dismiss()
     }
 }

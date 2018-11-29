@@ -1,12 +1,17 @@
 package com.lab.greenpremium.data.entity
 
-data class AuthRequest(val login: String,
-                       val password: String)
+import com.google.gson.annotations.SerializedName
 
-data class AuthData(val id: String,
-                    val name: String,
-                    val email: String,
-                    val phone: String,
-                    val position: String,
-                    val photo: String,
-                    val token: String)
+data class AuthRequest(@SerializedName("login") val login: String,
+                       @SerializedName("password") val password: String)
+
+data class AuthData(@SerializedName("id") val id: String,
+                    @SerializedName("name") val name: String,
+                    @SerializedName("email") val email: String,
+                    @SerializedName("phone") val phone: String,
+                    @SerializedName("position") val position: String,
+                    @SerializedName("photo") val photo: String,
+                    @SerializedName("token") val token: String) {
+
+    val time: Long = System.currentTimeMillis()
+}

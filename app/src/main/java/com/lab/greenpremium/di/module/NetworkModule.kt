@@ -16,19 +16,15 @@ import javax.inject.Singleton
 @Module
 class NetworkModule {
 
-    private fun provideOkHttpClient(): OkHttpClient {
-        return OkHttpClient.Builder()
-                .addInterceptor(GpInterceptor())
-                .addInterceptor(HttpLoggingInterceptor(LogUtil::d).setLevel(HttpLoggingInterceptor.Level.BODY))
-                .build()
-    }
-
     @Provides
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
                 .baseUrl(TEST_URL)
-                .client(provideOkHttpClient())
+                .client(OkHttpClient.Builder()
+                        .addInterceptor(GpInterceptor())
+                        .addInterceptor(HttpLoggingInterceptor(LogUtil::d).setLevel(HttpLoggingInterceptor.Level.BODY))
+                        .build())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()

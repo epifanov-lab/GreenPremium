@@ -5,8 +5,8 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.lab.greenpremium.data.entity.raw.Plant
 import com.lab.greenpremium.data.UserModel
+import com.lab.greenpremium.data.entity.raw.Plant
 import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
 
 
@@ -35,7 +35,7 @@ abstract class BaseFragment : Fragment(), PlantRecyclerAdapter.OnPlantSelectedLi
         (activity as BaseActivity).goToPlantDetailActivity(UserModel.plants.indexOf(plant))
     }
 
-    override fun showError(text: String?, textResId: Int?) {
+    override fun showError(throwable: Throwable) {
         //todo implement
     }
 

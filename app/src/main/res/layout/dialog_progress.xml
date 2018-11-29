@@ -4,7 +4,10 @@
     android:layout_height="wrap_content"
     android:background="@color/white"
     android:orientation="horizontal"
-    android:padding="@dimen/space_small_2">
+    android:paddingTop="@dimen/space_small_2"
+    android:paddingLeft="@dimen/space_small_4"
+    android:paddingRight="@dimen/space_small_4"
+    android:paddingBottom="@dimen/space_small_2">
 
     <ProgressBar xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/progress"

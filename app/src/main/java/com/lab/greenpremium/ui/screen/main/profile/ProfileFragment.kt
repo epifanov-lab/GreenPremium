@@ -2,16 +2,17 @@ package com.lab.greenpremium.ui.screen.main.profile
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.entity.ManagerContact
 import com.lab.greenpremium.ui.components.ScrollLayoutManager
 import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.ui.components.adapters.EventsRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.utills.OnAnimationEndListener
-import com.lab.greenpremium.utills.getMockContactList
 import com.lab.greenpremium.utills.getMockEventsList
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_profile.*
@@ -40,8 +41,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     }
 
     override fun initViews() {
-        initializeContactsCarousel()
-        initializeEventsList()
+        presenter.onViewCreated()
 
         button_start_shopping.setOnClickListener {
             container_no_events.visibility = GONE
@@ -58,11 +58,15 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         setTouchAnimationShrink(button_start_shopping)
     }
 
-    private fun initializeContactsCarousel() {
-        PagerSnapHelper().attachToRecyclerView(recycler_contacts)
+    override fun showLoadingStub(show: Boolean) {
+        container_main.visibility = if (show) View.VISIBLE else View.INVISIBLE
+        progress.visibility = if (show) View.INVISIBLE else View.VISIBLE
+    }
 
+    override fun initializeContactsCarousel(contacts: List<ManagerContact>) {
+        PagerSnapHelper().attachToRecyclerView(recycler_contacts)
         recycler_contacts.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recycler_contacts.adapter = ContactsRecyclerAdapter(getMockContactList(), LinearLayoutManager.HORIZONTAL, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+        recycler_contacts.adapter = ContactsRecyclerAdapter(contacts, LinearLayoutManager.HORIZONTAL, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
         indicator_contacts.attachToRecyclerView(recycler_contacts)
     }
 

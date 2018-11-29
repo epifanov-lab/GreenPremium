@@ -8,14 +8,16 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.entity.raw.Contact
+import com.lab.greenpremium.data.entity.ManagerContact
+import com.lab.greenpremium.utills.LogUtil
 import kotlinx.android.synthetic.main.view_item_contact.view.*
 
 
 class ContactItemView : RelativeLayout {
 
-    var contact: Contact? = null
+    var contact: ManagerContact? = null
         set(value) {
+            LogUtil.i("CONTACT_VIEW data: $value")
             field = value
             updateView()
         }
@@ -37,7 +39,7 @@ class ContactItemView : RelativeLayout {
         }
 
         button_mail.setOnClickListener {
-            contact?.mail?.let {
+            contact?.email?.let {
                 try {
                     //todo (CRUSH) проверка на наличие активити которое хэндлит ACTION_SENDTO
                     val intent = Intent(Intent.ACTION_SENDTO, Uri.fromParts("mailto", it, null))
@@ -65,8 +67,8 @@ class ContactItemView : RelativeLayout {
         text_name.text = contact?.name
         text_position.text = contact?.position
         text_phone.text = contact?.phone.also { if (contact?.phone == null) button_call.visibility = GONE }
-        text_mail.text = contact?.mail.also { if (contact?.mail == null) button_mail.visibility = GONE }
-        text_info.text = contact?.info
+        text_mail.text = contact?.email.also { if (contact?.email == null) button_mail.visibility = GONE }
+        text_info.text = contact?.position
     }
 
     fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {

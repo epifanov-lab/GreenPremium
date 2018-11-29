@@ -2,6 +2,7 @@ package com.lab.greenpremium.utills
 
 import android.view.View
 import android.view.ViewGroup
+import com.lab.greenpremium.data.network.ApiError
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
@@ -34,4 +35,8 @@ fun currencyFormat(amount: Double, groupingUsed: Boolean = true, decimals: Int =
     formatter.maximumFractionDigits = decimals
     formatter.isGroupingUsed = groupingUsed
     return formatter.format(amount) + " \u20BD"
+}
+
+fun getErrorMessage(throwable: Throwable): String? {
+    return (throwable as? ApiError)?.title ?: throwable.message
 }

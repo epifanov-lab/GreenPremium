@@ -6,6 +6,7 @@ const val KEY_OBJECT = "key_object"
 
 /*Data*/
 const val NO_DATA = -1
+const val REQUEST_REFRESH_TIME_MS = 300000
 
 /*UI*/
 const val DURATION_FAST = 100.toLong()

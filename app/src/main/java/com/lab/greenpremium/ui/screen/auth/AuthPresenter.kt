@@ -69,7 +69,7 @@ class AuthPresenter @Inject constructor(val view: AuthContract.View) : AuthContr
                     }
 
                     override fun onError(throwable: Throwable) {
-                        view.showError(throwable.message)
+                        view.showError(throwable)
                     }
 
                     override fun onSuccess() {

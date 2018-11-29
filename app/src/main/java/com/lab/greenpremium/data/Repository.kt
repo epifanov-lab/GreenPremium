@@ -1,17 +1,20 @@
 package com.lab.greenpremium.data
 
 import android.annotation.SuppressLint
+import com.google.gson.JsonParser
+import com.lab.greenpremium.REQUEST_REFRESH_TIME_MS
 import com.lab.greenpremium.data.entity.AuthData
 import com.lab.greenpremium.data.entity.AuthRequest
 import com.lab.greenpremium.data.entity.BaseResponse
-import com.lab.greenpremium.data.entity.Contacts
+import com.lab.greenpremium.data.entity.ContactsData
 import com.lab.greenpremium.data.local.PreferencesManager
+import com.lab.greenpremium.data.network.ApiError
 import com.lab.greenpremium.data.network.ApiMethods
 import com.lab.greenpremium.data.network.CallbackListener
-import com.lab.greenpremium.data.network.ResponseError
 import com.lab.greenpremium.utills.LogUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import retrofit2.HttpException
 import javax.inject.Inject
 
 
@@ -27,12 +30,19 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 .doFinally { listener.doAfter() }
                 .subscribe(
                         { response -> handleResponse(response, listener) },
-                        { listener.onError(it) }
+                        { error -> handleError(error, listener) }
                 )
     }
 
     @SuppressLint("CheckResult")
-    fun getContacts(listener: CallbackListener) {
+    fun updateContacts(listener: CallbackListener) {
+
+        if (UserModel.contacts != null) {
+            if (System.currentTimeMillis() - UserModel.contacts!!.time < REQUEST_REFRESH_TIME_MS) {
+                listener.onSuccess()
+            }
+        }
+
         apiMethods.getContacts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -40,14 +50,30 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 .doFinally { listener.doAfter() }
                 .subscribe(
                         { response -> handleResponse(response, listener) },
-                        { listener.onError(it) }
+                        { error -> handleError(error, listener) }
                 )
+        /*.subscribeWith(object : SingleObserver<BaseResponse<ContactsData>> {
+            override fun onSuccess(t: BaseResponse<ContactsData>) {
+                LogUtil.i("ON_SUCCESS: $t")
+                handleResponse(t, listener)
+            }
+
+            override fun onSubscribe(d: Disposable) {
+                LogUtil.i("ON_SUBSCRIBE: $d")
+            }
+
+            override fun onError(e: Throwable) {
+                LogUtil.i("ON_ERROR: $e")
+                handleError(e, listener)
+            }
+        })*/
     }
 
-    private inline fun <reified T> handleResponse(response: BaseResponse<T>, listener: CallbackListener) {
-        LogUtil.i(response.toString())
+    private inline fun <reified DATA> handleResponse(response: BaseResponse<DATA>, listener: CallbackListener) {
+        LogUtil.i("HANDLE_RESPONSE: ${response.data}")
+
         if (response.status == 200) {
-            when (T::class) {
+            when (DATA::class) {
 
                 AuthData::class -> {
                     val authData = response.data as AuthData
@@ -55,15 +81,37 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                     preferences.setToken(authData.token)
                 }
 
-                Contacts::class -> {
-                    UserModel.contacts = response.data as Contacts
+                ContactsData::class -> {
+                    UserModel.contacts = response.data as ContactsData
                 }
             }
 
             listener.onSuccess()
 
         } else {
-            listener.onError(ResponseError(response.status, response.title))
+            listener.onError(ApiError(response.status, response.title))
+        }
+
+    }
+
+    private fun handleError(throwable: Throwable, listener: CallbackListener) {
+        LogUtil.i("HANDLE_ERROR: $throwable")
+
+        fun getResponseErrorFromJson(json: String): ApiError {
+            return ApiError(
+                    JsonParser().parse(json).asJsonObject["status"].asInt,
+                    JsonParser().parse(json).asJsonObject["title"].asString
+            )
+        }
+
+        if (throwable is HttpException) {
+            val body = throwable.response().errorBody()?.string()
+
+            if (body != null) listener.onError(getResponseErrorFromJson(body))
+            else listener.onError(throwable)
+
+        } else {
+            listener.onError(throwable)
         }
     }
 }

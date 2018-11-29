@@ -31,6 +31,7 @@ enum class ValidationPatterns constructor(val pattern: String, val maxLength: In
         val matcher = pattern.matcher(s)
         return matcher.matches()
     }
+
     companion object {
         fun asList(): List<ValidationPatterns> {
             return ArrayList(EnumSet.allOf(ValidationPatterns::class.java))

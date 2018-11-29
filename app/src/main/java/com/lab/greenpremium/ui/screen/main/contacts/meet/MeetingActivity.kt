@@ -6,7 +6,6 @@ import android.support.v7.widget.RecyclerView
 import com.lab.greenpremium.App
 import com.lab.greenpremium.MEETING_MINUTE_STEP
 import com.lab.greenpremium.R
-import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.utills.getMockContactList
 import com.lab.greenpremium.utills.setTouchAnimationShrink
@@ -57,7 +56,7 @@ class MeetingActivity : BaseActivity(), MeetingContract.View {
         PagerSnapHelper().attachToRecyclerView(recycler_contacts)
 
         recycler_contacts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recycler_contacts.adapter = ContactsRecyclerAdapter(model.contactList, LinearLayoutManager.HORIZONTAL, this.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+        //recycler_contacts.adapter = ContactsRecyclerAdapter(model.contactList, LinearLayoutManager.HORIZONTAL, this.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
         indicator_contacts.attachToRecyclerView(recycler_contacts)
 
         recycler_contacts.addOnScrollListener(object : RecyclerView.OnScrollListener() {

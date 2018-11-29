@@ -2,203 +2,216 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_contacts"
+    <RelativeLayout
+        android:id="@+id/container_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:clipToPadding="false" />
+        android:layout_height="match_parent">
 
-    <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
-        android:id="@+id/indicator_contacts"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/recycler_contacts"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/space_medium_2"
-        app:spi_dotColor="@color/green_1_50"
-        app:spi_dotSelectedColor="@color/green_1" />
-
-    <LinearLayout
-        android:id="@+id/container_complex"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/indicator_contacts"
-        android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/button_calc_service"
-            style="@style/Button.Green"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/space_medium_2"
-            android:layout_marginLeft="@dimen/space_medium_3"
-            android:layout_marginRight="@dimen/space_medium_3"
-            android:gravity="center"
-            android:text="@string/profile_calc_service"
-            android:visibility="visible" />
-
-        <LinearLayout
-            android:id="@+id/container_cost"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/green_button_height"
-            android:layout_marginBottom="@dimen/space_medium_2"
-            android:background="@color/white"
-            android:orientation="horizontal"
-            android:paddingLeft="@dimen/space_medium_2"
-            android:paddingRight="@dimen/space_medium_2"
-            android:visibility="gone">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="3"
-                android:fontFamily="@font/sfuitext_regular"
-                android:gravity="end|center_vertical"
-                android:text="@string/profile_label_hint_service_cost"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12" />
-
-            <TextView
-                android:id="@+id/text_service_price"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/space_small_3"
-                android:layout_weight="2"
-                android:fontFamily="@font/sfuitext_medium"
-                android:gravity="center"
-                tools:text="33.000$"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_20" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/container_no_events"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recycler_contacts"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/beige"
-            android:clickable="true"
-            android:focusable="true"
-            android:orientation="horizontal"
-            android:padding="@dimen/space_medium_1"
-            android:visibility="visible">
+            android:clipToPadding="false" />
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:fontFamily="@font/sfuitext_regular"
-                android:gravity="center_vertical"
-                android:text="@string/profile_label_hint_no_events"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12" />
-
-            <TextView
-                android:id="@+id/button_start_shopping"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:drawableEnd="@drawable/ic_next"
-                android:fontFamily="@font/sfuitext_regular"
-                android:gravity="start"
-                android:padding="@dimen/space_small_2"
-                android:text="@string/profile_label_shop"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <ScrollView
-        android:id="@+id/container_events"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/container_complex"
-        android:background="@color/beige"
-        android:isScrollContainer="true"
-        android:nestedScrollingEnabled="false"
-        android:orientation="vertical"
-        android:overScrollMode="never"
-        android:paddingLeft="@dimen/space_medium_2"
-        android:paddingRight="@dimen/space_medium_2"
-        android:scrollbars="none"
-        android:visibility="gone">
+        <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
+            android:id="@+id/indicator_contacts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/recycler_contacts"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="@dimen/space_medium_2"
+            app:spi_dotColor="@color/green_1_50"
+            app:spi_dotSelectedColor="@color/green_1" />
 
         <LinearLayout
+            android:id="@+id/container_complex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_below="@id/indicator_contacts"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/button_calc_service"
+                style="@style/Button.Green"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="@dimen/space_medium_3"
+                android:layout_marginRight="@dimen/space_medium_3"
+                android:layout_marginBottom="@dimen/space_medium_2"
+                android:gravity="center"
+                android:text="@string/profile_calc_service"
+                android:visibility="visible" />
+
             <LinearLayout
-                android:id="@+id/container_delivery_schedule"
+                android:id="@+id/container_cost"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/space_medium_1"
-                android:layout_marginTop="@dimen/space_medium_4"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:id="@+id/container_date"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/space_medium_1"
-                    android:background="@drawable/ic_calendar_white"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    android:paddingTop="@dimen/space_small_1">
-
-                    <TextView
-                        android:id="@+id/text_date_day"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sfuitext_medium"
-                        android:gravity="center"
-                        android:textColor="@color/gray_light_1"
-                        android:textSize="@dimen/font_size_14"
-                        tools:text="10" />
-
-                    <TextView
-                        android:id="@+id/text_date_month"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/sfuitext_medium"
-                        android:gravity="center"
-                        android:textColor="@color/gray_light_1"
-                        android:textSize="@dimen/font_size_9"
-                        tools:text="июля" />
-                </LinearLayout>
+                android:layout_height="@dimen/green_button_height"
+                android:layout_marginBottom="@dimen/space_medium_2"
+                android:background="@color/white"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/space_medium_2"
+                android:paddingRight="@dimen/space_medium_2"
+                android:visibility="gone">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:fontFamily="@font/sfuitext_regular"
-                    android:gravity="center_vertical"
-                    android:text="@string/profile_label_hint_delivery_scheduled"
+                    android:gravity="end|center_vertical"
+                    android:text="@string/profile_label_hint_service_cost"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_size_12" />
 
-                <ImageView
+                <TextView
+                    android:id="@+id/text_service_price"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/ic_list" />
+                    android:layout_marginEnd="@dimen/space_small_3"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/sfuitext_medium"
+                    android:gravity="center"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_20"
+                    tools:text="33.000$" />
 
             </LinearLayout>
 
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recycler_events"
+            <LinearLayout
+                android:id="@+id/container_no_events"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/bottom_navigation_bar_height" />
+                android:background="@color/beige"
+                android:clickable="true"
+                android:focusable="true"
+                android:orientation="horizontal"
+                android:padding="@dimen/space_medium_1"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/profile_label_hint_no_events"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_12" />
+
+                <TextView
+                    android:id="@+id/button_start_shopping"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:drawableEnd="@drawable/ic_next"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:gravity="start"
+                    android:padding="@dimen/space_small_2"
+                    android:text="@string/profile_label_shop"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_12" />
+
+            </LinearLayout>
         </LinearLayout>
 
-    </ScrollView>
+        <ScrollView
+            android:id="@+id/container_events"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/container_complex"
+            android:background="@color/beige"
+            android:isScrollContainer="true"
+            android:nestedScrollingEnabled="false"
+            android:orientation="vertical"
+            android:overScrollMode="never"
+            android:paddingLeft="@dimen/space_medium_2"
+            android:paddingRight="@dimen/space_medium_2"
+            android:scrollbars="none"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/container_delivery_schedule"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_medium_4"
+                    android:layout_marginBottom="@dimen/space_medium_1"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/container_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/space_medium_1"
+                        android:background="@drawable/ic_calendar_white"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:paddingTop="@dimen/space_small_1">
+
+                        <TextView
+                            android:id="@+id/text_date_day"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sfuitext_medium"
+                            android:gravity="center"
+                            android:textColor="@color/gray_light_1"
+                            android:textSize="@dimen/font_size_14"
+                            tools:text="10" />
+
+                        <TextView
+                            android:id="@+id/text_date_month"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/sfuitext_medium"
+                            android:gravity="center"
+                            android:textColor="@color/gray_light_1"
+                            android:textSize="@dimen/font_size_9"
+                            tools:text="июля" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center_vertical"
+                        android:text="@string/profile_label_hint_delivery_scheduled"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_12" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/ic_list" />
+
+                </LinearLayout>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recycler_events"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/bottom_navigation_bar_height" />
+            </LinearLayout>
+
+        </ScrollView>
+    </RelativeLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        android:layout_width="@dimen/progress_bar_size"
+        android:layout_height="@dimen/progress_bar_size"
+        android:layout_centerInParent="true"
+        android:indeterminate="true"
+        android:visibility="visible" />
 
 </RelativeLayout>
