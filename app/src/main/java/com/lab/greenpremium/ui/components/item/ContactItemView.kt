@@ -8,14 +8,15 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.entity.ManagerContact
+import com.lab.greenpremium.data.entity.Contact
+import com.lab.greenpremium.data.network.glide.GlideApp
 import com.lab.greenpremium.utills.LogUtil
 import kotlinx.android.synthetic.main.view_item_contact.view.*
 
 
 class ContactItemView : RelativeLayout {
 
-    var contact: ManagerContact? = null
+    var contact: Contact? = null
         set(value) {
             LogUtil.i("CONTACT_VIEW data: $value")
             field = value
@@ -50,7 +51,8 @@ class ContactItemView : RelativeLayout {
             }
         }
 
-/*        val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        /*
+        val clipboardManager = context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
         text_phone.setOnClickListener {
             clipboardManager.primaryClip = ClipData.newPlainText("phone", text_phone.text)
@@ -60,15 +62,25 @@ class ContactItemView : RelativeLayout {
         text_mail.setOnClickListener {
             clipboardManager.primaryClip = ClipData.newPlainText("mail", text_mail.text)
             (context as BaseActivity).showToast("Mail ${text_mail.text} copied to clipboard")
-        }*/
+        }
+        */
+
     }
 
     private fun updateView() {
-        text_name.text = contact?.name
-        text_position.text = contact?.position
-        text_phone.text = contact?.phone.also { if (contact?.phone == null) button_call.visibility = GONE }
-        text_mail.text = contact?.email.also { if (contact?.email == null) button_mail.visibility = GONE }
-        text_info.text = contact?.position
+        contact?.let {
+            text_name.text = it.name
+            text_position.text = it.position
+            text_phone.text = it.phone.also { if (contact?.phone == null) button_call.visibility = GONE }
+            text_mail.text = it.email.also { if (contact?.email == null) button_mail.visibility = GONE }
+            text_info.text = it.position
+
+            if (!it.photo.isNullOrEmpty()){
+                GlideApp.with(context)
+                        .load(contact?.photo)
+                        .into(image)
+            }
+        }
     }
 
     fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {

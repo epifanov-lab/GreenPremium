@@ -52,21 +52,6 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                         { response -> handleResponse(response, listener) },
                         { error -> handleError(error, listener) }
                 )
-        /*.subscribeWith(object : SingleObserver<BaseResponse<ContactsData>> {
-            override fun onSuccess(t: BaseResponse<ContactsData>) {
-                LogUtil.i("ON_SUCCESS: $t")
-                handleResponse(t, listener)
-            }
-
-            override fun onSubscribe(d: Disposable) {
-                LogUtil.i("ON_SUBSCRIBE: $d")
-            }
-
-            override fun onError(e: Throwable) {
-                LogUtil.i("ON_ERROR: $e")
-                handleError(e, listener)
-            }
-        })*/
     }
 
     private inline fun <reified DATA> handleResponse(response: BaseResponse<DATA>, listener: CallbackListener) {

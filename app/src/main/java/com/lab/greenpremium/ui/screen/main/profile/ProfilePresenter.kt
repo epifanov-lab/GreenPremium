@@ -26,8 +26,7 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
             }
 
             override fun onSuccess() {
-                //view.initializeContactsCarousel(UserModel.contacts!!.managers)
-                LogUtil.i("SUCCESS: ${UserModel.contacts}")
+                view.initializeContactsCarousel(UserModel.contacts!!.getManagers())
             }
         })
     }

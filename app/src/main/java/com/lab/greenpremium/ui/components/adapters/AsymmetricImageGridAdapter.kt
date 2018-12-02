@@ -29,6 +29,7 @@ class AsymmetricImageGridAdapter(private val context: Context, private val image
         val image = images[position]
         holder.view.layoutParams.width = image.width
         holder.view.layoutParams.height = image.height
+
         Glide.with(context)
                 .load(image.url)
                 .into(holder.view)

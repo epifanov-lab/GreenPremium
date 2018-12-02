@@ -7,7 +7,7 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.entity.ManagerContact
+import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.ui.components.ScrollLayoutManager
 import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.ui.components.adapters.EventsRecyclerAdapter
@@ -63,7 +63,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         progress.visibility = if (show) View.INVISIBLE else View.VISIBLE
     }
 
-    override fun initializeContactsCarousel(contacts: List<ManagerContact>) {
+    override fun initializeContactsCarousel(contacts: List<Contact>) {
         PagerSnapHelper().attachToRecyclerView(recycler_contacts)
         recycler_contacts.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
         recycler_contacts.adapter = ContactsRecyclerAdapter(contacts, LinearLayoutManager.HORIZONTAL, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())

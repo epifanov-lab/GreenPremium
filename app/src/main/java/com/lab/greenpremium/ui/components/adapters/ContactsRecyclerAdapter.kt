@@ -5,12 +5,12 @@ import android.support.v7.widget.LinearLayoutManager.HORIZONTAL
 import android.support.v7.widget.LinearLayoutManager.VERTICAL
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.lab.greenpremium.data.entity.ManagerContact
+import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.ui.components.item.ContactItemView
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 
 
-class ContactsRecyclerAdapter(private val list: List<ManagerContact>, private val orientation: Int = LinearLayoutManager.VERTICAL, private val margin: Int?) : RecyclerView.Adapter<ContactsRecyclerAdapter.ViewHolder>() {
+class ContactsRecyclerAdapter(private val list: List<Contact>, private val orientation: Int = LinearLayoutManager.VERTICAL, private val margin: Int?) : RecyclerView.Adapter<ContactsRecyclerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = ContactItemView(parent.context)
