@@ -7,10 +7,8 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.entity.raw.Event
+import com.lab.greenpremium.data.entity.Event
 import kotlinx.android.synthetic.main.view_item_event.view.*
-import java.text.SimpleDateFormat
-import java.util.*
 
 
 class EventItemView : RelativeLayout {
@@ -30,9 +28,9 @@ class EventItemView : RelativeLayout {
     }
 
     private fun updateView() {
-        text_info.text = event?.info
-        text_date_time.text = SimpleDateFormat("dd.MM.yyyy hh:mm", Locale.getDefault()).format(event?.date)
-        event?.let { container_pdf.visibility = if (event?.pdf!!) View.VISIBLE else View.INVISIBLE }
+        text_info.text = event?.message
+        text_date_time.text = event?.created
+        event?.let { container_pdf.visibility = if (event?.object_id.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE }
     }
 
     fun setNum(num: Int) {
@@ -51,4 +49,5 @@ class EventItemView : RelativeLayout {
         this.layoutParams = p
         this.requestLayout()
     }
+
 }

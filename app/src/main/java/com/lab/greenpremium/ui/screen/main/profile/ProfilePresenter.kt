@@ -1,9 +1,10 @@
 package com.lab.greenpremium.ui.screen.main.profile
 
+import android.view.View
 import com.lab.greenpremium.data.Repository
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.network.CallbackListener
-import com.lab.greenpremium.utills.LogUtil
+import com.lab.greenpremium.data.network.DefaultCallbackListener
 import javax.inject.Inject
 
 class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : ProfileContract.Presenter {
@@ -12,23 +13,39 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
     internal lateinit var repository: Repository
 
     override fun onViewCreated() {
-        repository.updateContacts(object : CallbackListener {
-            override fun doBefore() {
-                view.showLoadingStub(false)
-            }
+        updateObjectInfo()
+        updateEvents()
+    }
 
-            override fun doAfter() {
-                view.showLoadingStub(true)
-            }
-
-            override fun onError(throwable: Throwable) {
-                view.showError(throwable)
-            }
-
+    private fun updateObjectInfo() {
+        repository.updateObjectsInfo(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                view.initializeContactsCarousel(UserModel.contacts!!.getManagers())
+                val biologists = UserModel.objectInfo!!.biologists
+                if (biologists.isNotEmpty()) this@ProfilePresenter.view.initializeContactsCarousel(biologists)
+                else updateContacts()
             }
         })
     }
 
+    private fun updateContacts() {
+        repository.updateContacts(object : DefaultCallbackListener(view) {
+            override fun onSuccess() {
+                val contacts = UserModel.contacts!!.getManagers()
+                if (contacts.isNotEmpty()) {
+                    this@ProfilePresenter.view.initializeContactsCarousel(contacts.subList(0, 1))
+                }
+            }
+        })
+    }
+
+    private fun updateEvents() {
+        repository.updateEvents(object  : DefaultCallbackListener(view) {
+            override fun onSuccess() {
+                val events = UserModel.eventsData!!.events
+                if (events.isNotEmpty()) {
+                    this@ProfilePresenter.view.initializeEventsList(events)
+                }
+            }
+        })
+    }
 }

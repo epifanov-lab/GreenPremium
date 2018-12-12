@@ -8,12 +8,12 @@ import android.view.View.VISIBLE
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Contact
+import com.lab.greenpremium.data.entity.Event
 import com.lab.greenpremium.ui.components.ScrollLayoutManager
 import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.ui.components.adapters.EventsRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.utills.OnAnimationEndListener
-import com.lab.greenpremium.utills.getMockEventsList
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_profile.*
 import javax.inject.Inject
@@ -70,8 +70,11 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         indicator_contacts.attachToRecyclerView(recycler_contacts)
     }
 
-    private fun initializeEventsList() {
+    override fun initializeEventsList(events: List<Event>) {
+        button_calc_service.visibility = GONE
+        container_cost.visibility = VISIBLE
+
         recycler_events.layoutManager = ScrollLayoutManager(context).also { it.setScrollEnabled(false) }
-        recycler_events.adapter = EventsRecyclerAdapter(getMockEventsList())
+        recycler_events.adapter = EventsRecyclerAdapter(events)
     }
 }

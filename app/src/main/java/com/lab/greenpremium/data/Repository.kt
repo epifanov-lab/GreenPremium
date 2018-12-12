@@ -3,10 +3,7 @@ package com.lab.greenpremium.data
 import android.annotation.SuppressLint
 import com.google.gson.JsonParser
 import com.lab.greenpremium.REQUEST_REFRESH_TIME_MS
-import com.lab.greenpremium.data.entity.AuthData
-import com.lab.greenpremium.data.entity.AuthRequest
-import com.lab.greenpremium.data.entity.BaseResponse
-import com.lab.greenpremium.data.entity.ContactsData
+import com.lab.greenpremium.data.entity.*
 import com.lab.greenpremium.data.local.PreferencesManager
 import com.lab.greenpremium.data.network.ApiError
 import com.lab.greenpremium.data.network.ApiMethods
@@ -54,6 +51,76 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 )
     }
 
+    @SuppressLint("CheckResult")
+    fun updateObjectsInfo(listener: CallbackListener) {
+
+        if (UserModel.objectInfo != null) {
+            if (System.currentTimeMillis() - UserModel.objectInfo!!.time < REQUEST_REFRESH_TIME_MS) {
+                listener.onSuccess()
+            }
+        }
+
+        if (UserModel.authData == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.getObjectInfo(UserModel.authData!!.token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun updateEvents(listener: CallbackListener) {
+
+        if (UserModel.eventsData != null) {
+            if (System.currentTimeMillis() - UserModel.eventsData!!.time < REQUEST_REFRESH_TIME_MS) {
+                listener.onSuccess()
+            }
+        }
+
+        if (UserModel.authData == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.getEvents(UserModel.authData!!.token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun updatePortfolio(listener: CallbackListener) {
+
+        if (UserModel.portfolio != null) {
+            if (System.currentTimeMillis() - UserModel.portfolio!!.time < REQUEST_REFRESH_TIME_MS) {
+                listener.onSuccess()
+            }
+        }
+
+        apiMethods.getPortfolio()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
     private inline fun <reified DATA> handleResponse(response: BaseResponse<DATA>, listener: CallbackListener) {
         LogUtil.i("HANDLE_RESPONSE: ${response.data}")
 
@@ -66,9 +133,10 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                     preferences.setToken(authData.token)
                 }
 
-                ContactsData::class -> {
-                    UserModel.contacts = response.data as ContactsData
-                }
+                ContactsData::class -> { UserModel.contacts = response.data as ContactsData }
+                ObjectInfo::class -> { UserModel.objectInfo = response.data as ObjectInfo }
+                EventsData::class -> { UserModel.eventsData = response.data as EventsData }
+                Portfolio::class -> { UserModel.portfolio = response.data as Portfolio }
             }
 
             listener.onSuccess()

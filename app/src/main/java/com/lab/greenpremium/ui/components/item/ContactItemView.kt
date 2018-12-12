@@ -90,4 +90,5 @@ class ContactItemView : RelativeLayout {
         this.layoutParams = p
         this.requestLayout()
     }
+
 }
