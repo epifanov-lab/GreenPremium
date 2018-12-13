@@ -37,6 +37,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
         if (UserModel.contacts != null) {
             if (System.currentTimeMillis() - UserModel.contacts!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
+                return
             }
         }
 
@@ -57,6 +58,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
         if (UserModel.objectInfo != null) {
             if (System.currentTimeMillis() - UserModel.objectInfo!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
+                return
             }
         }
 
@@ -82,6 +84,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
         if (UserModel.eventsData != null) {
             if (System.currentTimeMillis() - UserModel.eventsData!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
+                return
             }
         }
 
@@ -96,7 +99,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 .doOnSubscribe { listener.doBefore() }
                 .doFinally { listener.doAfter() }
                 .subscribe(
-                        { response -> handleResponse(response, listener) },
+                        { response -> handleResponse(BaseResponse(response.status, response.title, EventsData(response.data)), listener) },
                         { error -> handleError(error, listener) }
                 )
     }
@@ -107,6 +110,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
         if (UserModel.portfolio != null) {
             if (System.currentTimeMillis() - UserModel.portfolio!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
+                return
             }
         }
 
@@ -122,7 +126,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     private inline fun <reified DATA> handleResponse(response: BaseResponse<DATA>, listener: CallbackListener) {
-        LogUtil.i("HANDLE_RESPONSE: ${response.data}")
+        LogUtil.i("HANDLE_HTTP_RESPONSE: ${response.data}")
 
         if (response.status == 200) {
             when (DATA::class) {
@@ -133,10 +137,18 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                     preferences.setToken(authData.token)
                 }
 
-                ContactsData::class -> { UserModel.contacts = response.data as ContactsData }
-                ObjectInfo::class -> { UserModel.objectInfo = response.data as ObjectInfo }
-                EventsData::class -> { UserModel.eventsData = response.data as EventsData }
-                Portfolio::class -> { UserModel.portfolio = response.data as Portfolio }
+                ContactsData::class -> {
+                    UserModel.contacts = response.data as ContactsData
+                }
+                ObjectInfo::class -> {
+                    UserModel.objectInfo = response.data as ObjectInfo
+                }
+                EventsData::class -> {
+                    UserModel.eventsData = response.data as EventsData
+                }
+                Portfolio::class -> {
+                    UserModel.portfolio = response.data as Portfolio
+                }
             }
 
             listener.onSuccess()
@@ -148,7 +160,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     private fun handleError(throwable: Throwable, listener: CallbackListener) {
-        LogUtil.i("HANDLE_ERROR: $throwable")
+        LogUtil.i("HANDLE_HTTP_ERROR: $throwable")
 
         fun getResponseErrorFromJson(json: String): ApiError {
             return ApiError(

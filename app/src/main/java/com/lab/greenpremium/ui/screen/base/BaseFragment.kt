@@ -36,18 +36,18 @@ abstract class BaseFragment : Fragment(), PlantRecyclerAdapter.OnPlantSelectedLi
     }
 
     override fun showError(throwable: Throwable) {
-        //todo implement
+        (activity as BaseActivity).showError(throwable)
     }
 
     override fun showSnackbar(text: String?, textResId: Int?) {
-        //todo implement
+        (activity as BaseActivity).showSnackbar(text, textResId)
     }
 
     override fun showDialogMessage(text: String?, textResId: Int?) {
-        //todo implement
+        (activity as BaseActivity).showDialogMessage(text, textResId)
     }
 
     override fun showLoadingDialog(show: Boolean) {
-        //todo implement
+        (activity as BaseActivity).showLoadingDialog(show)
     }
 }

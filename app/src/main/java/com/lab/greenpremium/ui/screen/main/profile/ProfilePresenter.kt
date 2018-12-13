@@ -1,9 +1,7 @@
 package com.lab.greenpremium.ui.screen.main.profile
 
-import android.view.View
 import com.lab.greenpremium.data.Repository
 import com.lab.greenpremium.data.UserModel
-import com.lab.greenpremium.data.network.CallbackListener
 import com.lab.greenpremium.data.network.DefaultCallbackListener
 import javax.inject.Inject
 
@@ -39,13 +37,13 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
     }
 
     private fun updateEvents() {
-        repository.updateEvents(object  : DefaultCallbackListener(view) {
+        repository.updateEvents(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
                 val events = UserModel.eventsData!!.events
-                if (events.isNotEmpty()) {
-                    this@ProfilePresenter.view.initializeEventsList(events)
-                }
+                if (events.isNotEmpty()) this@ProfilePresenter.view.initializeEventsList(events)
+                else this@ProfilePresenter.view.showNoEventsContainer()
             }
         })
     }
+
 }

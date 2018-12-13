@@ -20,7 +20,7 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
         return api.getObjectInfo(token)
     }
 
-    fun getEvents(token: String): Single<BaseResponse<EventsData>> {
+    fun getEvents(token: String): Single<BaseResponse<List<Event>>> {
         return api.getEvents(token)
     }
 
@@ -43,7 +43,7 @@ interface GpApi {
     fun getObjectInfo(@Header("X-Auth-Token") token: String): Single<BaseResponse<ObjectInfo>>
 
     @GET("events")
-    fun getEvents(@Header("X-Auth-Token") token: String): Single<BaseResponse<EventsData>>
+    fun getEvents(@Header("X-Auth-Token") token: String): Single<BaseResponse<List<Event>>>
 
     @GET("portfolio")
     fun getPortfolio(): Single<BaseResponse<Portfolio>>

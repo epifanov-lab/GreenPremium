@@ -70,9 +70,14 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         indicator_contacts.attachToRecyclerView(recycler_contacts)
     }
 
+    override fun showNoEventsContainer() {
+        container_no_events.visibility = VISIBLE
+        container_events.visibility = GONE
+    }
+
     override fun initializeEventsList(events: List<Event>) {
-        button_calc_service.visibility = GONE
-        container_cost.visibility = VISIBLE
+        container_no_events.visibility = GONE
+        container_events.visibility = VISIBLE
 
         recycler_events.layoutManager = ScrollLayoutManager(context).also { it.setScrollEnabled(false) }
         recycler_events.adapter = EventsRecyclerAdapter(events)

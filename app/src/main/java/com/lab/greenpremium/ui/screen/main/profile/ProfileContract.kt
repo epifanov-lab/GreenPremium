@@ -10,6 +10,7 @@ interface ProfileContract {
         fun showLoadingStub(show: Boolean)
         fun initializeContactsCarousel(contacts: List<Contact>)
         fun initializeEventsList(events: List<Event>)
+        fun showNoEventsContainer()
     }
 
     interface Presenter {
