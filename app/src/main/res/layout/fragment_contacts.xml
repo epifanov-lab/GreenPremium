@@ -31,7 +31,7 @@
             android:layout_toEndOf="@id/button_schedule_meet"
             android:fontFamily="@font/sfuitext_medium"
             android:gravity="center"
-            android:textColor="@color/gray_light_1"
+            android:textColor="@color/black"
             android:textSize="@dimen/font_size_18"
             tools:text="15:30" />
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sfuitext_medium"
                 android:gravity="center"
-                android:textColor="@color/gray_light_1"
+                android:textColor="@color/black"
                 android:textSize="@dimen/font_size_14"
                 tools:text="10" />
 
@@ -61,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/sfuitext_medium"
                 android:gravity="center"
-                android:textColor="@color/gray_light_1"
+                android:textColor="@color/black"
                 android:textSize="@dimen/font_size_9"
                 tools:text="июля" />
         </LinearLayout>

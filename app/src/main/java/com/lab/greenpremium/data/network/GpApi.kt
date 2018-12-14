@@ -24,15 +24,24 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
         return api.getEvents(token)
     }
 
+    fun getMeetingsList(token: String): Single<BaseResponse<List<Meeting>>> {
+        return api.getMeetingsList(token)
+    }
+
+    fun addMeeting(token: String, manager_id: String, date: String): Single<BaseResponse<MeetingsAddResponse>> {
+        return api.addMeeting(token, manager_id, date)
+    }
+
     fun getPortfolio(): Single<BaseResponse<Portfolio>> {
         return api.getPortfolio()
     }
+
 }
 
 interface GpApi {
 
-    @FormUrlEncoded
     @POST("auth")
+    @FormUrlEncoded
     fun auth(@Field("login") login: String,
              @Field("password") password: String): Single<BaseResponse<AuthData>>
 
@@ -44,6 +53,15 @@ interface GpApi {
 
     @GET("events")
     fun getEvents(@Header("X-Auth-Token") token: String): Single<BaseResponse<List<Event>>>
+
+    @GET("meetings")
+    fun getMeetingsList(@Header("X-Auth-Token") token: String): Single<BaseResponse<List<Meeting>>>
+
+    @POST("meetings/add")
+    @FormUrlEncoded
+    fun addMeeting(@Header("X-Auth-Token") token: String,
+                   @Field("manager_id") manager_id: String,
+                   @Field("date") date: String): Single<BaseResponse<MeetingsAddResponse>>
 
     @GET("portfolio")
     fun getPortfolio(): Single<BaseResponse<Portfolio>>

@@ -1,15 +1,17 @@
 package com.lab.greenpremium.ui.screen.main.contacts.meet
 
+import android.app.Activity
+import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
 import android.support.v7.widget.RecyclerView
 import com.lab.greenpremium.App
+import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.MEETING_MINUTE_STEP
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseActivity
-import com.lab.greenpremium.utills.getMockContactList
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import com.shawnlin.numberpicker.NumberPicker
 import kotlinx.android.synthetic.main.activity_meeting.*
@@ -41,14 +43,11 @@ class MeetingActivity : BaseActivity(), MeetingContract.View {
     override fun initViews() {
         presenter.onViewCreated()
 
-        model = MeetingModel(getMockContactList())
+        model = MeetingModel()
 
         initializeDateTimePickers()
 
-        button_proceed.setOnClickListener {
-            showSnackbar("Встреча с ${model.contactList[model.pickedContactPos].name} назначена на" +
-                    " ${SimpleDateFormat("dd MMMM HH:mm", Locale("ru")).format(model.pickedTime)}")
-        }
+        button_proceed.setOnClickListener { presenter.addMeeting(model) }
 
         button_back.setOnClickListener { finish() }
 
@@ -90,6 +89,7 @@ class MeetingActivity : BaseActivity(), MeetingContract.View {
                     R.id.picker_hour -> model.hour = newVal
                     R.id.picker_minute -> model.minute = newVal
                 }
+
                 model.calculateTime()
             }
         }
@@ -108,5 +108,18 @@ class MeetingActivity : BaseActivity(), MeetingContract.View {
         initPicker(picker_day, days.toTypedArray())
         initPicker(picker_hour, hours)
         initPicker(picker_minute, minutes)
+    }
+
+    override fun finishWithMessage(message: String?) {
+        val intent = Intent()
+        if (message != null) {
+            intent.putExtra(KEY_OBJECT, message)
+            setResult(Activity.RESULT_OK, intent)
+
+        } else {
+            setResult(Activity.RESULT_CANCELED, intent)
+        }
+
+        finish()
     }
 }

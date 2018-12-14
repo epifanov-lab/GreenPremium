@@ -105,6 +105,50 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
+    fun updateMeetingsList(listener: CallbackListener) {
+
+        if (UserModel.meetingsListData != null) {
+            if (System.currentTimeMillis() - UserModel.meetingsListData!!.time < REQUEST_REFRESH_TIME_MS) {
+                listener.onSuccess()
+                return
+            }
+        }
+
+        if (UserModel.authData == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.getMeetingsList(UserModel.authData!!.token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(BaseResponse(response.status, response.title, MeetingsListData(response.data)), listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun addMeeting(manager_id: String, date: String, listener: CallbackListener) {
+        if (UserModel.authData == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.addMeeting(UserModel.authData!!.token, manager_id, date)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
     fun updatePortfolio(listener: CallbackListener) {
 
         if (UserModel.portfolio != null) {
@@ -140,12 +184,23 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 ContactsData::class -> {
                     UserModel.contacts = response.data as ContactsData
                 }
+
                 ObjectInfo::class -> {
                     UserModel.objectInfo = response.data as ObjectInfo
                 }
+
                 EventsData::class -> {
                     UserModel.eventsData = response.data as EventsData
                 }
+
+                MeetingsListData::class -> {
+                    UserModel.meetingsListData = response.data as MeetingsListData
+                }
+
+                MeetingsAddResponse::class -> {
+                    // TODO
+                }
+
                 Portfolio::class -> {
                     UserModel.portfolio = response.data as Portfolio
                 }

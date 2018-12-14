@@ -11,6 +11,7 @@ object UserModel {
     var contacts: ContactsData? = null
     var objectInfo: ObjectInfo? = null
     var eventsData: EventsData? = null
+    var meetingsListData: MeetingsListData? = null
     var portfolio: Portfolio? = null
 
     //TODO move to another repo

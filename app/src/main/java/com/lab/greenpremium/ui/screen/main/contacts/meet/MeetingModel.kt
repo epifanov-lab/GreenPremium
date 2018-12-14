@@ -1,12 +1,10 @@
 package com.lab.greenpremium.ui.screen.main.contacts.meet
 
 import com.lab.greenpremium.MEETING_MINUTE_STEP
-import com.lab.greenpremium.data.entity.raw.Contact
 import java.util.*
 
 
-class MeetingModel(val contactList: List<Contact>,
-                   var pickedContactPos: Int = 0,
+class MeetingModel(var pickedContactPos: Int = 0,
                    var dayPos: Int = 0,
                    var hour: Int = 12,
                    var minute: Int = 0,

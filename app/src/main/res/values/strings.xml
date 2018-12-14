@@ -51,6 +51,7 @@
     <string name="contacts_meet_date_and_time">Дата и время</string>
     <string name="contacts_schedule_meet">Назначить встречу</string>
     <string name="contacts_message_employee_meeting">Вы можете назначить встречу с одним из наших сотрудников</string>
+    <string name="contacts_message_employee_meeting_when_set">У вас уже назначена встреча</string>
 
     <string name="cart_get_bill">Запросить счёт</string>
     <string name="cart_title_total">Общая стоимость</string>

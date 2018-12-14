@@ -5,6 +5,9 @@ import android.view.ViewGroup
 import com.lab.greenpremium.data.network.ApiError
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
+import java.text.SimpleDateFormat
+import java.text.ParseException
+import java.util.*
 
 
 operator fun ViewGroup.get(pos: Int): View = getChildAt(pos)
@@ -39,4 +42,39 @@ fun currencyFormat(amount: Double, groupingUsed: Boolean = true, decimals: Int =
 
 fun getErrorMessage(throwable: Throwable): String? {
     return (throwable as? ApiError)?.title ?: throwable.message
+}
+
+fun getTimestampFromDateString(dateString: String?, dateFormat: SimpleDateFormat = SimpleDateFormat("dd-mm-yyyy hh:mm:ss", Locale.getDefault())): Long? {
+    if (dateString == null) return null
+
+    var result: Long = 0
+    try {
+        result = dateFormat.parse(dateString).time
+    } catch (e: ParseException) {
+        e.printStackTrace()
+    }
+
+    return result
+}
+
+fun getFormattedDateString(timestamp: Long): String {
+    return SimpleDateFormat("dd.mm.yyyy hh:mm:ss", Locale.getDefault()).format(timestamp)
+}
+
+fun getTimeFromTimestamp(timestamp: Long): String {
+    val sdf = SimpleDateFormat("hh:mm", Locale.getDefault())
+    return sdf.format(timestamp)
+}
+
+fun geDayFromTimestamp(timestamp: Long): String {
+    val sdf = SimpleDateFormat("dd", Locale.getDefault())
+    return sdf.format(timestamp)
+}
+
+fun getMonthStringFromTimestamp(timestamp: Long): String {
+    val ruMonthNames = arrayOf("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+            "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь")
+    val calendar = Calendar.getInstance()
+    calendar.time = Date(timestamp)
+    return ruMonthNames[calendar.get(Calendar.MONTH)]
 }

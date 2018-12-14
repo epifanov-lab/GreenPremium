@@ -1,15 +1,16 @@
 package com.lab.greenpremium.ui.screen.main
 
 import android.animation.Animator
+import android.content.Intent
+import android.os.Handler
 import android.support.design.widget.BottomNavigationView
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewAnimationUtils
 import com.getbase.floatingactionbutton.FloatingActionsMenu
-import com.lab.greenpremium.App
-import com.lab.greenpremium.DURATION_FAST
-import com.lab.greenpremium.R
+import com.lab.greenpremium.*
+import com.lab.greenpremium.data.MeetingAddedEvent
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.ui.components.BottomNavigationViewHelper
 import com.lab.greenpremium.ui.screen.base.BaseActivity
@@ -192,5 +193,18 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     override fun onBackPressed() {
         finishAffinity()
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            KEY_RESULT_ADD_MEETING -> {
+                Handler().post {
+                    EventBus.getDefault().post(MeetingAddedEvent())
+                    val message = data!!.getStringExtra(KEY_OBJECT)
+                    showSnackbar(message)
+                }
+            }
+
+        }
     }
 }

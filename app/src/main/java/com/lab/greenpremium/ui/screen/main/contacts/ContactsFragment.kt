@@ -2,14 +2,24 @@ package com.lab.greenpremium.ui.screen.main.contacts
 
 import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
+import android.view.View.INVISIBLE
+import android.view.View.VISIBLE
 import com.lab.greenpremium.App
+import com.lab.greenpremium.KEY_RESULT_ADD_MEETING
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.MeetingAddedEvent
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.ui.screen.main.contacts.meet.MeetingActivity
+import com.lab.greenpremium.utills.geDayFromTimestamp
+import com.lab.greenpremium.utills.getMonthStringFromTimestamp
+import com.lab.greenpremium.utills.getTimeFromTimestamp
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_contacts.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 
@@ -37,9 +47,7 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
     override fun initViews() {
         presenter.onViewCreated()
 
-        updateTimeLabels(System.currentTimeMillis())
-
-        button_schedule_meet.setOnClickListener { startActivity(Intent(context, MeetingActivity::class.java)) }
+        button_schedule_meet.setOnClickListener { activity?.startActivityForResult(Intent(context, MeetingActivity::class.java), KEY_RESULT_ADD_MEETING) }
 
         setTouchAnimationShrink(button_schedule_meet)
     }
@@ -49,7 +57,30 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
         recycler_contacts.adapter = ContactsRecyclerAdapter(contacts, LinearLayoutManager.VERTICAL, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
     }
 
-    private fun updateTimeLabels(time: Long) {
+    override fun updateNextMeetingLabels(timestamp: Long?) {
+        text_time.visibility = if (timestamp != null) VISIBLE else INVISIBLE
+        container_date.visibility = if (timestamp != null) VISIBLE else INVISIBLE
+        text_message.text = getString(if (timestamp != null) R.string.contacts_message_employee_meeting_when_set else R.string.contacts_message_employee_meeting)
 
+        timestamp?.let {
+            text_time.text = getTimeFromTimestamp(timestamp)
+            text_date_day.text = geDayFromTimestamp(timestamp)
+            text_date_month.text = getMonthStringFromTimestamp(timestamp)
+        }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: MeetingAddedEvent) {
+        presenter.updateMeetingList()
     }
 }

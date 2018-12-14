@@ -7,9 +7,11 @@ import com.lab.greenpremium.ui.screen.base.BaseContract
 interface MeetingContract {
     interface View : BaseContract.BaseView {
         fun initializeContactsCarousel(contacts: List<Contact>)
+        fun finishWithMessage(message: String?)
     }
 
     interface Presenter {
         fun onViewCreated()
+        fun addMeeting(model: MeetingModel)
     }
 }
