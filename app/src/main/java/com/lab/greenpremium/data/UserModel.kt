@@ -13,6 +13,7 @@ object UserModel {
     var eventsData: EventsData? = null
     var meetingsListData: MeetingsListData? = null
     var portfolio: Portfolio? = null
+    var mapObjectsData: MapObjectsData? = null
 
     //TODO move to another repo
     val plants: List<Plant> = getMockPlantList()

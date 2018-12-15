@@ -6,10 +6,12 @@ import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.MapsInitializer
 import com.google.android.gms.maps.model.BitmapDescriptorFactory
 import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.lab.greenpremium.App
 import com.lab.greenpremium.GP_OFFICE_LOCATION
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.entity.Feature
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_map.*
 import javax.inject.Inject
@@ -41,6 +43,12 @@ class MapFragment : BaseFragment(), MapContract.View {
         map_view.onCreate(savedInstanceState)
         map_view.onResume()
 
+        initializeMap()
+
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    private fun initializeMap() {
         try {
             MapsInitializer.initialize(activity!!.applicationContext)
         } catch (e: Exception) {
@@ -69,9 +77,20 @@ class MapFragment : BaseFragment(), MapContract.View {
             // For zooming automatically to the location of the marker
             val cameraPosition = CameraPosition.Builder().target(GP_OFFICE_LOCATION).zoom(15f).build()
             map.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition))
-        }
 
-        super.onViewCreated(view, savedInstanceState)
+            presenter.updateMapObjects()
+        }
+    }
+
+    override fun placeMarkers(objects: List<Feature>) {
+        objects.forEach {
+            map_view.getMapAsync { map ->
+                val coordinates = it.geometry.coordinates
+                map.addMarker(MarkerOptions()
+                        .position(LatLng(coordinates[0], coordinates[1]))
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.ic_map_marker)))
+            }
+        }
     }
 
     override fun initViews() {

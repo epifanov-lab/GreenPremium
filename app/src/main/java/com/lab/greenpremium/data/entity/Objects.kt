@@ -15,3 +15,29 @@ data class Coordinates(
         val lat: String,
         val lot: String
 )
+
+/**
+ * get /objects/map
+ * auth = false
+ * */
+data class MapObjectsData(
+        val features: List<Feature>,
+        val type: String
+)
+
+data class Feature(
+        val geometry: Geometry,
+        val id: Int,
+        val properties: Properties,
+        val type: String
+)
+
+data class Properties(
+        val balloonContent: String,
+        val iconContent: String
+)
+
+data class Geometry(
+        val coordinates: List<Double>,
+        val type: String
+)

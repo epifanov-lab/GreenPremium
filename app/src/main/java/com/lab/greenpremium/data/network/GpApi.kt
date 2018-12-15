@@ -12,16 +12,16 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
         return api.auth(request.login, request.password)
     }
 
-    fun getContacts(): Single<BaseResponse<ContactsData>> {
-        return api.getContacts()
-    }
-
     fun getObjectInfo(token: String): Single<BaseResponse<ObjectInfo>> {
         return api.getObjectInfo(token)
     }
 
     fun getEvents(token: String): Single<BaseResponse<List<Event>>> {
         return api.getEvents(token)
+    }
+
+    fun getContacts(): Single<BaseResponse<ContactsData>> {
+        return api.getContacts()
     }
 
     fun getMeetingsList(token: String): Single<BaseResponse<List<Meeting>>> {
@@ -32,6 +32,22 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
         return api.addMeeting(token, manager_id, date)
     }
 
+    fun getCatalogSections(): Single<BaseResponse<List<Section>>> {
+        return api.getCatalogSections()
+    }
+
+    fun getSectionProductsList(section_id: Int): Single<BaseResponse<List<Product>>> {
+        return api.getSectionProductsList(section_id)
+    }
+
+    fun getProductDetail(product_id: Int): Single<BaseResponse<Product>> {
+        return api.getProductDetail(product_id)
+    }
+
+    fun getMapObjects(): Single<BaseResponse<MapObjectsData>> {
+        return api.getMapObjects()
+    }
+
     fun getPortfolio(): Single<BaseResponse<Portfolio>> {
         return api.getPortfolio()
     }
@@ -40,13 +56,10 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
 
 interface GpApi {
 
-    @POST("auth")
     @FormUrlEncoded
+    @POST("auth")
     fun auth(@Field("login") login: String,
              @Field("password") password: String): Single<BaseResponse<AuthData>>
-
-    @GET("contacts")
-    fun getContacts(): Single<BaseResponse<ContactsData>>
 
     @GET("objects/info")
     fun getObjectInfo(@Header("X-Auth-Token") token: String): Single<BaseResponse<ObjectInfo>>
@@ -54,16 +67,33 @@ interface GpApi {
     @GET("events")
     fun getEvents(@Header("X-Auth-Token") token: String): Single<BaseResponse<List<Event>>>
 
+    @GET("contacts")
+    fun getContacts(): Single<BaseResponse<ContactsData>>
+
     @GET("meetings")
     fun getMeetingsList(@Header("X-Auth-Token") token: String): Single<BaseResponse<List<Meeting>>>
 
-    @POST("meetings/add")
     @FormUrlEncoded
+    @POST("meetings/add")
     fun addMeeting(@Header("X-Auth-Token") token: String,
                    @Field("manager_id") manager_id: String,
                    @Field("date") date: String): Single<BaseResponse<MeetingsAddResponse>>
 
+    @GET("catalog/sections")
+    fun getCatalogSections(): Single<BaseResponse<List<Section>>>
+
+    @FormUrlEncoded
+    @GET("catalog/sections")
+    fun getSectionProductsList(@Field("section_id") section_id: Int): Single<BaseResponse<List<Product>>>
+
+    @FormUrlEncoded
+    @GET("catalog/products")
+    fun getProductDetail(@Field("product_id") product_id: Int): Single<BaseResponse<Product>>
+
     @GET("portfolio")
     fun getPortfolio(): Single<BaseResponse<Portfolio>>
+
+    @GET("objects/map")
+    fun getMapObjects(): Single<BaseResponse<MapObjectsData>>
 
 }

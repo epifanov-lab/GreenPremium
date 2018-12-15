@@ -149,6 +149,59 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
+    fun getCatalogSections(listener: CallbackListener) {
+        apiMethods.getCatalogSections()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(BaseResponse(response.status, response.title, CatalogSectionsData(response.data)), listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun getSectionProductsList(section_id: Int, listener: CallbackListener) {
+        apiMethods.getSectionProductsList(section_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(BaseResponse(response.status, response.title, SectionProductsData(response.data)), listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun getProductDetail(product_id: Int, listener: CallbackListener) {
+        apiMethods.getProductDetail(product_id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun updateMapObjects(listener: CallbackListener) {
+        apiMethods.getMapObjects()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+
+    @SuppressLint("CheckResult")
     fun updatePortfolio(listener: CallbackListener) {
 
         if (UserModel.portfolio != null) {
@@ -198,12 +251,29 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 }
 
                 MeetingsAddResponse::class -> {
-                    // TODO
+                    // TODO ???
+                }
+
+                CatalogSectionsData::class -> {
+
+                }
+
+                SectionProductsData::class -> {
+
+                }
+
+                Product::class -> {
+
+                }
+
+                MapObjectsData::class -> {
+                    UserModel.mapObjectsData = response.data as MapObjectsData
                 }
 
                 Portfolio::class -> {
                     UserModel.portfolio = response.data as Portfolio
                 }
+
             }
 
             listener.onSuccess()
