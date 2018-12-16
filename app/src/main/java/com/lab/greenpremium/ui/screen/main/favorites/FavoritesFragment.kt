@@ -6,7 +6,7 @@ import android.widget.LinearLayout
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.UserModel
-import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
+import com.lab.greenpremium.ui.screen.main.plants.sub.PlantRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_favorites.*
 import javax.inject.Inject

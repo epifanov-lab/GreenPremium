@@ -2,7 +2,6 @@ package com.lab.greenpremium.ui.screen.main.plants
 
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
-import com.lab.greenpremium.ui.components.adapters.PlantsPagerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_plants.*
 import javax.inject.Inject
@@ -29,10 +28,10 @@ class PlantsFragment : BaseFragment(), PlantsContract.View {
     }
 
     override fun initViews() {
-        initializeTabs()
+        presenter.onViewCreated()
     }
 
-    private fun initializeTabs() {
+    override fun initializeTabs() {
         pager.adapter = PlantsPagerAdapter(activity?.supportFragmentManager, context)
         tab_layout.setupWithViewPager(pager)
     }

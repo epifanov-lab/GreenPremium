@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.entity.raw.Plant
-import com.lab.greenpremium.ui.components.adapters.PlantRecyclerAdapter
+import com.lab.greenpremium.ui.screen.main.plants.sub.PlantRecyclerAdapter
 
 
 abstract class BaseFragment : Fragment(), PlantRecyclerAdapter.OnPlantSelectedListener, BaseContract.BaseView {

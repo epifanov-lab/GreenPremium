@@ -1,4 +1,4 @@
-package com.lab.greenpremium.ui.components.adapters
+package com.lab.greenpremium.ui.screen.main.plants
 
 
 import android.content.Context
@@ -22,4 +22,5 @@ class PlantsPagerAdapter(fm: FragmentManager?, private val context: Context?) : 
     override fun getCount(): Int {
         return Plant.Type.values().size
     }
+
 }

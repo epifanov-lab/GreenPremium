@@ -1,4 +1,4 @@
-package com.lab.greenpremium.ui.components.adapters
+package com.lab.greenpremium.ui.screen.main.portfolio
 
 import android.content.Context
 import android.support.v4.content.ContextCompat

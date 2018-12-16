@@ -1,4 +1,4 @@
-package com.lab.greenpremium.ui.components.adapters
+package com.lab.greenpremium.ui.screen.main.plants.sub
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup

@@ -12,8 +12,10 @@ data class CatalogSectionsData(val sections: List<Section>) {
 data class Section(
         val id: String,
         val name: String,
-        val sort: String
-)
+        val sort: String) {
+
+    var products: List<Product>? = null
+}
 
 /**
  * get /catalog/sections/{section_id}

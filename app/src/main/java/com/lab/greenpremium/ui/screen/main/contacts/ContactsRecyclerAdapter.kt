@@ -1,4 +1,4 @@
-package com.lab.greenpremium.ui.components.adapters
+package com.lab.greenpremium.ui.screen.main.contacts
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearLayoutManager.HORIZONTAL

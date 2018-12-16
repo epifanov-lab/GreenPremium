@@ -10,7 +10,7 @@ import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.MEETING_MINUTE_STEP
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Contact
-import com.lab.greenpremium.ui.components.adapters.ContactsRecyclerAdapter
+import com.lab.greenpremium.ui.screen.main.contacts.ContactsRecyclerAdapter
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import com.shawnlin.numberpicker.NumberPicker
