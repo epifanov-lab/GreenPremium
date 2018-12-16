@@ -12,6 +12,7 @@ import com.lab.greenpremium.utills.LogUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
+import java.lang.Exception
 import javax.inject.Inject
 
 
@@ -162,20 +163,23 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun getSectionProductsList(section_id: Int, listener: CallbackListener) {
+    fun getSectionProductsList(section_id: String, listener: CallbackListener) {
         apiMethods.getSectionProductsList(section_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
                 .doFinally { listener.doAfter() }
                 .subscribe(
-                        { response -> handleResponse(BaseResponse(response.status, response.title, SectionProductsData(response.data)), listener) },
+                        { response -> handleResponse(
+                                BaseResponse(response.status, response.title, SectionProductsData(response.data)),
+                                listener, section_id) },
+
                         { error -> handleError(error, listener) }
                 )
     }
 
     @SuppressLint("CheckResult")
-    fun getProductDetail(product_id: Int, listener: CallbackListener) {
+    fun getProductDetail(product_id: String, listener: CallbackListener) {
         apiMethods.getProductDetail(product_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -222,7 +226,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 )
     }
 
-    private inline fun <reified DATA> handleResponse(response: BaseResponse<DATA>, listener: CallbackListener) {
+    private inline fun <reified DATA> handleResponse(response: BaseResponse<DATA>, listener: CallbackListener, request_parameter: String? = null) {
         LogUtil.i("HANDLE_HTTP_RESPONSE: ${response.data}")
 
         if (response.status == 200) {
@@ -255,15 +259,32 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 }
 
                 CatalogSectionsData::class -> {
-
+                    UserModel.catalogSectionsData = response.data as CatalogSectionsData
                 }
 
                 SectionProductsData::class -> {
-
+                    val catalogSectionsData = UserModel.catalogSectionsData
+                    try {
+                        catalogSectionsData!!.sections.forEach {
+                            if (it.id == request_parameter) {
+                                it.products = response.data as SectionProductsData }
+                        }
+                    } catch (e: Exception) {
+                        LogUtil.e(e.toString())
+                    }
                 }
 
                 Product::class -> {
-
+                    val catalogSectionsData = UserModel.catalogSectionsData
+                    try {
+                        catalogSectionsData!!.sections.forEach {
+                            if (it.id == request_parameter) {
+                                //TODO
+                            }
+                        }
+                    } catch (e: Exception) {
+                        LogUtil.e(e.toString())
+                    }
                 }
 
                 MapObjectsData::class -> {

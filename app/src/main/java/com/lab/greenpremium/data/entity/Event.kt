@@ -15,5 +15,6 @@ data class Event(
     val manager_id: String,
     val message: String,
     val object_id: String,
-    val subject: String
+    val subject: String,
+    val file_path: String
 )

@@ -14,7 +14,7 @@ data class Section(
         val name: String,
         val sort: String) {
 
-    var products: List<Product>? = null
+    var products: SectionProductsData? = null
 }
 
 /**
