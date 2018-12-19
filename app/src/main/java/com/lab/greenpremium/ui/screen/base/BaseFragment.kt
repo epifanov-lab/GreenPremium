@@ -5,12 +5,11 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.lab.greenpremium.data.UserModel
-import com.lab.greenpremium.data.entity.raw.Plant
+import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.screen.main.plants.sub.PlantRecyclerAdapter
 
 
-abstract class BaseFragment : Fragment(), PlantRecyclerAdapter.OnPlantSelectedListener, BaseContract.BaseView {
+abstract class BaseFragment : Fragment(), PlantRecyclerAdapter.OnProductSelectedListener, BaseContract.BaseView {
 
     lateinit var TAG: String
 
@@ -31,8 +30,8 @@ abstract class BaseFragment : Fragment(), PlantRecyclerAdapter.OnPlantSelectedLi
 
     protected abstract fun initViews()
 
-    override fun onPlantSelected(plant: Plant) {
-        (activity as BaseActivity).goToPlantDetailActivity(UserModel.plants.indexOf(plant))
+    override fun onPlantSelected(product: Product) {
+        (activity as BaseActivity).goToPlantDetailActivity(product)
     }
 
     override fun showError(throwable: Throwable) {

@@ -9,8 +9,10 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.entity.raw.Plant
+import com.lab.greenpremium.data.entity.Offer
+import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.utills.currencyFormat
 import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
 import kotlinx.android.synthetic.main.view_item_plant.view.*
@@ -19,7 +21,8 @@ import org.greenrobot.eventbus.EventBus
 
 class PlantItemView : RelativeLayout {
 
-    private lateinit var plant: Plant
+    private lateinit var product: Product
+    private lateinit var choosenOffer: Offer
 
     constructor(context: Context) : this(context, null)
 
@@ -29,32 +32,45 @@ class PlantItemView : RelativeLayout {
         LayoutInflater.from(context).inflate(R.layout.view_item_plant, this, true)
     }
 
-    fun setData(plant: Plant) {
-        this.plant = plant
+    fun setData(product: Product) {
+        this.product = product
+        this.choosenOffer = product.offers[0]
 
-        text_name.text = plant.name
-        text_info_1.text = plant.info1
-        text_info_2.text = plant.info2
-        text_price.text = currencyFormat(plant.price)
-        text_discount.text = currencyFormat(plant.discount)
-        plant.drawableResId?.let { image.setImageResource(it) }
+        text_name.text = product.name
 
-        updateByType(plant.type)
+        setupInfoBlock()
 
-        PlantItemCountControlsHelper(plant, text_counter, button_add, button_remove)
+        product.photo.url?.let {
+            Glide.with(context)
+                    .load(it)
+                    .into(image)
+        }
+
+        PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
 
     }
 
-    private fun updateByType(type: Plant.Type) {
-        when (type) {
-            Plant.Type.LIVING, Plant.Type.ARTIFICIAL -> {
-                showHeightSelector(false)
-            }
+    private fun setupInfoBlock() {
+        //У крупномеров может быть несколько оферов, в отличии от остальных типов растений
+        val isLargePlant = product.offers.size > 1
 
-            Plant.Type.BIG -> {
-                text_info_2.text = context.getText(R.string.title_height)
-                showHeightSelector(true)
-            }
+        if (isLargePlant) {
+            text_info_1.text = context.getString(R.string.template_s_s, choosenOffer.crown_width.name, choosenOffer.crown_width.value)
+            text_info_2.text = context.getText(R.string.title_height)
+            showHeightSelector(true)
+            //TODO INITIALIZE SELECTOR
+
+        } else {
+            text_info_1.text = context.getString(R.string.template_s_s, choosenOffer.pot_size.name, choosenOffer.pot_size.value)
+            text_info_2.text = context.getString(R.string.template_s_s, choosenOffer.item_height.name, choosenOffer.item_height.value)
+            showHeightSelector(false)
+        }
+
+        text_price.text = currencyFormat(choosenOffer.price)
+
+        choosenOffer.old_price?.let {
+            text_discount.visibility = View.VISIBLE
+            text_discount.text = currencyFormat(choosenOffer.old_price)
         }
     }
 
@@ -73,17 +89,15 @@ class PlantItemView : RelativeLayout {
     }
 
     override fun setOnClickListener(onClickListener: OnClickListener) {
-        container_image.setOnClickListener(onClickListener)
         container_info.setOnClickListener(onClickListener)
     }
 
     override fun setOnTouchListener(touchListener: OnTouchListener?) {
-        container_image.setOnTouchListener(touchListener)
         container_info.setOnTouchListener(touchListener)
     }
 }
 
-class PlantItemCountControlsHelper(val plant: Plant,
+class PlantItemCountControlsHelper(val product: Product,
                                    val counter: TextView,
                                    val add: View,
                                    val remove: View) {
@@ -96,7 +110,7 @@ class PlantItemCountControlsHelper(val plant: Plant,
     init {
 
         add.run {
-            setOnClickListener { setCounter(++plant.count) }
+            setOnClickListener { setCounter(++product.count) }
             setOnLongClickListener {
                 isIncrementing = true
                 repeatUpdateHandler.post(RptUpdater())
@@ -112,7 +126,7 @@ class PlantItemCountControlsHelper(val plant: Plant,
         }
 
         remove.run {
-            setOnClickListener { setCounter(--plant.count) }
+            setOnClickListener { setCounter(--product.count) }
             setOnLongClickListener {
                 isDecrementing = true
                 repeatUpdateHandler.post(RptUpdater())
@@ -127,23 +141,23 @@ class PlantItemCountControlsHelper(val plant: Plant,
             }
         }
 
-        setCounter(plant.count)
+        setCounter(product.count)
     }
 
     private fun setCounter(n: Int) {
-        plant.count = if (n < 0) 0 else n
-        counter.text = plant.count.toString()
+        product.count = if (n < 0) 0 else n
+        counter.text = product.count.toString()
         EventBus.getDefault().post(PlantCountChangedEvent())
     }
 
     inner class RptUpdater : Runnable {
         override fun run() {
             if (isIncrementing) {
-                setCounter(++plant.count)
+                setCounter(++product.count)
                 repeatUpdateHandler.postDelayed(RptUpdater(), 100)
 
             } else if (isDecrementing) {
-                setCounter(--plant.count)
+                setCounter(--product.count)
                 repeatUpdateHandler.postDelayed(RptUpdater(), 100)
             }
         }

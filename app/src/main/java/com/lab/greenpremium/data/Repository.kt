@@ -12,7 +12,6 @@ import com.lab.greenpremium.utills.LogUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException
-import java.lang.Exception
 import javax.inject.Inject
 
 
@@ -163,30 +162,44 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun getSectionProductsList(section_id: String, listener: CallbackListener) {
-        apiMethods.getSectionProductsList(section_id)
+    fun getSectionProductsList(section_id: Int, listener: CallbackListener) {
+
+        if (UserModel.authData == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.getSectionProductsList(UserModel.authData!!.token, section_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
                 .doFinally { listener.doAfter() }
                 .subscribe(
-                        { response -> handleResponse(
-                                BaseResponse(response.status, response.title, SectionProductsData(response.data)),
-                                listener, section_id) },
+                        { response ->
+                            handleResponse(
+                                    BaseResponse(response.status, response.title, SectionProductsData(response.data)),
+                                    listener, section_id)
+                        },
 
                         { error -> handleError(error, listener) }
                 )
     }
 
     @SuppressLint("CheckResult")
-    fun getProductDetail(product_id: String, listener: CallbackListener) {
-        apiMethods.getProductDetail(product_id)
+    fun getProductDetail(section_id: Int, product_id: Int, listener: CallbackListener) {
+
+        if (UserModel.authData == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.getProductDetail(UserModel.authData!!.token, product_id)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
                 .doFinally { listener.doAfter() }
                 .subscribe(
-                        { response -> handleResponse(response, listener) },
+                        { response -> handleResponse(response, listener, section_id, product_id) },
                         { error -> handleError(error, listener) }
                 )
     }
@@ -226,7 +239,10 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 )
     }
 
-    private inline fun <reified DATA> handleResponse(response: BaseResponse<DATA>, listener: CallbackListener, request_parameter: String? = null) {
+    private inline fun <reified DATA> handleResponse(response: BaseResponse<DATA>,
+                                                     listener: CallbackListener,
+                                                     vararg parameters: Int) {
+
         LogUtil.i("HANDLE_HTTP_RESPONSE: ${response.data}")
 
         if (response.status == 200) {
@@ -265,9 +281,10 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 SectionProductsData::class -> {
                     val catalogSectionsData = UserModel.catalogSectionsData
                     try {
-                        catalogSectionsData!!.sections.forEach {
-                            if (it.id == request_parameter) {
-                                it.products = response.data as SectionProductsData }
+                        catalogSectionsData!!.sections.forEach { section ->
+                            if (section.id == parameters[0]) {
+                                section.products = (response.data as SectionProductsData).products
+                            }
                         }
                     } catch (e: Exception) {
                         LogUtil.e(e.toString())
@@ -275,16 +292,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 }
 
                 Product::class -> {
-                    val catalogSectionsData = UserModel.catalogSectionsData
-                    try {
-                        catalogSectionsData!!.sections.forEach {
-                            if (it.id == request_parameter) {
-                                //TODO
-                            }
-                        }
-                    } catch (e: Exception) {
-                        LogUtil.e(e.toString())
-                    }
+                    // TODO
                 }
 
                 MapObjectsData::class -> {

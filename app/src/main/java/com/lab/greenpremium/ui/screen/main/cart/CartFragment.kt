@@ -6,10 +6,9 @@ import android.widget.LinearLayout
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.UserModel
-import com.lab.greenpremium.data.entity.raw.Plant
-import com.lab.greenpremium.ui.screen.main.plants.sub.PlantRecyclerAdapter
+import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.screen.base.BaseFragment
-import com.lab.greenpremium.utills.currencyFormat
+import com.lab.greenpremium.ui.screen.main.plants.sub.PlantRecyclerAdapter
 import com.lab.greenpremium.utills.eventbus.BaseEvent
 import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
 import com.lab.greenpremium.utills.setTouchAnimationShrink
@@ -25,7 +24,7 @@ class CartFragment : BaseFragment(), CartContract.View {
     @Inject
     internal lateinit var presenter: CartPresenter
 
-    private lateinit var list: List<Plant>
+    private lateinit var products: List<Product>
 
     companion object {
         fun newInstance() = CartFragment()
@@ -44,19 +43,19 @@ class CartFragment : BaseFragment(), CartContract.View {
     }
 
     override fun initViews() {
-        list = UserModel.plants.filter { it.count > 0 }
+        products = UserModel.getProductsInCartList()
 
-        if (list.isNotEmpty()) {
+        if (products.isNotEmpty()) {
             label_empty_list.visibility = View.GONE
             recycler_plants.visibility = View.VISIBLE
             recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-            recycler_plants.adapter = PlantRecyclerAdapter(list, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt(), this)
+            recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt(), this)
         } else {
             label_empty_list.visibility = View.VISIBLE
             recycler_plants.visibility = View.GONE
         }
 
-        updateTotalCost(list)
+        updateTotalCost(products)
 
         //todo подписаться на изменение полей count
 
@@ -66,14 +65,14 @@ class CartFragment : BaseFragment(), CartContract.View {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: BaseEvent) {
         when (event) {
-            is PlantCountChangedEvent -> updateTotalCost(list)
+            is PlantCountChangedEvent -> updateTotalCost(products)
         }
     }
 
-    private fun updateTotalCost(plants: List<Plant>) {
-        var total = 0.0
-        plants.forEach { total += it.price * it.count }
-        label_total_cost.text = currencyFormat(total)
+    private fun updateTotalCost(products: List<Product>) {
+        /*var total = 0.0
+        products.forEach { total += it.price * it.count }
+        label_total_cost.text = currencyFormat(total)*/
     }
 
     override fun onResume() {

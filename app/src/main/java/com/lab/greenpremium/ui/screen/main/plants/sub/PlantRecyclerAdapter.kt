@@ -2,13 +2,15 @@ package com.lab.greenpremium.ui.screen.main.plants.sub
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
-import com.lab.greenpremium.data.entity.raw.Plant
+import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.components.item.PlantItemView
 import com.lab.greenpremium.utills.OnAnimationEndListener
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 
 
-class PlantRecyclerAdapter(private val list: List<Plant>, private val margin: Int?, private val listener: OnPlantSelectedListener?) : RecyclerView.Adapter<PlantRecyclerAdapter.ViewHolder>() {
+class PlantRecyclerAdapter(private val list: List<Product>,
+                           private val margin: Int?,
+                           private val listener: OnProductSelectedListener?) : RecyclerView.Adapter<PlantRecyclerAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -41,7 +43,7 @@ class PlantRecyclerAdapter(private val list: List<Plant>, private val margin: In
 
     class ViewHolder(val view: PlantItemView) : RecyclerView.ViewHolder(view)
 
-    interface OnPlantSelectedListener {
-        fun onPlantSelected(plant: Plant)
+    interface OnProductSelectedListener {
+        fun onPlantSelected(product: Product)
     }
 }

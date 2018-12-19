@@ -6,8 +6,7 @@ import android.widget.LinearLayout
 import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.UserModel
-import com.lab.greenpremium.data.entity.raw.Plant
+import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.sub_fragment_plants.*
 import javax.inject.Inject
@@ -19,16 +18,14 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
     internal lateinit var presenter: PlantsSubPresenter
 
     companion object {
-        fun newInstance(type: Int): PlantsSubFragment {
+        fun newInstance(sectionPosition: Int): PlantsSubFragment {
             val fragment = PlantsSubFragment()
             val args = Bundle()
-            args.putInt(KEY_OBJECT, type)
+            args.putInt(KEY_OBJECT, sectionPosition)
             fragment.arguments = args
             return fragment
         }
     }
-
-    lateinit var type: Plant.Type
 
     override fun initializeDaggerComponent() {
         DaggerPlantsSubComponent.builder()
@@ -43,11 +40,13 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
     }
 
     override fun initViews() {
-        type = Plant.Type.values()[arguments!!.getInt(KEY_OBJECT)]
+        val sectionPosition = arguments!!.getInt(KEY_OBJECT)
+        presenter.onViewCreated(sectionPosition)
+    }
 
+    override fun initializeCatalog(products: List<Product>) {
         recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recycler_plants.adapter = PlantRecyclerAdapter(UserModel.plants.filter { it.type == type },
-                context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt(), this)
+        recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt(), this)
     }
 
     override fun onResume() {

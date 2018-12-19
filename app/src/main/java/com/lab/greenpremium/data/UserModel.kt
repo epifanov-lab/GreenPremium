@@ -1,8 +1,6 @@
 package com.lab.greenpremium.data
 
 import com.lab.greenpremium.data.entity.*
-import com.lab.greenpremium.data.entity.raw.Plant
-import com.lab.greenpremium.utills.getMockPlantList
 
 
 object UserModel {
@@ -16,11 +14,28 @@ object UserModel {
     var portfolio: Portfolio? = null
     var mapObjectsData: MapObjectsData? = null
 
-    //TODO move to another repo
-    val plants: List<Plant> = getMockPlantList()
+    fun getFavoritesProductsList(): List<Product> {
+        val favorites = arrayListOf<Product>()
+        catalogSectionsData?.sections?.forEach { section ->
+            section.products?.forEach { product ->
+                if (product.isFavorite) favorites.add(product)
+            }
+        }
+        return favorites
+    }
+
+    fun getProductsInCartList(): List<Product> {
+        val favorites = arrayListOf<Product>()
+        catalogSectionsData?.sections?.forEach { section ->
+            section.products?.forEach { product ->
+                if (product.count > 0) favorites.add(product)
+            }
+        }
+        return favorites
+    }
 
     fun getCountOfItemsInCart(): Int {
-        return plants.filter { it.count > 0 }.size
+        return 0 // todo plants.filter { it.count > 0 }.size
     }
 
 }

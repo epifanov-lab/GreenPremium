@@ -6,8 +6,9 @@ import android.widget.LinearLayout
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.UserModel
-import com.lab.greenpremium.ui.screen.main.plants.sub.PlantRecyclerAdapter
+import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.screen.base.BaseFragment
+import com.lab.greenpremium.ui.screen.main.plants.sub.PlantRecyclerAdapter
 import kotlinx.android.synthetic.main.fragment_favorites.*
 import javax.inject.Inject
 
@@ -16,6 +17,8 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View {
 
     @Inject
     internal lateinit var presenter: FavoritesPresenter
+
+    lateinit var list: List<Product>
 
     companion object {
         fun newInstance() = FavoritesFragment()
@@ -34,8 +37,11 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View {
     }
 
     override fun initViews() {
-        val list = UserModel.plants.filter { it.isFavorite }
+         list= UserModel.getFavoritesProductsList()
+        initializeList()
+    }
 
+    private fun initializeList() {
         if (list.isNotEmpty()) {
             label_empty_list.visibility = View.GONE
             recycler_plants.visibility = View.VISIBLE

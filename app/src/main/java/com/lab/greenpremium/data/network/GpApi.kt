@@ -36,12 +36,12 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
         return api.getCatalogSections()
     }
 
-    fun getSectionProductsList(section_id: String): Single<BaseResponse<List<Product>>> {
-        return api.getSectionProductsList(section_id)
+    fun getSectionProductsList(token: String, section_id: Int): Single<BaseResponse<List<Product>>> {
+        return api.getSectionProductsList(token, section_id)
     }
 
-    fun getProductDetail(product_id: String): Single<BaseResponse<Product>> {
-        return api.getProductDetail(product_id)
+    fun getProductDetail(token: String, product_id: Int): Single<BaseResponse<Product>> {
+        return api.getProductDetail(token, product_id)
     }
 
     fun getMapObjects(): Single<BaseResponse<MapObjectsData>> {
@@ -82,13 +82,13 @@ interface GpApi {
     @GET("catalog/sections")
     fun getCatalogSections(): Single<BaseResponse<List<Section>>>
 
-    @FormUrlEncoded
-    @GET("catalog/sections")
-    fun getSectionProductsList(@Field("section_id") section_id: String): Single<BaseResponse<List<Product>>>
+    @GET("catalog/sections/{section_id}")
+    fun getSectionProductsList(@Header("X-Auth-Token") token: String,
+                               @Path("section_id") section_id: Int): Single<BaseResponse<List<Product>>>
 
-    @FormUrlEncoded
-    @GET("catalog/products")
-    fun getProductDetail(@Field("product_id") product_id: String): Single<BaseResponse<Product>>
+    @GET("catalog/products/{product_id}")
+    fun getProductDetail(@Header("X-Auth-Token") token: String,
+                         @Path("product_id") product_id: Int): Single<BaseResponse<Product>>
 
     @GET("portfolio")
     fun getPortfolio(): Single<BaseResponse<Portfolio>>

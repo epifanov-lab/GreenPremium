@@ -10,31 +10,29 @@
     <RelativeLayout
         android:id="@+id/container_main"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/item_plant_and_contact_height"
+        android:layout_height="wrap_content"
         android:background="@color/white"
         android:focusableInTouchMode="false">
 
-        <RelativeLayout
-            android:id="@+id/container_image"
-            android:layout_width="@dimen/item_plant_image_container_width"
-            android:layout_height="match_parent">
-
-            <ImageView
-                android:id="@+id/image"
-                android:layout_width="@dimen/item_plant_image_bcg_circle_size"
-                android:layout_height="@dimen/item_plant_image_bcg_circle_size"
-                android:layout_centerInParent="true"
-                android:src="@drawable/bcg_circle_plant" />
-
-        </RelativeLayout>
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="@dimen/item_plant_image_bcg_circle_size"
+            android:layout_height="@dimen/item_plant_image_bcg_circle_size"
+            android:layout_alignParentStart="true"
+            android:layout_centerInParent="true"
+            android:layout_marginStart="@dimen/space_medium_1"
+            android:layout_marginEnd="@dimen/space_medium_1"
+            android:src="@drawable/bcg_circle_plant" />
 
         <RelativeLayout
             android:id="@+id/container_info"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
             android:layout_toStartOf="@id/container_controls"
-            android:layout_toEndOf="@id/container_image"
-            android:paddingTop="@dimen/space_small_4">
+            android:layout_toEndOf="@id/image"
+            android:layout_marginTop="@dimen/space_small_2"
+            android:layout_marginBottom="@dimen/space_small_2">
 
             <TextView
                 android:id="@+id/text_name"
@@ -124,7 +122,9 @@
                     android:gravity="center"
                     android:textColor="@color/gray_light_1"
                     android:textSize="@dimen/font_size_9"
-                    tools:text="33.000$" />
+                    android:visibility="invisible"
+                    tools:text="33.000$"
+                    tools:visibility="visible" />
 
             </LinearLayout>
 
@@ -133,13 +133,13 @@
         <LinearLayout
             android:id="@+id/container_controls"
             android:layout_width="@dimen/item_plant_controls_width"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:background="@drawable/bcg_button_green_vertical"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/space_small_3"
-            android:paddingTop="@dimen/space_small_3">
+            android:paddingTop="@dimen/space_small_3"
+            android:paddingBottom="@dimen/space_small_3">
 
             <ImageView
                 android:id="@+id/button_add"

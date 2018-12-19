@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import com.lab.greenpremium.data.network.ApiError
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
-import java.text.SimpleDateFormat
 import java.text.ParseException
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -25,15 +25,13 @@ val ViewGroup.views: List<View>
  * @param decimals     number of digits after decimal separator
  * @return locale specific currency string
  */
-fun currencyFormat(amount: Double, groupingUsed: Boolean = true, decimals: Int = 2): String {
+fun currencyFormat(amount: Double?, groupingUsed: Boolean = true, decimals: Int = 2): String {
     val formatSymbols = DecimalFormatSymbols()
     formatSymbols.decimalSeparator = '.'
     formatSymbols.groupingSeparator = ' '
     val formatter = DecimalFormat()
     formatter.decimalFormatSymbols = formatSymbols
-
-    //if (amount % 1 == 0) decimals = 0; // uncomment if want to remove zeroes
-
+    //if (amount % 1 == 0) decimals = 0; // uncomment if need remove zeroes after dot
     formatter.minimumFractionDigits = decimals
     formatter.maximumFractionDigits = decimals
     formatter.isGroupingUsed = groupingUsed

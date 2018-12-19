@@ -37,8 +37,8 @@ class MessageActivity : BaseActivity(), MessageContract.View {
         container_subject.visibility = if (type.hasSubjectInput) View.VISIBLE else View.GONE
         container_subject.visibility = if (type.hasSubjectInput) View.VISIBLE else View.GONE
         input_message.visibility = if (type.hasMessageInput) View.VISIBLE else View.GONE
-        //file_photo.visibility = if (type.hasPhotoAdding) View.VISIBLE else View.GONE
-        //file_docs.visibility = if (type.hasDocsAdding) View.VISIBLE else View.GONE
+        //file_photo.visibility = if (sectionId.hasPhotoAdding) View.VISIBLE else View.GONE
+        //file_docs.visibility = if (sectionId.hasDocsAdding) View.VISIBLE else View.GONE
 
         setTouchAnimationShrink(button_send)
     }

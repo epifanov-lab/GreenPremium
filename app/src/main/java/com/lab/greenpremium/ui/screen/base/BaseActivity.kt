@@ -1,8 +1,6 @@
 package com.lab.greenpremium.ui.screen.base
 
 import android.app.Dialog
-
-
 import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
@@ -15,6 +13,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.screen.auth.AuthActivity
 import com.lab.greenpremium.ui.screen.main.MainActivity
 import com.lab.greenpremium.ui.screen.message.MessageActivity
@@ -66,9 +65,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
         startActivity(intent)
     }
 
-    fun goToPlantDetailActivity(plantIndex: Int) {
+    fun goToPlantDetailActivity(product: Product) {
         val intent = Intent(this, PlantDetailActivity::class.java)
-        intent.putExtra(KEY_OBJECT, plantIndex)
+        intent.putExtra(KEY_OBJECT, product)
         startActivity(intent)
     }
 

@@ -1,10 +1,16 @@
 package com.lab.greenpremium.ui.screen.main.plants.sub
 
+import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.screen.base.BaseContract
 
 
 interface PlantsSubContract {
-    interface View : BaseContract.BaseView
+    interface View : BaseContract.BaseView {
+        fun initializeCatalog(products: List<Product>)
+    }
 
-    interface Presenter
+    interface Presenter {
+        fun onViewCreated(sectionPosition: Int)
+        fun updateSectionProducts(sectionPosition: Int)
+    }
 }

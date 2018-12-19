@@ -2,6 +2,7 @@ package com.lab.greenpremium.ui.screen.main.plants
 
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.entity.Section
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_plants.*
 import javax.inject.Inject
@@ -31,8 +32,8 @@ class PlantsFragment : BaseFragment(), PlantsContract.View {
         presenter.onViewCreated()
     }
 
-    override fun initializeTabs() {
-        pager.adapter = PlantsPagerAdapter(activity?.supportFragmentManager, context)
+    override fun initializeTabs(sections: List<Section>) {
+        pager.adapter = PlantsPagerAdapter(activity?.supportFragmentManager, sections)
         tab_layout.setupWithViewPager(pager)
     }
 }

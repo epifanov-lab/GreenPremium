@@ -3,11 +3,9 @@ package com.lab.greenpremium.ui.screen.plant_detail
 import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.UserModel
-import com.lab.greenpremium.data.entity.raw.Plant
+import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.components.item.PlantItemCountControlsHelper
 import com.lab.greenpremium.ui.screen.base.BaseActivity
-import com.lab.greenpremium.utills.currencyFormat
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_plant_detail.*
 import kotlinx.android.synthetic.main.view_gallery_preview.*
@@ -18,7 +16,7 @@ class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
     @Inject
     internal lateinit var presenter: PlantDetailPresenter
 
-    private lateinit var plant: Plant
+    private lateinit var product: Product
 
     override fun layoutResId(): Int {
         return R.layout.activity_plant_detail
@@ -33,27 +31,27 @@ class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
     }
 
     override fun initViews() {
-        plant = UserModel.plants[intent.getIntExtra(KEY_OBJECT, 0)]
+        product = intent.getSerializableExtra(KEY_OBJECT) as Product
 
         button_back.setOnClickListener { onBackPressed() }
 
         button_cart.setOnClickListener { }
 
         button_favorite.setOnClickListener {
-            plant.isFavorite = !plant.isFavorite
-            updateFavoriteButtonState(plant.isFavorite)
+            product.isFavorite = !product.isFavorite
+            updateFavoriteButtonState(product.isFavorite)
         }
 
-        updateFavoriteButtonState(plant.isFavorite)
+        updateFavoriteButtonState(product.isFavorite)
 
-        text_title.text = plant.name
-        plant.drawableResId?.let { image.setImageResource(it) }
-        text_price.text = currencyFormat(plant.price)
-        text_discount.text = currencyFormat(plant.discount)
-        text_info_short.text = "${plant.info1}\n${plant.info2}"
-        //text_info_long.text = plant.info2
+        text_title.text = product.name
+        //product.drawableResId?.let { image.setImageResource(it) }
+        //text_price.text = currencyFormat(product.price)
+        //text_discount.text = currencyFormat(product.discount)
+        //text_info_short.text = "${product.info1}\n${product.info2}"
+        //text_info_long.text = product.info2
 
-        PlantItemCountControlsHelper(plant, text_counter, button_add, button_remove)
+        PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
 
         setTouchAnimationShrink(image_1)
         setTouchAnimationShrink(image_2)

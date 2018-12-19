@@ -76,6 +76,8 @@
     <string name="error_wrong_double">"Не является дробным числом"</string>
     <string name="error_wrong_data">"Некорректные данные"</string>
 
+    <string name="template_s_s">%1$s %2$s</string>
+
     <!-- Dummy area-->
     <string name="event_dummy_1">Ваш заказ № 23456 сформирован и отправлен</string>
     <string name="lorem_ipsum_medium">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi</string>
