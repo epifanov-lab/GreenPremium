@@ -2,6 +2,7 @@ package com.lab.greenpremium.ui.screen.main.portfolio
 
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.entity.PortfolioSection
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_portfolio.*
 import javax.inject.Inject
@@ -28,11 +29,11 @@ class PortfolioFragment : BaseFragment(), PortfolioContract.View {
     }
 
     override fun initViews() {
-        initializeTabs()
+        presenter.onViewCreated()
     }
 
-    private fun initializeTabs() {
-        pager.adapter = PortfolioPagerAdapter(activity?.supportFragmentManager, context)
+    override fun initializeTabs(portfolio: List<PortfolioSection>) {
+        pager.adapter = PortfolioPagerAdapter(activity?.supportFragmentManager, context, portfolio)
         tab_layout.setupWithViewPager(pager)
     }
 }

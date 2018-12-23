@@ -32,8 +32,10 @@ class PlantsFragment : BaseFragment(), PlantsContract.View {
         presenter.onViewCreated()
     }
 
-    override fun initializeTabs(sections: List<Section>) {
-        pager.adapter = PlantsPagerAdapter(activity?.supportFragmentManager, sections)
-        tab_layout.setupWithViewPager(pager)
+    override fun initializeTabs(sections: List<Section>?) {
+        sections?.let {
+            pager.adapter = PlantsPagerAdapter(activity?.supportFragmentManager, sections)
+            tab_layout.setupWithViewPager(pager)
+        }
     }
 }

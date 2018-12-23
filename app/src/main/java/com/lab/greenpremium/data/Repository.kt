@@ -150,6 +150,14 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
     @SuppressLint("CheckResult")
     fun getCatalogSections(listener: CallbackListener) {
+
+        if (UserModel.catalogSectionsData != null) {
+            if (System.currentTimeMillis() - UserModel.catalogSectionsData!!.time < REQUEST_REFRESH_TIME_MS) {
+                listener.onSuccess()
+                return
+            }
+        }
+
         apiMethods.getCatalogSections()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -205,20 +213,6 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun updateMapObjects(listener: CallbackListener) {
-        apiMethods.getMapObjects()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnSubscribe { listener.doBefore() }
-                .doFinally { listener.doAfter() }
-                .subscribe(
-                        { response -> handleResponse(response, listener) },
-                        { error -> handleError(error, listener) }
-                )
-    }
-
-
-    @SuppressLint("CheckResult")
     fun updatePortfolio(listener: CallbackListener) {
 
         if (UserModel.portfolio != null) {
@@ -229,6 +223,19 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
         }
 
         apiMethods.getPortfolio()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(BaseResponse(response.status, response.title, PortfolioData(response.data)), listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun updateMapObjects(listener: CallbackListener) {
+        apiMethods.getMapObjects()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -281,7 +288,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 SectionProductsData::class -> {
                     val catalogSectionsData = UserModel.catalogSectionsData
                     try {
-                        catalogSectionsData!!.sections.forEach { section ->
+                        catalogSectionsData!!.sections?.forEach { section ->
                             if (section.id == parameters[0]) {
                                 section.products = (response.data as SectionProductsData).products
                             }
@@ -299,8 +306,8 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                     UserModel.mapObjectsData = response.data as MapObjectsData
                 }
 
-                Portfolio::class -> {
-                    UserModel.portfolio = response.data as Portfolio
+                PortfolioData::class -> {
+                    UserModel.portfolio = response.data as PortfolioData
                 }
 
             }

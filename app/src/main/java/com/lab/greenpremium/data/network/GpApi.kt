@@ -44,12 +44,12 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
         return api.getProductDetail(token, product_id)
     }
 
-    fun getMapObjects(): Single<BaseResponse<MapObjectsData>> {
-        return api.getMapObjects()
+    fun getPortfolio(): Single<BaseResponse<List<PortfolioSection>>> {
+        return api.getPortfolio()
     }
 
-    fun getPortfolio(): Single<BaseResponse<Portfolio>> {
-        return api.getPortfolio()
+    fun getMapObjects(): Single<BaseResponse<MapObjectsData>> {
+        return api.getMapObjects()
     }
 
 }
@@ -91,7 +91,7 @@ interface GpApi {
                          @Path("product_id") product_id: Int): Single<BaseResponse<Product>>
 
     @GET("portfolio")
-    fun getPortfolio(): Single<BaseResponse<Portfolio>>
+    fun getPortfolio(): Single<BaseResponse<List<PortfolioSection>>>
 
     @GET("objects/map")
     fun getMapObjects(): Single<BaseResponse<MapObjectsData>>

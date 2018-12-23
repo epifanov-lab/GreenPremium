@@ -10,9 +10,9 @@ import com.bumptech.glide.Glide
 import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.entity.PortfolioSection
 import com.lab.greenpremium.data.entity.raw.Image
 import com.lab.greenpremium.ui.screen.base.BaseFragment
-import com.lab.greenpremium.ui.screen.main.portfolio.PortfolioType
 import com.lab.greenpremium.utills.getMockImageList
 import com.lab.greenpremium.utills.getScreenWidth
 import com.lab.greenpremium.utills.setTouchAnimationShrink
@@ -25,15 +25,15 @@ class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
     @Inject
     internal lateinit var presenter: PortfolioSubPresenter
 
-    lateinit var type: PortfolioType
+    lateinit var portfolioSection: PortfolioSection
     private var paddingMedium = 0
     private var paddingSmall = 0
 
     companion object {
-        fun newInstance(type: Int): PortfolioSubFragment {
+        fun newInstance(portfolioSection: PortfolioSection): PortfolioSubFragment {
             val fragment = PortfolioSubFragment()
             val args = Bundle()
-            args.putInt(KEY_OBJECT, type)
+            args.putSerializable(KEY_OBJECT, portfolioSection)
             fragment.arguments = args
             return fragment
         }
@@ -58,7 +58,7 @@ class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
             paddingSmall = it.resources.getDimensionPixelSize(R.dimen.space_12)
         }
 
-        type = PortfolioType.values()[arguments!!.getInt(KEY_OBJECT)]
+        portfolioSection = arguments!!.getSerializable(KEY_OBJECT) as PortfolioSection
 
         val list = getMockImageList(12)
 

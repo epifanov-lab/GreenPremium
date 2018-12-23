@@ -11,7 +11,7 @@ object UserModel {
     var eventsData: EventsData? = null
     var catalogSectionsData: CatalogSectionsData? = null
     var meetingsListData: MeetingsListData? = null
-    var portfolio: Portfolio? = null
+    var portfolio: PortfolioData? = null
     var mapObjectsData: MapObjectsData? = null
 
     fun getFavoritesProductsList(): List<Product> {

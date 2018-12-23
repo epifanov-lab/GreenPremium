@@ -2,16 +2,15 @@ package com.lab.greenpremium.data.entity
 
 import java.io.Serializable
 
+data class PortfolioData(val sections: List<PortfolioSection>?) {
+    val time: Long = System.currentTimeMillis()
+}
 
-data class Portfolio(
+data class PortfolioSection(
         val id: String,
         val name: String,
         val photos: List<Photo>,
-        val sort: String) {
-
-    val time: Long = System.currentTimeMillis()
-
-}
+        val sort: String) : Serializable
 
 data class Photo(
         val height: String,
