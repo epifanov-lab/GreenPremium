@@ -292,7 +292,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 }
 
                 Product::class -> {
-                    // TODO
+                    listener.onSuccess(response.data as Product)
                 }
 
                 MapObjectsData::class -> {

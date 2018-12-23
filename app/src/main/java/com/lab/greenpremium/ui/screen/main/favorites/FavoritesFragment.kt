@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_favorites.*
 import javax.inject.Inject
 
 
-class FavoritesFragment : BaseFragment(), FavoritesContract.View {
+class FavoritesFragment : BaseFragment(), FavoritesContract.View, PlantRecyclerAdapter.OnProductSelectedListener {
 
     @Inject
     internal lateinit var presenter: FavoritesPresenter
@@ -51,6 +51,10 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View {
             label_empty_list.visibility = View.VISIBLE
             recycler_plants.visibility = View.GONE
         }
+    }
+
+    override fun onProductSelected(product: Product) {
+        //TODO
     }
 
     override fun onResume() {

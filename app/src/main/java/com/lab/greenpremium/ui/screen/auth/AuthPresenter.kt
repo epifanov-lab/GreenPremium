@@ -3,7 +3,7 @@ package com.lab.greenpremium.ui.screen.auth
 import android.annotation.SuppressLint
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.Repository
-import com.lab.greenpremium.data.network.CallbackListener
+import com.lab.greenpremium.data.network.DefaultCallbackListener
 import io.reactivex.Observable
 import javax.inject.Inject
 
@@ -18,7 +18,6 @@ class AuthPresenter @Inject constructor(val view: AuthContract.View) : AuthContr
 
     @SuppressLint("CheckResult")
     override fun initializeDataInput(login: Observable<String>, password: Observable<String>) {
-
         login.subscribe { s ->
             run {
                 if (!s.isEmpty()) {
@@ -59,21 +58,9 @@ class AuthPresenter @Inject constructor(val view: AuthContract.View) : AuthContr
                 view.setLoginInputError(null)
                 view.setPasswordInputError(null)
 
-                repository.auth(login!!, password!!, object : CallbackListener {
-                    override fun doBefore() {
-                        view.showLoadingDialog(true)
-                    }
-
-                    override fun doAfter() {
-                        view.showLoadingDialog(false)
-                    }
-
-                    override fun onError(throwable: Throwable) {
-                        view.showError(throwable)
-                    }
-
+                repository.auth(login!!, password!!, object : DefaultCallbackListener(view) {
                     override fun onSuccess() {
-                        view.goToMain()
+                        this@AuthPresenter.view.goToMain()
                     }
                 })
 

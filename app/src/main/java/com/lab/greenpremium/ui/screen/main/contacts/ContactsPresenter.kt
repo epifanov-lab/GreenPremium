@@ -32,7 +32,7 @@ class ContactsPresenter @Inject constructor(val view: ContactsContract.View) : C
                 UserModel.meetingsListData?.meetings?.isNotEmpty().let {
                     val meeting = getFirstApprovedMeeting(UserModel.meetingsListData!!.meetings)
                     val timestamp = getTimestampFromDateString(meeting?.date)
-                    this@ContactsPresenter.view.updateNextMeetingLabels(timestamp)
+                    this@ContactsPresenter.view?.updateNextMeetingLabels(timestamp)
                 }
             }
         })

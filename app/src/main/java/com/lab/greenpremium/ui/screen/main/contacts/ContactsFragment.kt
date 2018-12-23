@@ -57,9 +57,9 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
     }
 
     override fun updateNextMeetingLabels(timestamp: Long?) {
-        text_time.visibility = if (timestamp != null) VISIBLE else INVISIBLE
-        container_date.visibility = if (timestamp != null) VISIBLE else INVISIBLE
-        text_message.text = getString(if (timestamp != null) R.string.contacts_message_employee_meeting_when_set else R.string.contacts_message_employee_meeting)
+        text_time?.visibility = if (timestamp != null) VISIBLE else INVISIBLE
+        container_date?.visibility = if (timestamp != null) VISIBLE else INVISIBLE
+        text_message?.text = getString(if (timestamp != null) R.string.contacts_message_employee_meeting_when_set else R.string.contacts_message_employee_meeting)
 
         timestamp?.let {
             text_time.text = getTimeFromTimestamp(timestamp)

@@ -13,8 +13,8 @@
         android:background="@color/white"
         android:orientation="vertical"
         android:paddingLeft="@dimen/space_medium_2"
-        android:paddingRight="@dimen/space_medium_2"
-        android:paddingTop="@dimen/space_medium_2">
+        android:paddingTop="@dimen/space_medium_2"
+        android:paddingRight="@dimen/space_medium_2">
 
         <ImageView
             android:id="@+id/button_back"
@@ -43,9 +43,9 @@
             android:id="@+id/button_cart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_cart"
             android:visibility="invisible"
@@ -60,8 +60,8 @@
             android:id="@+id/button_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="88dp"
             android:layout_marginStart="8dp"
+            android:layout_marginEnd="88dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_favorites"
             app:layout_constraintBottom_toBottomOf="@+id/text_title"
@@ -91,8 +91,8 @@
             android:layout_marginEnd="8dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/space_small_3"
             android:paddingTop="@dimen/space_small_3"
+            android:paddingBottom="@dimen/space_small_3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/image">
 
@@ -128,12 +128,12 @@
             android:layout_height="33dp"
             android:layout_marginTop="24dp"
             android:fontFamily="@font/sfuitext_bold"
-            tools:text="33 000 ₽"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_24"
             app:layout_constraintEnd_toEndOf="@+id/image"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/image" />
+            app:layout_constraintTop_toBottomOf="@+id/image"
+            tools:text="33 000 ₽" />
 
         <com.lab.greenpremium.ui.components.DiscountTextView
             android:id="@+id/text_discount"
@@ -142,28 +142,47 @@
             android:layout_marginTop="4dp"
             android:fontFamily="@font/sfuitext_regular"
             android:gravity="center"
-            tools:text="50.000$"
             android:textColor="@color/gray_light_1"
             android:textSize="@dimen/font_size_18"
             app:layout_constraintEnd_toEndOf="@+id/text_price"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_price" />
+            app:layout_constraintTop_toBottomOf="@+id/text_price"
+            tools:text="50.000$" />
 
         <TextView
-            android:id="@+id/text_info_short"
+            android:id="@+id/text_info_short_1"
             android:layout_width="157dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="28dp"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/sfuitext_regular"
-            android:text="@string/lorem_ipsum_medium"
+            android:text="@string/lorem_ipsum_short"
             android:textColor="@color/gray"
             android:textSize="@dimen/font_size_10"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/text_price"
-            app:layout_constraintTop_toBottomOf="@+id/container_controls" />
+            app:layout_constraintTop_toBottomOf="@+id/container_controls"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/text_info_short_2"
+            android:layout_width="157dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="28dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/sfuitext_regular"
+            android:text="@string/lorem_ipsum_short"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/font_size_10"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toEndOf="@+id/text_price"
+            app:layout_constraintTop_toBottomOf="@+id/text_info_short_1"
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/text_info_long"
@@ -183,8 +202,8 @@
             layout="@layout/view_gallery_preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
             android:layout_marginTop="24dp"
+            android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

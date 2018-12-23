@@ -7,10 +7,11 @@ import com.lab.greenpremium.ui.screen.base.BaseContract
 interface PlantsSubContract {
     interface View : BaseContract.BaseView {
         fun initializeCatalog(products: List<Product>)
+        fun goToDetails(product: Product)
     }
 
     interface Presenter {
         fun onViewCreated(sectionPosition: Int)
-        fun updateSectionProducts(sectionPosition: Int)
+        fun onProductSelected(product: Product)
     }
 }

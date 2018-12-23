@@ -32,7 +32,7 @@ class PlantRecyclerAdapter(private val list: List<Product>,
 
         setTouchAnimationShrink(holder.view, object : OnAnimationEndListener {
             override fun onAnimationEndEvent() {
-                listener?.onPlantSelected(list[position])
+                listener?.onProductSelected(list[position])
             }
         })
     }
@@ -44,6 +44,6 @@ class PlantRecyclerAdapter(private val list: List<Product>,
     class ViewHolder(val view: PlantItemView) : RecyclerView.ViewHolder(view)
 
     interface OnProductSelectedListener {
-        fun onPlantSelected(product: Product)
+        fun onProductSelected(product: Product)
     }
 }

@@ -1,6 +1,7 @@
 package com.lab.greenpremium.data.network
 
 import com.lab.greenpremium.ui.screen.base.BaseContract
+import java.io.Serializable
 
 open class DefaultCallbackListener(val view: BaseContract.BaseView) : CallbackListener {
 
@@ -17,7 +18,11 @@ open class DefaultCallbackListener(val view: BaseContract.BaseView) : CallbackLi
     }
 
     override fun onSuccess() {
-        // need to be overridden!
+        // need to be overridden
+    }
+
+    override fun onSuccess(item: Serializable?) {
+        // need to be overridden
     }
 }
 

@@ -19,7 +19,7 @@ import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 
-class CartFragment : BaseFragment(), CartContract.View {
+class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnProductSelectedListener {
 
     @Inject
     internal lateinit var presenter: CartPresenter
@@ -73,6 +73,10 @@ class CartFragment : BaseFragment(), CartContract.View {
         /*var total = 0.0
         products.forEach { total += it.price * it.count }
         label_total_cost.text = currencyFormat(total)*/
+    }
+
+    override fun onProductSelected(product: Product) {
+        //TODO
     }
 
     override fun onResume() {

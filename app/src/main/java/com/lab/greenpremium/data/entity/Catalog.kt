@@ -5,14 +5,14 @@ import java.io.Serializable
 data class SectionProductListRequest(val section_id: Int)
 data class ProductRequest(val product_id: Int)
 
-data class CatalogSectionsData(val sections: List<Section>) {
+data class CatalogSectionsData(val sections: List<Section>) : Serializable {
     val time: Long = System.currentTimeMillis()
 }
 
 data class Section(
         val id: Int,
         val name: String,
-        val sort: String) {
+        val sort: String) : Serializable {
 
     var products: List<Product>? = null
 }
@@ -22,7 +22,7 @@ data class SectionProductsData(val products: List<Product>) {
 }
 
 data class Product(
-        val id: String,
+        val id: Int,
         val name: String,
         val sort: String,
         val detail_text: String,
@@ -30,8 +30,9 @@ data class Product(
         val gallery: List<Gallery>,
         val photo: Photo,
 
-        var isFavorite: Boolean,
-        var count: Int
+        var selectedOfferPosition: Int = 0,
+        var isFavorite: Boolean = false,
+        var count: Int = 0
 ) : Serializable
 
 data class Offer(
