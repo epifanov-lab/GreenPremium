@@ -27,7 +27,7 @@ data class Product(
         val sort: String,
         val detail_text: String,
         val offers: List<Offer>,
-        val gallery: List<Gallery>,
+        val gallery: List<Photo>,
         val photo: Photo,
 
         var selectedOfferPosition: Int = 0,
@@ -59,13 +59,6 @@ data class Height(
 data class CrownWidth(
         val name: String,
         val value: String
-) : Serializable
-
-data class Gallery(
-        val height: String,
-        val id: String,
-        val url: String,
-        val width: String
 ) : Serializable
 
 data class PlantSize(

@@ -68,6 +68,8 @@ class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
 
         setupInfoBlock()
 
+        gallery_preview.gallery = product.gallery
+
         PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
 
         setTouchAnimationShrink(image_1)
