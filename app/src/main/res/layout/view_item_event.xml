@@ -20,9 +20,9 @@
             android:layout_height="match_parent"
             android:layout_weight="10"
             android:orientation="horizontal"
-            android:paddingBottom="@dimen/space_small_2"
-            android:paddingStart="@dimen/space_small_4"
-            android:paddingTop="@dimen/space_small_2">
+            android:paddingBottom="@dimen/space_8"
+            android:paddingStart="@dimen/space_16"
+            android:paddingTop="@dimen/space_8">
 
             <TextView
                 android:id="@+id/text_num"
@@ -39,12 +39,12 @@
                 android:id="@+id/text_info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/space_medium_3"
+                android:layout_marginEnd="@dimen/space_28"
                 android:layout_toEndOf="@id/text_num"
                 android:fontFamily="@font/sfuitext_medium"
                 android:gravity="start"
-                android:paddingStart="@dimen/space_medium_1"
-                android:paddingTop="@dimen/space_small_2"
+                android:paddingStart="@dimen/space_20"
+                android:paddingTop="@dimen/space_8"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_9"
                 tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
@@ -55,7 +55,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignBottom="@id/text_num"
                 android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/space_small_4"
+                android:layout_marginEnd="@dimen/space_16"
                 android:fontFamily="@font/sfuitext_medium"
                 android:textColor="@color/gray"
                 android:textSize="@dimen/font_size_9"
@@ -99,7 +99,7 @@
     <View
         android:id="@+id/line_connection"
         android:layout_width="@dimen/line_thickness_2"
-        android:layout_height="@dimen/space_medium_1"
+        android:layout_height="@dimen/space_20"
         android:layout_gravity="center"
         android:background="@color/white" />
 </LinearLayout>

@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/space_medium_2">
+    android:padding="@dimen/space_24">
 
     <ImageView
         android:id="@+id/button_back"
         android:layout_width="@dimen/back_button_area_size"
         android:layout_height="@dimen/back_button_area_size"
-        android:layout_marginBottom="@dimen/space_small_2"
+        android:layout_marginBottom="@dimen/space_8"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:paddingStart="@dimen/back_button_image_minus_padding_left"
         android:scaleType="centerInside"
@@ -20,7 +20,7 @@
         android:id="@+id/title_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_small_1"
+        android:layout_marginBottom="@dimen/space_4"
         android:fontFamily="@font/sfuitext_bold"
         android:text="@string/title_login_1"
         android:textColor="@color/black"
@@ -30,7 +30,7 @@
         android:id="@+id/container_login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_medium_2"
+        android:layout_marginBottom="@dimen/space_24"
         app:errorEnabled="true"
         app:errorTextAppearance="@style/AppTheme.TextInputLayoutError"
         app:hintTextAppearance="@style/TextAppearance.App.InputView">
@@ -50,7 +50,7 @@
         android:id="@+id/container_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_medium_1"
+        android:layout_marginBottom="@dimen/space_20"
         app:errorEnabled="true"
         app:errorTextAppearance="@style/AppTheme.TextInputLayoutError"
         app:hintTextAppearance="@style/TextAppearance.App.InputView"
@@ -71,7 +71,7 @@
         android:id="@+id/button_auth"
         style="@style/Button.Green"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/space_small_2"
+        android:layout_marginBottom="@dimen/space_8"
         android:text="@string/title_login_2" />
 
     <TextView

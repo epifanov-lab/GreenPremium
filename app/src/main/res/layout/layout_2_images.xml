@@ -9,11 +9,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingBottom="@dimen/space_small_1"
-        android:paddingTop="@dimen/space_small_1" />
+        android:paddingBottom="@dimen/space_4"
+        android:paddingTop="@dimen/space_4" />
 
     <View
-        android:layout_width="@dimen/space_small_1"
+        android:layout_width="@dimen/space_4"
         android:layout_height="wrap_content" />
 
     <ImageView
@@ -21,7 +21,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:paddingBottom="@dimen/space_small_1"
-        android:paddingTop="@dimen/space_small_1" />
+        android:paddingBottom="@dimen/space_4"
+        android:paddingTop="@dimen/space_4" />
 
 </LinearLayout>

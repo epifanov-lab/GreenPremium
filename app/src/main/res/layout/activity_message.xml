@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/space_medium_2">
+    android:padding="@dimen/space_24">
 
     <ImageView
         android:id="@+id/button_back"
@@ -20,7 +20,7 @@
         android:id="@+id/title_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_medium_1"
+        android:layout_marginBottom="@dimen/space_20"
         android:fontFamily="@font/sfuitext_bold"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_20"
@@ -30,7 +30,7 @@
         android:id="@+id/rating_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_medium_1"
+        android:layout_marginBottom="@dimen/space_20"
         android:paddingStart="@dimen/minus_16"
         android:visibility="gone"
         app:srb_clearRatingEnabled="true"
@@ -43,7 +43,7 @@
         app:srb_rating="5"
         app:srb_scrollable="true"
         app:srb_starHeight="@dimen/rate_star_size"
-        app:srb_starPadding="@dimen/space_small_4"
+        app:srb_starPadding="@dimen/space_16"
         app:srb_starWidth="@dimen/rate_star_size"
         app:srb_stepSize="1" />
 
@@ -51,7 +51,7 @@
         android:id="@+id/container_subject"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_medium_2"
+        android:layout_marginBottom="@dimen/space_24"
         android:hint="@string/title_subject"
         android:textColorHint="@color/gray_light_1"
         android:visibility="gone">
@@ -72,14 +72,14 @@
         android:id="@+id/input_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_medium_2"
+        android:layout_marginBottom="@dimen/space_24"
         android:visibility="gone" />
 
     <View
         android:id="@+id/file_photo"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:layout_marginBottom="@dimen/space_medium_2"
+        android:layout_marginBottom="@dimen/space_24"
         android:visibility="gone" />
 
 
@@ -87,14 +87,14 @@
         android:id="@+id/file_docs"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:layout_marginBottom="@dimen/space_medium_2"
+        android:layout_marginBottom="@dimen/space_24"
         android:visibility="gone" />
 
     <Button
         android:id="@+id/button_send"
         style="@style/Button.Green"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/space_small_2"
+        android:layout_marginBottom="@dimen/space_8"
         android:text="@string/title_sent" />
 
 </LinearLayout>

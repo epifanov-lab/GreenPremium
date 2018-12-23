@@ -5,13 +5,13 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
-    android:paddingTop="@dimen/space_medium_2">
+    android:paddingTop="@dimen/space_24">
 
     <ImageView
         android:id="@+id/button_back"
         android:layout_width="@dimen/back_button_area_size"
         android:layout_height="@dimen/back_button_area_size"
-        android:layout_marginStart="@dimen/space_medium_2"
+        android:layout_marginStart="@dimen/space_24"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:paddingStart="@dimen/back_button_image_minus_padding_left"
         android:scaleType="centerInside"
@@ -22,8 +22,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity=""
-        android:layout_marginBottom="@dimen/space_small_3"
-        android:layout_marginStart="@dimen/space_medium_2"
+        android:layout_marginBottom="@dimen/space_12"
+        android:layout_marginStart="@dimen/space_24"
         android:fontFamily="@font/sfuitext_bold"
         android:text="@string/contacts_schedule_meet"
         android:textColor="@color/black"
@@ -41,7 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="@dimen/space_medium_2"
+        android:layout_marginBottom="@dimen/space_24"
         app:spi_dotColor="@color/green_1_50"
         app:spi_dotSelectedColor="@color/green_1" />
 
@@ -57,7 +57,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_medium_2"
+            android:layout_marginStart="@dimen/space_24"
             android:fontFamily="@font/sfuitext_regular"
             android:gravity="left"
             android:text="@string/contacts_meet_date_and_time"
@@ -69,16 +69,16 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:orientation="horizontal"
-            android:paddingBottom="@dimen/space_medium_2"
-            android:paddingLeft="@dimen/space_medium_2"
-            android:paddingRight="@dimen/space_medium_2"
-            android:paddingTop="@dimen/space_small_2">
+            android:paddingBottom="@dimen/space_24"
+            android:paddingLeft="@dimen/space_24"
+            android:paddingRight="@dimen/space_24"
+            android:paddingTop="@dimen/space_8">
 
             <com.shawnlin.numberpicker.NumberPicker
                 android:id="@+id/picker_day"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/space_small_3"
+                android:layout_marginEnd="@dimen/space_12"
                 app:np_dividerColor="@color/green_5"
                 app:np_dividerThickness="@dimen/line_thickness_2"
                 app:np_selectedTextSize="@dimen/font_size_18"
@@ -89,7 +89,7 @@
                 android:id="@+id/picker_hour"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/space_small_1"
+                android:layout_marginEnd="@dimen/space_4"
                 app:np_dividerColor="@color/green_5"
                 app:np_dividerThickness="@dimen/line_thickness_2"
                 app:np_selectedTextSize="@dimen/font_size_18"
@@ -99,7 +99,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/space_small_1"
+                android:layout_marginEnd="@dimen/space_4"
                 android:fontFamily="@font/sfuitext_semibold"
                 android:gravity="center"
                 tools:text=":"
@@ -122,9 +122,9 @@
             android:id="@+id/button_proceed"
             style="@style/Button.Green"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="@dimen/space_small_2"
-            android:layout_marginLeft="@dimen/space_medium_2"
-            android:layout_marginRight="@dimen/space_medium_2"
+            android:layout_marginBottom="@dimen/space_8"
+            android:layout_marginLeft="@dimen/space_24"
+            android:layout_marginRight="@dimen/space_24"
             android:text="@string/title_sent" />
 
     </LinearLayout>

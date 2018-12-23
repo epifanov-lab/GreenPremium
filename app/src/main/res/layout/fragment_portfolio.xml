@@ -10,7 +10,7 @@
         style="@style/TabTextAppearance"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space_medium_2"
+        android:layout_marginStart="@dimen/space_24"
         android:minHeight="?attr/actionBarSize"
         app:tabGravity="fill"
         app:tabIndicatorHeight="@dimen/line_thickness_3"
@@ -23,8 +23,8 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/line_thickness_2"
         android:layout_below="@id/tab_layout"
-        android:layout_marginLeft="@dimen/space_medium_2"
-        android:layout_marginRight="@dimen/space_medium_2"
+        android:layout_marginLeft="@dimen/space_24"
+        android:layout_marginRight="@dimen/space_24"
         android:background="@color/gray_light_2" />
 
     <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"

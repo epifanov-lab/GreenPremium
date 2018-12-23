@@ -53,7 +53,7 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
 
     override fun initializeContactsCarousel(contacts: List<Contact>) {
         recycler_contacts.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        recycler_contacts.adapter = ContactsRecyclerAdapter(contacts, LinearLayoutManager.VERTICAL, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+        recycler_contacts.adapter = ContactsRecyclerAdapter(contacts, LinearLayoutManager.VERTICAL, context?.resources?.getDimension(R.dimen.space_24)?.toInt())
     }
 
     override fun updateNextMeetingLabels(timestamp: Long?) {

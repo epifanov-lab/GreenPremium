@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="vertical"
-        android:paddingLeft="@dimen/space_medium_2"
-        android:paddingTop="@dimen/space_medium_2"
-        android:paddingRight="@dimen/space_medium_2">
+        android:paddingLeft="@dimen/space_24"
+        android:paddingTop="@dimen/space_24"
+        android:paddingRight="@dimen/space_24">
 
         <ImageView
             android:id="@+id/button_back"
@@ -91,8 +91,8 @@
             android:layout_marginEnd="8dp"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingTop="@dimen/space_small_3"
-            android:paddingBottom="@dimen/space_small_3"
+            android:paddingTop="@dimen/space_12"
+            android:paddingBottom="@dimen/space_12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/image">
 
@@ -160,7 +160,7 @@
             android:text="@string/lorem_ipsum_short"
             android:textColor="@color/gray"
             android:textSize="@dimen/font_size_10"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/text_price"
@@ -177,7 +177,7 @@
             android:text="@string/lorem_ipsum_short"
             android:textColor="@color/gray"
             android:textSize="@dimen/font_size_10"
-            android:visibility="invisible"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/text_price"

@@ -10,15 +10,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_small_1"
-        android:layout_marginTop="@dimen/space_huge_4"
+        android:layout_marginBottom="@dimen/space_4"
+        android:layout_marginTop="@dimen/space_64"
         android:gravity="center_horizontal"
         android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/space_small_2"
+            android:layout_marginEnd="@dimen/space_8"
             android:fontFamily="@font/sfuitext_bold"
             android:text="@string/start_screen_title_1"
             android:textColor="@color/black"
@@ -38,7 +38,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_large_1"
+        android:layout_marginBottom="@dimen/space_36"
         android:fontFamily="@font/sfuitext_regular"
         android:text="@string/start_screen_title_3"
         android:textColor="@color/black"
@@ -47,31 +47,31 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_huge_1"
+        android:layout_marginBottom="@dimen/space_52"
         android:src="@drawable/logo" />
 
     <Button
         android:id="@+id/button_auth"
         style="@style/Button.Green"
-        android:layout_marginBottom="@dimen/space_small_4"
-        android:layout_marginLeft="@dimen/space_huge_3"
-        android:layout_marginRight="@dimen/space_huge_3"
+        android:layout_marginBottom="@dimen/space_16"
+        android:layout_marginLeft="@dimen/space_60"
+        android:layout_marginRight="@dimen/space_60"
         android:text="@string/title_login_1" />
 
     <Button
         android:id="@+id/button_demo"
         style="@style/Button.Green"
-        android:layout_marginBottom="@dimen/space_small_4"
-        android:layout_marginLeft="@dimen/space_huge_3"
-        android:layout_marginRight="@dimen/space_huge_3"
+        android:layout_marginBottom="@dimen/space_16"
+        android:layout_marginLeft="@dimen/space_60"
+        android:layout_marginRight="@dimen/space_60"
         android:text="@string/title_demo" />
 
     <Button
         android:id="@+id/button_register"
         style="@style/Button.White"
-        android:layout_marginBottom="@dimen/space_medium_1"
-        android:layout_marginLeft="@dimen/space_huge_3"
-        android:layout_marginRight="@dimen/space_huge_3"
+        android:layout_marginBottom="@dimen/space_20"
+        android:layout_marginLeft="@dimen/space_60"
+        android:layout_marginRight="@dimen/space_60"
         android:text="@string/title_registration" />
 
     <TextView

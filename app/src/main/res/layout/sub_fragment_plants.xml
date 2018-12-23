@@ -10,7 +10,7 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:paddingLeft="@dimen/space_small_3"
-        android:paddingRight="@dimen/space_small_3" />
+        android:paddingLeft="@dimen/space_12"
+        android:paddingRight="@dimen/space_12" />
 
 </android.support.constraint.ConstraintLayout>

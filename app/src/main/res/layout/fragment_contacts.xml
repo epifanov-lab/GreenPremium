@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    android:paddingLeft="@dimen/space_medium_2"
-    android:paddingRight="@dimen/space_medium_2">
+    android:paddingLeft="@dimen/space_24"
+    android:paddingRight="@dimen/space_24">
 
     <RelativeLayout
         android:id="@+id/container_meeting"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_small_3">
+        android:layout_marginBottom="@dimen/space_12">
 
         <Button
             android:id="@+id/button_schedule_meet"
@@ -43,7 +43,7 @@
             android:background="@drawable/ic_calendar"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingTop="@dimen/space_small_1">
+            android:paddingTop="@dimen/space_4">
 
             <TextView
                 android:id="@+id/text_date_day"
@@ -73,7 +73,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/container_meeting"
-        android:layout_marginBottom="@dimen/space_small_4"
+        android:layout_marginBottom="@dimen/space_16"
         android:fontFamily="@font/sfuitext_medium"
         android:gravity="center"
         android:text="@string/contacts_message_employee_meeting"

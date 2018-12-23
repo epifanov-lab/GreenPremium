@@ -54,8 +54,8 @@ class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
 
     override fun initViews() {
         context?.let {
-            paddingMedium = it.resources.getDimensionPixelSize(R.dimen.space_medium_2)
-            paddingSmall = it.resources.getDimensionPixelSize(R.dimen.space_small_3)
+            paddingMedium = it.resources.getDimensionPixelSize(R.dimen.space_24)
+            paddingSmall = it.resources.getDimensionPixelSize(R.dimen.space_12)
         }
 
         type = PortfolioType.values()[arguments!!.getInt(KEY_OBJECT)]

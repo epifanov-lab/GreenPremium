@@ -58,7 +58,7 @@ class MeetingActivity : BaseActivity(), MeetingContract.View {
         PagerSnapHelper().attachToRecyclerView(recycler_contacts)
 
         recycler_contacts.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        recycler_contacts.adapter = ContactsRecyclerAdapter(contacts, LinearLayoutManager.HORIZONTAL, this.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+        recycler_contacts.adapter = ContactsRecyclerAdapter(contacts, LinearLayoutManager.HORIZONTAL, this.resources?.getDimension(R.dimen.space_24)?.toInt())
         indicator_contacts.attachToRecyclerView(recycler_contacts)
 
         recycler_contacts.addOnScrollListener(object : RecyclerView.OnScrollListener() {

@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/recycler_contacts"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="@dimen/space_medium_2"
+            android:layout_marginBottom="@dimen/space_24"
             app:spi_dotColor="@color/green_1_50"
             app:spi_dotSelectedColor="@color/green_1" />
 
@@ -38,9 +38,9 @@
                 android:id="@+id/button_calc_service"
                 style="@style/Button.Green"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginLeft="@dimen/space_medium_3"
-                android:layout_marginRight="@dimen/space_medium_3"
-                android:layout_marginBottom="@dimen/space_medium_2"
+                android:layout_marginLeft="@dimen/space_28"
+                android:layout_marginRight="@dimen/space_28"
+                android:layout_marginBottom="@dimen/space_24"
                 android:gravity="center"
                 android:text="@string/profile_calc_service"
                 android:visibility="visible" />
@@ -49,11 +49,11 @@
                 android:id="@+id/container_cost"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/green_button_height"
-                android:layout_marginBottom="@dimen/space_medium_2"
+                android:layout_marginBottom="@dimen/space_24"
                 android:background="@color/white"
                 android:orientation="horizontal"
-                android:paddingLeft="@dimen/space_medium_2"
-                android:paddingRight="@dimen/space_medium_2"
+                android:paddingLeft="@dimen/space_24"
+                android:paddingRight="@dimen/space_24"
                 android:visibility="gone">
 
                 <TextView
@@ -70,7 +70,7 @@
                     android:id="@+id/text_service_price"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="@dimen/space_small_3"
+                    android:layout_marginEnd="@dimen/space_12"
                     android:layout_weight="2"
                     android:fontFamily="@font/sfuitext_medium"
                     android:gravity="center"
@@ -88,7 +88,7 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:orientation="horizontal"
-                android:padding="@dimen/space_medium_1"
+                android:padding="@dimen/space_20"
                 android:visibility="visible">
 
                 <TextView
@@ -110,7 +110,7 @@
                     android:drawableEnd="@drawable/ic_next"
                     android:fontFamily="@font/sfuitext_regular"
                     android:gravity="start"
-                    android:padding="@dimen/space_small_2"
+                    android:padding="@dimen/space_8"
                     android:text="@string/profile_label_shop"
                     android:textColor="@color/black"
                     android:textSize="@dimen/font_size_12" />
@@ -128,8 +128,8 @@
             android:nestedScrollingEnabled="false"
             android:orientation="vertical"
             android:overScrollMode="never"
-            android:paddingLeft="@dimen/space_medium_2"
-            android:paddingRight="@dimen/space_medium_2"
+            android:paddingLeft="@dimen/space_24"
+            android:paddingRight="@dimen/space_24"
             android:scrollbars="none"
             android:visibility="gone">
 
@@ -142,19 +142,19 @@
                     android:id="@+id/container_delivery_schedule"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_medium_4"
-                    android:layout_marginBottom="@dimen/space_medium_1"
+                    android:layout_marginTop="@dimen/space_32"
+                    android:layout_marginBottom="@dimen/space_20"
                     android:orientation="horizontal">
 
                     <LinearLayout
                         android:id="@+id/container_date"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/space_medium_1"
+                        android:layout_marginEnd="@dimen/space_20"
                         android:background="@drawable/ic_calendar_white"
                         android:gravity="center"
                         android:orientation="vertical"
-                        android:paddingTop="@dimen/space_small_1">
+                        android:paddingTop="@dimen/space_4">
 
                         <TextView
                             android:id="@+id/text_date_day"

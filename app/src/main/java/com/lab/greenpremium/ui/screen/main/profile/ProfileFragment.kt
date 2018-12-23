@@ -65,7 +65,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     override fun initializeContactsCarousel(contacts: List<Contact>) {
         PagerSnapHelper().attachToRecyclerView(recycler_contacts)
         recycler_contacts.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
-        recycler_contacts.adapter = ContactsRecyclerAdapter(contacts, LinearLayoutManager.HORIZONTAL, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt())
+        recycler_contacts.adapter = ContactsRecyclerAdapter(contacts, LinearLayoutManager.HORIZONTAL, context?.resources?.getDimension(R.dimen.space_24)?.toInt())
         indicator_contacts.attachToRecyclerView(recycler_contacts)
     }
 

@@ -10,8 +10,8 @@
         android:layout_height="match_parent"
         android:clipToPadding="false"
         android:overScrollMode="never"
-        android:paddingLeft="@dimen/space_small_3"
-        android:paddingRight="@dimen/space_small_3"
+        android:paddingLeft="@dimen/space_12"
+        android:paddingRight="@dimen/space_12"
         android:visibility="gone" />
 
     <TextView
@@ -19,9 +19,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/button_bill"
-        android:layout_marginLeft="@dimen/space_medium_2"
-        android:layout_marginRight="@dimen/space_medium_2"
-        android:layout_marginTop="@dimen/space_small_4"
+        android:layout_marginLeft="@dimen/space_24"
+        android:layout_marginRight="@dimen/space_24"
+        android:layout_marginTop="@dimen/space_16"
         android:fontFamily="@font/sfuitext_regular"
         android:gravity="start"
         android:text="@string/favorites_empty"

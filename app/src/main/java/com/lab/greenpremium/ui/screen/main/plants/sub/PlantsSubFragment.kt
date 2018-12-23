@@ -47,7 +47,7 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View, PlantRecyclerA
 
     override fun initializeCatalog(products: List<Product>) {
         recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_medium_2)?.toInt(), this)
+        recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), this)
     }
 
     override fun onProductSelected(product: Product) {
