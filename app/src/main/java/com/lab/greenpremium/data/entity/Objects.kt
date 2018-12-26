@@ -2,19 +2,15 @@ package com.lab.greenpremium.data.entity
 
 data class ObjectInfo(
         val biologists: List<Contact>,
-        val coordinates: Coordinates,
         val id: String,
+        val order_id: String,
         val payment: String,
-        val schedule: String) {
+        val schedule: String,
+        val order_supply_date: String) {
 
     val time: Long = System.currentTimeMillis()
 
 }
-
-data class Coordinates(
-        val lat: String,
-        val lot: String
-)
 
 /**
  * get /objects/map
