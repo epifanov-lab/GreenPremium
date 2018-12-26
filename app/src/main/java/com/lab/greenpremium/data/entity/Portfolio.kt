@@ -2,7 +2,7 @@ package com.lab.greenpremium.data.entity
 
 import java.io.Serializable
 
-data class PortfolioData(val sections: List<PortfolioSection>?) {
+data class PortfolioResponse(val sections: List<PortfolioSection>?) {
     val time: Long = System.currentTimeMillis()
 }
 

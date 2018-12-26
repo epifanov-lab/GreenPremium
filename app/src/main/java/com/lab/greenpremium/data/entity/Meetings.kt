@@ -1,7 +1,7 @@
 package com.lab.greenpremium.data.entity
 
 
-data class MeetengAddRequest(
+data class MeetingAddRequest(
         val manager_id: String,
         val date: String
 )
@@ -15,7 +15,7 @@ data class MeetingsListRequest(
         val page: Int? = null
 )
 
-data class MeetingsListData(
+data class MeetingsListResponse(
         val meetings: List<Meeting> ) {
 
     val time: Long = System.currentTimeMillis()

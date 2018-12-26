@@ -5,18 +5,18 @@ import com.lab.greenpremium.data.entity.*
 
 object UserModel {
 
-    var authData: AuthData? = null
-    var contacts: ContactsData? = null
-    var objectInfo: ObjectInfo? = null
-    var eventsData: EventsData? = null
-    var catalogSectionsData: CatalogSectionsData? = null
-    var meetingsListData: MeetingsListData? = null
-    var portfolio: PortfolioData? = null
-    var mapObjectsData: MapObjectsData? = null
+    var authResponse: AuthResponse? = null
+    var contactsResponse: ContactsResponse? = null
+    var objectInfoResponse: ObjectInfoResponse? = null
+    var eventsResponse: EventsResponse? = null
+    var catalogSectionsResponse: CatalogSectionsResponse? = null
+    var meetingsListResponse: MeetingsListResponse? = null
+    var portfolio: PortfolioResponse? = null
+    var mapObjectsResponse: MapObjectsResponse? = null
 
     fun getFavoritesProductsList(): List<Product> {
         val favorites = arrayListOf<Product>()
-        catalogSectionsData?.sections?.forEach { section ->
+        catalogSectionsResponse?.sections?.forEach { section ->
             section.products?.forEach { product ->
                 if (product.isFavorite) favorites.add(product)
             }
@@ -26,7 +26,7 @@ object UserModel {
 
     fun getProductsInCartList(): List<Product> {
         val favorites = arrayListOf<Product>()
-        catalogSectionsData?.sections?.forEach { section ->
+        catalogSectionsResponse?.sections?.forEach { section ->
             section.products?.forEach { product ->
                 if (product.count > 0) favorites.add(product)
             }

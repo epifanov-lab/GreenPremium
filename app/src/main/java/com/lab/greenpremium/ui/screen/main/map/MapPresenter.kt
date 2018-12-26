@@ -13,7 +13,7 @@ class MapPresenter @Inject constructor(val view: MapContract.View) : MapContract
     override fun updateMapObjects() {
         repository.updateMapObjects(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                val mapObjectsData = UserModel.mapObjectsData
+                val mapObjectsData = UserModel.mapObjectsResponse
                 mapObjectsData?.let {
                     this@MapPresenter.view.placeMarkers(mapObjectsData.features)
                 }

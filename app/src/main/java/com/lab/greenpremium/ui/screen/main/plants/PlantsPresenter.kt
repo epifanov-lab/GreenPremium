@@ -13,7 +13,7 @@ class PlantsPresenter @Inject constructor(val view: PlantsContract.View) : Plant
     override fun onViewCreated() {
         repository.getCatalogSections(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                val catalogSectionsData = UserModel.catalogSectionsData
+                val catalogSectionsData = UserModel.catalogSectionsResponse
                 catalogSectionsData?.let {
                     this@PlantsPresenter.view.initializeTabs(catalogSectionsData.sections)
                 }

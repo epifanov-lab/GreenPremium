@@ -1,9 +1,7 @@
 package com.lab.greenpremium.data.entity
 
-data class EventsData(val events: List<Event>) {
-
+data class EventsResponse(val events: List<Event>) {
     val time: Long = System.currentTimeMillis()
-
 }
 
 

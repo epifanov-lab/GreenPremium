@@ -20,7 +20,7 @@ class MeetingPresenter @Inject constructor(val view: MeetingContract.View) : Mee
     private fun updateContacts() {
         repository.updateContacts(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                val contacts = UserModel.contacts
+                val contacts = UserModel.contactsResponse
                 contacts?.let {
                     this@MeetingPresenter.view.initializeContactsCarousel(contacts.getManagers())
                 }
@@ -29,12 +29,12 @@ class MeetingPresenter @Inject constructor(val view: MeetingContract.View) : Mee
     }
 
     override fun addMeeting(model: MeetingModel) {
-        val manager_id = UserModel.contacts!!.getManagers()[model.pickedContactPos].id
+        val manager_id = UserModel.contactsResponse!!.getManagers()[model.pickedContactPos].id
         val date = getFormattedDateString(model.pickedTime)
         repository.addMeeting(manager_id, date, object : DefaultCallbackListener(view) {
             override fun onSuccess() {
                 this@MeetingPresenter.view.finishWithMessage(
-                        "Встреча с ${UserModel.contacts!!.getManagers()[model.pickedContactPos].name}" +
+                        "Встреча с ${UserModel.contactsResponse!!.getManagers()[model.pickedContactPos].name}" +
                                 " назначена на ${SimpleDateFormat("dd MMMM HH:mm", Locale("ru")).format(model.pickedTime)}"
                 )
             }

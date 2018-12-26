@@ -1,6 +1,6 @@
 package com.lab.greenpremium.data.entity
 
-data class ObjectInfo(
+data class ObjectInfoResponse(
         val biologists: List<Contact>,
         val id: String,
         val order_id: String,
@@ -16,7 +16,7 @@ data class ObjectInfo(
  * get /objects/map
  * auth = false
  * */
-data class MapObjectsData(
+data class MapObjectsResponse(
         val features: List<Feature>,
         val type: String
 )

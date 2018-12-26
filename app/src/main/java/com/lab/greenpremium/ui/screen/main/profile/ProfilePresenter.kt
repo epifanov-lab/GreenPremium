@@ -18,7 +18,7 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
     private fun updateObjectInfo() {
         repository.updateObjectsInfo(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                val biologists = UserModel.objectInfo!!.biologists
+                val biologists = UserModel.objectInfoResponse!!.biologists
                 if (biologists.isNotEmpty()) this@ProfilePresenter.view.initializeContactsCarousel(biologists)
                 else updateContacts()
             }
@@ -28,7 +28,7 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
     private fun updateContacts() {
         repository.updateContacts(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                val contacts = UserModel.contacts!!.getManagers()
+                val contacts = UserModel.contactsResponse!!.getManagers()
                 if (contacts.isNotEmpty()) {
                     this@ProfilePresenter.view.initializeContactsCarousel(contacts.subList(0, 1))
                 }
@@ -39,7 +39,7 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
     private fun updateEvents() {
         repository.updateEvents(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                val events = UserModel.eventsData!!.events
+                val events = UserModel.eventsResponse!!.events
                 if (events.isNotEmpty()) this@ProfilePresenter.view.initializeEventsList(events)
                 else this@ProfilePresenter.view.showNoEventsContainer()
             }

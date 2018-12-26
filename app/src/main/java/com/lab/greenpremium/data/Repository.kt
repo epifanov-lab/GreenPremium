@@ -34,8 +34,8 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun updateContacts(listener: CallbackListener) {
 
-        if (UserModel.contacts != null) {
-            if (System.currentTimeMillis() - UserModel.contacts!!.time < REQUEST_REFRESH_TIME_MS) {
+        if (UserModel.contactsResponse != null) {
+            if (System.currentTimeMillis() - UserModel.contactsResponse!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
                 return
             }
@@ -55,19 +55,19 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun updateObjectsInfo(listener: CallbackListener) {
 
-        if (UserModel.objectInfo != null) {
-            if (System.currentTimeMillis() - UserModel.objectInfo!!.time < REQUEST_REFRESH_TIME_MS) {
+        if (UserModel.objectInfoResponse != null) {
+            if (System.currentTimeMillis() - UserModel.objectInfoResponse!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
                 return
             }
         }
 
-        if (UserModel.authData == null) {
+        if (UserModel.authResponse == null) {
             listener.onError(ApiError(401, "Not authorized"))
             return
         }
 
-        apiMethods.getObjectInfo(UserModel.authData!!.token)
+        apiMethods.getObjectInfo(UserModel.authResponse!!.token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -81,25 +81,25 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun updateEvents(listener: CallbackListener) {
 
-        if (UserModel.eventsData != null) {
-            if (System.currentTimeMillis() - UserModel.eventsData!!.time < REQUEST_REFRESH_TIME_MS) {
+        if (UserModel.eventsResponse != null) {
+            if (System.currentTimeMillis() - UserModel.eventsResponse!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
                 return
             }
         }
 
-        if (UserModel.authData == null) {
+        if (UserModel.authResponse == null) {
             listener.onError(ApiError(401, "Not authorized"))
             return
         }
 
-        apiMethods.getEvents(UserModel.authData!!.token)
+        apiMethods.getEvents(UserModel.authResponse!!.token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
                 .doFinally { listener.doAfter() }
                 .subscribe(
-                        { response -> handleResponse(BaseResponse(response.status, response.title, EventsData(response.data)), listener) },
+                        { response -> handleResponse(BaseResponse(response.status, response.title, EventsResponse(response.data)), listener) },
                         { error -> handleError(error, listener) }
                 )
     }
@@ -107,37 +107,37 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun updateMeetingsList(listener: CallbackListener) {
 
-        if (UserModel.meetingsListData != null) {
-            if (System.currentTimeMillis() - UserModel.meetingsListData!!.time < REQUEST_REFRESH_TIME_MS) {
+        if (UserModel.meetingsListResponse != null) {
+            if (System.currentTimeMillis() - UserModel.meetingsListResponse!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
                 return
             }
         }
 
-        if (UserModel.authData == null) {
+        if (UserModel.authResponse == null) {
             listener.onError(ApiError(401, "Not authorized"))
             return
         }
 
-        apiMethods.getMeetingsList(UserModel.authData!!.token)
+        apiMethods.getMeetingsList(UserModel.authResponse!!.token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
                 .doFinally { listener.doAfter() }
                 .subscribe(
-                        { response -> handleResponse(BaseResponse(response.status, response.title, MeetingsListData(response.data)), listener) },
+                        { response -> handleResponse(BaseResponse(response.status, response.title, MeetingsListResponse(response.data)), listener) },
                         { error -> handleError(error, listener) }
                 )
     }
 
     @SuppressLint("CheckResult")
     fun addMeeting(manager_id: String, date: String, listener: CallbackListener) {
-        if (UserModel.authData == null) {
+        if (UserModel.authResponse == null) {
             listener.onError(ApiError(401, "Not authorized"))
             return
         }
 
-        apiMethods.addMeeting(UserModel.authData!!.token, manager_id, date)
+        apiMethods.addMeeting(UserModel.authResponse!!.token, MeetingAddRequest(manager_id, date))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -151,8 +151,8 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun getCatalogSections(listener: CallbackListener) {
 
-        if (UserModel.catalogSectionsData != null) {
-            if (System.currentTimeMillis() - UserModel.catalogSectionsData!!.time < REQUEST_REFRESH_TIME_MS) {
+        if (UserModel.catalogSectionsResponse != null) {
+            if (System.currentTimeMillis() - UserModel.catalogSectionsResponse!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
                 return
             }
@@ -164,7 +164,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 .doOnSubscribe { listener.doBefore() }
                 .doFinally { listener.doAfter() }
                 .subscribe(
-                        { response -> handleResponse(BaseResponse(response.status, response.title, CatalogSectionsData(response.data)), listener) },
+                        { response -> handleResponse(BaseResponse(response.status, response.title, CatalogSectionsResponse(response.data)), listener) },
                         { error -> handleError(error, listener) }
                 )
     }
@@ -172,12 +172,12 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun getSectionProductsList(section_id: Int, listener: CallbackListener) {
 
-        if (UserModel.authData == null) {
+        if (UserModel.authResponse == null) {
             listener.onError(ApiError(401, "Not authorized"))
             return
         }
 
-        apiMethods.getSectionProductsList(UserModel.authData!!.token, section_id)
+        apiMethods.getSectionProductsList(UserModel.authResponse!!.token, SectionProductListRequest(section_id))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -185,7 +185,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 .subscribe(
                         { response ->
                             handleResponse(
-                                    BaseResponse(response.status, response.title, SectionProductsData(response.data)),
+                                    BaseResponse(response.status, response.title, SectionProductsResponse(response.data)),
                                     listener, section_id)
                         },
 
@@ -196,12 +196,12 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun getProductDetail(section_id: Int, product_id: Int, listener: CallbackListener) {
 
-        if (UserModel.authData == null) {
+        if (UserModel.authResponse == null) {
             listener.onError(ApiError(401, "Not authorized"))
             return
         }
 
-        apiMethods.getProductDetail(UserModel.authData!!.token, product_id)
+        apiMethods.getProductDetail(UserModel.authResponse!!.token, ProductRequest(product_id))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -228,7 +228,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 .doOnSubscribe { listener.doBefore() }
                 .doFinally { listener.doAfter() }
                 .subscribe(
-                        { response -> handleResponse(BaseResponse(response.status, response.title, PortfolioData(response.data)), listener) },
+                        { response -> handleResponse(BaseResponse(response.status, response.title, PortfolioResponse(response.data)), listener) },
                         { error -> handleError(error, listener) }
                 )
     }
@@ -255,42 +255,42 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
         if (response.status == 200) {
             when (DATA::class) {
 
-                AuthData::class -> {
-                    val authData = response.data as AuthData
-                    UserModel.authData = authData
+                AuthResponse::class -> {
+                    val authData = response.data as AuthResponse
+                    UserModel.authResponse = authData
                     preferences.setToken(authData.token)
                 }
 
-                ContactsData::class -> {
-                    UserModel.contacts = response.data as ContactsData
+                ContactsResponse::class -> {
+                    UserModel.contactsResponse = response.data as ContactsResponse
                 }
 
-                ObjectInfo::class -> {
-                    UserModel.objectInfo = response.data as ObjectInfo
+                ObjectInfoResponse::class -> {
+                    UserModel.objectInfoResponse = response.data as ObjectInfoResponse
                 }
 
-                EventsData::class -> {
-                    UserModel.eventsData = response.data as EventsData
+                EventsResponse::class -> {
+                    UserModel.eventsResponse = response.data as EventsResponse
                 }
 
-                MeetingsListData::class -> {
-                    UserModel.meetingsListData = response.data as MeetingsListData
+                MeetingsListResponse::class -> {
+                    UserModel.meetingsListResponse = response.data as MeetingsListResponse
                 }
 
                 MeetingsAddResponse::class -> {
                     // TODO ???
                 }
 
-                CatalogSectionsData::class -> {
-                    UserModel.catalogSectionsData = response.data as CatalogSectionsData
+                CatalogSectionsResponse::class -> {
+                    UserModel.catalogSectionsResponse = response.data as CatalogSectionsResponse
                 }
 
-                SectionProductsData::class -> {
-                    val catalogSectionsData = UserModel.catalogSectionsData
+                SectionProductsResponse::class -> {
+                    val catalogSectionsData = UserModel.catalogSectionsResponse
                     try {
                         catalogSectionsData!!.sections?.forEach { section ->
                             if (section.id == parameters[0]) {
-                                section.products = (response.data as SectionProductsData).products
+                                section.products = (response.data as SectionProductsResponse).products
                             }
                         }
                     } catch (e: Exception) {
@@ -302,12 +302,12 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                     listener.onSuccess(response.data as Product)
                 }
 
-                MapObjectsData::class -> {
-                    UserModel.mapObjectsData = response.data as MapObjectsData
+                MapObjectsResponse::class -> {
+                    UserModel.mapObjectsResponse = response.data as MapObjectsResponse
                 }
 
-                PortfolioData::class -> {
-                    UserModel.portfolio = response.data as PortfolioData
+                PortfolioResponse::class -> {
+                    UserModel.portfolio = response.data as PortfolioResponse
                 }
 
             }

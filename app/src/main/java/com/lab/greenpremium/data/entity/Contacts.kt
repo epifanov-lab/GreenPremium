@@ -2,8 +2,8 @@ package com.lab.greenpremium.data.entity
 
 import com.google.gson.annotations.SerializedName
 
-data class ContactsData(@SerializedName("office") val office: Contact,
-                        @SerializedName("managers") val managers: MutableList<Contact>) {
+data class ContactsResponse(@SerializedName("office") val office: Contact,
+                            @SerializedName("managers") val managers: MutableList<Contact>) {
 
     val time: Long = System.currentTimeMillis()
 

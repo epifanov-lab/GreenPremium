@@ -21,7 +21,7 @@ class ContactsPresenter @Inject constructor(val view: ContactsContract.View) : C
     override fun updateContacts() {
         repository.updateContacts(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                this@ContactsPresenter.view.initializeContactsCarousel(UserModel.contacts!!.getManagers(true))
+                this@ContactsPresenter.view.initializeContactsCarousel(UserModel.contactsResponse!!.getManagers(true))
             }
         })
     }
@@ -29,8 +29,8 @@ class ContactsPresenter @Inject constructor(val view: ContactsContract.View) : C
     override fun updateMeetingList() {
         repository.updateMeetingsList(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                UserModel.meetingsListData?.meetings?.isNotEmpty().let {
-                    val meeting = getFirstApprovedMeeting(UserModel.meetingsListData!!.meetings)
+                UserModel.meetingsListResponse?.meetings?.isNotEmpty().let {
+                    val meeting = getFirstApprovedMeeting(UserModel.meetingsListResponse!!.meetings)
                     val timestamp = getTimestampFromDateString(meeting?.date)
                     this@ContactsPresenter.view.updateNextMeetingLabels(timestamp)
                 }

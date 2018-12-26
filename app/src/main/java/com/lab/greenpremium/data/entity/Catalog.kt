@@ -5,7 +5,7 @@ import java.io.Serializable
 data class SectionProductListRequest(val section_id: Int)
 data class ProductRequest(val product_id: Int)
 
-data class CatalogSectionsData(val sections: List<Section>?) : Serializable {
+data class CatalogSectionsResponse(val sections: List<Section>?) : Serializable {
     val time: Long = System.currentTimeMillis()
 }
 
@@ -17,7 +17,7 @@ data class Section(
     var products: List<Product>? = null
 }
 
-data class SectionProductsData(val products: List<Product>) {
+data class SectionProductsResponse(val products: List<Product>) {
     val time: Long = System.currentTimeMillis()
 }
 
