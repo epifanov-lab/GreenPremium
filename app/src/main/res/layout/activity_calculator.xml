@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:overScrollMode="never">
@@ -116,16 +115,17 @@
                     android:paddingRight="@dimen/space_16"
                     android:paddingBottom="@dimen/space_12">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/input_plants_s1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:background="@drawable/bcg_calc_input"
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="0"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/font_size_18"
-                        tools:text="100" />
+                        android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -137,16 +137,17 @@
                     android:paddingRight="@dimen/space_16"
                     android:paddingBottom="@dimen/space_12">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/input_pots_s1"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/bcg_calc_input"
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="0"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/font_size_18"
-                        tools:text="100" />
+                        android:textSize="@dimen/font_size_18" />
 
                 </FrameLayout>
 
@@ -174,16 +175,17 @@
                     android:paddingRight="@dimen/space_16"
                     android:paddingBottom="@dimen/space_12">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/input_plants_s2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/bcg_calc_input"
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="0"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/font_size_18"
-                        tools:text="100" />
+                        android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -195,16 +197,17 @@
                     android:paddingRight="@dimen/space_16"
                     android:paddingBottom="@dimen/space_12">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/input_pots_s2"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/bcg_calc_input"
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="0"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/font_size_18"
-                        tools:text="100" />
+                        android:textSize="@dimen/font_size_18" />
 
                 </FrameLayout>
 
@@ -232,16 +235,17 @@
                     android:paddingRight="@dimen/space_16"
                     android:paddingBottom="@dimen/space_12">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/input_plants_s3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/bcg_calc_input"
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="0"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/font_size_18"
-                        tools:text="100" />
+                        android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -253,16 +257,17 @@
                     android:paddingRight="@dimen/space_16"
                     android:paddingBottom="@dimen/space_12">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/input_pots_s3"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/bcg_calc_input"
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="0"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/font_size_18"
-                        tools:text="100" />
+                        android:textSize="@dimen/font_size_18" />
 
                 </FrameLayout>
 
@@ -290,16 +295,17 @@
                     android:paddingRight="@dimen/space_16"
                     android:paddingBottom="@dimen/space_12">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/input_plants_s4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/bcg_calc_input"
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="0"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/font_size_18"
-                        tools:text="100" />
+                        android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -311,16 +317,17 @@
                     android:paddingRight="@dimen/space_16"
                     android:paddingBottom="@dimen/space_12">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/input_pots_s4"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/bcg_calc_input"
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="0"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/font_size_18"
-                        tools:text="100" />
+                        android:textSize="@dimen/font_size_18" />
 
                 </FrameLayout>
 
@@ -348,16 +355,17 @@
                     android:paddingRight="@dimen/space_16"
                     android:paddingBottom="@dimen/space_12">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/input_plants_s5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/bcg_calc_input"
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="0"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/font_size_18"
-                        tools:text="100" />
+                        android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
 
                 <FrameLayout
@@ -369,16 +377,17 @@
                     android:paddingRight="@dimen/space_16"
                     android:paddingBottom="@dimen/space_12">
 
-                    <TextView
+                    <EditText
                         android:id="@+id/input_pots_s5"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@drawable/bcg_calc_input"
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
+                        android:inputType="number"
+                        android:text="0"
                         android:textColor="@color/black"
-                        android:textSize="@dimen/font_size_18"
-                        tools:text="100" />
+                        android:textSize="@dimen/font_size_18" />
 
                 </FrameLayout>
 
@@ -390,7 +399,7 @@
             style="@style/Button.Green"
             android:layout_gravity="center_horizontal"
             android:layout_marginStart="24dp"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
             android:text="@string/calc_title_button_request"
             app:layout_constraintEnd_toEndOf="parent"

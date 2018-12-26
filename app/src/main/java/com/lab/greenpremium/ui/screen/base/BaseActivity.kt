@@ -15,6 +15,7 @@ import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.screen.auth.AuthActivity
+import com.lab.greenpremium.ui.screen.calculator.CalcActivity
 import com.lab.greenpremium.ui.screen.main.MainActivity
 import com.lab.greenpremium.ui.screen.message.MessageActivity
 import com.lab.greenpremium.ui.screen.plant_detail.PlantDetailActivity
@@ -71,6 +72,9 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
         startActivity(intent)
     }
 
+    fun goToCalcScreen() {
+        startActivity(Intent(this, CalcActivity::class.java))
+    }
 
     protected fun swapFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()

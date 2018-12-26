@@ -32,6 +32,7 @@
         <activity android:name=".ui.screen.message.MessageActivity" />
         <activity android:name=".ui.screen.main.contacts.meet.MeetingActivity" />
         <activity android:name=".ui.screen.plant_detail.PlantDetailActivity" />
+        <activity android:name=".ui.screen.calculator.CalcActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

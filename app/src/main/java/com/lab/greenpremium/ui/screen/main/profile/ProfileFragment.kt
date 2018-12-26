@@ -10,6 +10,7 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.data.entity.Event
 import com.lab.greenpremium.ui.components.ScrollLayoutManager
+import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.ui.screen.main.contacts.ContactsRecyclerAdapter
 import com.lab.greenpremium.utills.OnAnimationEndListener
@@ -42,18 +43,15 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     override fun initViews() {
         presenter.onViewCreated()
 
-        button_start_shopping.setOnClickListener {
-            container_no_events.visibility = GONE
-            container_events.visibility = VISIBLE
+        button_calc_service.setOnClickListener {
+            (activity as BaseActivity).goToCalcScreen()
         }
 
-        setTouchAnimationShrink(button_calc_service, object : OnAnimationEndListener {
-            override fun onAnimationEndEvent() {
-                button_calc_service.visibility = GONE
-                container_cost.visibility = VISIBLE
-            }
-        })
+        button_start_shopping.setOnClickListener {
+            //todo goto catalog
+        }
 
+        setTouchAnimationShrink(button_calc_service)
         setTouchAnimationShrink(button_start_shopping)
     }
 
