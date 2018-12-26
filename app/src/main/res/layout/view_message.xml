@@ -11,7 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_8"
         android:fontFamily="@font/sfuitext_regular"
-        android:text="@string/title_message"
+        android:text="@string/input_tip_message"
         android:textColor="@color/gray_light_1"
         android:textSize="@dimen/font_size_12" />
 

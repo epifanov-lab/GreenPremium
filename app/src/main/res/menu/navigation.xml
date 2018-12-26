@@ -4,26 +4,26 @@
     <item
         android:id="@+id/nav_profile"
         android:icon="@drawable/nav_ic_profile_states"
-        android:title="@string/title_profile" />
+        android:title="@string/screen_title_profile" />
 
     <item
         android:id="@+id/nav_plants"
         android:icon="@drawable/nav_ic_plants_states"
-        android:title="@string/title_plants" />
+        android:title="@string/screen_title_plants" />
 
     <item
         android:id="@+id/nav_portfolio"
         android:icon="@drawable/nav_ic_portfolio_states"
-        android:title="@string/title_portfolio" />
+        android:title="@string/screen_title_portfolio" />
 
     <item
         android:id="@+id/nav_contacts"
         android:icon="@drawable/nav_ic_contacts_states"
-        android:title="@string/title_contacts" />
+        android:title="@string/screen_title_contacts" />
 
     <item
         android:id="@+id/nav_map"
         android:icon="@drawable/nav_ic_map_states"
-        android:title="@string/title_map" />
+        android:title="@string/screen_title_map" />
 
 </menu>

@@ -56,35 +56,35 @@ class MainActivity : BaseActivity(), MainContract.View {
 
         when (item.itemId) {
             R.id.nav_profile -> {
-                title_text.setText(R.string.title_profile)
+                title_text.setText(R.string.screen_title_profile)
                 swapFragment(ProfileFragment.newInstance())
                 activateFabMenu(true)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_plants -> {
-                title_text.setText(R.string.title_plants)
+                title_text.setText(R.string.screen_title_plants)
                 swapFragment(PlantsFragment.newInstance())
                 activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_portfolio -> {
-                title_text.setText(R.string.title_portfolio)
+                title_text.setText(R.string.screen_title_portfolio)
                 swapFragment(PortfolioFragment.newInstance())
                 activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_contacts -> {
-                title_text.setText(R.string.title_contacts)
+                title_text.setText(R.string.screen_title_contacts)
                 swapFragment(ContactsFragment.newInstance())
                 activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_map -> {
-                title_text.setText(R.string.title_map)
+                title_text.setText(R.string.screen_title_map)
                 swapFragment(MapFragment.newInstance())
                 activateFabMenu(false)
                 return@OnNavigationItemSelectedListener true
@@ -101,7 +101,7 @@ class MainActivity : BaseActivity(), MainContract.View {
         BottomNavigationViewHelper.disableShiftMode(navigation)
 
         button_favorite.setOnClickListener {
-            title_text.setText(R.string.title_favorites)
+            title_text.setText(R.string.screen_title_favorites)
             button_favorite.setImageResource(R.drawable.ic_favorites_choosen)
             button_cart.setImageResource(R.drawable.ic_cart)
             swapFragment(FavoritesFragment.newInstance())
@@ -110,7 +110,7 @@ class MainActivity : BaseActivity(), MainContract.View {
         }
 
         button_cart.setOnClickListener {
-            title_text.setText(R.string.title_basket)
+            title_text.setText(R.string.screen_title_basket)
             button_cart.setImageResource(R.drawable.ic_basket_choosen)
             button_favorite.setImageResource(R.drawable.ic_favorites)
             swapFragment(CartFragment.newInstance())

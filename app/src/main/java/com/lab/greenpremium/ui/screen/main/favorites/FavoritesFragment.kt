@@ -37,7 +37,7 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View, PlantRecyclerA
     }
 
     override fun initViews() {
-         list= UserModel.getFavoritesProductsList()
+        list = UserModel.getFavoritesProductsList()
         initializeList()
     }
 

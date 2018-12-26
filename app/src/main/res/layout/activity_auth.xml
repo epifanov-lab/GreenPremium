@@ -12,7 +12,6 @@
         android:layout_height="@dimen/back_button_area_size"
         android:layout_marginBottom="@dimen/space_8"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:paddingStart="@dimen/back_button_image_minus_padding_left"
         android:scaleType="centerInside"
         android:src="@drawable/ic_back" />
 
@@ -22,7 +21,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_4"
         android:fontFamily="@font/sfuitext_bold"
-        android:text="@string/title_login_1"
+        android:text="@string/title_auth_1"
         android:textColor="@color/black"
         android:textSize="@dimen/font_size_20" />
 
@@ -40,7 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:hint="@string/title_email"
+            android:hint="@string/input_title_email"
             android:inputType="textEmailAddress"
             android:scrollHorizontally="true" />
 
@@ -61,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ellipsize="end"
-            android:hint="@string/title_password"
+            android:hint="@string/input_title_password"
             android:inputType="textPassword"
             android:scrollHorizontally="true" />
 
@@ -72,7 +71,7 @@
         style="@style/Button.Green"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/space_8"
-        android:text="@string/title_login_2" />
+        android:text="@string/title_auth_2" />
 
     <TextView
         android:id="@+id/button_forgot_pass"
@@ -80,7 +79,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:fontFamily="@font/sfuitext_regular"
-        android:text="@string/title_forgot_password"
+        android:text="@string/reference_title_forgot_password"
         android:textColor="@color/gray"
         android:textSize="@dimen/font_size_10" />
 

@@ -75,7 +75,7 @@ class ContactItemView : RelativeLayout {
             text_mail.text = it.email.also { if (contact?.email == null) button_mail.visibility = GONE }
             text_info.text = it.position
 
-            if (!it.photo.isNullOrEmpty()){
+            if (!it.photo.isNullOrEmpty()) {
                 GlideApp.with(context)
                         .load(contact?.photo)
                         .into(image)

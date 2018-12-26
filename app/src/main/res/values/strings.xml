@@ -4,39 +4,47 @@
     <string name="start_screen_title_1">Ваше помещение.</string>
     <string name="start_screen_title_2">В зелени.</string>
     <string name="start_screen_title_3">Попробуйте.</string>
-    <string name="start_screen_support">Обратиться в службу поддержки</string>
+    <string name="reference_start_support">Обратиться в службу поддержки</string>
 
-    <string name="title_login_1">Вход</string>
-    <string name="title_login_2">Войти</string>
+    <string name="title_auth_1">Вход</string>
+    <string name="title_auth_2">Войти</string>
 
     <string name="fab_complain">Пожаловаться</string>
     <string name="fab_praise">Похвалить нас</string>
     <string name="fab_letter">Написать письмо</string>
     <string name="fab_project">Новый проект</string>
 
-    <string name="title_subject">Тема</string>
-    <string name="title_message">Сообщение</string>
-    <string name="title_sent">Отправить</string>
+    <string name="input_title_subject">Тема</string>
+    <string name="input_tip_message">Сообщение</string>
+    <string name="button_title_sent">Отправить</string>
 
-    <string name="title_demo">Демо-режим</string>
-    <string name="title_registration">Зарегистрироваться</string>
+    <string name="button_title_demo">Демо-режим</string>
+    <string name="button_title_registration">Зарегистрироваться</string>
 
-    <string name="title_email">Email</string>
-    <string name="title_password">Пароль</string>
-    <string name="title_forgot_password"><u>Забыли логин или пароль?</u></string>
+    <string name="input_title_email">Email</string>
+    <string name="input_title_password">Пароль</string>
+    <string name="reference_title_forgot_password"><u>Забыли логин или пароль?</u></string>
 
-    <string name="title_plants">Растения</string>
-    <string name="title_portfolio">Портфолио</string>
-    <string name="title_profile">Профиль</string>
-    <string name="title_contacts">Контакты</string>
-    <string name="title_map">Карта</string>
-    <string name="title_basket">Корзина</string>
-    <string name="title_favorites">Избранное</string>
+    <string name="screen_title_plants">Растения</string>
+    <string name="screen_title_portfolio">Портфолио</string>
+    <string name="screen_title_profile">Профиль</string>
+    <string name="screen_title_contacts">Контакты</string>
+    <string name="screen_title_map">Карта</string>
+    <string name="screen_title_basket">Корзина</string>
+    <string name="screen_title_favorites">Избранное</string>
 
-    <string name="title_plants_living">Живые</string>
-    <string name="title_plants_artificial">Искусственные</string>
-    <string name="title_plants_big">Крупномеры</string>
-    <string name="title_service">Сервис</string>
+    <string name="title_gallery">Галерея</string>
+
+    <string name="calc_screen_title">Калькулятор сервиса</string>
+    <string name="calc_screen_tip_text">Данный расчет дает приблизительную стоимость. После нажатия кнопки запросить КП, в вашем личном кабинете появится коммерческое предложение на обслуживание растений ив ближайшее время с Вами свяжется наш менеджер</string>
+    <string name="calc_title_column_plants">Количество растений</string>
+    <string name="calc_title_column_pots">Количество кашпо</string>
+    <string name="calc_title_row_s1">Растения до 1 метра</string>
+    <string name="calc_title_row_s2">Растения до 1 до 1,5 метров</string>
+    <string name="calc_title_row_s3">Растения до 1,5 метров</string>
+    <string name="calc_title_row_s4">Суккуленты и кактусы</string>
+    <string name="calc_title_row_s5">Цветущие растения</string>
+    <string name="calc_title_button_request">Запросить</string>
 
     <string name="title_height">Высота</string>
 
@@ -60,7 +68,6 @@
     <string name="title_today">Сегодня</string>
     <string name="title_ok_1">Готово</string>
 
-    <string name="error_simple">Ошибка!</string>
     <string name="today">Сегодня</string>
 
     <string name="favorites_empty">Список избранных растений пуст</string>
@@ -84,6 +91,5 @@
     <string name="lorem_ipsum_short">Sed ut perspiciatis unde omnis iste natus error</string>
     <string name="lorem_ipsum_medium">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi</string>
     <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
-    <string name="title_gallery">Галерея</string>
 
 </resources>

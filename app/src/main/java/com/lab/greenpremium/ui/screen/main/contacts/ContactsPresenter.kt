@@ -39,7 +39,7 @@ class ContactsPresenter @Inject constructor(val view: ContactsContract.View) : C
     }
 
     private fun getFirstApprovedMeeting(meetings: List<Meeting>): Meeting? {
-        meetings.forEach{
+        meetings.forEach {
             if (it.status.code.equals(MeetingStatusCode.APPROVED)) return it
         }
         return null

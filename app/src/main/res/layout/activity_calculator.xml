@@ -1,0 +1,401 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:overScrollMode="never">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/button_back"
+            android:layout_width="@dimen/back_button_area_size"
+            android:layout_height="@dimen/back_button_area_size"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:scaleType="centerInside"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_title"
+            android:layout_width="272dp"
+            android:layout_height="30dp"
+            android:layout_gravity=""
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/sfuitext_bold"
+            android:text="@string/calc_screen_title"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_20"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_back" />
+
+        <TextView
+            android:id="@+id/label_tip"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button_bill"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="24dp"
+            android:fontFamily="@font/sfuitext_regular"
+            android:gravity="start"
+            android:text="@string/calc_screen_tip_text"
+            android:textColor="@color/gray_light_1"
+            android:textSize="@dimen/font_size_10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_title" />
+
+        <TableLayout
+            android:id="@+id/table"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@color/green_light"
+            android:padding="@dimen/space_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/label_tip">
+
+            <TableRow>
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+
+                <TextView
+                    android:id="@+id/title_column_1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:gravity="center"
+                    android:text="@string/calc_title_column_plants"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_10" />
+
+                <TextView
+                    android:id="@+id/title_column_2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:gravity="center"
+                    android:text="@string/calc_title_column_pots"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_10" />
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/title_row_1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:gravity="start|center"
+                    android:text="@string/calc_title_row_s1"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_10" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/space_16"
+                    android:paddingTop="@dimen/space_12"
+                    android:paddingRight="@dimen/space_16"
+                    android:paddingBottom="@dimen/space_12">
+
+                    <TextView
+                        android:id="@+id/input_plants_s1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bcg_calc_input"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18"
+                        tools:text="100" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/space_16"
+                    android:paddingTop="@dimen/space_12"
+                    android:paddingRight="@dimen/space_16"
+                    android:paddingBottom="@dimen/space_12">
+
+                    <TextView
+                        android:id="@+id/input_pots_s1"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bcg_calc_input"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18"
+                        tools:text="100" />
+
+                </FrameLayout>
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/title_row_2"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:gravity="start|center"
+                    android:text="@string/calc_title_row_s2"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_10" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/space_16"
+                    android:paddingTop="@dimen/space_12"
+                    android:paddingRight="@dimen/space_16"
+                    android:paddingBottom="@dimen/space_12">
+
+                    <TextView
+                        android:id="@+id/input_plants_s2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bcg_calc_input"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18"
+                        tools:text="100" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/space_16"
+                    android:paddingTop="@dimen/space_12"
+                    android:paddingRight="@dimen/space_16"
+                    android:paddingBottom="@dimen/space_12">
+
+                    <TextView
+                        android:id="@+id/input_pots_s2"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bcg_calc_input"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18"
+                        tools:text="100" />
+
+                </FrameLayout>
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/title_row_3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:gravity="start|center"
+                    android:text="@string/calc_title_row_s3"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_10" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/space_16"
+                    android:paddingTop="@dimen/space_12"
+                    android:paddingRight="@dimen/space_16"
+                    android:paddingBottom="@dimen/space_12">
+
+                    <TextView
+                        android:id="@+id/input_plants_s3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bcg_calc_input"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18"
+                        tools:text="100" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/space_16"
+                    android:paddingTop="@dimen/space_12"
+                    android:paddingRight="@dimen/space_16"
+                    android:paddingBottom="@dimen/space_12">
+
+                    <TextView
+                        android:id="@+id/input_pots_s3"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bcg_calc_input"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18"
+                        tools:text="100" />
+
+                </FrameLayout>
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/title_row_4"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:gravity="start|center"
+                    android:text="@string/calc_title_row_s4"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_10" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/space_16"
+                    android:paddingTop="@dimen/space_12"
+                    android:paddingRight="@dimen/space_16"
+                    android:paddingBottom="@dimen/space_12">
+
+                    <TextView
+                        android:id="@+id/input_plants_s4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bcg_calc_input"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18"
+                        tools:text="100" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/space_16"
+                    android:paddingTop="@dimen/space_12"
+                    android:paddingRight="@dimen/space_16"
+                    android:paddingBottom="@dimen/space_12">
+
+                    <TextView
+                        android:id="@+id/input_pots_s4"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bcg_calc_input"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18"
+                        tools:text="100" />
+
+                </FrameLayout>
+
+            </TableRow>
+
+            <TableRow>
+
+                <TextView
+                    android:id="@+id/title_row_5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:fontFamily="@font/sfuitext_regular"
+                    android:gravity="start|center"
+                    android:text="@string/calc_title_row_s5"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/font_size_10" />
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/space_16"
+                    android:paddingTop="@dimen/space_12"
+                    android:paddingRight="@dimen/space_16"
+                    android:paddingBottom="@dimen/space_12">
+
+                    <TextView
+                        android:id="@+id/input_plants_s5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bcg_calc_input"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18"
+                        tools:text="100" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:paddingLeft="@dimen/space_16"
+                    android:paddingTop="@dimen/space_12"
+                    android:paddingRight="@dimen/space_16"
+                    android:paddingBottom="@dimen/space_12">
+
+                    <TextView
+                        android:id="@+id/input_pots_s5"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bcg_calc_input"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_18"
+                        tools:text="100" />
+
+                </FrameLayout>
+
+            </TableRow>
+        </TableLayout>
+
+        <Button
+            android:id="@+id/button_request"
+            style="@style/Button.Green"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="24dp"
+            android:text="@string/calc_title_button_request"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/table" />
+
+    </android.support.constraint.ConstraintLayout>
+</ScrollView>

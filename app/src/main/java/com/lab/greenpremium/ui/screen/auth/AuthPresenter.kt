@@ -45,12 +45,12 @@ class AuthPresenter @Inject constructor(val view: AuthContract.View) : AuthContr
         when {
 
             login == null -> {
-                view.setLoginInputError(R.string.error_empty_field, R.string.title_email)
+                view.setLoginInputError(R.string.error_empty_field, R.string.input_title_email)
                 return
             }
 
             password == null -> {
-                view.setPasswordInputError(R.string.error_empty_field, R.string.title_password)
+                view.setPasswordInputError(R.string.error_empty_field, R.string.input_title_password)
                 return
             }
 

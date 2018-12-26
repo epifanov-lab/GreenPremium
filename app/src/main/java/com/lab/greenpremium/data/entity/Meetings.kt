@@ -16,7 +16,7 @@ data class MeetingsListRequest(
 )
 
 data class MeetingsListResponse(
-        val meetings: List<Meeting> ) {
+        val meetings: List<Meeting>) {
 
     val time: Long = System.currentTimeMillis()
 
@@ -34,7 +34,7 @@ data class Status(
         val title: String
 )
 
-enum class MeetingStatusCode (val code: String){
+enum class MeetingStatusCode(val code: String) {
     NEW("22"),
     APPROVED("23"),
     REJECTED("24")

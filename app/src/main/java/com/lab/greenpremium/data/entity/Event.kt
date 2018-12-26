@@ -6,13 +6,13 @@ data class EventsResponse(val events: List<Event>) {
 
 
 data class Event(
-    val client_id: String,
-    val created: String,
-    val email_to: String,
-    val id: String,
-    val manager_id: String,
-    val message: String,
-    val object_id: String,
-    val subject: String,
-    val file_path: String
+        val client_id: String,
+        val created: String,
+        val email_to: String,
+        val id: String,
+        val manager_id: String,
+        val message: String,
+        val object_id: String,
+        val subject: String,
+        val file_path: String
 )

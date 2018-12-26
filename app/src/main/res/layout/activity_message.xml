@@ -52,7 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_24"
-        android:hint="@string/title_subject"
+        android:hint="@string/input_title_subject"
         android:textColorHint="@color/gray_light_1"
         android:visibility="gone">
 
@@ -61,10 +61,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/sfuitext_medium"
+            android:inputType="text"
             android:textColor="@color/black"
             android:textSize="@dimen/font_size_12"
-            tools:text="Lorem ipsum"
-            android:inputType="text" />
+            tools:text="Lorem ipsum" />
 
     </android.support.design.widget.TextInputLayout>
 
@@ -82,7 +82,6 @@
         android:layout_marginBottom="@dimen/space_24"
         android:visibility="gone" />
 
-
     <View
         android:id="@+id/file_docs"
         android:layout_width="match_parent"
@@ -95,6 +94,6 @@
         style="@style/Button.Green"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/space_8"
-        android:text="@string/title_sent" />
+        android:text="@string/button_title_sent" />
 
 </LinearLayout>
