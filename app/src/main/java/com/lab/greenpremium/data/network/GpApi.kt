@@ -25,13 +25,13 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
         return api.getEvents(token)
     }
 
-    fun calculateService(token: String, requst: CalcServiceRequst): Single<BaseResponse<CalcServiceResponse>> {
+    fun calculateService(token: String, request: CalcServiceRequest): Single<BaseResponse<CalcServiceResponse>> {
         return api.calculateService(token,
-                requst.plants_count_s1, requst.pots_count_s1,
-                requst.plants_count_s2, requst.pots_count_s2,
-                requst.plants_count_s3, requst.pots_count_s3,
-                requst.plants_count_s4, requst.pots_count_s4,
-                requst.plants_count_s5, requst.pots_count_s5)
+                request.plants_count_s1, request.pots_count_s1,
+                request.plants_count_s2, request.pots_count_s2,
+                request.plants_count_s3, request.pots_count_s3,
+                request.plants_count_s4, request.pots_count_s4,
+                request.plants_count_s5, request.pots_count_s5)
     }
     //endregion
 
