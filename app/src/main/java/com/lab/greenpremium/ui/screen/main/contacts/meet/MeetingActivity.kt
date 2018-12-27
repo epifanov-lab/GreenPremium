@@ -1,12 +1,9 @@
 package com.lab.greenpremium.ui.screen.main.contacts.meet
 
-import android.app.Activity
-import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
 import android.support.v7.widget.RecyclerView
 import com.lab.greenpremium.App
-import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.MEETING_MINUTE_STEP
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Contact
@@ -108,18 +105,5 @@ class MeetingActivity : BaseActivity(), MeetingContract.View {
         initPicker(picker_day, days.toTypedArray())
         initPicker(picker_hour, hours)
         initPicker(picker_minute, minutes)
-    }
-
-    override fun finishWithMessage(message: String?) {
-        val intent = Intent()
-        if (message != null) {
-            intent.putExtra(KEY_OBJECT, message)
-            setResult(Activity.RESULT_OK, intent)
-
-        } else {
-            setResult(Activity.RESULT_CANCELED, intent)
-        }
-
-        finish()
     }
 }

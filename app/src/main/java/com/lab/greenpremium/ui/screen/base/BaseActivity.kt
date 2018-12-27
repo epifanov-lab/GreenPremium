@@ -1,5 +1,6 @@
 package com.lab.greenpremium.ui.screen.base
 
+import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -106,5 +107,18 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
     override fun showLoadingDialog(show: Boolean) {
         if (show) progressDialog.show()
         else progressDialog.dismiss()
+    }
+
+    override fun finishWithMessage(message: String?) {
+        val intent = Intent()
+        if (message != null) {
+            intent.putExtra(KEY_OBJECT, message)
+            setResult(Activity.RESULT_OK, intent)
+
+        } else {
+            setResult(Activity.RESULT_CANCELED, intent)
+        }
+
+        finish()
     }
 }

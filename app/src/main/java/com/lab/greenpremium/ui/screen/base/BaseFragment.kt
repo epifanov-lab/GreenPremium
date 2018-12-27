@@ -43,4 +43,8 @@ abstract class BaseFragment : Fragment(), BaseContract.BaseView {
     override fun showLoadingDialog(show: Boolean) {
         (activity as BaseActivity).showLoadingDialog(show)
     }
+
+    override fun finishWithMessage(message: String?) {
+        //override if needed
+    }
 }

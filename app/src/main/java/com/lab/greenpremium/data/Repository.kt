@@ -105,6 +105,25 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
+    fun calculateServiceCost(request: CalcServiceRequest, listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.calculateService(UserModel.authResponse!!.token, request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
     fun updateMeetingsList(listener: CallbackListener) {
 
         if (UserModel.meetingsListResponse != null) {
@@ -273,12 +292,16 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                     UserModel.eventsResponse = response.data as EventsResponse
                 }
 
+                CalcServiceResponse::class -> {
+                    listener.onSuccess(response.data as CalcServiceResponse)
+                }
+
                 MeetingsListResponse::class -> {
                     UserModel.meetingsListResponse = response.data as MeetingsListResponse
                 }
 
                 MeetingsAddResponse::class -> {
-                    // TODO ???
+                    //ignore
                 }
 
                 CatalogSectionsResponse::class -> {

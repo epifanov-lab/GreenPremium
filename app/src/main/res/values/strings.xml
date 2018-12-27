@@ -64,6 +64,7 @@
     <string name="cart_get_bill">Запросить счёт</string>
     <string name="cart_title_total">Общая стоимость</string>
     <string name="cart_service">Мы можем взять на себя уход за вашими растениями. Стоимость сервиса составит 19 800 ₽ в месяц</string>
+    <string name="calc_params_is_not_set_error">Выберите количество растений и кашпо</string>
 
     <string name="title_today">Сегодня</string>
     <string name="title_ok_1">Готово</string>

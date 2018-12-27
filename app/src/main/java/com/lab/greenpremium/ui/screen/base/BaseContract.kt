@@ -7,9 +7,8 @@ interface BaseContract {
         fun showSnackbar(text: String? = null, textResId: Int? = null)
         fun showDialogMessage(text: String? = null, textResId: Int? = null)
         fun showLoadingDialog(show: Boolean = true)
+        fun finishWithMessage(message: String?)
     }
 
-    interface BasePresenter {
-
-    }
+    interface BasePresenter
 }
