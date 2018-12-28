@@ -205,9 +205,11 @@ class MainActivity : BaseActivity(), MainContract.View {
         when (requestCode) {
             KEY_RESULT_ADD_MEETING -> {
                 Handler().post {
-                    EventBus.getDefault().post(MeetingAddedEvent())
-                    val message = data!!.getStringExtra(KEY_OBJECT)
-                    showSnackbar(message)
+                    data?.let {
+                        EventBus.getDefault().post(MeetingAddedEvent())
+                        val message = data.getStringExtra(KEY_OBJECT)
+                        showSnackbar(message)
+                    }
                 }
             }
 
