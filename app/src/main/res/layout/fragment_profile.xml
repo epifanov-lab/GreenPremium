@@ -131,7 +131,7 @@
             android:paddingLeft="@dimen/space_24"
             android:paddingRight="@dimen/space_24"
             android:scrollbars="none"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -188,6 +188,7 @@
                         android:textSize="@dimen/font_size_12" />
 
                     <ImageView
+                        android:id="@+id/delivery"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

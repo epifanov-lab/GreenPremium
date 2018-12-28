@@ -18,9 +18,19 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
     private fun updateObjectInfo() {
         repository.updateObjectsInfo(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                val biologists = UserModel.objectInfoResponse!!.biologists
-                if (biologists.isNotEmpty()) this@ProfilePresenter.view.initializeContactsCarousel(biologists)
-                else updateContacts()
+                val info = UserModel.objectInfoResponse
+
+                info?.let {
+
+                    val biologists = info.biologists
+                    biologists?.let {
+                        if (biologists.isNotEmpty()) this@ProfilePresenter.view.initializeContactsCarousel(biologists)
+                        else updateContacts()
+                    }
+
+                    this@ProfilePresenter.view.initializeServiceCostSection(info.payment)
+                    this@ProfilePresenter.view.initializeOrdersSection(info.order_id, info.order_supply_date)
+                }
             }
         })
     }

@@ -13,8 +13,9 @@ import com.lab.greenpremium.data.entity.Event
 import com.lab.greenpremium.ui.components.ScrollLayoutManager
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.ui.screen.base.BaseFragment
+import com.lab.greenpremium.ui.screen.main.MainActivity
 import com.lab.greenpremium.ui.screen.main.contacts.ContactsRecyclerAdapter
-import com.lab.greenpremium.utills.setTouchAnimationShrink
+import com.lab.greenpremium.utills.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -51,7 +52,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         }
 
         button_start_shopping.setOnClickListener {
-            //todo goto catalog
+            (activity as MainActivity).selectMenuItem(R.id.nav_plants)
         }
 
         setTouchAnimationShrink(button_calc_service)
@@ -70,6 +71,12 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         indicator_contacts.attachToRecyclerView(recycler_contacts)
     }
 
+    override fun initializeServiceCostSection(payment: Double?) {
+        val isServiceCalculated = payment != null && payment != 0.0
+        button_calc_service.visibility = if (isServiceCalculated) VISIBLE else GONE
+        container_cost.visibility = if (isServiceCalculated) GONE else VISIBLE.also { text_service_price.text = currencyFormat(payment) }
+    }
+
     override fun showNoEventsContainer() {
         container_no_events.visibility = VISIBLE
         container_events.visibility = GONE
@@ -83,6 +90,21 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         recycler_events.adapter = EventsRecyclerAdapter(events)
     }
 
+    override fun initializeOrdersSection(order_id: Int?, order_supply_date: String?) {
+        val isDeliveryExpected = order_id != null && order_supply_date != null
+        container_delivery_schedule.visibility = if (isDeliveryExpected) VISIBLE else GONE
+        if (isDeliveryExpected) {
+            val timestamp = getTimestampFromDateString(order_supply_date)
+            timestamp?.let {
+                text_date_day.text = geDayFromTimestamp(timestamp)
+                text_date_month.text = getMonthStringFromTimestamp(timestamp)
+            }
+
+            delivery.setOnClickListener {
+                //TODO GO TO DELIVERY WITH ORDER ID
+            }
+        }
+    }
 
     override fun onStart() {
         super.onStart()

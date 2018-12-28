@@ -8,6 +8,7 @@ import java.text.DecimalFormatSymbols
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
+import kotlin.math.roundToInt
 
 
 operator fun ViewGroup.get(pos: Int): View = getChildAt(pos)
@@ -23,19 +24,22 @@ val ViewGroup.views: List<View>
  * @param groupingUsed true if grouping separation should be used for large number
  * (e.g. 1 000 000 instead of 1000000)
  * @param decimals     number of digits after decimal separator
+ * @param currencySymbol currency symbol char
  * @return locale specific currency string
  */
-fun currencyFormat(amount: Double?, groupingUsed: Boolean = true, decimals: Int = 2): String {
+fun currencyFormat(amount: Double?, groupingUsed: Boolean = true, decimals: Int = 2, currencySymbol: Char = '₽'): String {
     val formatSymbols = DecimalFormatSymbols()
     formatSymbols.decimalSeparator = '.'
     formatSymbols.groupingSeparator = ' '
     val formatter = DecimalFormat()
     formatter.decimalFormatSymbols = formatSymbols
-    //if (amount % 1 == 0) decimals = 0; // uncomment if need remove zeroes after dot
-    formatter.minimumFractionDigits = decimals
-    formatter.maximumFractionDigits = decimals
+
+    var mutableDecimals = decimals
+    amount?.let { if (amount.roundToInt() % 1 == 0) mutableDecimals = 0 }
+    formatter.minimumFractionDigits = mutableDecimals
+
     formatter.isGroupingUsed = groupingUsed
-    return formatter.format(amount) + " \u20BD"
+    return "${formatter.format(amount)} $currencySymbol"
 }
 
 fun getErrorMessage(throwable: Throwable): String? {
@@ -43,6 +47,7 @@ fun getErrorMessage(throwable: Throwable): String? {
 }
 
 fun getTimestampFromDateString(dateString: String?, dateFormat: SimpleDateFormat = SimpleDateFormat("dd-mm-yyyy hh:mm:ss", Locale.getDefault())): Long? {
+
     if (dateString == null) return null
 
     var result: Long = 0

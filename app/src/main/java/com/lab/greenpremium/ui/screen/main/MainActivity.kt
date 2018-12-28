@@ -3,6 +3,7 @@ package com.lab.greenpremium.ui.screen.main
 import android.animation.Animator
 import android.content.Intent
 import android.os.Handler
+import android.support.annotation.IdRes
 import android.support.design.widget.BottomNavigationView
 import android.view.View
 import android.view.View.GONE
@@ -49,7 +50,7 @@ class MainActivity : BaseActivity(), MainContract.View {
                 .inject(this)
     }
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
         BottomNavigationViewHelper.setUncheckable(navigation, false)
         button_favorite.setImageResource(R.drawable.ic_favorites)
@@ -98,7 +99,7 @@ class MainActivity : BaseActivity(), MainContract.View {
         swapFragment(ProfileFragment.newInstance())
 
         navigation.itemIconTintList = null
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        navigation.setOnNavigationItemSelectedListener(onNavigationItemSelectedListener)
         BottomNavigationViewHelper.disableShiftMode(navigation)
 
         button_favorite.setOnClickListener {
@@ -173,6 +174,10 @@ class MainActivity : BaseActivity(), MainContract.View {
             }
 
         })
+    }
+
+    fun selectMenuItem(@IdRes itemResId: Int) {
+        navigation.selectedItemId =  itemResId
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

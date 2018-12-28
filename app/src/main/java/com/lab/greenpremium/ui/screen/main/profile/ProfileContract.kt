@@ -9,7 +9,9 @@ interface ProfileContract {
     interface View : BaseContract.BaseView {
         fun showLoadingStub(show: Boolean)
         fun initializeContactsCarousel(contacts: List<Contact>)
+        fun initializeServiceCostSection(payment: Double?)
         fun initializeEventsList(events: List<Event>)
+        fun initializeOrdersSection(order_id: Int?, order_supply_date: String?)
         fun showNoEventsContainer()
     }
 
