@@ -1,8 +1,10 @@
 package com.lab.greenpremium.ui.screen.calculator
 
+import android.app.Activity
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
+import com.lab.greenpremium.ui.components.Listener
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_calculator.*
@@ -38,5 +40,13 @@ class CalcActivity : BaseActivity(), CalcContract.View {
         button_back.setOnClickListener { onBackPressed() }
 
         setTouchAnimationShrink(button_request)
+    }
+
+    override fun onCalculateSuccess(message: String) {
+        showDialogMessage(message, null, object : Listener {
+            override fun onEvent() {
+                finishWithResult(Activity.RESULT_OK)
+            }
+        })
     }
 }

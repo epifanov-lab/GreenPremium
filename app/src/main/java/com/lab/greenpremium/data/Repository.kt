@@ -79,9 +79,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun updateEvents(listener: CallbackListener) {
+    fun updateEvents(forced: Boolean, listener: CallbackListener) {
 
-        if (UserModel.eventsResponse != null) {
+        if (!forced && UserModel.eventsResponse != null) {
             if (System.currentTimeMillis() - UserModel.eventsResponse!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
                 return

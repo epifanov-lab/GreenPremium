@@ -15,5 +15,6 @@ interface ProfileContract {
 
     interface Presenter {
         fun onViewCreated()
+        fun updateEvents(forced: Boolean)
     }
 }

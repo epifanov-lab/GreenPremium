@@ -6,7 +6,6 @@ import com.lab.greenpremium.data.Repository
 import com.lab.greenpremium.data.entity.CalcServiceRequest
 import com.lab.greenpremium.data.entity.CalcServiceResponse
 import com.lab.greenpremium.data.network.DefaultCallbackListener
-import com.lab.greenpremium.utills.LogUtil
 import io.reactivex.Observable
 import java.io.Serializable
 import javax.inject.Inject
@@ -31,21 +30,20 @@ class CalcPresenter @Inject constructor(val view: CalcContract.View) : CalcContr
         plantsCount4.subscribe { s -> model.plants_count_s4 = s.toInt() }
         plantsCount5.subscribe { s -> model.plants_count_s5 = s.toInt() }
 
-        potsCount1.subscribe { s -> model.plants_count_s1 = s.toInt() }
-        potsCount2.subscribe { s -> model.plants_count_s2 = s.toInt() }
-        potsCount3.subscribe { s -> model.plants_count_s3 = s.toInt() }
-        potsCount4.subscribe { s -> model.plants_count_s4 = s.toInt() }
-        potsCount5.subscribe { s -> model.plants_count_s5 = s.toInt() }
+        potsCount1.subscribe { s -> model.pots_count_s1 = s.toInt() }
+        potsCount2.subscribe { s -> model.pots_count_s2 = s.toInt() }
+        potsCount3.subscribe { s -> model.pots_count_s3 = s.toInt() }
+        potsCount4.subscribe { s -> model.pots_count_s4 = s.toInt() }
+        potsCount5.subscribe { s -> model.pots_count_s5 = s.toInt() }
     }
 
     override fun onClickCalcRequest() {
-        LogUtil.e("MODEL: $model")
         if (model.isChanged()) {
             repository.calculateServiceCost(model, object : DefaultCallbackListener(view) {
                 override fun onSuccess(item: Serializable?) {
                     item?.let { response ->
                         val message = (response as CalcServiceResponse).message
-                        view.showSnackbar(message)
+                        this@CalcPresenter.view.onCalculateSuccess(message)
                     }
                 }
             })

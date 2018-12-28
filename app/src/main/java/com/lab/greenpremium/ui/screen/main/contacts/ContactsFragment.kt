@@ -10,7 +10,7 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.data.MeetingAddedEvent
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.ui.screen.base.BaseFragment
-import com.lab.greenpremium.ui.screen.main.contacts.meet.MeetingActivity
+import com.lab.greenpremium.ui.screen.meeting.MeetingActivity
 import com.lab.greenpremium.utills.geDayFromTimestamp
 import com.lab.greenpremium.utills.getMonthStringFromTimestamp
 import com.lab.greenpremium.utills.getTimeFromTimestamp

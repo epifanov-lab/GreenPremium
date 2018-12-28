@@ -7,15 +7,18 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.ServiceCalculatedEvent
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.data.entity.Event
 import com.lab.greenpremium.ui.components.ScrollLayoutManager
 import com.lab.greenpremium.ui.screen.base.BaseActivity
 import com.lab.greenpremium.ui.screen.base.BaseFragment
 import com.lab.greenpremium.ui.screen.main.contacts.ContactsRecyclerAdapter
-import com.lab.greenpremium.utills.OnAnimationEndListener
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_profile.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 
@@ -78,5 +81,21 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
 
         recycler_events.layoutManager = ScrollLayoutManager(context).also { it.setScrollEnabled(false) }
         recycler_events.adapter = EventsRecyclerAdapter(events)
+    }
+
+
+    override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onMessageEvent(event: ServiceCalculatedEvent) {
+        presenter.updateEvents(true)
     }
 }

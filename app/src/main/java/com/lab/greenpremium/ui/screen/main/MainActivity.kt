@@ -11,6 +11,7 @@ import android.view.ViewAnimationUtils
 import com.getbase.floatingactionbutton.FloatingActionsMenu
 import com.lab.greenpremium.*
 import com.lab.greenpremium.data.MeetingAddedEvent
+import com.lab.greenpremium.data.ServiceCalculatedEvent
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.ui.components.BottomNavigationViewHelper
 import com.lab.greenpremium.ui.screen.base.BaseActivity
@@ -202,6 +203,12 @@ class MainActivity : BaseActivity(), MainContract.View {
                     EventBus.getDefault().post(MeetingAddedEvent())
                     val message = data!!.getStringExtra(KEY_OBJECT)
                     showSnackbar(message)
+                }
+            }
+
+            KEY_RESULT_CALCULATOR -> {
+                Handler().post {
+                    EventBus.getDefault().post(ServiceCalculatedEvent())
                 }
             }
 

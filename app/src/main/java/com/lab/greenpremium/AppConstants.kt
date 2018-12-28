@@ -4,6 +4,7 @@ package com.lab.greenpremium
 /*Keys*/
 const val KEY_OBJECT = "key_object"
 const val KEY_RESULT_ADD_MEETING = 1000
+const val KEY_RESULT_CALCULATOR = 1001
 
 /*Data*/
 const val NO_DATA = -1

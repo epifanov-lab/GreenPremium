@@ -5,7 +5,9 @@ import io.reactivex.Observable
 
 
 interface CalcContract {
-    interface View : BaseContract.BaseView
+    interface View : BaseContract.BaseView{
+        fun onCalculateSuccess(message: String)
+    }
 
     interface Presenter {
         fun initializeDataInput(

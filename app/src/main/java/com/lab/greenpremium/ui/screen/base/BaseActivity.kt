@@ -13,8 +13,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.lab.greenpremium.KEY_OBJECT
+import com.lab.greenpremium.KEY_RESULT_CALCULATOR
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Product
+import com.lab.greenpremium.ui.components.Listener
 import com.lab.greenpremium.ui.screen.auth.AuthActivity
 import com.lab.greenpremium.ui.screen.calculator.CalcActivity
 import com.lab.greenpremium.ui.screen.main.MainActivity
@@ -24,6 +26,7 @@ import com.lab.greenpremium.ui.screen.start.StartActivity
 import com.lab.greenpremium.utills.getErrorMessage
 import com.lab.greenpremium.utills.hideKeyboard
 import java.io.Serializable
+
 
 abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
 
@@ -74,7 +77,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
     }
 
     fun goToCalcScreen() {
-        startActivity(Intent(this, CalcActivity::class.java))
+        startActivityForResult(Intent(this, CalcActivity::class.java), KEY_RESULT_CALCULATOR)
     }
 
     protected fun swapFragment(fragment: Fragment) {
@@ -95,8 +98,21 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
         textResId?.let { Snackbar.make(root, textResId, LENGTH_LONG).show() }
     }
 
-    override fun showDialogMessage(text: String?, textResId: Int?) {
-        //todo implement
+    override fun showDialogMessage(text: String?, textResId: Int?, listener: Listener?) {
+        val alertDialog = AlertDialog.Builder(this@BaseActivity).create()
+        alertDialog.setTitle("Сообщение")
+
+        text?.let { alertDialog.setMessage(text) }
+        textResId?.let { alertDialog.setMessage(getString(textResId)) }
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "OK") { dialog, _ ->
+            run {
+                listener?.onEvent()
+                dialog.dismiss()
+            }
+        }
+
+        alertDialog.show()
     }
 
     fun showToast(text: String? = null, textResId: Int? = null) {
@@ -107,6 +123,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
     override fun showLoadingDialog(show: Boolean) {
         if (show) progressDialog.show()
         else progressDialog.dismiss()
+    }
+
+    override fun finishWithResult(result: Int) {
+        setResult(result, Intent())
+        finish()
     }
 
     override fun finishWithMessage(message: String?) {

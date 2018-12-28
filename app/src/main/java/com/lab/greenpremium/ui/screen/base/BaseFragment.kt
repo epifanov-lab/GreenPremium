@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.lab.greenpremium.ui.components.Listener
 
 
 abstract class BaseFragment : Fragment(), BaseContract.BaseView {
@@ -36,8 +37,8 @@ abstract class BaseFragment : Fragment(), BaseContract.BaseView {
         (activity as BaseActivity).showSnackbar(text, textResId)
     }
 
-    override fun showDialogMessage(text: String?, textResId: Int?) {
-        (activity as BaseActivity).showDialogMessage(text, textResId)
+    override fun showDialogMessage(text: String?, textResId: Int?, listener: Listener?) {
+        (activity as BaseActivity).showDialogMessage(text, textResId, listener)
     }
 
     override fun showLoadingDialog(show: Boolean) {
@@ -45,6 +46,10 @@ abstract class BaseFragment : Fragment(), BaseContract.BaseView {
     }
 
     override fun finishWithMessage(message: String?) {
+        //override if needed
+    }
+
+    override fun finishWithResult(result: Int) {
         //override if needed
     }
 }

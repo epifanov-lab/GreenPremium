@@ -12,7 +12,7 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
 
     override fun onViewCreated() {
         updateObjectInfo()
-        updateEvents()
+        updateEvents(false)
     }
 
     private fun updateObjectInfo() {
@@ -36,8 +36,8 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
         })
     }
 
-    private fun updateEvents() {
-        repository.updateEvents(object : DefaultCallbackListener(view) {
+    override fun updateEvents(forced: Boolean) {
+        repository.updateEvents(forced, object : DefaultCallbackListener(view) {
             override fun onSuccess() {
                 val events = UserModel.eventsResponse!!.events
                 if (events.isNotEmpty()) this@ProfilePresenter.view.initializeEventsList(events)
