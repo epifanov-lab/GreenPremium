@@ -13,10 +13,10 @@ data class CalcServiceRequest(
 ) {
     fun isChanged(): Boolean {
         return plants_count_s1 != 0 || pots_count_s1 != 0 ||
-        plants_count_s2 != 0 || pots_count_s2 != 0 ||
-        plants_count_s3 != 0 || pots_count_s3 != 0 ||
-        plants_count_s4 != 0 || pots_count_s4 != 0 ||
-        plants_count_s5 != 0 || pots_count_s5 != 0
+                plants_count_s2 != 0 || pots_count_s2 != 0 ||
+                plants_count_s3 != 0 || pots_count_s3 != 0 ||
+                plants_count_s4 != 0 || pots_count_s4 != 0 ||
+                plants_count_s5 != 0 || pots_count_s5 != 0
     }
 }
 

@@ -1,6 +1,6 @@
 package com.lab.greenpremium.data.network
 
-import com.lab.greenpremium.ui.screen.base.BaseContract
+import com.lab.greenpremium.ui.screens.base.BaseContract
 import java.io.Serializable
 
 open class DefaultCallbackListener(val view: BaseContract.BaseView) : CallbackListener {

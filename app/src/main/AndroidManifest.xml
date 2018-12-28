@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".ui.screen.splash.SplashActivity"
+            android:name=".ui.screens.splash.SplashActivity"
             android:theme="@style/AppTheme.Launcher">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,17 +22,18 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".ui.screen.start.StartActivity" />
-        <activity android:name=".ui.screen.auth.AuthActivity" />
+        <activity android:name=".ui.screens.start.StartActivity" />
+        <activity android:name=".ui.screens.auth.AuthActivity" />
 
         <activity
-            android:name=".ui.screen.main.MainActivity"
+            android:name=".ui.screens.main.MainActivity"
             android:label="@string/app_name" />
 
-        <activity android:name=".ui.screen.message.MessageActivity" />
-        <activity android:name=".ui.screen.meeting.MeetingActivity" />
-        <activity android:name=".ui.screen.plant_detail.PlantDetailActivity" />
-        <activity android:name=".ui.screen.calculator.CalcActivity" />
+        <activity android:name=".ui.screens.message.MessageActivity" />
+        <activity android:name=".ui.screens.meeting.MeetingActivity" />
+        <activity android:name=".ui.screens.plant_detail.PlantDetailActivity" />
+        <activity android:name=".ui.screens.calculator.CalcActivity" />
+        <activity android:name=".ui.screens.delivery.DeliveryActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
