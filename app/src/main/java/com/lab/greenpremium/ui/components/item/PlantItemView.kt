@@ -22,7 +22,8 @@ import org.greenrobot.eventbus.EventBus
 class PlantItemView : RelativeLayout {
 
     private lateinit var product: Product
-    private lateinit var choosenOffer: Offer
+    private lateinit var chosenOffer: Offer
+    private var forDeliveryScreen = false
 
     constructor(context: Context) : this(context, null)
 
@@ -32,13 +33,15 @@ class PlantItemView : RelativeLayout {
         LayoutInflater.from(context).inflate(R.layout.view_item_plant, this, true)
     }
 
-    fun setData(product: Product) {
+    fun setData(product: Product, forDeliveryScreen: Boolean = false) {
+        this.forDeliveryScreen = forDeliveryScreen
         this.product = product
-        this.choosenOffer = product.offers[0]
+        product.offers?.let { this.chosenOffer = product.offers[0] }
 
         text_name.text = product.name
 
-        setupInfoBlock()
+        if (!forDeliveryScreen) setupInfoBlock()
+        else updateViewForDeliveryScreen()
 
         product.photo.url?.let {
             Glide.with(context)
@@ -52,25 +55,25 @@ class PlantItemView : RelativeLayout {
 
     private fun setupInfoBlock() {
         //У крупномеров может быть несколько оферов, в отличии от остальных типов растений
-        val isLargePlant = product.offers.size > 1
+        val isLargePlant = product.offers!!.size > 1
 
         if (isLargePlant) {
-            text_info_1.text = context.getString(R.string.template_s_s, choosenOffer.crown_width.name, choosenOffer.crown_width.value)
+            text_info_1.text = context.getString(R.string.template_s_s, chosenOffer.crown_width.name, chosenOffer.crown_width.value)
             text_info_2.text = context.getText(R.string.title_height)
             showHeightSelector(true)
             //TODO INITIALIZE SELECTOR
 
         } else {
-            text_info_1.text = context.getString(R.string.template_s_s, choosenOffer.pot_size.name, choosenOffer.pot_size.value)
-            text_info_2.text = context.getString(R.string.template_s_s, choosenOffer.item_height.name, choosenOffer.item_height.value)
+            text_info_1.text = context.getString(R.string.template_s_s, chosenOffer.pot_size.name, chosenOffer.pot_size.value)
+            text_info_2.text = context.getString(R.string.template_s_s, chosenOffer.item_height.name, chosenOffer.item_height.value)
             showHeightSelector(false)
         }
 
-        text_price.text = currencyFormat(choosenOffer.price)
+        text_price.text = currencyFormat(chosenOffer.price)
 
-        choosenOffer.old_price?.let {
+        chosenOffer.old_price?.let {
             text_discount.visibility = View.VISIBLE
-            text_discount.text = currencyFormat(choosenOffer.old_price)
+            text_discount.text = currencyFormat(chosenOffer.old_price)
         }
     }
 
@@ -78,6 +81,12 @@ class PlantItemView : RelativeLayout {
         height_selector.visibility = if (enabled) View.VISIBLE else View.GONE
         space.visibility = if (enabled) View.VISIBLE else View.GONE
         height_selector.text = "15 м" //TODO прибрать
+    }
+
+    private fun updateViewForDeliveryScreen() {
+        showHeightSelector(false)
+        button_add.visibility = View.INVISIBLE
+        button_remove.visibility = View.INVISIBLE
     }
 
     fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {

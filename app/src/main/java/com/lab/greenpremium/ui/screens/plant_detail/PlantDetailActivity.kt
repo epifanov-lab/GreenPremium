@@ -38,7 +38,7 @@ class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
 
     override fun initViews() {
         product = intent.getSerializableExtra(KEY_OBJECT) as Product
-        offer = product.offers[product.selectedOfferPosition]
+        offer = product.offers!![product.selectedOfferPosition]
 
         button_back.setOnClickListener { onBackPressed() }
 
@@ -83,7 +83,7 @@ class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
 
     private fun setupInfoBlock() {
         //У крупномеров может быть несколько оферов, в отличии от остальных типов растений
-        val isLargePlant = product.offers.size > 1
+        val isLargePlant = product.offers!!.size > 1
 
         if (isLargePlant) {
             offer.crown_width?.let {

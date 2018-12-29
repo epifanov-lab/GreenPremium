@@ -1,6 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:id="@+id/button_back"
+        android:layout_height="@dimen/back_button_area_size"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_width="@dimen/back_button_area_size"
+        android:scaleType="centerInside"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:fontFamily="@font/sfuitext_bold"
+        android:id="@+id/text_title"
+        android:layout_gravity=""
+        android:layout_height="30dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="12dp"
+        android:layout_width="272dp"
+        android:text="@string/delivery_screen_title"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_size_20"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_back" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_plants"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_below="@id/label_tip"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingLeft="@dimen/space_12"
+        android:paddingRight="@dimen/space_12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_title" />
 
 </android.support.constraint.ConstraintLayout>

@@ -124,6 +124,25 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
+    fun getOrderList(request: OrderRequest, listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.getOrderList(UserModel.authResponse!!.token, request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
     fun updateMeetingsList(listener: CallbackListener) {
 
         if (UserModel.meetingsListResponse != null) {
@@ -294,6 +313,10 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
                 CalcServiceResponse::class -> {
                     listener.onSuccess(response.data as CalcServiceResponse)
+                }
+
+                OrderResponse::class -> {
+                    UserModel.orderResponse = response.data as OrderResponse
                 }
 
                 MeetingsListResponse::class -> {

@@ -46,6 +46,8 @@
     <string name="calc_title_row_s5">Цветущие растения</string>
     <string name="calc_title_button_request">Запросить</string>
 
+    <string name="delivery_screen_title">Поставка</string>
+
     <string name="title_height">Высота</string>
 
     <string name="profile_calc_service">Рассчитать стоимость сервиса</string>

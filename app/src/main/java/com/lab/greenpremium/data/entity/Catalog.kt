@@ -26,7 +26,7 @@ data class Product(
         val name: String,
         val sort: String,
         val detail_text: String,
-        val offers: List<Offer>,
+        val offers: List<Offer>?,
         val gallery: List<Photo>,
         val photo: Photo,
 

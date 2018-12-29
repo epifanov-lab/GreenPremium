@@ -33,6 +33,10 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
                 request.plants_count_s4, request.pots_count_s4,
                 request.plants_count_s5, request.pots_count_s5)
     }
+
+    fun getOrderList(token: String, request: OrderRequest) : Single<BaseResponse<OrderResponse>> {
+        return api.getOrderList(token, request.order_id)
+    }
     //endregion
 
 
@@ -125,6 +129,10 @@ interface GpApi {
                          @Field("plants_count_s3") plants_count_s3: Int, @Field("pots_count_s3") pots_count_s3: Int,
                          @Field("plants_count_s4") plants_count_s4: Int, @Field("pots_count_s4") pots_count_s4: Int,
                          @Field("plants_count_s5") plants_count_s5: Int, @Field("pots_count_s5") pots_count_s5: Int): Single<BaseResponse<CalcServiceResponse>>
+
+    @GET("order/{order_id}")
+    fun getOrderList(@Header("X-Auth-Token") token: String,
+                               @Path("order_id") order_id: Int): Single<BaseResponse<OrderResponse>>
     //endregion
 
 
