@@ -10,7 +10,14 @@ data class PortfolioSection(
         val id: String,
         val name: String,
         val photos: List<Photo>,
-        val sort: String) : Serializable
+        val sort: String) : Serializable {
+
+    fun getPhotosUrls(): ArrayList<String> {
+        val result = arrayListOf<String>()
+        photos.forEach { result.add(it.url) }
+        return result
+    }
+}
 
 data class Photo(
         val height: String,
@@ -18,3 +25,9 @@ data class Photo(
         val url: String,
         val width: String
 ) : Serializable
+
+fun getPhotosUrls(photos: List<Photo>): ArrayList<String> {
+    val result = arrayListOf<String>()
+    photos.forEach { result.add(it.url) }
+    return result
+}

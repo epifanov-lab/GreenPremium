@@ -45,6 +45,7 @@
     <dimen name="green_button_height">42dp</dimen>
     <dimen name="contacts_button_width">170dp</dimen>
     <dimen name="card_button_width">135dp</dimen>
+    <dimen name="gallery_close_button_size">36dp</dimen>
 
     <dimen name="gallery_preview_else_view_size">50dp</dimen>
     <dimen name="gallery_preview_image_size">94dp</dimen>
@@ -73,10 +74,7 @@
     <dimen name="activity_vertical_margin">16dp</dimen>
 
     <!-- override -->
-    <dimen name="design_bottom_navigation_text_size" tools:override="true">@dimen/font_size_10
-    </dimen>
-    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">
-        @dimen/font_size_10
-    </dimen>
+    <dimen name="design_bottom_navigation_text_size" tools:override="true">@dimen/font_size_10</dimen>
+    <dimen name="design_bottom_navigation_active_text_size" tools:override="true">@dimen/font_size_10</dimen>
 
 </resources>

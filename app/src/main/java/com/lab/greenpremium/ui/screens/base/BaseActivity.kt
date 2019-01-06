@@ -12,14 +12,13 @@ import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.lab.greenpremium.KEY_OBJECT
-import com.lab.greenpremium.KEY_RESULT_CALCULATOR
-import com.lab.greenpremium.R
+import com.lab.greenpremium.*
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.components.Listener
 import com.lab.greenpremium.ui.screens.auth.AuthActivity
 import com.lab.greenpremium.ui.screens.calculator.CalcActivity
 import com.lab.greenpremium.ui.screens.delivery.DeliveryActivity
+import com.lab.greenpremium.ui.screens.gallery.GalleryActivity
 import com.lab.greenpremium.ui.screens.main.MainActivity
 import com.lab.greenpremium.ui.screens.message.MessageActivity
 import com.lab.greenpremium.ui.screens.plant_detail.PlantDetailActivity
@@ -27,6 +26,7 @@ import com.lab.greenpremium.ui.screens.start.StartActivity
 import com.lab.greenpremium.utills.getErrorMessage
 import com.lab.greenpremium.utills.hideKeyboard
 import java.io.Serializable
+import java.util.ArrayList
 
 
 abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
@@ -84,6 +84,13 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
     fun goToDeliveryScreen(order_id: Int?) {
         val intent = Intent(this, DeliveryActivity::class.java)
         intent.putExtra(KEY_OBJECT, order_id)
+        startActivity(intent)
+    }
+
+    fun goToGalleryScreen(urls: ArrayList<String>, chosenImageNum: Int) {
+        val intent = Intent(this, GalleryActivity::class.java)
+        intent.putStringArrayListExtra(KEY_IMAGES_URLS_LIST, urls)
+        intent.putExtra(KEY_CHOSEN_IMAGE_NUM, chosenImageNum)
         startActivity(intent)
     }
 

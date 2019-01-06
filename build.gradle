@@ -19,6 +19,7 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url 'http://dl.bintray.com/piasy/maven' }
         maven { url 'https://jitpack.io' }
     }
 }
@@ -47,4 +48,6 @@ ext {
     okhttp_version = "3.9.0"
 
     glide_version = "4.8.0"
+
+    image_viewer_version = "1.5.6"
 }

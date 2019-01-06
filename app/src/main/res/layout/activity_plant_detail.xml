@@ -199,7 +199,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_discount" />
 
-        <com.lab.greenpremium.ui.components.item.GalleryPreviewView
+        <com.lab.greenpremium.ui.components.item.PlantPhotosPreviewView
             android:id="@+id/gallery_preview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

@@ -46,23 +46,23 @@ dependencies {
     androidTestImplementation "com.android.support.test.espresso:espresso-core:${esspresso_version}"
     implementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
 
-    //DI
+    //di
     implementation "com.google.dagger:dagger:${dagger_version}"
     kapt "com.google.dagger:dagger-compiler:${dagger_version}"
 
-    //Network
+    //network
     implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit_version}"
     implementation "com.squareup.retrofit2:adapter-rxjava2:${retrofit_version}"
     implementation "com.squareup.okhttp3:okhttp:${okhttp_version}"
     implementation "com.squareup.okhttp3:logging-interceptor:${okhttp_version}"
 
-    //RX
+    //rx
     implementation "io.reactivex.rxjava2:rxandroid:${rx_android_version}"
     implementation "io.reactivex.rxjava2:rxjava:${rx_java_version}"
     implementation "com.jakewharton.rxbinding2:rxbinding:${rxBindingVersion}"
 
-    //Tools
+    //tools
     implementation 'com.github.mmin18:realtimeblurview:1.1.2' // blur effect
     implementation 'com.getbase:floatingactionbutton:1.10.1' // fab menu
     implementation 'com.shawnlin:number-picker:2.4.6' // picker
@@ -72,11 +72,17 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1' // event bus
     implementation 'online.devliving:securedpreferencestore:0.5.0' // secured preferences
 
-    //Images downloading
+    //images downloading
     kapt "com.github.bumptech.glide:compiler:${glide_version}"
     implementation "com.github.bumptech.glide:glide:${glide_version}"
     implementation ("com.github.bumptech.glide:okhttp3-integration:${glide_version}"){
         exclude group: 'glide-parent'
     }
+
+    //image viewer
+    implementation "com.github.piasy:BigImageViewer:${image_viewer_version}"
+    implementation "com.github.piasy:GlideImageLoader:${image_viewer_version}"
+    implementation "com.github.piasy:ProgressPieIndicator:${image_viewer_version}"
+    implementation "com.github.piasy:GlideImageViewFactory:${image_viewer_version}"
 
 }

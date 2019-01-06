@@ -9,10 +9,10 @@ import com.bumptech.glide.Glide
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Photo
 import com.lab.greenpremium.utills.LogUtil
-import kotlinx.android.synthetic.main.view_gallery_preview.view.*
+import kotlinx.android.synthetic.main.view_plant_photos_preview.view.*
 
 
-class GalleryPreviewView : ConstraintLayout {
+class PlantPhotosPreviewView : ConstraintLayout {
 
     var gallery: List<Photo>? = null
         set(value) {
@@ -26,7 +26,7 @@ class GalleryPreviewView : ConstraintLayout {
     constructor(context: Context, attrs: AttributeSet?) : this(context, attrs, 0)
 
     constructor(context: Context, attrs: AttributeSet?, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
-        LayoutInflater.from(context).inflate(R.layout.view_gallery_preview, this, true)
+        LayoutInflater.from(context).inflate(R.layout.view_plant_photos_preview, this, true)
     }
 
     private fun updateView() {

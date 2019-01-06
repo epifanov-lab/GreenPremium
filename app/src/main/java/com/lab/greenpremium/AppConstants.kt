@@ -3,6 +3,8 @@ package com.lab.greenpremium
 
 /*Keys*/
 const val KEY_OBJECT = "key_object"
+const val KEY_IMAGES_URLS_LIST = "KEY_IMAGES_URLS_LIST"
+const val KEY_CHOSEN_IMAGE_NUM = "KEY_CHOSEN_IMAGE_NUM"
 const val KEY_RESULT_ADD_MEETING = 1000
 const val KEY_RESULT_CALCULATOR = 1001
 

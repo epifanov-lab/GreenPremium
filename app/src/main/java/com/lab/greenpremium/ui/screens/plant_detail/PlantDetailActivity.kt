@@ -13,7 +13,7 @@ import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.utills.currencyFormat
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_plant_detail.*
-import kotlinx.android.synthetic.main.view_gallery_preview.*
+import kotlinx.android.synthetic.main.view_plant_photos_preview.*
 import javax.inject.Inject
 
 class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {

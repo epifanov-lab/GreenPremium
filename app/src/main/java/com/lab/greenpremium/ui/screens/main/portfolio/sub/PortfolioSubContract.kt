@@ -4,7 +4,11 @@ import com.lab.greenpremium.ui.screens.base.BaseContract
 
 
 interface PortfolioSubContract {
-    interface View : BaseContract.BaseView
+    interface View : BaseContract.BaseView {
+        fun goToGalleryScreen(pos: Int)
+    }
 
-    interface Presenter
+    interface Presenter {
+        fun onClickImage(position: Int)
+    }
 }

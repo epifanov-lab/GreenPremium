@@ -10,6 +10,8 @@ import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Photo
 import com.lab.greenpremium.data.entity.PortfolioSection
+import com.lab.greenpremium.data.entity.getPhotosUrls
+import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.ui.screens.base.BaseFragment
 import com.lab.greenpremium.utills.getScreenWidth
 import com.lab.greenpremium.utills.setTouchAnimationShrink
@@ -66,10 +68,7 @@ class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
                     layoutParams.width = getScreenWidth(context!!) - paddingMedium * 2
                     view.layoutParams = layoutParams
 
-                    setTouchAnimationShrink(view)
-                    Glide.with(context!!)
-                            .load(photo.url)
-                            .into(view)
+                    setImage(photo, view)
 
                     container_grid.addView(view)
 
@@ -80,18 +79,12 @@ class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
 
                     container.findViewById<ImageView>(R.id.image_1)
                             .also { imageView ->
-                                Glide.with(context!!)
-                                        .load(photo.url)
-                                        .into(imageView)
-                                setTouchAnimationShrink(imageView)
+                                setImage(photo, imageView)
                             }
 
                     container.findViewById<ImageView>(R.id.image_2)
                             .also { imageView ->
-                                Glide.with(context!!)
-                                        .load(photo.url)
-                                        .into(imageView)
-                                setTouchAnimationShrink(imageView)
+                                setImage(photo, imageView)
                             }
 
                     container_grid.addView(container)
@@ -110,4 +103,17 @@ class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
         }
     }
 
+    private fun setImage(photo: Photo, view: ImageView) {
+        Glide.with(context!!)
+                .load(photo.url)
+                .into(view)
+
+        setTouchAnimationShrink(view)
+
+        view.setOnClickListener { presenter.onClickImage(photos.indexOf(photo)) }
+    }
+
+    override fun goToGalleryScreen(pos: Int) {
+        (activity as BaseActivity).goToGalleryScreen(getPhotosUrls(photos), pos)
+    }
 }

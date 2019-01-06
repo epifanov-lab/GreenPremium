@@ -34,6 +34,7 @@
         <activity android:name=".ui.screens.plant_detail.PlantDetailActivity" />
         <activity android:name=".ui.screens.calculator.CalcActivity" />
         <activity android:name=".ui.screens.delivery.DeliveryActivity" />
+        <activity android:name=".ui.screens.gallery.GalleryActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
