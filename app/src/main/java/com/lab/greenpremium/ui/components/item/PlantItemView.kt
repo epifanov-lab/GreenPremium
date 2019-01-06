@@ -98,11 +98,11 @@ class PlantItemView : RelativeLayout {
     }
 
     override fun setOnClickListener(onClickListener: OnClickListener) {
-        container_info.setOnClickListener(onClickListener)
+        container_main.setOnClickListener(onClickListener)
     }
 
     override fun setOnTouchListener(touchListener: OnTouchListener?) {
-        container_info.setOnTouchListener(touchListener)
+        container_main.setOnTouchListener(touchListener)
     }
 }
 

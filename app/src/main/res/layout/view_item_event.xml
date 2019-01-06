@@ -1,80 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<!-- TODO ConstraintLayout -->
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:layout_height="match_parent">
 
-    <LinearLayout
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/container_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:baselineAligned="false">
+        android:background="@color/white">
 
-        <RelativeLayout
+        <TextView
+            android:id="@+id/text_num"
+            android:layout_width="@dimen/item_event_height"
+            android:layout_height="@dimen/item_event_height"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:background="@drawable/bcg_circle_event"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_size_20"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="01" />
+
+        <TextView
+            android:id="@+id/text_info"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="10"
-            android:orientation="horizontal"
-            android:paddingBottom="@dimen/space_8"
-            android:paddingStart="@dimen/space_16"
-            android:paddingTop="@dimen/space_8">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_toEndOf="@id/text_num"
+            android:fontFamily="@font/sfuitext_medium"
+            android:gravity="start"
+            android:textColor="@color/black"
+            android:textSize="@dimen/font_size_9"
+            app:layout_constraintEnd_toStartOf="@+id/container_pdf"
+            app:layout_constraintStart_toEndOf="@+id/text_num"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
 
-            <TextView
-                android:id="@+id/text_num"
-                android:layout_width="@dimen/item_event_height"
-                android:layout_height="@dimen/item_event_height"
-                android:layout_gravity="center"
-                android:background="@drawable/bcg_circle_event"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:textSize="@dimen/font_size_20"
-                tools:text="01" />
-
-            <TextView
-                android:id="@+id/text_info"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/space_28"
-                android:layout_toEndOf="@id/text_num"
-                android:fontFamily="@font/sfuitext_medium"
-                android:gravity="start"
-                android:paddingStart="@dimen/space_20"
-                android:paddingTop="@dimen/space_8"
-                android:textColor="@color/black"
-                android:textSize="@dimen/font_size_9"
-                tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
-
-            <TextView
-                android:id="@+id/text_date_time"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignBottom="@id/text_num"
-                android:layout_alignParentEnd="true"
-                android:layout_marginEnd="@dimen/space_16"
-                android:fontFamily="@font/sfuitext_medium"
-                android:textColor="@color/gray"
-                android:textSize="@dimen/font_size_9"
-                tools:text="20.04.2016 16:20" />
-        </RelativeLayout>
-
+        <TextView
+            android:id="@+id/text_date_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/text_num"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/sfuitext_medium"
+            android:textColor="@color/gray"
+            android:textSize="@dimen/font_size_9"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/container_pdf"
+            app:layout_constraintTop_toBottomOf="@+id/text_info"
+            tools:text="20.04.2016 16:20" />
 
         <LinearLayout
             android:id="@+id/container_pdf"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
             android:background="@drawable/bcg_button_green_vertical"
             android:clickable="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
             android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:padding="4dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
                 android:layout_width="match_parent"
@@ -94,12 +94,16 @@
                 android:src="@drawable/ic_download" />
         </LinearLayout>
 
-    </LinearLayout>
+    </android.support.constraint.ConstraintLayout>
+
 
     <View
         android:id="@+id/line_connection"
         android:layout_width="@dimen/line_thickness_2"
         android:layout_height="@dimen/space_20"
+        android:layout_below="@id/container_item"
+        android:layout_centerHorizontal="true"
         android:layout_gravity="center"
         android:background="@color/white" />
-</LinearLayout>
+
+</RelativeLayout>
