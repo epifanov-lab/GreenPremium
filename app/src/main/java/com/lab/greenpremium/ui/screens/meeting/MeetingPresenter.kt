@@ -1,6 +1,6 @@
 package com.lab.greenpremium.ui.screens.meeting
 
-import com.lab.greenpremium.data.Repository
+import com.lab.greenpremium.data.repo.Repository
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.network.DefaultCallbackListener
 import com.lab.greenpremium.utills.getFormattedDateString

@@ -1,8 +1,9 @@
-package com.lab.greenpremium.data
+package com.lab.greenpremium.data.repo
 
 import android.annotation.SuppressLint
 import com.google.gson.JsonParser
 import com.lab.greenpremium.REQUEST_REFRESH_TIME_MS
+import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.entity.*
 import com.lab.greenpremium.data.local.PreferencesManager
 import com.lab.greenpremium.data.network.ApiError

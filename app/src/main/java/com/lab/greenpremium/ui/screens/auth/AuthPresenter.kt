@@ -2,7 +2,7 @@ package com.lab.greenpremium.ui.screens.auth
 
 import android.annotation.SuppressLint
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.Repository
+import com.lab.greenpremium.data.repo.Repository
 import com.lab.greenpremium.data.network.DefaultCallbackListener
 import io.reactivex.Observable
 import javax.inject.Inject

@@ -1,6 +1,6 @@
 package com.lab.greenpremium.ui.screens.main.portfolio
 
-import com.lab.greenpremium.data.Repository
+import com.lab.greenpremium.data.repo.Repository
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.network.DefaultCallbackListener
 import javax.inject.Inject

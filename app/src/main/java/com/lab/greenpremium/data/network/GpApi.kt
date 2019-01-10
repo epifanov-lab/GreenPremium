@@ -34,7 +34,7 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
                 request.plants_count_s5, request.pots_count_s5)
     }
 
-    fun getOrderList(token: String, request: OrderRequest) : Single<BaseResponse<OrderResponse>> {
+    fun getOrderList(token: String, request: OrderRequest): Single<BaseResponse<OrderResponse>> {
         return api.getOrderList(token, request.order_id)
     }
     //endregion
@@ -66,6 +66,21 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
 
     fun getProductDetail(token: String, request: ProductRequest): Single<BaseResponse<Product>> {
         return api.getProductDetail(token, request.product_id)
+    }
+    //endregion
+
+
+    //region CART
+    fun getCart(token: String): Single<BaseResponse<CartResponse>> {
+        return api.getCart(token)
+    }
+
+    fun addToCart(token: String, request: AddToCartRequest): Single<BaseResponse<CartResponse>> {
+        return api.addToCart(token, request.product_id, request.quantity)
+    }
+
+    fun makeOrder(token: String): Single<BaseResponse<MakeOrderResponse>> {
+        return api.makeOrder(token)
     }
     //endregion
 
@@ -132,7 +147,7 @@ interface GpApi {
 
     @GET("order/{order_id}")
     fun getOrderList(@Header("X-Auth-Token") token: String,
-                               @Path("order_id") order_id: Int): Single<BaseResponse<OrderResponse>>
+                     @Path("order_id") order_id: Int): Single<BaseResponse<OrderResponse>>
     //endregion
 
 
@@ -162,6 +177,26 @@ interface GpApi {
     @GET("catalog/products/{product_id}")
     fun getProductDetail(@Header("X-Auth-Token") token: String,
                          @Path("product_id") product_id: Int): Single<BaseResponse<Product>>
+    //endregion
+
+
+    //region CART
+    @GET("cart/info")
+    fun getCart(@Header("X-Auth-Token") token: String): Single<BaseResponse<CartResponse>>
+
+    @FormUrlEncoded
+    @POST("cart/add")
+    fun addToCart(@Header("X-Auth-Token") token: String,
+                  @Field("product_id") product_id: Int,
+                  @Field("quantity") quantity: Int): Single<BaseResponse<CartResponse>>
+
+    @POST("cart/order/add")
+    fun makeOrder(@Header("X-Auth-Token") token: String): Single<BaseResponse<MakeOrderResponse>>
+    //endregion
+
+
+    //region FAVORITES
+    //TODO
     //endregion
 
 
