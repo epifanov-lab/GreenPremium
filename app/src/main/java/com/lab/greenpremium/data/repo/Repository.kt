@@ -252,6 +252,65 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
+    fun getCart(listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.getCart(UserModel.authResponse!!.token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun addToCart(product_id: Int, quantity: Int, listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.addToCart(UserModel.authResponse!!.token, AddToCartRequest(product_id, quantity))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun makeOrder(listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.makeOrder(UserModel.authResponse!!.token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+
+    }
+
+
+    @SuppressLint("CheckResult")
     fun updatePortfolio(listener: CallbackListener) {
 
         if (UserModel.portfolio != null) {
@@ -347,6 +406,14 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
                 Product::class -> {
                     listener.onSuccess(response.data as Product)
+                }
+
+                CartResponse::class -> {
+                    UserModel.cart = (response.data as CartResponse).products
+                }
+
+                MakeOrderResponse::class -> {
+                    listener.onSuccess(response.data as MakeOrderResponse)
                 }
 
                 MapObjectsResponse::class -> {
