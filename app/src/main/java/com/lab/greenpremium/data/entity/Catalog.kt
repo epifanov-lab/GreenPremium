@@ -26,13 +26,13 @@ data class Product(
         val name: String,
         val sort: String,
         val detail_text: String,
-        val offers: List<Offer>?,
+        val offers: List<Offer>,
         val gallery: List<Photo>,
         val photo: Photo,
 
         var selectedOfferPosition: Int = 0,
         var isFavorite: Boolean = false,
-        var count: Int = 0
+        var quantity: Int = 0
 ) : Serializable
 
 data class Offer(

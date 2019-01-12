@@ -14,16 +14,21 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Offer
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.utills.currencyFormat
-import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
+import com.lab.greenpremium.utills.eventbus.CartChangedEvent
 import kotlinx.android.synthetic.main.view_item_plant.view.*
 import org.greenrobot.eventbus.EventBus
 
 
 class PlantItemView : RelativeLayout {
 
+    enum class PlantViewType {
+        CATALOG, // Есть возможность выбора высоты, в случае, если несколько офферов.
+        OTHER // Без выбора высоты, только текстовые поля с информацией по растению
+    }
+
     private lateinit var product: Product
-    private lateinit var chosenOffer: Offer
-    private var forDeliveryScreen = false
+    private lateinit var offer: Offer
+    lateinit var type: PlantViewType
 
     constructor(context: Context) : this(context, null)
 
@@ -33,15 +38,12 @@ class PlantItemView : RelativeLayout {
         LayoutInflater.from(context).inflate(R.layout.view_item_plant, this, true)
     }
 
-    fun setData(product: Product, forDeliveryScreen: Boolean = false) {
-        this.forDeliveryScreen = forDeliveryScreen
+    fun setData(product: Product, type: PlantViewType) {
         this.product = product
-        product.offers?.let { this.chosenOffer = product.offers[0] }
+        this.offer = product.offers[0]
+        this.type = type
 
         text_name.text = product.name
-
-        if (!forDeliveryScreen) setupInfoBlock()
-        else updateViewForDeliveryScreen()
 
         product.photo.url?.let {
             Glide.with(context)
@@ -49,44 +51,48 @@ class PlantItemView : RelativeLayout {
                     .into(image)
         }
 
-        PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
+        updateViewByType()
 
+        PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
     }
 
-    private fun setupInfoBlock() {
-        //У крупномеров может быть несколько оферов, в отличии от остальных типов растений
-        val isLargePlant = product.offers!!.size > 1
+    private fun updateViewByType() {
+        showHeightSelector(false)
+        val isLargePlant = offer.height != null && offer.crown_width != null
+        val isStandartPlant = offer.plant_size != null && offer.item_height != null && offer.pot_count != null && offer.pot_size != null
 
-        if (isLargePlant) {
-            text_info_1.text = context.getString(R.string.template_s_s, chosenOffer.crown_width.name, chosenOffer.crown_width.value)
-            text_info_2.text = context.getText(R.string.title_height)
-            showHeightSelector(true)
-            //TODO INITIALIZE SELECTOR
-
-        } else {
-            text_info_1.text = context.getString(R.string.template_s_s, chosenOffer.pot_size.name, chosenOffer.pot_size.value)
-            text_info_2.text = context.getString(R.string.template_s_s, chosenOffer.item_height.name, chosenOffer.item_height.value)
-            showHeightSelector(false)
+        text_info_1.text = when {
+            isLargePlant -> context.getString(R.string.template_s_s, offer.crown_width.name, offer.crown_width.value)
+            isStandartPlant -> context.getString(R.string.template_s_s, offer.plant_size.name, offer.plant_size.value)
+            else -> ""
         }
 
-        text_price.text = currencyFormat(chosenOffer.price)
 
-        chosenOffer.old_price?.let {
+        text_info_2.text =
+                when {
+                    isLargePlant -> when (type) {
+                        PlantViewType.CATALOG -> when (product.offers.size > 1) {
+                            true -> context.getText(R.string.title_height).also { showHeightSelector(true) }
+                            false -> context.getString(R.string.template_s_s, offer.height.name, offer.height.value)
+                        }
+                        PlantViewType.OTHER -> context.getString(R.string.template_s_s, offer.height.name, offer.height.value)
+                    }
+                    isStandartPlant -> context.getString(R.string.template_s_s, offer.item_height.name, offer.item_height.value)
+                    else -> ""
+                }
+
+        text_price.text = currencyFormat(offer.price)
+
+        offer.old_price?.let {
             text_discount.visibility = View.VISIBLE
-            text_discount.text = currencyFormat(chosenOffer.old_price)
+            text_discount.text = currencyFormat(it)
         }
     }
 
     private fun showHeightSelector(enabled: Boolean) {
         height_selector.visibility = if (enabled) View.VISIBLE else View.GONE
         space.visibility = if (enabled) View.VISIBLE else View.GONE
-        height_selector.text = "15 м" //TODO прибрать
-    }
-
-    private fun updateViewForDeliveryScreen() {
-        showHeightSelector(false)
-        button_add.visibility = View.INVISIBLE
-        button_remove.visibility = View.INVISIBLE
+        if (enabled) height_selector.text = "${offer.height.value}м"
     }
 
     fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {
@@ -119,7 +125,7 @@ class PlantItemCountControlsHelper(val product: Product,
     init {
 
         add.run {
-            setOnClickListener { setCounter(++product.count) }
+            setOnClickListener { setCounter(++product.quantity) }
             setOnLongClickListener {
                 isIncrementing = true
                 repeatUpdateHandler.post(RptUpdater())
@@ -135,7 +141,7 @@ class PlantItemCountControlsHelper(val product: Product,
         }
 
         remove.run {
-            setOnClickListener { setCounter(--product.count) }
+            setOnClickListener { setCounter(--product.quantity) }
             setOnLongClickListener {
                 isDecrementing = true
                 repeatUpdateHandler.post(RptUpdater())
@@ -150,23 +156,23 @@ class PlantItemCountControlsHelper(val product: Product,
             }
         }
 
-        setCounter(product.count)
+        setCounter(product.quantity)
     }
 
     private fun setCounter(n: Int) {
-        product.count = if (n < 0) 0 else n
-        counter.text = product.count.toString()
-        EventBus.getDefault().post(PlantCountChangedEvent())
+        product.quantity = if (n < 0) 0 else n
+        counter.text = product.quantity.toString()
+        EventBus.getDefault().post(CartChangedEvent(product))
     }
 
     inner class RptUpdater : Runnable {
         override fun run() {
             if (isIncrementing) {
-                setCounter(++product.count)
+                setCounter(++product.quantity)
                 repeatUpdateHandler.postDelayed(RptUpdater(), 100)
 
             } else if (isDecrementing) {
-                setCounter(--product.count)
+                setCounter(--product.quantity)
                 repeatUpdateHandler.postDelayed(RptUpdater(), 100)
             }
         }

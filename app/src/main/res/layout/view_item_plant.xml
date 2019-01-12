@@ -20,7 +20,7 @@
             android:layout_height="@dimen/item_plant_image_bcg_circle_size"
             android:layout_alignParentStart="true"
             android:layout_centerInParent="true"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="8dp"
             android:src="@drawable/bcg_circle_plant"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,9 +29,9 @@
         <TextView
             android:id="@+id/text_name"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="13dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/sfuitext_medium"
             android:gravity="center_vertical"
@@ -47,14 +47,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_name"
-            android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:fontFamily="@font/sfuitext_regular"
             android:gravity="center_vertical"
             android:textColor="@color/gray_light_1"
             android:textSize="@dimen/font_size_9"
             app:layout_constraintEnd_toStartOf="@+id/container_controls"
-            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintStart_toStartOf="@+id/text_name"
             app:layout_constraintTop_toBottomOf="@+id/text_name"
             tools:text="Размер кашпо 150*150*150 см" />
 
@@ -63,11 +62,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/text_info_1"
-            android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toStartOf="@+id/container_controls"
-            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintStart_toStartOf="@+id/text_name"
             app:layout_constraintTop_toBottomOf="@+id/text_info_1">
 
             <TextView
@@ -92,7 +90,8 @@
                 android:fontFamily="@font/sfuitext_regular"
                 android:gravity="center"
                 android:textSize="@dimen/font_size_9"
-                tools:text="15 м" />
+                tools:text="15 м"
+                tools:visibility="visible" />
 
             <View
                 android:id="@+id/space"
@@ -107,14 +106,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/container_height_selector"
-            android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_marginBottom="8dp"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/container_controls"
             app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintStart_toStartOf="@+id/container_height_selector"
             app:layout_constraintTop_toBottomOf="@+id/container_height_selector">
 
             <TextView

@@ -6,6 +6,7 @@ import com.lab.greenpremium.data.network.DefaultCallbackListener
 import javax.inject.Inject
 
 class PortfolioPresenter @Inject constructor(val view: PortfolioContract.View) : PortfolioContract.Presenter {
+
     @Inject
     internal lateinit var repository: Repository
 

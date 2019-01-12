@@ -20,6 +20,8 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 
@@ -94,7 +96,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         val isDeliveryExpected = order_id != null && order_supply_date != null
         container_delivery_schedule.visibility = if (isDeliveryExpected) VISIBLE else GONE
         if (isDeliveryExpected) {
-            val timestamp = getTimestampFromDateString(order_supply_date)
+            val timestamp = getTimestampFromDateString(order_supply_date, SimpleDateFormat("dd.mm.yyyy", Locale.getDefault()))
             timestamp?.let {
                 text_date_day.text = geDayFromTimestamp(timestamp)
                 text_date_month.text = getMonthStringFromTimestamp(timestamp)

@@ -23,7 +23,7 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
     }
 
     private fun updateSectionProducts(sectionPosition: Int) {
-        UserModel.catalogSectionsResponse?.sections?.let { sections ->
+        UserModel.catalog?.sections?.let { sections ->
             sectionId = sections[sectionPosition].id
             repository.getSectionProductsList(sectionId, object : DefaultCallbackListener(view) {
                 override fun onSuccess() {

@@ -3,6 +3,7 @@ package com.lab.greenpremium.data.repo
 import android.annotation.SuppressLint
 import com.google.gson.JsonParser
 import com.lab.greenpremium.REQUEST_REFRESH_TIME_MS
+import com.lab.greenpremium.data.CartModel
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.entity.*
 import com.lab.greenpremium.data.local.PreferencesManager
@@ -190,8 +191,8 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun getCatalogSections(listener: CallbackListener) {
 
-        if (UserModel.catalogSectionsResponse != null) {
-            if (System.currentTimeMillis() - UserModel.catalogSectionsResponse!!.time < REQUEST_REFRESH_TIME_MS) {
+        if (UserModel.catalog != null) {
+            if (System.currentTimeMillis() - UserModel.catalog!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
                 return
             }
@@ -388,11 +389,11 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 }
 
                 CatalogSectionsResponse::class -> {
-                    UserModel.catalogSectionsResponse = response.data as CatalogSectionsResponse
+                    UserModel.catalog = response.data as CatalogSectionsResponse
                 }
 
                 SectionProductsResponse::class -> {
-                    val catalogSectionsData = UserModel.catalogSectionsResponse
+                    val catalogSectionsData = UserModel.catalog
                     try {
                         catalogSectionsData!!.sections?.forEach { section ->
                             if (section.id == parameters[0]) {
@@ -409,7 +410,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 }
 
                 CartResponse::class -> {
-                    UserModel.cart = (response.data as CartResponse).products
+                    CartModel.products = (response.data as CartResponse).products
                 }
 
                 MakeOrderResponse::class -> {

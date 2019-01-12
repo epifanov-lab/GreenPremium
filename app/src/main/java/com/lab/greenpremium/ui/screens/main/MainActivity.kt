@@ -24,8 +24,9 @@ import com.lab.greenpremium.ui.screens.main.plants.PlantsFragment
 import com.lab.greenpremium.ui.screens.main.portfolio.PortfolioFragment
 import com.lab.greenpremium.ui.screens.main.profile.ProfileFragment
 import com.lab.greenpremium.ui.screens.message.MessageScreenType
+import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.eventbus.BaseEvent
-import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
+import com.lab.greenpremium.utills.eventbus.CartChangedEvent
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -96,6 +97,8 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     override fun initViews() {
+        presenter.onViewCreated()
+
         swapFragment(ProfileFragment.newInstance())
 
         navigation.itemIconTintList = null
@@ -183,8 +186,13 @@ class MainActivity : BaseActivity(), MainContract.View {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: BaseEvent) {
         when (event) {
-            is PlantCountChangedEvent -> button_cart.updateIndicator(UserModel.getCountOfItemsInCart())
+            is CartChangedEvent -> presenter.onCartChangedEvent(event.product)
         }
+    }
+
+    override fun updateCartIndicator(count: Int) {
+        LogUtil.e("UPDATECARTINDICATOR $count")
+        button_cart.updateIndicator(count)
     }
 
     public override fun onStart() {

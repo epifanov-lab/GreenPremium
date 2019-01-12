@@ -5,12 +5,14 @@ import android.view.View
 import android.widget.LinearLayout
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.UserModel
+import com.lab.greenpremium.data.CartModel
 import com.lab.greenpremium.data.entity.Product
+import com.lab.greenpremium.ui.components.item.PlantItemView
 import com.lab.greenpremium.ui.screens.base.BaseFragment
 import com.lab.greenpremium.ui.screens.main.plants.sub.PlantRecyclerAdapter
+import com.lab.greenpremium.utills.currencyFormat
 import com.lab.greenpremium.utills.eventbus.BaseEvent
-import com.lab.greenpremium.utills.eventbus.PlantCountChangedEvent
+import com.lab.greenpremium.utills.eventbus.CartChangedEvent
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_cart.*
 import org.greenrobot.eventbus.EventBus
@@ -43,21 +45,22 @@ class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnP
     }
 
     override fun initViews() {
-        products = UserModel.getProductsInCartList()
+        products = CartModel.products
 
         if (products.isNotEmpty()) {
             label_empty_list.visibility = View.GONE
             recycler_plants.visibility = View.VISIBLE
             recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-            recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), this)
+            recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(),
+                    this, PlantItemView.PlantViewType.OTHER)
         } else {
             label_empty_list.visibility = View.VISIBLE
             recycler_plants.visibility = View.GONE
         }
 
-        updateTotalCost(products)
+        updateTotalCost(0.0)
 
-        //todo подписаться на изменение полей count
+        //todo подписаться на изменение полей quantity
 
         setTouchAnimationShrink(button_bill)
     }
@@ -65,14 +68,12 @@ class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnP
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onMessageEvent(event: BaseEvent) {
         when (event) {
-            is PlantCountChangedEvent -> updateTotalCost(products)
+            is CartChangedEvent -> presenter.onProductCountChanged(event.product)
         }
     }
 
-    private fun updateTotalCost(products: List<Product>) {
-        /*var total = 0.0
-        products.forEach { total += it.price * it.count }
-        label_total_cost.text = currencyFormat(total)*/
+    override fun updateTotalCost(total: Double) {
+        label_total_cost.text = currencyFormat(total)
     }
 
     override fun onProductSelected(product: Product) {

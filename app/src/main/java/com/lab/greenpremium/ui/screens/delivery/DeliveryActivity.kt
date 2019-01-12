@@ -7,6 +7,7 @@ import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.NO_DATA
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Product
+import com.lab.greenpremium.ui.components.item.PlantItemView
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.ui.screens.main.plants.sub.PlantRecyclerAdapter
 import com.lab.greenpremium.utills.LogUtil
@@ -40,7 +41,7 @@ class DeliveryActivity : BaseActivity(), DeliveryContract.View, PlantRecyclerAda
         LogUtil.e(products.toString())
         recycler_plants.layoutManager = LinearLayoutManager(applicationContext, LinearLayout.VERTICAL, false)
         recycler_plants.adapter = PlantRecyclerAdapter(products, applicationContext?.resources?.getDimension(R.dimen.space_24)?.toInt(),
-                this, true)
+                this, PlantItemView.PlantViewType.OTHER)
     }
 
     override fun onProductSelected(product: Product) {

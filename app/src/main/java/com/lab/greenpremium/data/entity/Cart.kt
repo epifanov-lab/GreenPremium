@@ -15,4 +15,13 @@ data class MakeOrderResponse(val title: String, val message: String) : Serializa
 //get /order/{order_id}
 data class OrderRequest(val order_id: Int)
 
-data class OrderResponse(val products: List<Product>)
+data class OrderResponse(val order_price: OrderPrice, val products: List<Product>)
+
+data class OrderPrice(
+    val nds: Double,
+    val nds_f: String,
+    val nds_string: String,
+    val sum: Int,
+    val sum_f: String,
+    val sum_string: String
+)

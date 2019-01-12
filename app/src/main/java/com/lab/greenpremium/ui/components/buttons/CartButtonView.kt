@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
+import com.lab.greenpremium.utills.LogUtil
 import kotlinx.android.synthetic.main.view_cart_button.view.*
 
 
@@ -21,6 +22,7 @@ class CartButtonView : RelativeLayout {
     }
 
     fun updateIndicator(count: Int) {
+        LogUtil.e("UPDATE_INDICATOR: $count")
         indicator.visibility = if (count > 0) View.VISIBLE else View.INVISIBLE
         indicator.text = count.toString()
     }
