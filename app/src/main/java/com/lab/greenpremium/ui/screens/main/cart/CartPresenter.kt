@@ -1,11 +1,34 @@
 package com.lab.greenpremium.ui.screens.main.cart
 
-import com.lab.greenpremium.data.entity.Product
+import com.lab.greenpremium.data.CartModel
+import com.lab.greenpremium.data.entity.MakeOrderResponse
+import com.lab.greenpremium.data.network.DefaultCallbackListener
+import com.lab.greenpremium.data.repo.Repository
+import java.io.Serializable
 import javax.inject.Inject
 
 class CartPresenter @Inject constructor(val view: CartContract.View) : CartContract.Presenter {
 
-    override fun onProductCountChanged(product: Product) {
-        //todo update total cost
+    @Inject
+    internal lateinit var repository: Repository
+
+    override fun onViewCreated() {
+        updateCartTotalCost()
+    }
+
+    override fun onCartUpdatedEvent() {
+        updateCartTotalCost()
+    }
+
+    private fun updateCartTotalCost() {
+        view.updateTotalCost(CartModel.getCartTotalCost())
+    }
+
+    override fun onClickBillRequest() {
+        repository.makeOrder(object : DefaultCallbackListener(view) {
+            override fun onSuccess(item: Serializable?) {
+                this@CartPresenter.view.onBillRequestSuccess((item as MakeOrderResponse).message)
+            }
+        })
     }
 }

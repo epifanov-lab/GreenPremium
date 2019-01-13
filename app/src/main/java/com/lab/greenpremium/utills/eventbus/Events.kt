@@ -4,4 +4,5 @@ import com.lab.greenpremium.data.entity.Product
 
 abstract class BaseEvent
 
-class CartChangedEvent(val product: Product) : BaseEvent()
+class ProductQuantityChangedEvent(val product: Product) : BaseEvent()
+class CartUpdatedEvent : BaseEvent()

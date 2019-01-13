@@ -191,11 +191,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun getCatalogSections(listener: CallbackListener) {
 
-        if (UserModel.catalog != null) {
-            if (System.currentTimeMillis() - UserModel.catalog!!.time < REQUEST_REFRESH_TIME_MS) {
-                listener.onSuccess()
-                return
-            }
+        if (CartModel.catalog != null) {
+            listener.onSuccess()
+            return
         }
 
         apiMethods.getCatalogSections()
@@ -211,6 +209,15 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
     @SuppressLint("CheckResult")
     fun getSectionProductsList(section_id: Int, listener: CallbackListener) {
+
+        CartModel.catalog?.sections?.forEach {
+            if (it.id == section_id) {
+                if (it.products != null && it.products!!.isNotEmpty()) {
+                    listener.onSuccess()
+                    return
+                }
+            }
+        }
 
         if (UserModel.authResponse == null) {
             listener.onError(ApiError(401, "Not authorized"))
@@ -389,11 +396,11 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 }
 
                 CatalogSectionsResponse::class -> {
-                    UserModel.catalog = response.data as CatalogSectionsResponse
+                    CartModel.catalog = response.data as CatalogSectionsResponse
                 }
 
                 SectionProductsResponse::class -> {
-                    val catalogSectionsData = UserModel.catalog
+                    val catalogSectionsData = CartModel.catalog
                     try {
                         catalogSectionsData!!.sections?.forEach { section ->
                             if (section.id == parameters[0]) {
@@ -410,7 +417,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 }
 
                 CartResponse::class -> {
-                    CartModel.products = (response.data as CartResponse).products
+                    CartModel.cart = (response.data as CartResponse).products
                 }
 
                 MakeOrderResponse::class -> {

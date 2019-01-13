@@ -127,7 +127,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: ServiceCalculatedEvent) {
+    fun onEvent(event: ServiceCalculatedEvent) {
         presenter.updateEvents(true)
     }
 }

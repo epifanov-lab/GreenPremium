@@ -174,7 +174,7 @@ interface GpApi {
     fun getSectionProductsList(@Header("X-Auth-Token") token: String,
                                @Path("section_id") section_id: Int): Single<BaseResponse<List<Product>>>
 
-    @GET("catalog/products/{product_id}")
+    @GET("catalog/cart/{product_id}")
     fun getProductDetail(@Header("X-Auth-Token") token: String,
                          @Path("product_id") product_id: Int): Single<BaseResponse<Product>>
     //endregion

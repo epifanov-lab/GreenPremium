@@ -14,7 +14,7 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Offer
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.utills.currencyFormat
-import com.lab.greenpremium.utills.eventbus.CartChangedEvent
+import com.lab.greenpremium.utills.eventbus.ProductQuantityChangedEvent
 import kotlinx.android.synthetic.main.view_item_plant.view.*
 import org.greenrobot.eventbus.EventBus
 
@@ -125,7 +125,7 @@ class PlantItemCountControlsHelper(val product: Product,
     init {
 
         add.run {
-            setOnClickListener { setCounter(++product.quantity) }
+            setOnClickListener { setCounter(product.quantity + 1) }
             setOnLongClickListener {
                 isIncrementing = true
                 repeatUpdateHandler.post(RptUpdater())
@@ -141,7 +141,7 @@ class PlantItemCountControlsHelper(val product: Product,
         }
 
         remove.run {
-            setOnClickListener { setCounter(--product.quantity) }
+            setOnClickListener { setCounter(product.quantity - 1) }
             setOnLongClickListener {
                 isDecrementing = true
                 repeatUpdateHandler.post(RptUpdater())
@@ -160,19 +160,22 @@ class PlantItemCountControlsHelper(val product: Product,
     }
 
     private fun setCounter(n: Int) {
-        product.quantity = if (n < 0) 0 else n
+        if (n >= 0 && product.quantity != n) {
+            product.quantity = n
+            EventBus.getDefault().post(ProductQuantityChangedEvent(product))
+        }
+
         counter.text = product.quantity.toString()
-        EventBus.getDefault().post(CartChangedEvent(product))
     }
 
     inner class RptUpdater : Runnable {
         override fun run() {
             if (isIncrementing) {
-                setCounter(++product.quantity)
+                setCounter(product.quantity + 1)
                 repeatUpdateHandler.postDelayed(RptUpdater(), 100)
 
             } else if (isDecrementing) {
-                setCounter(--product.quantity)
+                setCounter(product.quantity - 1)
                 repeatUpdateHandler.postDelayed(RptUpdater(), 100)
             }
         }

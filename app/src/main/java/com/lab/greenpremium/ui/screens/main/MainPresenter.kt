@@ -4,6 +4,8 @@ import com.lab.greenpremium.data.CartModel
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.data.network.DefaultCallbackListener
 import com.lab.greenpremium.data.repo.Repository
+import com.lab.greenpremium.utills.eventbus.CartUpdatedEvent
+import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
 
 class MainPresenter @Inject constructor(val view: MainContract.View) : MainContract.Presenter {
@@ -15,14 +17,20 @@ class MainPresenter @Inject constructor(val view: MainContract.View) : MainContr
         updateCart()
     }
 
-    override fun onCartChangedEvent(product: Product) {
-        //TODO ON PRODUCTS ADDED/REMOVED
+    override fun onProductQuantityChanged(product: Product) {
+        repository.addToCart(product.offers[product.selectedOfferPosition].product_id, product.quantity, object : DefaultCallbackListener(view) {
+            override fun onSuccess() {
+                this@MainPresenter.view.updateCartIndicator(CartModel.cart.size)
+                CartModel.syncCatalogWithCartByProduct(product)
+                EventBus.getDefault().post(CartUpdatedEvent())
+            }
+        })
     }
 
     override fun updateCart() {
         repository.getCart(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                this@MainPresenter.view.updateCartIndicator(CartModel.products.size)
+                this@MainPresenter.view.updateCartIndicator(CartModel.cart.size)
             }
         })
     }

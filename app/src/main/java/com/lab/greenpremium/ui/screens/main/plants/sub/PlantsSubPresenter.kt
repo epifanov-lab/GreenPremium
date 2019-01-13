@@ -1,9 +1,9 @@
 package com.lab.greenpremium.ui.screens.main.plants.sub
 
-import com.lab.greenpremium.data.repo.Repository
-import com.lab.greenpremium.data.UserModel
+import com.lab.greenpremium.data.CartModel
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.data.network.DefaultCallbackListener
+import com.lab.greenpremium.data.repo.Repository
 import java.io.Serializable
 import javax.inject.Inject
 
@@ -23,11 +23,12 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
     }
 
     private fun updateSectionProducts(sectionPosition: Int) {
-        UserModel.catalog?.sections?.let { sections ->
+        CartModel.catalog?.sections?.let { sections ->
             sectionId = sections[sectionPosition].id
             repository.getSectionProductsList(sectionId, object : DefaultCallbackListener(view) {
                 override fun onSuccess() {
                     sections[sectionPosition].products?.let { products ->
+                        CartModel.syncCatalogWithCart()
                         this@PlantsSubPresenter.view.initializeCatalog(products)
                     }
                 }

@@ -12,7 +12,7 @@ interface MainContract {
     interface Presenter {
         fun onViewCreated()
 
-        fun onCartChangedEvent(product: Product)
+        fun onProductQuantityChanged(product: Product)
         fun updateCart()
     }
 }

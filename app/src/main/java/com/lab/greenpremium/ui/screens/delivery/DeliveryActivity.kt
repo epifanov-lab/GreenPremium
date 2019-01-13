@@ -38,7 +38,6 @@ class DeliveryActivity : BaseActivity(), DeliveryContract.View, PlantRecyclerAda
     }
 
     override fun initializeProductsList(products: List<Product>) {
-        LogUtil.e(products.toString())
         recycler_plants.layoutManager = LinearLayoutManager(applicationContext, LinearLayout.VERTICAL, false)
         recycler_plants.adapter = PlantRecyclerAdapter(products, applicationContext?.resources?.getDimension(R.dimen.space_24)?.toInt(),
                 this, PlantItemView.PlantViewType.OTHER)

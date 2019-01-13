@@ -12,7 +12,7 @@ import com.lab.greenpremium.ui.screens.base.BaseFragment
 import com.lab.greenpremium.ui.screens.main.plants.sub.PlantRecyclerAdapter
 import com.lab.greenpremium.utills.currencyFormat
 import com.lab.greenpremium.utills.eventbus.BaseEvent
-import com.lab.greenpremium.utills.eventbus.CartChangedEvent
+import com.lab.greenpremium.utills.eventbus.CartUpdatedEvent
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_cart.*
 import org.greenrobot.eventbus.EventBus
@@ -45,8 +45,16 @@ class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnP
     }
 
     override fun initViews() {
-        products = CartModel.products
+        presenter.onViewCreated()
+        products = CartModel.cart
 
+        initializeCartProductsList()
+
+        button_bill.setOnClickListener { presenter.onClickBillRequest() }
+        setTouchAnimationShrink(button_bill)
+    }
+
+    private fun initializeCartProductsList() {
         if (products.isNotEmpty()) {
             label_empty_list.visibility = View.GONE
             recycler_plants.visibility = View.VISIBLE
@@ -57,18 +65,16 @@ class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnP
             label_empty_list.visibility = View.VISIBLE
             recycler_plants.visibility = View.GONE
         }
+    }
 
-        updateTotalCost(0.0)
-
-        //todo подписаться на изменение полей quantity
-
-        setTouchAnimationShrink(button_bill)
+    override fun onBillRequestSuccess(message: String) {
+        showDialogMessage(message, null, null)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: BaseEvent) {
+    fun onEvent(event: BaseEvent) {
         when (event) {
-            is CartChangedEvent -> presenter.onProductCountChanged(event.product)
+            is CartUpdatedEvent -> presenter.onCartUpdatedEvent()
         }
     }
 

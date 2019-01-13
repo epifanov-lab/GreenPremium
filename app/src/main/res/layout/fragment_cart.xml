@@ -11,8 +11,8 @@
         style="@style/Button.Green"
         android:layout_width="@dimen/card_button_width"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="@dimen/space_24"
         android:layout_marginStart="@dimen/space_24"
+        android:layout_marginBottom="@dimen/space_24"
         android:text="@string/cart_get_bill" />
 
     <LinearLayout

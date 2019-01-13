@@ -5,7 +5,7 @@ import android.view.View
 import android.widget.LinearLayout
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.UserModel
+import com.lab.greenpremium.data.CartModel
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.screens.base.BaseFragment
 import com.lab.greenpremium.ui.screens.main.plants.sub.PlantRecyclerAdapter
@@ -37,7 +37,7 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View, PlantRecyclerA
     }
 
     override fun initViews() {
-        list = UserModel.getFavoritesProductsList()
+        list = CartModel.getFavoritesProductsList()
         initializeList()
     }
 

@@ -13,7 +13,6 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu
 import com.lab.greenpremium.*
 import com.lab.greenpremium.data.MeetingAddedEvent
 import com.lab.greenpremium.data.ServiceCalculatedEvent
-import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.ui.components.BottomNavigationViewHelper
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.ui.screens.main.cart.CartFragment
@@ -24,9 +23,8 @@ import com.lab.greenpremium.ui.screens.main.plants.PlantsFragment
 import com.lab.greenpremium.ui.screens.main.portfolio.PortfolioFragment
 import com.lab.greenpremium.ui.screens.main.profile.ProfileFragment
 import com.lab.greenpremium.ui.screens.message.MessageScreenType
-import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.eventbus.BaseEvent
-import com.lab.greenpremium.utills.eventbus.CartChangedEvent
+import com.lab.greenpremium.utills.eventbus.ProductQuantityChangedEvent
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -184,14 +182,13 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: BaseEvent) {
+    fun onEvent(event: BaseEvent) {
         when (event) {
-            is CartChangedEvent -> presenter.onCartChangedEvent(event.product)
+            is ProductQuantityChangedEvent -> presenter.onProductQuantityChanged(event.product)
         }
     }
 
     override fun updateCartIndicator(count: Int) {
-        LogUtil.e("UPDATECARTINDICATOR $count")
         button_cart.updateIndicator(count)
     }
 

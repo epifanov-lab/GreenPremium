@@ -79,7 +79,7 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onMessageEvent(event: MeetingAddedEvent) {
+    fun onEvent(event: MeetingAddedEvent) {
         presenter.updateMeetingList()
     }
 }
