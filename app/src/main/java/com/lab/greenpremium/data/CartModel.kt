@@ -6,7 +6,7 @@ import com.lab.greenpremium.data.entity.Product
 
 object CartModel {
 
-    lateinit var cart: List<Product>
+    lateinit var cart: MutableList<Product>
     var catalog: CatalogSectionsResponse? = null
 
     fun syncCatalogWithCart() {

@@ -29,7 +29,7 @@
         <TextView
             android:id="@+id/text_name"
             android:layout_width="0dp"
-            android:layout_height="13dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
@@ -40,7 +40,7 @@
             app:layout_constraintEnd_toStartOf="@+id/container_controls"
             app:layout_constraintStart_toEndOf="@+id/image"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Аглаонема" />
+            tools:text="Аглаонема Аглаонема Аглаонема Аглаонема Аглаонема" />
 
         <TextView
             android:id="@+id/text_info_1"

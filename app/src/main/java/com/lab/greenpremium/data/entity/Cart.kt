@@ -8,7 +8,7 @@ import java.io.Serializable
 //post /cart/add
 data class AddToCartRequest(val product_id: Int, val quantity: Int)
 
-data class CartResponse(val products: List<Product>, val total_quantity: Int)
+data class CartResponse(val products: MutableList<Product>, val total_quantity: Int)
 data class MakeOrderResponse(val title: String, val message: String) : Serializable
 
 

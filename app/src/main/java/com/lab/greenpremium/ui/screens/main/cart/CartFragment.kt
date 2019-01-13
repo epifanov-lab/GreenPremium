@@ -5,10 +5,11 @@ import android.view.View
 import android.widget.LinearLayout
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.CartModel
 import com.lab.greenpremium.data.entity.Product
+import com.lab.greenpremium.ui.components.Listener
 import com.lab.greenpremium.ui.components.item.PlantItemView
 import com.lab.greenpremium.ui.screens.base.BaseFragment
+import com.lab.greenpremium.ui.screens.main.MainActivity
 import com.lab.greenpremium.ui.screens.main.plants.sub.PlantRecyclerAdapter
 import com.lab.greenpremium.utills.currencyFormat
 import com.lab.greenpremium.utills.eventbus.BaseEvent
@@ -25,8 +26,6 @@ class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnP
 
     @Inject
     internal lateinit var presenter: CartPresenter
-
-    private lateinit var products: List<Product>
 
     companion object {
         fun newInstance() = CartFragment()
@@ -46,16 +45,13 @@ class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnP
 
     override fun initViews() {
         presenter.onViewCreated()
-        products = CartModel.cart
-
-        initializeCartProductsList()
 
         button_bill.setOnClickListener { presenter.onClickBillRequest() }
         setTouchAnimationShrink(button_bill)
     }
 
-    private fun initializeCartProductsList() {
-        if (products.isNotEmpty()) {
+    override fun initializeCartProductsList(products: List<Product>?) {
+        if (products != null && products.isNotEmpty()) {
             label_empty_list.visibility = View.GONE
             recycler_plants.visibility = View.VISIBLE
             recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
@@ -68,7 +64,12 @@ class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnP
     }
 
     override fun onBillRequestSuccess(message: String) {
-        showDialogMessage(message, null, null)
+        showDialogMessage(message, null, object : Listener {
+            override fun onEvent() {
+                initializeCartProductsList(null)
+                (activity as MainActivity).updateCartIndicator(0)
+            }
+        })
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

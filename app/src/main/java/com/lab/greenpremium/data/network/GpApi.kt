@@ -174,7 +174,7 @@ interface GpApi {
     fun getSectionProductsList(@Header("X-Auth-Token") token: String,
                                @Path("section_id") section_id: Int): Single<BaseResponse<List<Product>>>
 
-    @GET("catalog/cart/{product_id}")
+    @GET("catalog/products/{product_id}")
     fun getProductDetail(@Header("X-Auth-Token") token: String,
                          @Path("product_id") product_id: Int): Single<BaseResponse<Product>>
     //endregion
@@ -190,13 +190,17 @@ interface GpApi {
                   @Field("product_id") product_id: Int,
                   @Field("quantity") quantity: Int): Single<BaseResponse<CartResponse>>
 
-    @POST("cart/order/add")
+    @POST("order/add")
     fun makeOrder(@Header("X-Auth-Token") token: String): Single<BaseResponse<MakeOrderResponse>>
     //endregion
 
 
     //region FAVORITES
-    //TODO
+
+    //post /catalog/favorites/add
+    //post /catalog/favorites/delete
+    //get /catalog/favorites
+
     //endregion
 
 
