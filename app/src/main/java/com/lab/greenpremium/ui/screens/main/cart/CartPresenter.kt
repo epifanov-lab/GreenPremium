@@ -13,8 +13,9 @@ class CartPresenter @Inject constructor(val view: CartContract.View) : CartContr
     internal lateinit var repository: Repository
 
     override fun onViewCreated() {
-        view.initializeCartProductsList(CartModel.cart)
+        view.initializeCartProductsList(CartModel.cart.products)
         view.updateTotalCost(CartModel.getCartTotalCost())
+        view.initializeServiceText(CartModel.cart.service_text)
     }
 
     override fun onCartUpdatedEvent() {
@@ -24,7 +25,7 @@ class CartPresenter @Inject constructor(val view: CartContract.View) : CartContr
     override fun onClickBillRequest() {
         repository.makeOrder(object : DefaultCallbackListener(view) {
             override fun onSuccess(item: Serializable?) {
-                CartModel.cart.clear()
+                CartModel.cart.products.clear()
                 this@CartPresenter.view.onBillRequestSuccess((item as MakeOrderResponse).message)
             }
         })

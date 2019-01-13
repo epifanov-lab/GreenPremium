@@ -8,6 +8,8 @@ interface CartContract {
     interface View : BaseContract.BaseView {
         fun initializeCartProductsList(products: List<Product>?)
         fun updateTotalCost(total: Double)
+        fun initializeServiceText(service_text: String)
+
         fun onBillRequestSuccess(message: String)
     }
 

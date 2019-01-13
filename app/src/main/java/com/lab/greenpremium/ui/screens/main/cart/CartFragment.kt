@@ -79,6 +79,10 @@ class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnP
         }
     }
 
+    override fun initializeServiceText(service_text: String) {
+        label_service_cost.text = service_text
+    }
+
     override fun updateTotalCost(total: Double) {
         label_total_cost.text = currencyFormat(total)
     }

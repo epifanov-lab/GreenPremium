@@ -85,6 +85,18 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
     //endregion
 
 
+    //region FAVORITES
+    fun editFavorites(token: String, request: EditFavoritesRequest): Single<BaseResponse<EditFavoriteResponse>> {
+        return if (request.is_favorite) api.addToFavorites(token, request.product_id)
+        else api.removeFromFavorites(token, request.product_id)
+    }
+
+    fun getFavorites(token: String): Single<BaseResponse<MutableList<Product>>> {
+        return api.getFavorites(token)
+    }
+    //endregion
+
+
     //region PORTFOLIO
     fun getPortfolio(): Single<BaseResponse<List<PortfolioSection>>> {
         return api.getPortfolio()
@@ -196,11 +208,18 @@ interface GpApi {
 
 
     //region FAVORITES
+    @FormUrlEncoded
+    @POST("catalog/favorites/add")
+    fun addToFavorites(@Header("X-Auth-Token") token: String,
+                       @Field("product_id") product_id: Int): Single<BaseResponse<EditFavoriteResponse>>
 
-    //post /catalog/favorites/add
-    //post /catalog/favorites/delete
-    //get /catalog/favorites
+    @FormUrlEncoded
+    @POST("catalog/favorites/delete")
+    fun removeFromFavorites(@Header("X-Auth-Token") token: String,
+                            @Field("product_id") product_id: Int): Single<BaseResponse<EditFavoriteResponse>>
 
+    @GET("catalog/favorites")
+    fun getFavorites(@Header("X-Auth-Token") token: String): Single<BaseResponse<MutableList<Product>>>
     //endregion
 
 

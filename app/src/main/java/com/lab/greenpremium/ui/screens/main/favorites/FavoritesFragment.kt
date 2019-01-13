@@ -18,8 +18,6 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View, PlantRecyclerA
     @Inject
     internal lateinit var presenter: FavoritesPresenter
 
-    lateinit var list: List<Product>
-
     companion object {
         fun newInstance() = FavoritesFragment()
     }
@@ -37,16 +35,15 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View, PlantRecyclerA
     }
 
     override fun initViews() {
-        list = CartModel.getFavoritesProductsList()
-        initializeList()
+        presenter.onViewCreated()
     }
 
-    private fun initializeList() {
-        if (list.isNotEmpty()) {
+    override fun initializeFavoritesList(favorites: List<Product>) {
+        if (favorites.isNotEmpty()) {
             label_empty_list.visibility = View.GONE
             recycler_plants.visibility = View.VISIBLE
             recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-            recycler_plants.adapter = PlantRecyclerAdapter(list, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), this)
+            recycler_plants.adapter = PlantRecyclerAdapter(favorites, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), this)
         } else {
             label_empty_list.visibility = View.VISIBLE
             recycler_plants.visibility = View.GONE

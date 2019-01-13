@@ -1,16 +1,18 @@
 package com.lab.greenpremium.data
 
+import com.lab.greenpremium.data.entity.CartResponse
 import com.lab.greenpremium.data.entity.CatalogSectionsResponse
 import com.lab.greenpremium.data.entity.Product
 
 
 object CartModel {
 
-    lateinit var cart: MutableList<Product>
+    lateinit var cart: CartResponse
+    lateinit var favorites: MutableList<Product>
     var catalog: CatalogSectionsResponse? = null
 
     fun syncCatalogWithCart() {
-        cart.forEach {
+        cart.products.forEach {
             syncCatalogWithCartByProduct(it)
         }
     }
@@ -31,20 +33,30 @@ object CartModel {
         }
     }
 
+    fun syncFavoritesWithCart() {
+        cart.products.forEach{
+            syncFavoritesWithCartByProduct(it)
+        }
+    }
+
+    fun syncFavoritesWithCartByProduct(cartProduct: Product) {
+        favorites.forEach {favoriteProduct ->
+
+            val offerFromCart = cartProduct.offers[cartProduct.selectedOfferPosition]
+            val offerFromCatalog = favoriteProduct.offers[favoriteProduct.selectedOfferPosition]
+
+            if (offerFromCatalog.product_id == offerFromCart.product_id) {
+                favoriteProduct.quantity = cartProduct.quantity
+                return
+            }
+        }
+    }
+
     fun getCartTotalCost(): Double {
         var result = 0.0
-        cart.forEach { result += it.offers[0].price * it.quantity }
+        cart.products.forEach { result += it.offers[0].price * it.quantity }
         return result
     }
 
-    fun getFavoritesProductsList(): List<Product> {
-        val favorites = arrayListOf<Product>()
-        catalog?.sections?.forEach { section ->
-            section.products?.forEach { product ->
-                if (product.isFavorite) favorites.add(product)
-            }
-        }
-        return favorites
-    }
 }
 

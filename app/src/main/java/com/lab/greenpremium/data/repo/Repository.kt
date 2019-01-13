@@ -317,6 +317,48 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
     }
 
+    @SuppressLint("CheckResult")
+    fun editFavorites(product: Product, listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        val request = EditFavoritesRequest(product.isFavorite, product.offers[product.selectedOfferPosition].product_id)
+
+        apiMethods.editFavorites(UserModel.authResponse!!.token, request)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+
+    }
+
+    @SuppressLint("CheckResult")
+    fun getFavorites(listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.getFavorites(UserModel.authResponse!!.token)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(BaseResponse(response.status, response.title, GetFavoritesResponse(response.data)), listener) },
+                        { error -> handleError(error, listener) }
+                )
+
+    }
+
 
     @SuppressLint("CheckResult")
     fun updatePortfolio(listener: CallbackListener) {
@@ -387,6 +429,14 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                     UserModel.orderResponse = response.data as OrderResponse
                 }
 
+                EditFavoriteResponse::class -> {
+                    //ignore
+                }
+
+                GetFavoritesResponse::class -> {
+                    CartModel.favorites = (response.data as GetFavoritesResponse).products
+                }
+
                 MeetingsListResponse::class -> {
                     UserModel.meetingsListResponse = response.data as MeetingsListResponse
                 }
@@ -417,7 +467,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 }
 
                 CartResponse::class -> {
-                    CartModel.cart = (response.data as CartResponse).products
+                    CartModel.cart = response.data as CartResponse
                 }
 
                 MakeOrderResponse::class -> {
