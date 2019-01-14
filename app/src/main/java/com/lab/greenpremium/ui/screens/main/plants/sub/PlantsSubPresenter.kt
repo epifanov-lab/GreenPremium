@@ -37,11 +37,17 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
     }
 
     private fun getProductDetails(product: Product) {
-        repository.getProductDetail(sectionId, product.offers[product.selectedOfferPosition].product_id,
+        repository.getProductDetail(sectionId, product.id,
                 object : DefaultCallbackListener(view) {
                     override fun onSuccess(item: Serializable?) {
-                        item?.let { this@PlantsSubPresenter.view.goToDetails(it as Product) }
-                                ?: (this@PlantsSubPresenter.view.showError(Throwable("Error while receiving product data")))
+                        item?.let {
+
+                            val tempProduct = it as Product
+                            tempProduct.isFavorite = product.isFavorite
+                            tempProduct.quantity = product.quantity
+                            this@PlantsSubPresenter.view.goToDetails(tempProduct)
+
+                        } ?: (this@PlantsSubPresenter.view.showError(Throwable("Error while receiving product data")))
                     }
                 })
     }

@@ -21,8 +21,8 @@ object CartModel {
         catalog?.sections?.forEach iterator@ { sections ->
             sections.products?.forEach { catalogProduct ->
 
-                val offerFromCart = cartProduct.offers[cartProduct.selectedOfferPosition]
-                val offerFromCatalog = catalogProduct.offers[catalogProduct.selectedOfferPosition]
+                val offerFromCart = cartProduct.getChosenOffer()
+                val offerFromCatalog = catalogProduct.getChosenOffer()
 
                 if (offerFromCatalog.product_id == offerFromCart.product_id) {
                     catalogProduct.quantity = cartProduct.quantity
@@ -42,8 +42,8 @@ object CartModel {
     fun syncFavoritesWithCartByProduct(cartProduct: Product) {
         favorites.forEach {favoriteProduct ->
 
-            val offerFromCart = cartProduct.offers[cartProduct.selectedOfferPosition]
-            val offerFromCatalog = favoriteProduct.offers[favoriteProduct.selectedOfferPosition]
+            val offerFromCart = cartProduct.getChosenOffer()
+            val offerFromCatalog = favoriteProduct.getChosenOffer()
 
             if (offerFromCatalog.product_id == offerFromCart.product_id) {
                 favoriteProduct.quantity = cartProduct.quantity

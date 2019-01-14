@@ -27,7 +27,9 @@ val ViewGroup.views: List<View>
  * @param currencySymbol currency symbol char
  * @return locale specific currency string
  */
-fun currencyFormat(amount: Double?, groupingUsed: Boolean = true, decimals: Int = 2, currencySymbol: Char = '₽'): String {
+fun currencyFormat(amount: Double?, groupingUsed: Boolean = true, decimals: Int = 2, currencySymbol: Char = '₽'): String? {
+    if (amount == null) return null
+
     val formatSymbols = DecimalFormatSymbols()
     formatSymbols.decimalSeparator = '.'
     formatSymbols.groupingSeparator = ' '

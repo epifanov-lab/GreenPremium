@@ -1,16 +1,15 @@
 package com.lab.greenpremium.ui.screens.plant_detail
 
 import android.view.View
-import android.view.View.VISIBLE
 import com.bumptech.glide.Glide
 import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.entity.Offer
+import com.lab.greenpremium.data.entity.OfferParam
+import com.lab.greenpremium.data.entity.Photo
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.components.item.PlantItemCountControlsHelper
 import com.lab.greenpremium.ui.screens.base.BaseActivity
-import com.lab.greenpremium.utills.currencyFormat
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_plant_detail.*
 import kotlinx.android.synthetic.main.view_plant_photos_preview.*
@@ -18,11 +17,12 @@ import javax.inject.Inject
 
 class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
 
+    //TODO counter +- api
+    //TODO photos -> gallery
+    //TODO fix short info
+
     @Inject
     internal lateinit var presenter: PlantDetailPresenter
-
-    private lateinit var product: Product
-    private lateinit var offer: Offer
 
     override fun layoutResId(): Int {
         return R.layout.activity_plant_detail
@@ -37,81 +37,52 @@ class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
     }
 
     override fun initViews() {
-        product = intent.getSerializableExtra(KEY_OBJECT) as Product
-        offer = product.offers!![product.selectedOfferPosition]
+        presenter.onViewCreated(intent.getSerializableExtra(KEY_OBJECT) as Product)
 
+        button_favorite.setOnClickListener { presenter.onClickFavorite() }
         button_back.setOnClickListener { onBackPressed() }
-
-        button_cart.setOnClickListener { }
-
-        button_favorite.setOnClickListener {
-            product.isFavorite = !product.isFavorite
-            updateFavoriteButtonState(product.isFavorite)
-        }
-
-        updateFavoriteButtonState(product.isFavorite)
-
-        text_title.text = product.name
-
-        product.photo?.url?.let { url ->
-            Glide.with(applicationContext)
-                    .load(url)
-                    .into(image)
-        }
-
-        offer.price?.let { text_price.text = currencyFormat(offer.price) }
-
-        offer.old_price?.let {
-            text_discount.visibility = View.VISIBLE
-            text_discount.text = currencyFormat(offer.old_price)
-        }
-
-        setupInfoBlock()
-
-        gallery_preview.gallery = product.gallery
-
-        PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
-
-        setTouchAnimationShrink(image_1)
-        setTouchAnimationShrink(image_2)
-        setTouchAnimationShrink(image_else)
     }
 
-    private fun updateFavoriteButtonState(isFavorite: Boolean) {
+    override fun setTitle(title: String) {
+        text_title.text = title
+    }
+
+    override fun setPhoto(photo: Photo) {
+        Glide.with(applicationContext)
+                .load(photo.url)
+                .into(image)
+    }
+
+    override fun updateFavoriteButtonState(isFavorite: Boolean) {
         button_favorite.setImageResource(if (isFavorite) R.drawable.ic_favorites_choosen else R.drawable.ic_favorites)
     }
 
-    private fun setupInfoBlock() {
-        //У крупномеров может быть несколько оферов, в отличии от остальных типов растений
-        val isLargePlant = product.offers!!.size > 1
+    override fun initializeCounter(product: Product) {
+        PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
+    }
 
-        if (isLargePlant) {
-            offer.crown_width?.let {
-                text_info_short_1.visibility = VISIBLE
-                text_info_short_1.text = applicationContext.getString(R.string.template_s_s,
-                        offer.crown_width.name, offer.crown_width.value)
-            }
-
-            offer.height?.let {
-                text_info_short_2.visibility = VISIBLE
-                text_info_short_2.text = applicationContext.getString(R.string.template_s_s,
-                        offer.height.name, offer.height.value)
-            }
-
-        } else {
-            offer.crown_width?.let {
-                text_info_short_1.visibility = VISIBLE
-                text_info_short_1.text = applicationContext.getString(R.string.template_s_s,
-                        offer.crown_width.name, offer.crown_width.value)
-            }
-
-            offer.item_height?.let {
-                text_info_short_2.visibility = VISIBLE
-                text_info_short_2.text = applicationContext.getString(R.string.template_s_s,
-                        offer.item_height.name, offer.item_height.value)
-            }
+    override fun setPrice(price: String?, oldPrice: String?) {
+        text_price.text = price
+        oldPrice?.let {
+            text_discount.visibility = View.VISIBLE
+            text_discount.text = oldPrice
         }
+    }
 
-        text_info_long.text = product.detail_text
+    override fun setShortInfo(params: Array<OfferParam?>) {
+        var text = ""
+        params.forEach { param -> param?.let { text += "$it\n" } }
+        text_info_short.text = text
+    }
+
+    override fun setLongInfo(text: String) {
+        text_info_long.text = text
+    }
+
+    override fun initializeGallery(photos: List<Photo>) {
+        gallery_preview.gallery = photos
+        setTouchAnimationShrink(image_1)
+        setTouchAnimationShrink(image_2)
+        setTouchAnimationShrink(image_else)
     }
 }

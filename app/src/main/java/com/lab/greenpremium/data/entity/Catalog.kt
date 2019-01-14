@@ -33,7 +33,17 @@ data class Product(
         var selectedOfferPosition: Int = 0,
         var isFavorite: Boolean = false,
         var quantity: Int = 0
-) : Serializable
+) : Serializable {
+
+    fun getChosenOffer(): Offer {
+        return offers[selectedOfferPosition]
+    }
+
+    fun changeFavoriteState() {
+        isFavorite = !isFavorite
+    }
+
+}
 
 data class Offer(
         val product_id: Int,
@@ -41,42 +51,29 @@ data class Offer(
         val old_price: Double?,
 
         //Только у крупномеров
-        val height: Height,
-        val crown_width: CrownWidth,
+        val height: OfferParam,
+        val crown_width: OfferParam,
 
         //У остальных
-        val item_height: ItemHeight,
-        val plant_size: PlantSize,
-        val pot_count: PotCount,
-        val pot_size: PotSize
-) : Serializable
+        val item_height: OfferParam,
+        val plant_size: OfferParam,
+        val pot_count: OfferParam,
+        val pot_size: OfferParam
+) : Serializable {
 
-data class Height(
+    fun getParams(): Array<OfferParam?> {
+        return arrayOf(height, crown_width,
+                item_height, plant_size,
+                pot_count, pot_size)
+    }
+}
+
+data class OfferParam(
         val name: String,
         val value: String
-) : Serializable
+) : Serializable {
 
-data class CrownWidth(
-        val name: String,
-        val value: String
-) : Serializable
-
-data class PlantSize(
-        val name: String,
-        val value: String
-) : Serializable
-
-data class PotCount(
-        val name: String,
-        val value: String
-) : Serializable
-
-data class ItemHeight(
-        val name: String,
-        val value: String
-) : Serializable
-
-data class PotSize(
-        val name: String,
-        val value: String
-) : Serializable
+    override fun toString(): String {
+        return "$name $value"
+    }
+}
