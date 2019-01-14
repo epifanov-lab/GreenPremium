@@ -16,10 +16,13 @@ interface PlantDetailContract {
         fun setShortInfo(params: Array<OfferParam?>)
         fun setLongInfo(info: String)
         fun initializeGallery(photos: List<Photo>)
+        fun goToGalleryScreen(gallery: List<Photo>, pos: Int)
     }
 
     interface Presenter {
         fun onViewCreated(product: Product)
         fun onClickFavorite()
+        fun onProductQuantityChanged(product: Product)
+        fun onClickImage(pos: Int)
     }
 }

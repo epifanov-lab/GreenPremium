@@ -39,18 +39,39 @@ object CartModel {
         }
     }
 
-    fun syncFavoritesWithCartByProduct(cartProduct: Product) {
+    fun syncCatalogWithFavorites() {
+        favorites.forEach {
+            syncCatalogWithFavoritesByProduct(it)
+        }
+    }
+
+    fun syncFavoritesWithCartByProduct(other: Product) {
         favorites.forEach {favoriteProduct ->
 
-            val offerFromCart = cartProduct.getChosenOffer()
-            val offerFromCatalog = favoriteProduct.getChosenOffer()
+            val offerFromCart = other.getChosenOffer()
+            val offerFromFavorites = favoriteProduct.getChosenOffer()
 
-            if (offerFromCatalog.product_id == offerFromCart.product_id) {
-                favoriteProduct.quantity = cartProduct.quantity
-                return
+            if (offerFromFavorites.product_id == offerFromCart.product_id) {
+                favoriteProduct.quantity = other.quantity
             }
         }
     }
+
+    //TODO REFACTOR THIS! need to be one common pool of products!!!
+
+    fun syncCatalogWithFavoritesByProduct(other: Product) {
+        catalog?.sections?.forEach {sections ->
+            sections.products?.forEach { catalogProduct ->
+                val offerFromCatalog = catalogProduct.getChosenOffer()
+                val offerFromFavorites = other.getChosenOffer()
+
+                if (offerFromCatalog.product_id == offerFromFavorites.product_id) {
+                    catalogProduct.isFavorite = true
+                }
+            }
+        }
+    }
+
 
     fun getCartTotalCost(): Double {
         var result = 0.0

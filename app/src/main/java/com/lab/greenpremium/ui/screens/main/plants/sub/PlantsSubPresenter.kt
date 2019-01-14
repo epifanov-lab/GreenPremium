@@ -29,6 +29,7 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
                 override fun onSuccess() {
                     sections[sectionPosition].products?.let { products ->
                         CartModel.syncCatalogWithCart()
+                        CartModel.syncCatalogWithFavorites()
                         this@PlantsSubPresenter.view.initializeCatalog(products)
                     }
                 }

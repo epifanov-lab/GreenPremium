@@ -43,6 +43,12 @@ data class Product(
         isFavorite = !isFavorite
     }
 
+    fun getGalleryUrlsList(): ArrayList<String> {
+        val result = arrayListOf<String>()
+        gallery.forEach { result.add(it.url) }
+        return result
+    }
+
 }
 
 data class Offer(

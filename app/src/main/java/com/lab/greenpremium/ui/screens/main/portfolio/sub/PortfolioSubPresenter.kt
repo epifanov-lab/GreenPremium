@@ -7,4 +7,5 @@ class PortfolioSubPresenter @Inject constructor(val view: PortfolioSubContract.V
     override fun onClickImage(pos: Int) {
         view.goToGalleryScreen(pos)
     }
+
 }

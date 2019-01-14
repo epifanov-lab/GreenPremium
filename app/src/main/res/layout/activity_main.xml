@@ -27,6 +27,7 @@
                 android:fontFamily="@font/sfuitext_bold"
                 android:gravity="center_vertical"
                 tools:text="@string/screen_title_profile"
+                android:paddingLeft="8dp"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_20" />
 

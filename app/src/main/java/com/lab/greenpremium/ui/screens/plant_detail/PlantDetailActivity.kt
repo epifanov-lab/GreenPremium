@@ -8,18 +8,21 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.OfferParam
 import com.lab.greenpremium.data.entity.Photo
 import com.lab.greenpremium.data.entity.Product
+import com.lab.greenpremium.data.entity.getPhotosUrls
 import com.lab.greenpremium.ui.components.item.PlantItemCountControlsHelper
 import com.lab.greenpremium.ui.screens.base.BaseActivity
+import com.lab.greenpremium.utills.eventbus.BaseEvent
+import com.lab.greenpremium.utills.eventbus.ProductQuantityChangedEvent
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_plant_detail.*
 import kotlinx.android.synthetic.main.view_plant_photos_preview.*
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
 
-    //TODO counter +- api
     //TODO photos -> gallery
-    //TODO fix short info
 
     @Inject
     internal lateinit var presenter: PlantDetailPresenter
@@ -81,8 +84,25 @@ class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
 
     override fun initializeGallery(photos: List<Photo>) {
         gallery_preview.gallery = photos
+
+        image_1.setOnClickListener { presenter.onClickImage(0) }
+        image_2.setOnClickListener { presenter.onClickImage(1) }
+        image_else.setOnClickListener { presenter.onClickImage(2) }
+
         setTouchAnimationShrink(image_1)
         setTouchAnimationShrink(image_2)
         setTouchAnimationShrink(image_else)
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun onEvent(event: BaseEvent) {
+        when (event) {
+            is ProductQuantityChangedEvent -> presenter.onProductQuantityChanged(event.product)
+        }
+    }
+
+    override fun goToGalleryScreen(gallery: List<Photo>, pos: Int) {
+        goToGalleryScreen(getPhotosUrls(gallery), pos)
     }
 }

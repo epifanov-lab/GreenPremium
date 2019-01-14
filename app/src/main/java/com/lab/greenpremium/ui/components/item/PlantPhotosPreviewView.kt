@@ -55,4 +55,10 @@ class PlantPhotosPreviewView : ConstraintLayout {
             image_else.text = "+${gallery!!.size - 2}"
         }
     }
+
+    override fun setOnTouchListener(l: OnTouchListener?) {
+        image_1.setOnTouchListener(l)
+        image_2.setOnTouchListener(l)
+        image_else.setOnTouchListener(l)
+    }
 }

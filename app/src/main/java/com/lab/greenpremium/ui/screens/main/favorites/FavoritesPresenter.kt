@@ -18,6 +18,7 @@ class FavoritesPresenter @Inject constructor(val view: FavoritesContract.View) :
         repository.getFavorites(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
                 CartModel.syncFavoritesWithCart()
+                CartModel.syncCatalogWithFavorites()
                 this@FavoritesPresenter.view.initializeFavoritesList(CartModel.favorites)
             }
         })

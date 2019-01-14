@@ -26,6 +26,7 @@ data class Photo(
         val width: String
 ) : Serializable
 
+//todo move to utils
 fun getPhotosUrls(photos: List<Photo>): ArrayList<String> {
     val result = arrayListOf<String>()
     photos.forEach { result.add(it.url) }

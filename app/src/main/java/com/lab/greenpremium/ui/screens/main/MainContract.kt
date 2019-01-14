@@ -14,5 +14,6 @@ interface MainContract {
 
         fun onProductQuantityChanged(product: Product)
         fun updateCart()
+        fun updateFavoritesList()
     }
 }

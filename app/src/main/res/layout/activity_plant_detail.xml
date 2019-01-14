@@ -39,7 +39,7 @@
             app:layout_constraintEnd_toStartOf="@+id/button_favorite"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/button_back"
-            tools:text="Homo homini lupus est Homo homini lupus est"/>
+            tools:text="Homo homini lupus est Homo homini lupus est" />
 
         <ImageButton
             android:id="@+id/button_cart"
@@ -62,7 +62,8 @@
             android:id="@+id/button_favorite"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_favorites"
             app:layout_constraintBottom_toBottomOf="@+id/text_title"
@@ -70,7 +71,7 @@
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/text_title"
             app:layout_constraintTop_toTopOf="@+id/text_title"
-            app:layout_constraintVertical_bias="0.547"/>
+            app:layout_constraintVertical_bias="0.571" />
 
         <ImageView
             android:id="@+id/image"
@@ -156,18 +157,17 @@
             android:id="@+id/text_info_short"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="24dp"
             android:layout_marginTop="28dp"
             android:fontFamily="@font/sfuitext_regular"
             android:textColor="@color/gray"
             android:textSize="@dimen/font_size_10"
-            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/text_price"
             app:layout_constraintTop_toBottomOf="@+id/container_controls"
             tools:text="Text Text Text Text Text Text Text\nText Text Text Text Text Text Text Text\nText Text Text Text Text Text Text Text"
-            tools:visibility="visible"/>
+            tools:visibility="visible" />
 
         <TextView
             android:id="@+id/text_info_long"

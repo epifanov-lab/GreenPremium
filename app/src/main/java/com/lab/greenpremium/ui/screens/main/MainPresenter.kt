@@ -1,5 +1,6 @@
 package com.lab.greenpremium.ui.screens.main
 
+import android.os.Handler
 import com.lab.greenpremium.data.CartModel
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.data.network.DefaultCallbackListener
@@ -31,6 +32,20 @@ class MainPresenter @Inject constructor(val view: MainContract.View) : MainContr
         repository.getCart(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
                 this@MainPresenter.view.updateCartIndicator(CartModel.cart.products.size)
+
+                Handler().post {
+                    // TODO сделать спайанный последовательный вызов
+                    updateFavoritesList()
+                }
+            }
+        })
+    }
+
+    override fun updateFavoritesList() {
+        repository.getFavorites(object : DefaultCallbackListener(view) {
+            override fun onSuccess() {
+                CartModel.syncFavoritesWithCart()
+                CartModel.syncCatalogWithFavorites()
             }
         })
     }
