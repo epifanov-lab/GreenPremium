@@ -30,6 +30,7 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
 
                     this@ProfilePresenter.view.initializeServiceCostSection(info.payment)
                     this@ProfilePresenter.view.initializeOrdersSection(info.order_id, info.order_supply_date)
+                    this@ProfilePresenter.view.showNoOrdersContainer(info.order_id == null)
                 }
             }
         })
@@ -51,7 +52,6 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
             override fun onSuccess() {
                 val events = UserModel.eventsResponse!!.events
                 if (events.isNotEmpty()) this@ProfilePresenter.view.initializeEventsList(events)
-                else this@ProfilePresenter.view.showNoEventsContainer()
             }
         })
     }

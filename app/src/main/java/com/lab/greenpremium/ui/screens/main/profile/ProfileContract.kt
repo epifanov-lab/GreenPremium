@@ -12,7 +12,7 @@ interface ProfileContract {
         fun initializeServiceCostSection(payment: Double?)
         fun initializeEventsList(events: List<Event>)
         fun initializeOrdersSection(order_id: Int?, order_supply_date: String?)
-        fun showNoEventsContainer()
+        fun showNoOrdersContainer(show: Boolean)
 
         fun goToServiceCalculatorScreen()
         fun goToDeliveryScreen(order_id: Int?)

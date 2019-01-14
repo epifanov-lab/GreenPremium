@@ -81,11 +81,12 @@ class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
                             .also { imageView ->
                                 setImage(photo, imageView)
                             }
-
-                    container.findViewById<ImageView>(R.id.image_2)
-                            .also { imageView ->
-                                setImage(photo, imageView)
-                            }
+                    if (index != photos.lastIndex) {
+                        container.findViewById<ImageView>(R.id.image_2)
+                                .also { imageView ->
+                                    setImage(photos.get(index + 1), imageView)
+                                }
+                    }
 
                     container_grid.addView(container)
                 }

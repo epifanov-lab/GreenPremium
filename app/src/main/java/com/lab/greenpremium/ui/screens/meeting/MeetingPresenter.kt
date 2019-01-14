@@ -22,7 +22,7 @@ class MeetingPresenter @Inject constructor(val view: MeetingContract.View) : Mee
             override fun onSuccess() {
                 val contacts = UserModel.contactsResponse
                 contacts?.let {
-                    this@MeetingPresenter.view.initializeContactsCarousel(contacts.getManagers())
+                    this@MeetingPresenter.view.initializeContactsCarousel(contacts.getManagersAvailableForMeeting())
                 }
             }
         })

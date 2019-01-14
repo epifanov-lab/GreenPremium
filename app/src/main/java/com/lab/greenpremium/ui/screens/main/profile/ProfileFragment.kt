@@ -3,8 +3,7 @@ package com.lab.greenpremium.ui.screens.main.profile
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
+import android.view.View.*
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.ServiceCalculatedEvent
@@ -74,20 +73,18 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     }
 
     override fun initializeServiceCostSection(payment: Double?) {
-        val isServiceCalculated = payment != null && payment != 0.0
-        button_calc_service.visibility = if (isServiceCalculated) VISIBLE else GONE
-        container_cost.visibility = if (isServiceCalculated) GONE else VISIBLE.also { text_service_price.text = currencyFormat(payment) }
+        val isServiceCalculated = payment != null && payment > 0.0
+        button_calc_service.visibility = if (isServiceCalculated) GONE else VISIBLE
+        container_cost.visibility = if (isServiceCalculated) VISIBLE else GONE
+        if (isServiceCalculated) text_service_price.text = currencyFormat(payment)
     }
 
-    override fun showNoEventsContainer() {
-        container_no_events.visibility = VISIBLE
-        container_events.visibility = GONE
+    override fun showNoOrdersContainer(show: Boolean) {
+        container_no_orders.visibility = if (show) VISIBLE else INVISIBLE
     }
 
     override fun initializeEventsList(events: List<Event>) {
-        container_no_events.visibility = GONE
         container_events.visibility = VISIBLE
-
         recycler_events.layoutManager = ScrollLayoutManager(context).also { it.setScrollEnabled(false) }
         recycler_events.adapter = EventsRecyclerAdapter(events)
     }
@@ -95,6 +92,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     override fun initializeOrdersSection(order_id: Int?, order_supply_date: String?) {
         val isDeliveryExpected = order_id != null && order_supply_date != null
         container_delivery_schedule.visibility = if (isDeliveryExpected) VISIBLE else GONE
+
         if (isDeliveryExpected) {
             val timestamp = getTimestampFromDateString(order_supply_date, SimpleDateFormat("dd.mm.yyyy", Locale.getDefault()))
             timestamp?.let {

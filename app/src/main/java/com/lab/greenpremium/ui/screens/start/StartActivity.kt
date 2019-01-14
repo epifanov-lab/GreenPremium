@@ -1,10 +1,13 @@
 package com.lab.greenpremium.ui.screens.start
 
+import android.content.Intent
 import android.graphics.LinearGradient
 import android.graphics.Shader
+import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.view.ViewTreeObserver
 import com.lab.greenpremium.App
+import com.lab.greenpremium.GP_OFFICE_PHONE_NUMBER
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.utills.setTouchAnimationShrink
@@ -30,6 +33,12 @@ class StartActivity : BaseActivity(), StartContract.View {
 
     override fun initViews() {
         button_auth.setOnClickListener { goToAuthScreen() }
+
+        button_support.setOnClickListener {
+                val intent = Intent(Intent.ACTION_DIAL)
+                intent.data = Uri.parse("tel:$GP_OFFICE_PHONE_NUMBER")
+                applicationContext.startActivity(intent)
+        }
 
         initializeGradientTitle()
 

@@ -12,6 +12,12 @@ data class ContactsResponse(@SerializedName("office") val office: Contact,
         if (useOffice) managers.add(office)
         return result
     }
+
+    fun getManagersAvailableForMeeting(): MutableList<Contact> {
+        val result: MutableList<Contact> = ArrayList()
+        managers.forEach { if (it.is_meeting_available) result.add(it) }
+        return result
+    }
 }
 
 data class Contact(@SerializedName("id") val id: String,
@@ -19,4 +25,5 @@ data class Contact(@SerializedName("id") val id: String,
                    @SerializedName("email") val email: String,
                    @SerializedName("phone") val phone: String,
                    @SerializedName("position") val position: String,
-                   @SerializedName("photo") val photo: String)
+                   @SerializedName("photo") val photo: String,
+                   @SerializedName("is_meeting_available") val is_meeting_available: Boolean)

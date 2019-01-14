@@ -4,7 +4,6 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Event
@@ -30,7 +29,7 @@ class EventItemView : RelativeLayout {
     private fun updateView() {
         text_info.text = event?.message
         text_date_time.text = event?.created
-        event?.let { container_pdf.visibility = if (event?.object_id.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE }
+        event?.let { container_pdf.visibility = if (event?.file_path.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE }
     }
 
     fun setNum(num: Int) {
@@ -39,15 +38,6 @@ class EventItemView : RelativeLayout {
 
     fun hideLineConnector(hide: Boolean) {
         line_connection.visibility = if (hide) View.INVISIBLE else View.VISIBLE
-    }
-
-    fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {
-        //TODO - make base ItemView
-        val p = LinearLayout.LayoutParams(LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT))
-        p.setMargins(left, top, right, bottom)
-        this.layoutParams = p
-        this.requestLayout()
     }
 
 }

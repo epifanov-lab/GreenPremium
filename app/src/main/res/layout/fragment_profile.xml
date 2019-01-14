@@ -79,43 +79,6 @@
                     tools:text="33.000$" />
 
             </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/container_no_events"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/beige"
-                android:clickable="true"
-                android:focusable="true"
-                android:orientation="horizontal"
-                android:padding="@dimen/space_20"
-                android:visibility="visible">
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="2"
-                    android:fontFamily="@font/sfuitext_regular"
-                    android:gravity="center_vertical"
-                    android:text="@string/profile_label_hint_no_events"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/font_size_12" />
-
-                <TextView
-                    android:id="@+id/button_start_shopping"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@color/white"
-                    android:drawableEnd="@drawable/ic_next"
-                    android:fontFamily="@font/sfuitext_regular"
-                    android:gravity="start"
-                    android:padding="@dimen/space_8"
-                    android:text="@string/profile_label_shop"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/font_size_12" />
-
-            </LinearLayout>
         </LinearLayout>
 
         <ScrollView
@@ -194,6 +157,43 @@
                         android:layout_weight="1"
                         android:scaleType="centerInside"
                         android:src="@drawable/ic_list" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/container_no_orders"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/beige"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:orientation="horizontal"
+                    android:padding="@dimen/space_20"
+                    android:visibility="visible">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="center_vertical"
+                        android:text="@string/profile_label_hint_no_events"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_12" />
+
+                    <TextView
+                        android:id="@+id/button_start_shopping"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@color/white"
+                        android:drawableEnd="@drawable/ic_next"
+                        android:fontFamily="@font/sfuitext_regular"
+                        android:gravity="start"
+                        android:padding="@dimen/space_8"
+                        android:text="@string/profile_label_shop"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/font_size_12" />
 
                 </LinearLayout>
 

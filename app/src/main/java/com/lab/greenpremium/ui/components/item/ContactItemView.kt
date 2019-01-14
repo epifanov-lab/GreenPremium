@@ -71,8 +71,8 @@ class ContactItemView : RelativeLayout {
         contact?.let {
             text_name.text = it.name
             text_position.text = it.position
-            text_phone.text = it.phone.also { if (contact?.phone == null) button_call.visibility = GONE }
-            text_mail.text = it.email.also { if (contact?.email == null) button_mail.visibility = GONE }
+            text_phone.text = it.phone.also { if (contact?.phone.isNullOrEmpty()) button_call.visibility = GONE }
+            text_mail.text = it.email.also { if (contact?.email.isNullOrEmpty()) button_mail.visibility = GONE }
             text_info.text = it.position
 
             if (!it.photo.isNullOrEmpty()) {
