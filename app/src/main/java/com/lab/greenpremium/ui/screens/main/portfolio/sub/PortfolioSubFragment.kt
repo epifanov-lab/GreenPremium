@@ -73,6 +73,7 @@ class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
                     container_grid.addView(view)
 
                 } else {
+                    //TODO FIX: Дублируются фотки
                     //two small images
                     val inflater = layoutInflater
                     val container = inflater.inflate(R.layout.layout_2_images, null)
@@ -84,7 +85,7 @@ class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
                     if (index != photos.lastIndex) {
                         container.findViewById<ImageView>(R.id.image_2)
                                 .also { imageView ->
-                                    setImage(photos.get(index + 1), imageView)
+                                    setImage(photos[index + 1], imageView)
                                 }
                     }
 

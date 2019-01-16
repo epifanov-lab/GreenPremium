@@ -414,7 +414,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 }
 
                 ObjectInfoResponse::class -> {
-                    UserModel.objectInfoResponse = response.data as ObjectInfoResponse
+                    val objectInfoResponse = response.data as ObjectInfoResponse
+                    objectInfoResponse.updateBiologists()
+                    UserModel.objectInfoResponse = objectInfoResponse
                 }
 
                 EventsResponse::class -> {

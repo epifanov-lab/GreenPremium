@@ -36,11 +36,11 @@
     <string name="title_gallery">Галерея</string>
 
     <string name="calc_screen_title">Калькулятор сервиса</string>
-    <string name="calc_screen_tip_text">Данный расчет дает приблизительную стоимость. После нажатия кнопки запросить КП, в вашем личном кабинете появится коммерческое предложение на обслуживание растений ив ближайшее время с Вами свяжется наш менеджер</string>
+    <string name="calc_screen_tip_text">Данный расчет дает приблизительную стоимость. После нажатия кнопки запросить КП, в вашем личном кабинете появится коммерческое предложение на обслуживание растений и в ближайшее время с Вами свяжется наш менеджер</string>
     <string name="calc_title_column_plants">Количество растений</string>
     <string name="calc_title_column_pots">Количество кашпо</string>
     <string name="calc_title_row_s1">Растения до 1 метра</string>
-    <string name="calc_title_row_s2">Растения до 1 до 1,5 метров</string>
+    <string name="calc_title_row_s2">Растения от 1 до 1,5 метров</string>
     <string name="calc_title_row_s3">Растения до 1,5 метров</string>
     <string name="calc_title_row_s4">Суккуленты и кактусы</string>
     <string name="calc_title_row_s5">Цветущие растения</string>

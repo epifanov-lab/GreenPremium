@@ -16,6 +16,7 @@ import com.lab.greenpremium.utills.eventbus.ProductQuantityChangedEvent
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_plant_detail.*
 import kotlinx.android.synthetic.main.view_plant_photos_preview.*
+import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
@@ -104,5 +105,15 @@ class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
 
     override fun goToGalleryScreen(gallery: List<Photo>, pos: Int) {
         goToGalleryScreen(getPhotosUrls(gallery), pos)
+    }
+
+    public override fun onStart() {
+        super.onStart()
+        EventBus.getDefault().register(this)
+    }
+
+    public override fun onStop() {
+        super.onStop()
+        EventBus.getDefault().unregister(this)
     }
 }

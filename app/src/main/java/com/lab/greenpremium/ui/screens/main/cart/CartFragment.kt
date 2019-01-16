@@ -55,8 +55,7 @@ class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnP
             label_empty_list.visibility = View.GONE
             recycler_plants.visibility = View.VISIBLE
             recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-            recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(),
-                    this, PlantItemView.PlantViewType.OTHER)
+            recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), this)
         } else {
             label_empty_list.visibility = View.VISIBLE
             recycler_plants.visibility = View.GONE

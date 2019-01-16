@@ -20,7 +20,8 @@ class ContactsRecyclerAdapter(private val list: List<Contact>, private val orien
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.view.contact = list[position]
-
+        holder.view.updateView()
+        
         if (margin != null) {
 
             if (orientation == VERTICAL) {

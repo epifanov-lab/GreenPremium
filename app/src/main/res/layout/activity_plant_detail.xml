@@ -161,12 +161,13 @@
             android:layout_marginTop="28dp"
             android:fontFamily="@font/sfuitext_regular"
             android:textColor="@color/gray"
-            android:textSize="@dimen/font_size_10"
+            android:textSize="@dimen/font_size_12"
+            android:lineSpacingExtra="5dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/text_price"
             app:layout_constraintTop_toBottomOf="@+id/container_controls"
-            tools:text="Text Text Text Text Text Text Text\nText Text Text Text Text Text Text Text\nText Text Text Text Text Text Text Text"
+            tools:text="lorem ipsum lorem ipsum\nlorem ipsum lorem ipsum\nlorem ipsum lorem ipsum\nlorem ipsum lorem ipsum"
             tools:visibility="visible" />
 
         <TextView
@@ -177,7 +178,7 @@
             android:fontFamily="@font/sfuitext_regular"
             android:text="@string/lorem_ipsum_long"
             android:textColor="@color/gray"
-            android:textSize="@dimen/font_size_12"
+            android:textSize="@dimen/font_size_14"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.764"
             app:layout_constraintStart_toStartOf="parent"

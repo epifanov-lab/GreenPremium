@@ -80,7 +80,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     }
 
     override fun showNoOrdersContainer(show: Boolean) {
-        container_no_orders.visibility = if (show) VISIBLE else INVISIBLE
+        container_no_orders.visibility = if (show) VISIBLE else GONE
     }
 
     override fun initializeEventsList(events: List<Event>) {

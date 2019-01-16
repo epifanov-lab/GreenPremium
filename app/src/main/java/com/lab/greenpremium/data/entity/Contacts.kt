@@ -26,4 +26,5 @@ data class Contact(@SerializedName("id") val id: String,
                    @SerializedName("phone") val phone: String,
                    @SerializedName("position") val position: String,
                    @SerializedName("photo") val photo: String,
-                   @SerializedName("is_meeting_available") val is_meeting_available: Boolean)
+                   @SerializedName("is_meeting_available") val is_meeting_available: Boolean,
+                   var schedule: String)

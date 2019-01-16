@@ -24,17 +24,17 @@ class CalcPresenter @Inject constructor(val view: CalcContract.View) : CalcContr
                                      plantsCount4: Observable<String>, potsCount4: Observable<String>,
                                      plantsCount5: Observable<String>, potsCount5: Observable<String>) {
 
-        plantsCount1.subscribe { s -> model.plants_count_s1 = s.toInt() }
-        plantsCount2.subscribe { s -> model.plants_count_s2 = s.toInt() }
-        plantsCount3.subscribe { s -> model.plants_count_s3 = s.toInt() }
-        plantsCount4.subscribe { s -> model.plants_count_s4 = s.toInt() }
-        plantsCount5.subscribe { s -> model.plants_count_s5 = s.toInt() }
+        plantsCount1.subscribe({ s -> model.plants_count_s1 = s.toInt() }, { model.plants_count_s1 = 0 })
+        plantsCount2.subscribe({ s -> model.plants_count_s2 = s.toInt() }, { model.plants_count_s2 = 0 })
+        plantsCount3.subscribe({ s -> model.plants_count_s3 = s.toInt() }, { model.plants_count_s3 = 0 })
+        plantsCount4.subscribe({ s -> model.plants_count_s4 = s.toInt() }, { model.plants_count_s4 = 0 })
+        plantsCount5.subscribe({ s -> model.plants_count_s5 = s.toInt() }, { model.plants_count_s5 = 0 })
 
-        potsCount1.subscribe { s -> model.pots_count_s1 = s.toInt() }
-        potsCount2.subscribe { s -> model.pots_count_s2 = s.toInt() }
-        potsCount3.subscribe { s -> model.pots_count_s3 = s.toInt() }
-        potsCount4.subscribe { s -> model.pots_count_s4 = s.toInt() }
-        potsCount5.subscribe { s -> model.pots_count_s5 = s.toInt() }
+        potsCount1.subscribe({ s -> model.pots_count_s1 = s.toInt() }, { model.pots_count_s1 = 0 })
+        potsCount2.subscribe({ s -> model.pots_count_s2 = s.toInt() }, { model.pots_count_s2 = 0 })
+        potsCount3.subscribe({ s -> model.pots_count_s3 = s.toInt() }, { model.pots_count_s3 = 0 })
+        potsCount4.subscribe({ s -> model.pots_count_s4 = s.toInt() }, { model.pots_count_s4 = 0 })
+        potsCount5.subscribe({ s -> model.pots_count_s5 = s.toInt() }, { model.pots_count_s5 = 0 })
     }
 
     override fun onClickCalcRequest() {

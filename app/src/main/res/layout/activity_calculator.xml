@@ -23,11 +23,11 @@
 
         <TextView
             android:id="@+id/text_title"
-            android:layout_width="272dp"
-            android:layout_height="30dp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_gravity=""
             android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="8dp"
             android:fontFamily="@font/sfuitext_bold"
             android:text="@string/calc_screen_title"
             android:textColor="@color/black"
@@ -47,7 +47,7 @@
             android:gravity="start"
             android:text="@string/calc_screen_tip_text"
             android:textColor="@color/gray_light_1"
-            android:textSize="@dimen/font_size_10"
+            android:textSize="@dimen/font_size_12"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/text_title" />
@@ -79,7 +79,7 @@
                     android:gravity="center"
                     android:text="@string/calc_title_column_plants"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_size_10" />
+                    android:textSize="@dimen/font_size_12" />
 
                 <TextView
                     android:id="@+id/title_column_2"
@@ -90,7 +90,7 @@
                     android:gravity="center"
                     android:text="@string/calc_title_column_pots"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_size_10" />
+                    android:textSize="@dimen/font_size_12" />
             </TableRow>
 
             <TableRow>
@@ -104,16 +104,16 @@
                     android:gravity="start|center"
                     android:text="@string/calc_title_row_s1"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_size_10" />
+                    android:textSize="@dimen/font_size_12" />
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/space_16"
-                    android:paddingTop="@dimen/space_12"
+                    android:paddingTop="@dimen/space_8"
                     android:paddingRight="@dimen/space_16"
-                    android:paddingBottom="@dimen/space_12">
+                    android:paddingBottom="@dimen/space_8">
 
                     <EditText
                         android:id="@+id/input_plants_s1"
@@ -133,9 +133,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/space_16"
-                    android:paddingTop="@dimen/space_12"
+                    android:paddingTop="@dimen/space_8"
                     android:paddingRight="@dimen/space_16"
-                    android:paddingBottom="@dimen/space_12">
+                    android:paddingBottom="@dimen/space_8">
 
                     <EditText
                         android:id="@+id/input_pots_s1"
@@ -164,16 +164,16 @@
                     android:gravity="start|center"
                     android:text="@string/calc_title_row_s2"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_size_10" />
+                    android:textSize="@dimen/font_size_12" />
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/space_16"
-                    android:paddingTop="@dimen/space_12"
+                    android:paddingTop="@dimen/space_8"
                     android:paddingRight="@dimen/space_16"
-                    android:paddingBottom="@dimen/space_12">
+                    android:paddingBottom="@dimen/space_8">
 
                     <EditText
                         android:id="@+id/input_plants_s2"
@@ -193,9 +193,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/space_16"
-                    android:paddingTop="@dimen/space_12"
+                    android:paddingTop="@dimen/space_8"
                     android:paddingRight="@dimen/space_16"
-                    android:paddingBottom="@dimen/space_12">
+                    android:paddingBottom="@dimen/space_8">
 
                     <EditText
                         android:id="@+id/input_pots_s2"
@@ -224,16 +224,16 @@
                     android:gravity="start|center"
                     android:text="@string/calc_title_row_s3"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_size_10" />
+                    android:textSize="@dimen/font_size_12" />
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/space_16"
-                    android:paddingTop="@dimen/space_12"
+                    android:paddingTop="@dimen/space_8"
                     android:paddingRight="@dimen/space_16"
-                    android:paddingBottom="@dimen/space_12">
+                    android:paddingBottom="@dimen/space_8">
 
                     <EditText
                         android:id="@+id/input_plants_s3"
@@ -253,9 +253,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/space_16"
-                    android:paddingTop="@dimen/space_12"
+                    android:paddingTop="@dimen/space_8"
                     android:paddingRight="@dimen/space_16"
-                    android:paddingBottom="@dimen/space_12">
+                    android:paddingBottom="@dimen/space_8">
 
                     <EditText
                         android:id="@+id/input_pots_s3"
@@ -284,16 +284,16 @@
                     android:gravity="start|center"
                     android:text="@string/calc_title_row_s4"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_size_10" />
+                    android:textSize="@dimen/font_size_12" />
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/space_16"
-                    android:paddingTop="@dimen/space_12"
+                    android:paddingTop="@dimen/space_8"
                     android:paddingRight="@dimen/space_16"
-                    android:paddingBottom="@dimen/space_12">
+                    android:paddingBottom="@dimen/space_8">
 
                     <EditText
                         android:id="@+id/input_plants_s4"
@@ -313,9 +313,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/space_16"
-                    android:paddingTop="@dimen/space_12"
+                    android:paddingTop="@dimen/space_8"
                     android:paddingRight="@dimen/space_16"
-                    android:paddingBottom="@dimen/space_12">
+                    android:paddingBottom="@dimen/space_8">
 
                     <EditText
                         android:id="@+id/input_pots_s4"
@@ -344,16 +344,16 @@
                     android:gravity="start|center"
                     android:text="@string/calc_title_row_s5"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/font_size_10" />
+                    android:textSize="@dimen/font_size_12" />
 
                 <FrameLayout
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/space_16"
-                    android:paddingTop="@dimen/space_12"
+                    android:paddingTop="@dimen/space_8"
                     android:paddingRight="@dimen/space_16"
-                    android:paddingBottom="@dimen/space_12">
+                    android:paddingBottom="@dimen/space_8">
 
                     <EditText
                         android:id="@+id/input_plants_s5"
@@ -373,9 +373,9 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:paddingLeft="@dimen/space_16"
-                    android:paddingTop="@dimen/space_12"
+                    android:paddingTop="@dimen/space_8"
                     android:paddingRight="@dimen/space_16"
-                    android:paddingBottom="@dimen/space_12">
+                    android:paddingBottom="@dimen/space_8">
 
                     <EditText
                         android:id="@+id/input_pots_s5"
@@ -401,7 +401,9 @@
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
             android:text="@string/calc_title_button_request"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/table" />

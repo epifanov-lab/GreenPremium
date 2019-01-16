@@ -20,7 +20,6 @@ class ContactItemView : RelativeLayout {
         set(value) {
             LogUtil.i("CONTACT_VIEW data: $value")
             field = value
-            updateView()
         }
 
     constructor(context: Context) : this(context, null)
@@ -67,13 +66,18 @@ class ContactItemView : RelativeLayout {
 
     }
 
-    private fun updateView() {
+    fun updateView() {
         contact?.let {
             text_name.text = it.name
             text_position.text = it.position
-            text_phone.text = it.phone.also { if (contact?.phone.isNullOrEmpty()) button_call.visibility = GONE }
-            text_mail.text = it.email.also { if (contact?.email.isNullOrEmpty()) button_mail.visibility = GONE }
-            text_info.text = it.position
+
+            text_phone.text = it.phone
+            button_call.visibility = if (contact?.phone.isNullOrEmpty()) GONE else VISIBLE
+
+            text_mail.text = it.email
+            button_mail.visibility = if (contact?.email.isNullOrEmpty()) GONE else VISIBLE
+
+            text_info.text = it.schedule
 
             if (!it.photo.isNullOrEmpty()) {
                 GlideApp.with(context)
