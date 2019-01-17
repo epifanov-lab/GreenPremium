@@ -10,11 +10,10 @@ import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.components.item.PlantItemView
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.ui.screens.main.plants.sub.PlantRecyclerAdapter
-import com.lab.greenpremium.utills.LogUtil
 import kotlinx.android.synthetic.main.activity_delivery.*
 import javax.inject.Inject
 
-class DeliveryActivity : BaseActivity(), DeliveryContract.View, PlantRecyclerAdapter.OnProductSelectedListener {
+class DeliveryActivity : BaseActivity(), DeliveryContract.View {
 
     @Inject
     internal lateinit var presenter: DeliveryPresenter
@@ -40,10 +39,15 @@ class DeliveryActivity : BaseActivity(), DeliveryContract.View, PlantRecyclerAda
     override fun initializeProductsList(products: List<Product>) {
         recycler_plants.layoutManager = LinearLayoutManager(applicationContext, LinearLayout.VERTICAL, false)
         recycler_plants.adapter = PlantRecyclerAdapter(products, applicationContext?.resources?.getDimension(R.dimen.space_24)?.toInt(),
-                this, PlantItemView.PlantViewType.OTHER)
+                PlantItemView.PlantViewType.OTHER, object : PlantRecyclerAdapter.CustomRecyclerListener {
+            override fun onProductSelected(product: Product) {
+                //ignore
+            }
+
+            override fun onRecyclerBottomReached(size: Int) {
+                //ignore
+            }
+        })
     }
 
-    override fun onProductSelected(product: Product) {
-        // ignore
-    }
 }

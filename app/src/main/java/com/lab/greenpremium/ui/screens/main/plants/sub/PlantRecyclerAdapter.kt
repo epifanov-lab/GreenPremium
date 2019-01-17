@@ -10,9 +10,8 @@ import com.lab.greenpremium.utills.setTouchAnimationShrink
 
 class PlantRecyclerAdapter(private val list: List<Product>,
                            private val margin: Int?,
-                           private val listener: OnProductSelectedListener?,
-                           private val type: PlantItemView.PlantViewType = PlantItemView.PlantViewType.CATALOG) : RecyclerView.Adapter<PlantRecyclerAdapter.ViewHolder>() {
-
+                           private val type: PlantItemView.PlantViewType = PlantItemView.PlantViewType.CATALOG,
+                           private val listener: CustomRecyclerListener?) : RecyclerView.Adapter<PlantRecyclerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = PlantItemView(parent.context)
@@ -37,6 +36,10 @@ class PlantRecyclerAdapter(private val list: List<Product>,
                 listener?.onProductSelected(list[position])
             }
         })
+
+        if (position == list.lastIndex){
+            listener?.onRecyclerBottomReached(list.size)
+        }
     }
 
     override fun getItemCount(): Int {
@@ -45,7 +48,8 @@ class PlantRecyclerAdapter(private val list: List<Product>,
 
     class ViewHolder(val view: PlantItemView) : RecyclerView.ViewHolder(view)
 
-    interface OnProductSelectedListener {
+    interface CustomRecyclerListener {
         fun onProductSelected(product: Product)
+        fun onRecyclerBottomReached(size: Int)
     }
 }

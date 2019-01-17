@@ -2,7 +2,6 @@ package com.lab.greenpremium.ui.screens.main.plants.sub
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
@@ -14,7 +13,7 @@ import kotlinx.android.synthetic.main.sub_fragment_plants.*
 import javax.inject.Inject
 
 
-class PlantsSubFragment : BaseFragment(), PlantsSubContract.View, PlantRecyclerAdapter.OnProductSelectedListener {
+class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
 
     @Inject
     internal lateinit var presenter: PlantsSubPresenter
@@ -48,16 +47,20 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View, PlantRecyclerA
 
     override fun initializeCatalog(products: List<Product>) {
         recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), this)
-        recycler_plants.addOnScrollListener(object : RecyclerView.OnScrollListener(){
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
+        recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), listener = object : PlantRecyclerAdapter.CustomRecyclerListener{
+
+            override fun onProductSelected(product: Product) {
+                presenter.onProductSelected(product)
+            }
+
+            override fun onRecyclerBottomReached(size: Int) {
+                presenter.onProductsRecyclerBottomReached(size)
             }
         })
     }
 
-    override fun onProductSelected(product: Product) {
-        presenter.onProductSelected(product)
+    override fun notifyRecyclerDataChanged() {
+        recycler_plants.adapter?.notifyDataSetChanged()
     }
 
     override fun goToDetails(product: Product) {

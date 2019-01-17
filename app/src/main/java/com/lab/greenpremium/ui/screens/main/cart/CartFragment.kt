@@ -7,7 +7,6 @@ import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.components.Listener
-import com.lab.greenpremium.ui.components.item.PlantItemView
 import com.lab.greenpremium.ui.screens.base.BaseFragment
 import com.lab.greenpremium.ui.screens.main.MainActivity
 import com.lab.greenpremium.ui.screens.main.plants.sub.PlantRecyclerAdapter
@@ -22,7 +21,7 @@ import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 
-class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnProductSelectedListener {
+class CartFragment : BaseFragment(), CartContract.View {
 
     @Inject
     internal lateinit var presenter: CartPresenter
@@ -55,7 +54,16 @@ class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnP
             label_empty_list.visibility = View.GONE
             recycler_plants.visibility = View.VISIBLE
             recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-            recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), this)
+            recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(),
+                    listener = object : PlantRecyclerAdapter.CustomRecyclerListener {
+                        override fun onProductSelected(product: Product) {
+                            //ignore
+                        }
+
+                        override fun onRecyclerBottomReached(size: Int) {
+                            //ignore
+                        }
+                    })
         } else {
             label_empty_list.visibility = View.VISIBLE
             recycler_plants.visibility = View.GONE
@@ -84,10 +92,6 @@ class CartFragment : BaseFragment(), CartContract.View, PlantRecyclerAdapter.OnP
 
     override fun updateTotalCost(total: Double) {
         label_total_cost.text = currencyFormat(total)
-    }
-
-    override fun onProductSelected(product: Product) {
-        //TODO
     }
 
     override fun onResume() {
