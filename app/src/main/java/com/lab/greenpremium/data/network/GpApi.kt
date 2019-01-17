@@ -56,12 +56,16 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
 
 
     //region CATALOG
-    fun getCatalogSections(): Single<BaseResponse<List<Section>>> {
+    fun getCatalogSections(): Single<BaseResponse<MutableList<Section>>> {
         return api.getCatalogSections()
     }
 
-    fun getSectionProductsList(token: String, request: SectionProductListRequest): Single<BaseResponse<List<Product>>> {
-        return api.getSectionProductsList(token, request.section_id)
+    fun getSectionProductsList(token: String, request: SectionProductListRequest): Single<BaseResponse<MutableList<Product>>> {
+        return api.getSectionProductsList(token, request.section_id, 1)
+    }
+
+    fun getSectionProductsListNextPage(token: String, request: SectionProductListRequest, page: Int): Single<BaseResponse<MutableList<Product>>> {
+        return api.getSectionProductsList(token, request.section_id, page)
     }
 
     fun getProductDetail(token: String, request: ProductRequest): Single<BaseResponse<Product>> {
@@ -180,11 +184,12 @@ interface GpApi {
 
     //region CATALOG
     @GET("catalog/sections")
-    fun getCatalogSections(): Single<BaseResponse<List<Section>>>
+    fun getCatalogSections(): Single<BaseResponse<MutableList<Section>>>
 
     @GET("catalog/sections/{section_id}")
     fun getSectionProductsList(@Header("X-Auth-Token") token: String,
-                               @Path("section_id") section_id: Int): Single<BaseResponse<List<Product>>>
+                               @Path("section_id") section_id: Int,
+                               @Query("page") page: Int): Single<BaseResponse<MutableList<Product>>>
 
     @GET("catalog/products/{product_id}")
     fun getProductDetail(@Header("X-Auth-Token") token: String,

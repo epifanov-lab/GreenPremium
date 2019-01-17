@@ -2,6 +2,7 @@ package com.lab.greenpremium.ui.screens.main.plants.sub
 
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
@@ -48,6 +49,11 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View, PlantRecyclerA
     override fun initializeCatalog(products: List<Product>) {
         recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
         recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), this)
+        recycler_plants.addOnScrollListener(object : RecyclerView.OnScrollListener(){
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+            }
+        })
     }
 
     override fun onProductSelected(product: Product) {

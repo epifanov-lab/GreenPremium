@@ -5,7 +5,7 @@ import java.io.Serializable
 data class SectionProductListRequest(val section_id: Int)
 data class ProductRequest(val product_id: Int)
 
-data class CatalogSectionsResponse(val sections: List<Section>?) : Serializable {
+data class CatalogSectionsResponse(val sections: MutableList<Section>?) : Serializable {
     val time: Long = System.currentTimeMillis()
 }
 
@@ -14,11 +14,12 @@ data class Section(
         val name: String,
         val sort: String) : Serializable {
 
-    var products: List<Product>? = null
+    var products: MutableList<Product>? = null
 }
 
-data class SectionProductsResponse(val products: List<Product>) {
+data class SectionProductsResponse(val products: MutableList<Product>) {
     val time: Long = System.currentTimeMillis()
+    var page: Int = 1 // first page as default
 }
 
 data class Product(

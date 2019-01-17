@@ -241,6 +241,32 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
+    fun getSectionProductsListNextPage(section_id: Int, page: Int, listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.getSectionProductsListNextPage(UserModel.authResponse!!.token, SectionProductListRequest(section_id), page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response ->
+                            val data = SectionProductsResponse(response.data)
+                            data.page = page
+                            handleResponse(
+                                    BaseResponse(response.status, response.title, data),
+                                    listener, section_id)
+                        },
+
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
     fun getProductDetail(section_id: Int, product_id: Int, listener: CallbackListener) {
 
         if (UserModel.authResponse == null) {
@@ -455,8 +481,10 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                     val catalogSectionsData = CartModel.catalog
                     try {
                         catalogSectionsData!!.sections?.forEach { section ->
+                            val sectionProductsResponse = response.data as SectionProductsResponse
                             if (section.id == parameters[0]) {
-                                section.products = (response.data as SectionProductsResponse).products
+                                if (sectionProductsResponse.page == 1) section.products = sectionProductsResponse.products
+                                else section.products?.addAll(sectionProductsResponse.products)
                             }
                         }
                     } catch (e: Exception) {
