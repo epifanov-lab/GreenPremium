@@ -39,7 +39,7 @@ class DeliveryActivity : BaseActivity(), DeliveryContract.View {
     override fun initializeProductsList(products: List<Product>) {
         recycler_plants.layoutManager = LinearLayoutManager(applicationContext, LinearLayout.VERTICAL, false)
         recycler_plants.adapter = PlantRecyclerAdapter(products, applicationContext?.resources?.getDimension(R.dimen.space_24)?.toInt(),
-                PlantItemView.PlantViewType.OTHER, object : PlantRecyclerAdapter.CustomRecyclerListener {
+                PlantItemView.PlantViewType.OTHER, object : PlantRecyclerAdapter.PlantsRecyclerListener {
             override fun onProductSelected(product: Product) {
                 //ignore
             }

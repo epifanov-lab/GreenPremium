@@ -47,7 +47,7 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
 
     override fun initializeCatalog(products: List<Product>) {
         recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), listener = object : PlantRecyclerAdapter.CustomRecyclerListener{
+        recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), listener = object : PlantRecyclerAdapter.PlantsRecyclerListener{
 
             override fun onProductSelected(product: Product) {
                 presenter.onProductSelected(product)

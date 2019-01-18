@@ -3,7 +3,8 @@ package com.lab.greenpremium.ui.screens.main.profile
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
 import android.view.View
-import android.view.View.*
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.ServiceCalculatedEvent
@@ -86,7 +87,19 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     override fun initializeEventsList(events: List<Event>) {
         container_events.visibility = VISIBLE
         recycler_events.layoutManager = ScrollLayoutManager(context).also { it.setScrollEnabled(false) }
-        recycler_events.adapter = EventsRecyclerAdapter(events)
+        recycler_events.adapter = EventsRecyclerAdapter(events, object : EventsRecyclerAdapter.EventsRecyclerListener {
+            override fun onClickPdf(file_path: String) {
+                presenter.onClickEventPdf(file_path)
+            }
+
+            override fun onRecyclerBottomReached(size: Int) {
+                presenter.onEventRecyclerBottomReached(size)
+            }
+        })
+    }
+
+    override fun notifyEventsRecyclerDataChanged() {
+        recycler_events.adapter?.notifyDataSetChanged()
     }
 
     override fun initializeOrdersSection(order_id: Int?, order_supply_date: String?) {

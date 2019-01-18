@@ -21,8 +21,12 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
         return api.getObjectInfo(token)
     }
 
-    fun getEvents(token: String): Single<BaseResponse<List<Event>>> {
-        return api.getEvents(token)
+    fun getEvents(token: String): Single<BaseResponse<MutableList<Event>>> {
+        return api.getEvents(token, 1)
+    }
+
+    fun getEventsNextPage(token: String, page: Int): Single<BaseResponse<MutableList<Event>>> {
+        return api.getEvents(token, page)
     }
 
     fun calculateService(token: String, request: CalcServiceRequest): Single<BaseResponse<CalcServiceResponse>> {
@@ -150,7 +154,8 @@ interface GpApi {
     fun getObjectInfo(@Header("X-Auth-Token") token: String): Single<BaseResponse<ObjectInfoResponse>>
 
     @GET("events")
-    fun getEvents(@Header("X-Auth-Token") token: String): Single<BaseResponse<List<Event>>>
+    fun getEvents(@Header("X-Auth-Token") token: String,
+                  @Query("page") page: Int): Single<BaseResponse<MutableList<Event>>>
 
     @FormUrlEncoded
     @POST("calc/service")

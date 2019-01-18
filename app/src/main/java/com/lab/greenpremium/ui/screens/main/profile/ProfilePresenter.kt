@@ -1,5 +1,6 @@
 package com.lab.greenpremium.ui.screens.main.profile
 
+import com.lab.greenpremium.PAGE_SIZE
 import com.lab.greenpremium.data.repo.Repository
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.network.DefaultCallbackListener
@@ -56,4 +57,19 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
         })
     }
 
+    override fun onClickEventPdf(file_path: String) {
+        //todo impl goto pdf view or pdf intent or web
+    }
+
+    override fun onEventRecyclerBottomReached(size: Int) {
+        val events = UserModel.eventsResponse?.events
+        if (events != null) {
+            val page = (events.size / PAGE_SIZE) + 1
+            repository.getEventsNextPage(page, object : DefaultCallbackListener(view) {
+                override fun onSuccess() {
+                    this@ProfilePresenter.view.notifyEventsRecyclerDataChanged()
+                }
+            })
+        }
+    }
 }

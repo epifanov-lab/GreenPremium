@@ -40,4 +40,8 @@ class EventItemView : RelativeLayout {
         line_connection.visibility = if (hide) View.INVISIBLE else View.VISIBLE
     }
 
+    fun setOnClickPdfListener(listener: OnClickListener) {
+        container_pdf.setOnClickListener(listener)
+    }
+
 }

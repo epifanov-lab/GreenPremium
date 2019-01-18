@@ -1,7 +1,8 @@
 package com.lab.greenpremium.data.entity
 
-data class EventsResponse(val events: List<Event>) {
+data class EventsResponse(val events: MutableList<Event>) {
     val time: Long = System.currentTimeMillis()
+    var page: Int = 1 // first page as default
 }
 
 

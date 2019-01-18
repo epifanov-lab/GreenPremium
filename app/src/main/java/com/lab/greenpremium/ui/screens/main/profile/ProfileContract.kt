@@ -11,6 +11,8 @@ interface ProfileContract {
         fun initializeContactsCarousel(contacts: List<Contact>)
         fun initializeServiceCostSection(payment: Double?)
         fun initializeEventsList(events: List<Event>)
+        fun notifyEventsRecyclerDataChanged()
+
         fun initializeOrdersSection(order_id: Int?, order_supply_date: String?)
         fun showNoOrdersContainer(show: Boolean)
 
@@ -21,5 +23,7 @@ interface ProfileContract {
     interface Presenter {
         fun onViewCreated()
         fun updateEvents(forced: Boolean)
+        fun onClickEventPdf(file_path: String)
+        fun onEventRecyclerBottomReached(size: Int)
     }
 }

@@ -81,7 +81,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun updateEvents(forced: Boolean, listener: CallbackListener) {
+    fun updateEvents(forced: Boolean = false, listener: CallbackListener) {
 
         if (!forced && UserModel.eventsResponse != null) {
             if (System.currentTimeMillis() - UserModel.eventsResponse!!.time < REQUEST_REFRESH_TIME_MS) {
@@ -102,6 +102,31 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 .doFinally { listener.doAfter() }
                 .subscribe(
                         { response -> handleResponse(BaseResponse(response.status, response.title, EventsResponse(response.data)), listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun getEventsNextPage(page: Int, listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.getEventsNextPage(UserModel.authResponse!!.token, page)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response ->
+                            run {
+                                val data = EventsResponse(response.data)
+                                data.page = page
+                                handleResponse(BaseResponse(response.status, response.title, data), listener)
+                            }
+                        },
                         { error -> handleError(error, listener) }
                 )
     }
@@ -446,7 +471,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 }
 
                 EventsResponse::class -> {
-                    UserModel.eventsResponse = response.data as EventsResponse
+                    val eventsResponse = response.data as EventsResponse
+                    if (eventsResponse.page == 1) UserModel.eventsResponse = eventsResponse
+                    else UserModel.eventsResponse?.events?.addAll(eventsResponse.events)
                 }
 
                 CalcServiceResponse::class -> {

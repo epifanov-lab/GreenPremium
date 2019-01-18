@@ -43,7 +43,7 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View {
             recycler_plants.visibility = View.VISIBLE
             recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
             recycler_plants.adapter = PlantRecyclerAdapter(favorites, context?.resources?.getDimension(R.dimen.space_24)?.toInt(),
-                    listener = object : PlantRecyclerAdapter.CustomRecyclerListener {
+                    listener = object : PlantRecyclerAdapter.PlantsRecyclerListener {
                         override fun onProductSelected(product: Product) {
                             //ignore
                         }
