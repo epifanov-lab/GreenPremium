@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.RelativeLayout
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Event
@@ -42,6 +43,14 @@ class EventItemView : RelativeLayout {
 
     fun setOnClickPdfListener(listener: OnClickListener) {
         container_pdf.setOnClickListener(listener)
+    }
+
+    fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {
+        val p = LinearLayout.LayoutParams(LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT))
+        p.setMargins(left, top, right, bottom)
+        this.layoutParams = p
+        this.requestLayout()
     }
 
 }

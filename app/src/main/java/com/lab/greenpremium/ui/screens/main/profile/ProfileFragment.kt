@@ -2,15 +2,16 @@ package com.lab.greenpremium.ui.screens.main.profile
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
+import android.widget.LinearLayout
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.BaseEvent
+import com.lab.greenpremium.data.EventsPaginationStateChanging
 import com.lab.greenpremium.data.ServiceCalculatedEvent
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.data.entity.Event
-import com.lab.greenpremium.ui.components.ScrollLayoutManager
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.ui.screens.base.BaseFragment
 import com.lab.greenpremium.ui.screens.main.MainActivity
@@ -61,11 +62,6 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         setTouchAnimationShrink(button_start_shopping)
     }
 
-    override fun showLoadingStub(show: Boolean) {
-        container_main.visibility = if (show) View.VISIBLE else View.INVISIBLE
-        progress.visibility = if (show) View.INVISIBLE else View.VISIBLE
-    }
-
     override fun initializeContactsCarousel(contacts: List<Contact>) {
         PagerSnapHelper().attachToRecyclerView(recycler_contacts)
         recycler_contacts.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -84,24 +80,6 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         container_no_orders.visibility = if (show) VISIBLE else GONE
     }
 
-    override fun initializeEventsList(events: List<Event>) {
-        container_events.visibility = VISIBLE
-        recycler_events.layoutManager = ScrollLayoutManager(context).also { it.setScrollEnabled(false) }
-        recycler_events.adapter = EventsRecyclerAdapter(events, object : EventsRecyclerAdapter.EventsRecyclerListener {
-            override fun onClickPdf(file_path: String) {
-                presenter.onClickEventPdf(file_path)
-            }
-
-            override fun onRecyclerBottomReached(size: Int) {
-                presenter.onEventRecyclerBottomReached(size)
-            }
-        })
-    }
-
-    override fun notifyEventsRecyclerDataChanged() {
-        recycler_events.adapter?.notifyDataSetChanged()
-    }
-
     override fun initializeOrdersSection(order_id: Int?, order_supply_date: String?) {
         val isDeliveryExpected = order_id != null && order_supply_date != null
         container_delivery_schedule.visibility = if (isDeliveryExpected) VISIBLE else GONE
@@ -118,6 +96,26 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
             }
         }
     }
+
+    override fun initializeEventsList(events: List<Event>) {
+        container_events.visibility = VISIBLE
+        recycler_events.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+        recycler_events.adapter = EventsRecyclerAdapter(events, object : EventsRecyclerAdapter.EventsRecyclerListener {
+            override fun onClickPdf(file_path: String) {
+                presenter.onClickEventPdf(file_path)
+            }
+
+            override fun onRecyclerBottomReached(size: Int) {
+                presenter.onEventRecyclerBottomReached(size)
+            }
+        })
+
+    }
+
+    override fun notifyEventsRecyclerDataChanged() {
+        recycler_events.adapter?.notifyDataSetChanged()
+    }
+
 
     override fun goToServiceCalculatorScreen() {
         (activity as BaseActivity).goToCalcScreen()
@@ -138,7 +136,15 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: ServiceCalculatedEvent) {
-        presenter.updateEvents(true)
+    fun onEvent(event: BaseEvent) {
+        when (event::class) {
+
+            ServiceCalculatedEvent::class -> presenter.updateEvents(true)
+
+            EventsPaginationStateChanging::class -> {
+                presenter.onEventsPaginationStateChanged((event as EventsPaginationStateChanging).enabled)
+            }
+
+        }
     }
 }

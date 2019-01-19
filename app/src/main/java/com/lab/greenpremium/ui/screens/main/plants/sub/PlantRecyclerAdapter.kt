@@ -37,9 +37,8 @@ class PlantRecyclerAdapter(private val list: List<Product>,
             }
         })
 
-        if (position == list.lastIndex){
-            listener?.onRecyclerBottomReached(list.size)
-        }
+        if (position == list.lastIndex) listener?.onRecyclerBottomReached(list.size)
+
     }
 
     override fun getItemCount(): Int {

@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import com.google.gson.JsonParser
 import com.lab.greenpremium.REQUEST_REFRESH_TIME_MS
 import com.lab.greenpremium.data.CartModel
+import com.lab.greenpremium.data.EventsPaginationStateChanging
+import com.lab.greenpremium.data.ProductPaginationStateChanging
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.entity.*
 import com.lab.greenpremium.data.local.PreferencesManager
@@ -13,6 +15,7 @@ import com.lab.greenpremium.data.network.CallbackListener
 import com.lab.greenpremium.utills.LogUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import org.greenrobot.eventbus.EventBus
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -472,8 +475,14 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
                 EventsResponse::class -> {
                     val eventsResponse = response.data as EventsResponse
-                    if (eventsResponse.page == 1) UserModel.eventsResponse = eventsResponse
-                    else UserModel.eventsResponse?.events?.addAll(eventsResponse.events)
+                    if (eventsResponse.page == 1) {
+                        UserModel.eventsResponse = eventsResponse
+                        EventBus.getDefault().post(EventsPaginationStateChanging(true))
+                    } else {
+                        val events = eventsResponse.events
+                        if (events.isNotEmpty()) UserModel.eventsResponse?.events?.addAll(events)
+                        else EventBus.getDefault().post(EventsPaginationStateChanging(false))
+                    }
                 }
 
                 CalcServiceResponse::class -> {
@@ -510,8 +519,14 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                         catalogSectionsData!!.sections?.forEach { section ->
                             val sectionProductsResponse = response.data as SectionProductsResponse
                             if (section.id == parameters[0]) {
-                                if (sectionProductsResponse.page == 1) section.products = sectionProductsResponse.products
-                                else section.products?.addAll(sectionProductsResponse.products)
+                                val products = sectionProductsResponse.products
+                                if (sectionProductsResponse.page == 1) {
+                                    section.products = products
+                                    EventBus.getDefault().post(ProductPaginationStateChanging(true))
+                                } else {
+                                    if (products.isNotEmpty()) section.products?.addAll(products)
+                                    else EventBus.getDefault().post(ProductPaginationStateChanging(false))
+                                }
                             }
                         }
                     } catch (e: Exception) {

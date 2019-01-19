@@ -7,7 +7,6 @@ import com.lab.greenpremium.ui.screens.base.BaseContract
 
 interface ProfileContract {
     interface View : BaseContract.BaseView {
-        fun showLoadingStub(show: Boolean)
         fun initializeContactsCarousel(contacts: List<Contact>)
         fun initializeServiceCostSection(payment: Double?)
         fun initializeEventsList(events: List<Event>)
@@ -25,5 +24,6 @@ interface ProfileContract {
         fun updateEvents(forced: Boolean)
         fun onClickEventPdf(file_path: String)
         fun onEventRecyclerBottomReached(size: Int)
+        fun onEventsPaginationStateChanged(enable: Boolean)
     }
 }

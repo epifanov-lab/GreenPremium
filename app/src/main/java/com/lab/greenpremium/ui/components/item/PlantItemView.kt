@@ -88,7 +88,9 @@ class PlantItemView : RelativeLayout {
             text_discount.text = currencyFormat(it)
         }
 
-        container_controls.visibility = if (type == PlantViewType.CATALOG) View.VISIBLE else View.GONE
+        val controlsVisibility = if (type == PlantViewType.CATALOG) View.VISIBLE else View.GONE
+        button_add.visibility = controlsVisibility
+        button_remove.visibility = controlsVisibility
     }
 
     private fun showHeightSelector(enabled: Boolean) {

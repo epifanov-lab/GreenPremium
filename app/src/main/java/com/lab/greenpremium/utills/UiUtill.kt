@@ -17,6 +17,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ScrollView
 import com.lab.greenpremium.*
 
+
 fun requestFocusAndShowKeyboard(context: Context, view: View?) {
     if (view != null) {
         view.requestFocus()

@@ -189,7 +189,7 @@ interface GpApi {
 
     //region CATALOG
     @GET("catalog/sections")
-    fun getCatalogSections(): Single<BaseResponse<MutableList<Section>>>
+    fun getCatalogSections(): Single<BaseResponse<MutableList<Section>>>    
 
     @GET("catalog/sections/{section_id}")
     fun getSectionProductsList(@Header("X-Auth-Token") token: String,

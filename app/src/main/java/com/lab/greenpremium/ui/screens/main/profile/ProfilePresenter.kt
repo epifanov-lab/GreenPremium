@@ -11,6 +11,8 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
     @Inject
     internal lateinit var repository: Repository
 
+    private var isEventsPaginationEnabled = true
+
     override fun onViewCreated() {
         updateObjectInfo()
         updateEvents(false)
@@ -63,7 +65,7 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
 
     override fun onEventRecyclerBottomReached(size: Int) {
         val events = UserModel.eventsResponse?.events
-        if (events != null) {
+        if (isEventsPaginationEnabled && events != null) {
             val page = (events.size / PAGE_SIZE) + 1
             repository.getEventsNextPage(page, object : DefaultCallbackListener(view) {
                 override fun onSuccess() {
@@ -71,5 +73,9 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
                 }
             })
         }
+    }
+
+    override fun onEventsPaginationStateChanged(enabled: Boolean) {
+        isEventsPaginationEnabled = enabled
     }
 }

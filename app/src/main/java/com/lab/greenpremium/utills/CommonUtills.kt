@@ -63,11 +63,11 @@ fun getTimestampFromDateString(dateString: String?, dateFormat: SimpleDateFormat
 }
 
 fun getFormattedDateString(timestamp: Long): String {
-    return SimpleDateFormat("dd.mm.yyyy hh:mm:ss", Locale.getDefault()).format(timestamp)
+    return SimpleDateFormat("dd.MM.yyyy kk:mm:ss", Locale.getDefault()).format(timestamp)
 }
 
 fun getTimeFromTimestamp(timestamp: Long): String {
-    val sdf = SimpleDateFormat("hh:mm", Locale.getDefault())
+    val sdf = SimpleDateFormat("kk:mm", Locale.getDefault())
     return sdf.format(timestamp)
 }
 

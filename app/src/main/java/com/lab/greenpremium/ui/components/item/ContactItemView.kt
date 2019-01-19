@@ -10,17 +10,12 @@ import android.widget.RelativeLayout
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.data.network.glide.GlideApp
-import com.lab.greenpremium.utills.LogUtil
 import kotlinx.android.synthetic.main.view_item_contact.view.*
 
 
 class ContactItemView : RelativeLayout {
 
     var contact: Contact? = null
-        set(value) {
-            LogUtil.i("CONTACT_VIEW data: $value")
-            field = value
-        }
 
     constructor(context: Context) : this(context, null)
 
