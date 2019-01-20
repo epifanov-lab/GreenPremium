@@ -10,6 +10,10 @@ class MapPresenter @Inject constructor(val view: MapContract.View) : MapContract
     @Inject
     internal lateinit var repository: Repository
 
+    override fun onViewCreated() {
+        updateMapObjects()
+    }
+
     override fun updateMapObjects() {
         repository.updateMapObjects(object : DefaultCallbackListener(view) {
             override fun onSuccess() {

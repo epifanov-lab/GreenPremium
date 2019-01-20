@@ -36,10 +36,6 @@
         <activity android:name=".ui.screens.delivery.DeliveryActivity" />
         <activity android:name=".ui.screens.gallery.GalleryActivity" />
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
     </application>
 
 </manifest>
