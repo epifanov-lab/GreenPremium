@@ -17,6 +17,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 import retrofit2.HttpException
+import java.util.*
 import javax.inject.Inject
 
 
@@ -438,6 +439,82 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun updateMapObjects(listener: CallbackListener) {
         apiMethods.getMapObjects()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun addProjects(message: String, photos: List<String>, listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.addProjects(UserModel.authResponse!!.token, AddProjectRequest(message, photos))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun addMessageRequest(theme: String, message: String, photos: List<String>, listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.addMessages(UserModel.authResponse!!.token, AddMessageRequest(theme, message, photos))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun addClaim(message: String, photos: List<String>, listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.addClaims(UserModel.authResponse!!.token, AddClaimRequest(message, photos))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun addRaiting(rating: Int, message: String, listener: CallbackListener) {
+
+        if (UserModel.authResponse == null) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return
+        }
+
+        apiMethods.addRatings(UserModel.authResponse!!.token, AddRatingRequest(rating, message))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }

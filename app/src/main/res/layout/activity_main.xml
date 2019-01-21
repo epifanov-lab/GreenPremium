@@ -137,7 +137,7 @@
             app:fab_title="@string/fab_letter" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_praise"
+            android:id="@+id/fab_rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/green_2"

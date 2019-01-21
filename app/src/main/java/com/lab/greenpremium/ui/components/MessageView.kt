@@ -5,6 +5,7 @@ import android.support.v4.content.ContextCompat
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.RelativeLayout
+import android.widget.TextView
 import com.lab.greenpremium.R
 import kotlinx.android.synthetic.main.view_message.view.*
 
@@ -21,5 +22,9 @@ class MessageView : RelativeLayout {
             title_text.setTextColor(ContextCompat.getColor(context, if (focused) R.color.colorAccent else R.color.gray))
             text.background = ContextCompat.getDrawable(context, if (focused) R.drawable.bcg_message_active else R.drawable.bcg_message_passive)
         }
+    }
+
+    fun getTextView() : TextView {
+        return text
     }
 }

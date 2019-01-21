@@ -68,7 +68,7 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
     protected fun goToMessageScreen(messageScreenType: Serializable) {
         val intent = Intent(this, MessageActivity::class.java)
         intent.putExtra(KEY_OBJECT, messageScreenType)
-        startActivity(intent)
+        startActivityForResult(intent, KEY_RESULT_MESSAGE_SENT)
     }
 
     fun goToPlantDetailActivity(product: Product) {

@@ -12,6 +12,7 @@ import android.view.ViewAnimationUtils
 import com.getbase.floatingactionbutton.FloatingActionsMenu
 import com.lab.greenpremium.*
 import com.lab.greenpremium.data.MeetingAddedEvent
+import com.lab.greenpremium.data.MessageSentEvent
 import com.lab.greenpremium.data.ServiceCalculatedEvent
 import com.lab.greenpremium.ui.components.BottomNavigationViewHelper
 import com.lab.greenpremium.ui.screens.base.BaseActivity
@@ -125,7 +126,7 @@ class MainActivity : BaseActivity(), MainContract.View {
         activateFabMenu(true)
         fab_project.setOnClickListener { goToMessageScreen(MessageScreenType.NEW_PROJECT).also { fab_menu.collapse() } }
         fab_letter.setOnClickListener { goToMessageScreen(MessageScreenType.LETTER).also { fab_menu.collapse() } }
-        fab_praise.setOnClickListener { goToMessageScreen(MessageScreenType.PRAISE).also { fab_menu.collapse() } }
+        fab_rating.setOnClickListener { goToMessageScreen(MessageScreenType.RATING).also { fab_menu.collapse() } }
         fab_complain.setOnClickListener { goToMessageScreen(MessageScreenType.COMPLAIN).also { fab_menu.collapse() } }
     }
 
@@ -219,11 +220,8 @@ class MainActivity : BaseActivity(), MainContract.View {
                 }
             }
 
-            KEY_RESULT_CALCULATOR -> {
-                Handler().post {
-                    EventBus.getDefault().post(ServiceCalculatedEvent())
-                }
-            }
+            KEY_RESULT_CALCULATOR -> { Handler().post { EventBus.getDefault().post(ServiceCalculatedEvent()) } }
+            KEY_RESULT_MESSAGE_SENT -> { Handler().post { EventBus.getDefault().post(MessageSentEvent()) } }
 
         }
     }

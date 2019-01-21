@@ -250,20 +250,20 @@ interface GpApi {
     @POST("projects/add")
     fun addProjects(@Header("X-Auth-Token") token: String,
                     @Field("message") message: String,
-                    @Field("photos") photos: List<Base64>): Single<BaseResponse<AddProjectResponse>>
+                    @Field("photos") photos: List<String>): Single<BaseResponse<AddProjectResponse>>
 
     @FormUrlEncoded
     @POST("messages/add")
     fun addMessages(@Header("X-Auth-Token") token: String,
                     @Field("theme") theme: String,
                     @Field("message") message: String,
-                    @Field("photos") photos: List<Base64>): Single<BaseResponse<AddMessageResponse>>
+                    @Field("photos") photos: List<String>): Single<BaseResponse<AddMessageResponse>>
 
     @FormUrlEncoded
     @POST("claims/add")
     fun addClaims(@Header("X-Auth-Token") token: String,
                   @Field("message") message: String,
-                  @Field("photos") photos: List<Base64>): Single<BaseResponse<AddClaimResponse>>
+                  @Field("photos") photos: List<String>): Single<BaseResponse<AddClaimResponse>>
 
     @FormUrlEncoded
     @POST("ratings/add")

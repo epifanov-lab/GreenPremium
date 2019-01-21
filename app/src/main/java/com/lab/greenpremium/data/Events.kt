@@ -4,6 +4,7 @@ abstract class BaseEvent
 
 class MeetingAddedEvent : BaseEvent()
 class ServiceCalculatedEvent : BaseEvent()
+class MessageSentEvent : BaseEvent()
 
 class EventsPaginationStateChanging(val enabled: Boolean) : BaseEvent()
 class ProductPaginationStateChanging(val enabled: Boolean) : BaseEvent()

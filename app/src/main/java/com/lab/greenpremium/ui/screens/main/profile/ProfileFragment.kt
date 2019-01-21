@@ -9,6 +9,7 @@ import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.BaseEvent
 import com.lab.greenpremium.data.EventsPaginationStateChanging
+import com.lab.greenpremium.data.MessageSentEvent
 import com.lab.greenpremium.data.ServiceCalculatedEvent
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.data.entity.Event
@@ -140,6 +141,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         when (event::class) {
 
             ServiceCalculatedEvent::class -> presenter.updateEvents(true)
+            MessageSentEvent::class -> presenter.updateEvents(true)
 
             EventsPaginationStateChanging::class -> {
                 presenter.onEventsPaginationStateChanged((event as EventsPaginationStateChanging).enabled)

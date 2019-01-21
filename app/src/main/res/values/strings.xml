@@ -76,6 +76,11 @@
     <string name="favorites_empty">Список избранных растений пуст</string>
     <string name="cart_empty">Список покупок пуст</string>
 
+
+    <string name="messages_screen_succes_add_project">SUCCESS TEXT</string>
+    <string name="messages_screen_succes_add_letter">SUCCESS TEXT</string>
+    <string name="messages_screen_succes_add_rating">SUCCESS TEXT</string>
+    <string name="messages_screen_succes_add_complain">SUCCESS TEXT</string>
     <string name="dialog_please_wait">Пожалуйста, подождите…</string>
 
     <!-- Validations and errors -->
