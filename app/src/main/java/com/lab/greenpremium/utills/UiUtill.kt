@@ -254,3 +254,9 @@ fun getScreenWidthPx(context: Context): Int {
 fun getScreenHeightPx(context: Context): Int {
     return context.resources.displayMetrics.heightPixels
 }
+
+fun dpToPx(context: Context, dp: Float): Int {
+    // Took from http://stackoverflow.com/questions/8309354/formula-px-to-dp-dp-to-px-android
+    val scale = context.resources.displayMetrics.density
+    return (dp * scale + 0.5f).toInt()
+}

@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingTop="@dimen/space_4"
-    android:scrollbars="none">
+    android:scrollbars="none"
+    android:paddingBottom="@dimen/bottom_navigation_bar_height">
 
-    <GridLayout
+    <com.lab.greenpremium.ui.components.assimmetric_recycler.AsymmetricRecyclerView
         android:id="@+id/container_grid"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:columnCount="2"
-        android:isScrollContainer="true"
-        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:background="#ffffff"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="@dimen/space_4"
+        android:fadingEdge="none"
+        android:focusable="true"
+        android:gravity="center"
+        android:listSelector="#00000000"
         android:paddingLeft="@dimen/space_24"
-        android:paddingRight="@dimen/space_24" />
+        android:paddingRight="@dimen/space_24"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
 </ScrollView>
