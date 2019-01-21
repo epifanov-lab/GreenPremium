@@ -13,6 +13,7 @@ import com.lab.greenpremium.data.entity.PortfolioSection
 import com.lab.greenpremium.data.entity.getPhotosUrls
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.ui.screens.base.BaseFragment
+import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.getScreenWidth
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.sub_fragment_portfolio.*
@@ -58,10 +59,57 @@ class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
 
             photos = (arguments!!.getSerializable(KEY_OBJECT) as PortfolioSection).photos
 
-            //TODO Refactoring
-            for ((index, photo) in photos.withIndex()) {
+            initializeImageGrid()
 
-                if (index == 0 || index % 3 == 0) {
+        }
+    }
+
+    private fun initializeImageGrid() {
+        val total = photos.size
+        val columns = 2
+        val rows = photos.size / 3 * 2
+
+        LogUtil.e("GRID: total: $total, columns: $columns, rows: $rows")
+
+        container_grid.columnCount = columns
+        container_grid.rowCount = rows
+
+        var rowCounter = 1
+        var colCounter = 1
+
+        for ((index, photo) in photos.withIndex()) {
+
+            if (index == 0 || index % 3 == 0) {
+                //big image
+
+            } else {
+                //two small images
+
+            }
+
+            val image = ImageView(context)
+            setImage(photo, image)
+            container_grid.addView(image)
+
+            rowCounter++
+            colCounter++
+        }
+    }
+
+    private fun setImage(photo: Photo, view: ImageView) {
+        view.setOnClickListener { presenter.onClickImage(photos.indexOf(photo)) }
+        setTouchAnimationShrink(view)
+        Glide.with(context!!)
+                .load(photo.url)
+                .into(view)
+    }
+
+    override fun goToGalleryScreen(pos: Int) {
+        (activity as BaseActivity).goToGalleryScreen(getPhotosUrls(photos), pos)
+    }
+
+    /*
+    *                 if (index == 0 || index % 3 == 0) {
                     //one big image
                     val view = ImageView(context)
                     val layoutParams = RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT)
@@ -100,22 +148,5 @@ class PortfolioSubFragment : BaseFragment(), PortfolioSubContract.View {
                                 0,
                                 if (index == photos.lastIndex) paddingMedium * 3 else 0
                         )
-            }
-
-        }
-    }
-
-    private fun setImage(photo: Photo, view: ImageView) {
-        Glide.with(context!!)
-                .load(photo.url)
-                .into(view)
-
-        setTouchAnimationShrink(view)
-
-        view.setOnClickListener { presenter.onClickImage(photos.indexOf(photo)) }
-    }
-
-    override fun goToGalleryScreen(pos: Int) {
-        (activity as BaseActivity).goToGalleryScreen(getPhotosUrls(photos), pos)
-    }
+    * */
 }
