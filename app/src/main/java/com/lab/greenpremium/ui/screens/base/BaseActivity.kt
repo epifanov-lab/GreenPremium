@@ -3,6 +3,7 @@ package com.lab.greenpremium.ui.screens.base
 import android.app.Activity
 import android.app.Dialog
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.design.widget.Snackbar.LENGTH_LONG
@@ -92,6 +93,11 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
         intent.putStringArrayListExtra(KEY_IMAGES_URLS_LIST, urls)
         intent.putExtra(KEY_CHOSEN_IMAGE_NUM, chosenImageNum)
         startActivity(intent)
+    }
+
+    fun openUrlInBrowser(url: String) {
+        val googleDocUrl = Uri.parse(String.format("http://docs.google.com/viewer?url=%s", url))
+        startActivity(Intent(Intent.ACTION_VIEW, googleDocUrl))
     }
 
     protected fun swapFragment(fragment: Fragment) {

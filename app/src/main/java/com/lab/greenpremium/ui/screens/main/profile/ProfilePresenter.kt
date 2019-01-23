@@ -4,6 +4,7 @@ import com.lab.greenpremium.PAGE_SIZE
 import com.lab.greenpremium.data.repo.Repository
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.network.DefaultCallbackListener
+import com.lab.greenpremium.utills.LogUtil
 import javax.inject.Inject
 
 class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : ProfileContract.Presenter {
@@ -60,7 +61,7 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
     }
 
     override fun onClickEventPdf(file_path: String) {
-        //todo impl goto pdf view or pdf intent or web
+        view.openUrlInBrowser(file_path)
     }
 
     override fun onEventRecyclerBottomReached(size: Int) {

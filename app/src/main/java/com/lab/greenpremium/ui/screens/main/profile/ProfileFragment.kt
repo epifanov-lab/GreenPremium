@@ -126,6 +126,10 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         (activity as BaseActivity).goToDeliveryScreen(order_id)
     }
 
+    override fun openUrlInBrowser(url: String) {
+        (activity as BaseActivity).openUrlInBrowser(url)
+    }
+
     override fun onStart() {
         super.onStart()
         EventBus.getDefault().register(this)

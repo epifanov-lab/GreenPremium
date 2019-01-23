@@ -17,6 +17,7 @@ interface ProfileContract {
 
         fun goToServiceCalculatorScreen()
         fun goToDeliveryScreen(order_id: Int?)
+        fun openUrlInBrowser(url: String)
     }
 
     interface Presenter {
