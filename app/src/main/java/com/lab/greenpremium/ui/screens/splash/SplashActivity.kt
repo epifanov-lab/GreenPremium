@@ -23,7 +23,14 @@ class SplashActivity : BaseActivity(), SplashContract.View {
     }
 
     override fun initViews() {
+        presenter.onViewCreated()
+    }
+
+    override fun goStartScreen() {
         goToStartScreen()
     }
 
+    override fun goMainScreen() {
+        goToMainScreen()
+    }
 }

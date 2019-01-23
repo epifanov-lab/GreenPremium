@@ -21,7 +21,10 @@ class MainPresenter @Inject constructor(val view: MainContract.View) : MainContr
     override fun onProductQuantityChanged(product: Product) {
         repository.addToCart(product.getChosenOffer().product_id, product.quantity, object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                this@MainPresenter.view.updateCartIndicator(CartModel.cart.products.size)
+                CartModel.cart?.let {
+                    this@MainPresenter.view.updateCartIndicator(CartModel.cart!!.products.size)
+                }
+
                 CartModel.syncCatalogWithCartByProduct(product)
                 EventBus.getDefault().post(CartUpdatedEvent())
             }
@@ -31,7 +34,8 @@ class MainPresenter @Inject constructor(val view: MainContract.View) : MainContr
     override fun updateCart() {
         repository.getCart(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
-                this@MainPresenter.view.updateCartIndicator(CartModel.cart.products.size)
+                CartModel.cart?.let {
+                    this@MainPresenter.view.updateCartIndicator(CartModel.cart!!.products.size) }
 
                 Handler().post {
                     // TODO сделать спайанный последовательный вызов
@@ -50,4 +54,8 @@ class MainPresenter @Inject constructor(val view: MainContract.View) : MainContr
         })
     }
 
+    override fun onClickLogout() {
+        repository.logout()
+        view.onLogout()
+    }
 }

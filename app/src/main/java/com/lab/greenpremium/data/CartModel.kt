@@ -7,12 +7,12 @@ import com.lab.greenpremium.data.entity.Product
 
 object CartModel {
 
-    lateinit var cart: CartResponse
-    lateinit var favorites: MutableList<Product>
+    var cart: CartResponse? = null
+    var favorites: MutableList<Product>? = null
     var catalog: CatalogSectionsResponse? = null
 
     fun syncCatalogWithCart() {
-        cart.products.forEach {
+        cart?.products?.forEach {
             syncCatalogWithCartByProduct(it)
         }
     }
@@ -34,19 +34,19 @@ object CartModel {
     }
 
     fun syncFavoritesWithCart() {
-        cart.products.forEach{
+        cart?.products?.forEach{
             syncFavoritesWithCartByProduct(it)
         }
     }
 
     fun syncCatalogWithFavorites() {
-        favorites.forEach {
+        favorites?.forEach {
             syncCatalogWithFavoritesByProduct(it)
         }
     }
 
     fun syncFavoritesWithCartByProduct(other: Product) {
-        favorites.forEach {favoriteProduct ->
+        favorites?.forEach {favoriteProduct ->
 
             val offerFromCart = other.getChosenOffer()
             val offerFromFavorites = favoriteProduct.getChosenOffer()
@@ -75,9 +75,14 @@ object CartModel {
 
     fun getCartTotalCost(): Double {
         var result = 0.0
-        cart.products.forEach { result += it.offers[0].price * it.quantity }
+        cart?.products?.forEach { result += it.offers[0].price * it.quantity }
         return result
     }
 
+    fun clearModel() {
+        cart = null
+        favorites = null
+        catalog = null
+    }
 }
 

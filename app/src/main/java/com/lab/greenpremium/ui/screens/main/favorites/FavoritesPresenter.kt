@@ -19,7 +19,9 @@ class FavoritesPresenter @Inject constructor(val view: FavoritesContract.View) :
             override fun onSuccess() {
                 CartModel.syncFavoritesWithCart()
                 CartModel.syncCatalogWithFavorites()
-                this@FavoritesPresenter.view.initializeFavoritesList(CartModel.favorites)
+                CartModel.favorites?.let {
+                    this@FavoritesPresenter.view.initializeFavoritesList(CartModel.favorites!!)
+                }
             }
         })
     }

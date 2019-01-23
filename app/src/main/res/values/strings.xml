@@ -83,6 +83,7 @@
     <string name="messages_screen_succes_add_complain">Сообщение отправлено</string>
 
     <string name="dialog_please_wait">Пожалуйста, подождите…</string>
+    <string name="dialog_on_logout">Вы действительно хотите выйти?</string>
 
     <!-- Validations and errors -->
     <string name="error_empty_field">"Заполните поле %1$s"</string>

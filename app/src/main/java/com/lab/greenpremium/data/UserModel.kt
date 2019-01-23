@@ -5,8 +5,6 @@ import com.lab.greenpremium.data.entity.*
 
 object UserModel {
 
-    var authResponse: AuthResponse? = null
-
     var contactsResponse: ContactsResponse? = null
 
     var objectInfoResponse: ObjectInfoResponse? = null
@@ -20,5 +18,15 @@ object UserModel {
     var portfolio: PortfolioResponse? = null
 
     var mapObjectsResponse: MapObjectsResponse? = null
+
+    fun clearModel() {
+        contactsResponse = null
+        objectInfoResponse = null
+        eventsResponse = null
+        orderResponse = null
+        meetingsListResponse = null
+        portfolio = null
+        mapObjectsResponse = null
+    }
 
 }

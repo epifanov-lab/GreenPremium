@@ -4,7 +4,12 @@ import com.lab.greenpremium.ui.screens.base.BaseContract
 
 
 interface SplashContract {
-    interface View : BaseContract.BaseView
+    interface View : BaseContract.BaseView {
+        fun goStartScreen()
+        fun goMainScreen()
+    }
 
-    interface Presenter
+    interface Presenter{
+        fun onViewCreated()
+    }
 }

@@ -123,6 +123,11 @@ class MainActivity : BaseActivity(), MainContract.View {
             activateFabMenu(false)
         }
 
+        button_logout.setOnClickListener {
+            //TODO "Вы действительно хотите выйти?
+            presenter.onClickLogout()
+        }
+
         activateFabMenu(true)
         fab_project.setOnClickListener { goToMessageScreen(MessageScreenType.NEW_PROJECT).also { fab_menu.collapse() } }
         fab_letter.setOnClickListener { goToMessageScreen(MessageScreenType.LETTER).also { fab_menu.collapse() } }
@@ -224,5 +229,9 @@ class MainActivity : BaseActivity(), MainContract.View {
             KEY_RESULT_MESSAGE_SENT -> { Handler().post { EventBus.getDefault().post(MessageSentEvent()) } }
 
         }
+    }
+
+    override fun onLogout() {
+        goToStartScreen()
     }
 }

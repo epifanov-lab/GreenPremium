@@ -17,7 +17,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
 import retrofit2.HttpException
-import java.util.*
 import javax.inject.Inject
 
 
@@ -68,12 +67,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
             }
         }
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.getObjectInfo(UserModel.authResponse!!.token)
+        apiMethods.getObjectInfo(preferences.getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -94,12 +90,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
             }
         }
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.getEvents(UserModel.authResponse!!.token)
+        apiMethods.getEvents(preferences.getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -113,12 +106,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun getEventsNextPage(page: Int, listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.getEventsNextPage(UserModel.authResponse!!.token, page)
+        apiMethods.getEventsNextPage(preferences.getToken(), page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -138,12 +128,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun calculateServiceCost(request: CalcServiceRequest, listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.calculateService(UserModel.authResponse!!.token, request)
+        apiMethods.calculateService(preferences.getToken(), request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -157,12 +144,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun getOrderList(request: OrderRequest, listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.getOrderList(UserModel.authResponse!!.token, request)
+        apiMethods.getOrderList(preferences.getToken(), request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -183,12 +167,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
             }
         }
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.getMeetingsList(UserModel.authResponse!!.token)
+        apiMethods.getMeetingsList(preferences.getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -201,12 +182,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
     @SuppressLint("CheckResult")
     fun addMeeting(manager_id: String, date: String, listener: CallbackListener) {
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.addMeeting(UserModel.authResponse!!.token, MeetingAddRequest(manager_id, date))
+        apiMethods.addMeeting(preferences.getToken(), MeetingAddRequest(manager_id, date))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -248,12 +226,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
             }
         }
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.getSectionProductsList(UserModel.authResponse!!.token, SectionProductListRequest(section_id))
+        apiMethods.getSectionProductsList(preferences.getToken(), SectionProductListRequest(section_id))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -272,12 +247,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun getSectionProductsListNextPage(section_id: Int, page: Int, listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.getSectionProductsListNextPage(UserModel.authResponse!!.token, SectionProductListRequest(section_id), page)
+        apiMethods.getSectionProductsListNextPage(preferences.getToken(), SectionProductListRequest(section_id), page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -298,12 +270,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun getProductDetail(section_id: Int, product_id: Int, listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.getProductDetail(UserModel.authResponse!!.token, ProductRequest(product_id))
+        apiMethods.getProductDetail(preferences.getToken(), ProductRequest(product_id))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -317,12 +286,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun getCart(listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.getCart(UserModel.authResponse!!.token)
+        apiMethods.getCart(preferences.getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -336,12 +302,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun addToCart(product_id: Int, quantity: Int, listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.addToCart(UserModel.authResponse!!.token, AddToCartRequest(product_id, quantity))
+        apiMethods.addToCart(preferences.getToken(), AddToCartRequest(product_id, quantity))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -355,12 +318,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun makeOrder(listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.makeOrder(UserModel.authResponse!!.token)
+        apiMethods.makeOrder(preferences.getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -375,14 +335,11 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun editFavorites(product: Product, listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
         val request = EditFavoritesRequest(product.isFavorite, product.getChosenOffer().product_id)
 
-        apiMethods.editFavorites(UserModel.authResponse!!.token, request)
+        apiMethods.editFavorites(preferences.getToken(), request)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -397,12 +354,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun getFavorites(listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.getFavorites(UserModel.authResponse!!.token)
+        apiMethods.getFavorites(preferences.getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -452,12 +406,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun addProjects(message: String, photos: List<String>, listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.addProjects(UserModel.authResponse!!.token, AddProjectRequest(message, photos))
+        apiMethods.addProjects(preferences.getToken(), AddProjectRequest(message, photos))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -471,12 +422,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun addMessageRequest(theme: String, message: String, photos: List<String>, listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.addMessages(UserModel.authResponse!!.token, AddMessageRequest(theme, message, photos))
+        apiMethods.addMessages(preferences.getToken(), AddMessageRequest(theme, message, photos))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -490,12 +438,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun addClaim(message: String, photos: List<String>, listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.addClaims(UserModel.authResponse!!.token, AddClaimRequest(message, photos))
+        apiMethods.addClaims(preferences.getToken(), AddClaimRequest(message, photos))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -507,14 +452,11 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun addRaiting(rating: Int, message: String, listener: CallbackListener) {
+    fun addRating(rating: Int, message: String, listener: CallbackListener) {
 
-        if (UserModel.authResponse == null) {
-            listener.onError(ApiError(401, "Not authorized"))
-            return
-        }
+        if (checkAuthorization(listener)) return
 
-        apiMethods.addRatings(UserModel.authResponse!!.token, AddRatingRequest(rating, message))
+        apiMethods.addRatings(preferences.getToken(), AddRatingRequest(rating, message))
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -536,7 +478,6 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
                 AuthResponse::class -> {
                     val authData = response.data as AuthResponse
-                    UserModel.authResponse = authData
                     preferences.setToken(authData.token)
                 }
 
@@ -661,4 +602,24 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
             listener.onError(throwable)
         }
     }
+
+    private fun checkAuthorization(listener: CallbackListener): Boolean {
+        if (!isAuthorized()) {
+            listener.onError(ApiError(401, "Not authorized"))
+            return true
+        }
+
+        return false
+    }
+
+    fun isAuthorized() : Boolean {
+        return !preferences.getToken().isNullOrEmpty()
+    }
+
+    fun logout() {
+        UserModel.clearModel()
+        CartModel.clearModel()
+        preferences.clear()
+    }
+
 }

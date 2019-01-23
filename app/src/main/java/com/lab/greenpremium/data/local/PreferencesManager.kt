@@ -65,7 +65,8 @@ class PreferencesManager @Inject constructor(val context: Context) {
         putString(KEY_AUTH_TOKEN, token)
     }
 
-    fun getToken() {
-        getString(KEY_AUTH_TOKEN)
+    fun getToken() : String {
+        return getString(KEY_AUTH_TOKEN)
     }
+
 }

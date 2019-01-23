@@ -49,7 +49,7 @@ class MessagePresenter @Inject constructor(val view: MessageContract.View) : Mes
         when(type) {
             MessageScreenType.NEW_PROJECT -> repository.addProjects(message!!, photos!!, listener)
             MessageScreenType.LETTER -> repository.addMessageRequest(theme!!, message!!, photos!!, listener)
-            MessageScreenType.RATING -> repository.addRaiting(rating, message!!, listener)
+            MessageScreenType.RATING -> repository.addRating(rating, message!!, listener)
             MessageScreenType.COMPLAIN -> repository.addClaim(message!!, photos!!, listener)
         }
     }
