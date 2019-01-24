@@ -9,7 +9,7 @@ class SplashPresenter @Inject constructor(val view: SplashContract.View) : Splas
     internal lateinit var repository: Repository
 
     override fun onViewCreated() {
-        if (repository.isAuthorized()) view.goMainScreen()
+        if (repository.isAuthorized() && !repository.isInDemoMode()) view.goMainScreen()
         else view.goStartScreen()
     }
 }

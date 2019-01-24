@@ -19,7 +19,7 @@ class DeliveryPresenter @Inject constructor(val view: DeliveryContract.View) : D
         repository.getOrderList(OrderRequest(order_id), object : DefaultCallbackListener(view) {
             override fun onSuccess() {
                 UserModel.orderResponse?.let {
-                    this@DeliveryPresenter.view.initializeProductsList(it.products)
+                    this@DeliveryPresenter.view.initializeProductsList(it.products, repository.isInDemoMode())
                 }
             }
         })

@@ -6,7 +6,7 @@ import com.lab.greenpremium.ui.screens.base.BaseContract
 
 interface FavoritesContract {
     interface View : BaseContract.BaseView {
-        fun initializeFavoritesList(favorites: List<Product>)
+        fun initializeFavoritesList(favorites: List<Product>, isDemo: Boolean)
     }
 
     interface Presenter {

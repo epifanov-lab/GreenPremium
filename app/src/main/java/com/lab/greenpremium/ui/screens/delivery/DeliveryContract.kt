@@ -6,7 +6,7 @@ import com.lab.greenpremium.ui.screens.base.BaseContract
 
 interface DeliveryContract {
     interface View : BaseContract.BaseView {
-        fun initializeProductsList(products: List<Product>)
+        fun initializeProductsList(products: List<Product>, isDemo: Boolean)
     }
 
     interface Presenter {

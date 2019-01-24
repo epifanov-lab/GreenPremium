@@ -49,12 +49,12 @@ class CartFragment : BaseFragment(), CartContract.View {
         setTouchAnimationShrink(button_bill)
     }
 
-    override fun initializeCartProductsList(products: List<Product>?) {
+    override fun initializeCartProductsList(products: List<Product>?, isDemo: Boolean) {
         if (products != null && products.isNotEmpty()) {
             label_empty_list.visibility = View.GONE
             recycler_plants.visibility = View.VISIBLE
             recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-            recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(),
+            recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), isDemo = isDemo,
                     listener = object : PlantRecyclerAdapter.PlantsRecyclerListener {
                         override fun onProductSelected(product: Product) {
                             //ignore
@@ -73,7 +73,7 @@ class CartFragment : BaseFragment(), CartContract.View {
     override fun onBillRequestSuccess(message: String) {
         showDialogMessage(message, null, object : Listener {
             override fun onEvent() {
-                initializeCartProductsList(null)
+                initializeCartProductsList(null, false)
                 (activity as MainActivity).updateCartIndicator(0)
             }
         })
@@ -92,6 +92,10 @@ class CartFragment : BaseFragment(), CartContract.View {
 
     override fun updateTotalCost(total: Double) {
         label_total_cost.text = currencyFormat(total)
+    }
+
+    override fun setBillButtonEnabled(isEnabled: Boolean) {
+        button_bill.isEnabled = isEnabled
     }
 
     override fun onResume() {

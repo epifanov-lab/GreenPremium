@@ -38,7 +38,7 @@ class PlantItemView : RelativeLayout {
         LayoutInflater.from(context).inflate(R.layout.view_item_plant, this, true)
     }
 
-    fun setData(product: Product, type: PlantViewType) {
+    fun setData(product: Product, type: PlantViewType, isDemo: Boolean) {
         this.product = product
         this.offer = product.offers[0]
         this.type = type
@@ -53,7 +53,8 @@ class PlantItemView : RelativeLayout {
 
         updateViewByType()
 
-        PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
+        container_controls.visibility = if (isDemo) View.GONE else View.VISIBLE
+        if (!isDemo) PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
     }
 
     private fun updateViewByType() {

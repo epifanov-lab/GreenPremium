@@ -50,18 +50,18 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
         presenter.onViewCreated(sectionPosition)
     }
 
-    override fun initializeCatalog(products: List<Product>) {
+    override fun initializeCatalog(products: List<Product>, isDemo: Boolean) {
         recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), listener = object : PlantRecyclerAdapter.PlantsRecyclerListener{
+        recycler_plants.adapter = PlantRecyclerAdapter(products, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), isDemo = isDemo,
+                listener = object : PlantRecyclerAdapter.PlantsRecyclerListener {
+                    override fun onProductSelected(product: Product) {
+                        if (!isDemo) presenter.onProductSelected(product)
+                    }
 
-            override fun onProductSelected(product: Product) {
-                presenter.onProductSelected(product)
-            }
-
-            override fun onRecyclerBottomReached(size: Int) {
-                presenter.onProductsRecyclerBottomReached(size)
-            }
-        })
+                    override fun onRecyclerBottomReached(size: Int) {
+                        presenter.onProductsRecyclerBottomReached(size)
+                    }
+                })
     }
 
     override fun notifyRecyclerDataChanged() {

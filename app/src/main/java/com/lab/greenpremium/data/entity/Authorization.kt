@@ -11,9 +11,10 @@ data class AuthResponse(@SerializedName("id") val id: String?,
                         @SerializedName("phone") val phone: String?,
                         @SerializedName("position") val position: String?,
                         @SerializedName("photo") val photo: String?,
-                        @SerializedName("token") val token: String) {
+                        @SerializedName("token") val token: String,
+                        @SerializedName("is_demo") val is_demo: Boolean) {
 
-    constructor(token: String) : this(null, null, null, null, null, null, token)
+    constructor(token: String) : this(null, null, null, null, null, null, token, false)
 
     val time: Long = System.currentTimeMillis()
 }

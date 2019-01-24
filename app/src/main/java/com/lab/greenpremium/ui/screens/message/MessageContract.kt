@@ -8,6 +8,7 @@ interface MessageContract {
     interface View : BaseContract.BaseView {
         fun initViewByType(type: MessageScreenType)
         fun onSentSuccess(messageResId: Int)
+        fun setSendButtonEnabled(isEnabled: Boolean)
     }
 
     interface Presenter {

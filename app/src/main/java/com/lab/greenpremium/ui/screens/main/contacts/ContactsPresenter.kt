@@ -16,6 +16,7 @@ class ContactsPresenter @Inject constructor(val view: ContactsContract.View) : C
     override fun onViewCreated() {
         updateContacts()
         updateMeetingList()
+        view.setButtonScheduleEnabled(!repository.isInDemoMode())
     }
 
     override fun updateContacts() {
@@ -33,7 +34,7 @@ class ContactsPresenter @Inject constructor(val view: ContactsContract.View) : C
                     val meeting = getFirstApprovedMeeting(UserModel.meetingsListResponse!!.meetings)
                     val timestamp = getTimestampFromDateString(meeting?.date)
                     this@ContactsPresenter.view.updateNextMeetingLabels(timestamp)
-                    this@ContactsPresenter.view.setButtonScheduleEnabled(timestamp == null)
+                    this@ContactsPresenter.view.setButtonScheduleEnabled(timestamp == null && !repository.isInDemoMode())
                 }
             }
         })

@@ -7,9 +7,11 @@ import io.reactivex.Observable
 interface CalcContract {
     interface View : BaseContract.BaseView {
         fun onCalculateSuccess(message: String)
+        fun setCalcButtonEnabled(isEnabled: Boolean)
     }
 
     interface Presenter {
+        fun onViewCreated()
         fun initializeDataInput(
                 plantsCount1: Observable<String>, potsCount1: Observable<String>,
                 plantsCount2: Observable<String>, potsCount2: Observable<String>,

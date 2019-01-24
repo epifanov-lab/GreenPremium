@@ -478,6 +478,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
                 AuthResponse::class -> {
                     val authData = response.data as AuthResponse
+                    preferences.setDemoMode(authData.is_demo)
                     preferences.setToken(authData.token)
                 }
 
@@ -614,6 +615,10 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
     fun isAuthorized() : Boolean {
         return !preferences.getToken().isNullOrEmpty()
+    }
+
+    fun isInDemoMode() : Boolean {
+        return preferences.getIsDemoMode()
     }
 
     fun logout() {

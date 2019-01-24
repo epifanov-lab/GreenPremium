@@ -6,7 +6,7 @@ import com.lab.greenpremium.ui.screens.base.BaseContract
 
 interface PlantsSubContract {
     interface View : BaseContract.BaseView {
-        fun initializeCatalog(products: List<Product>)
+        fun initializeCatalog(products: List<Product>, isDemo: Boolean)
         fun notifyRecyclerDataChanged()
         fun goToDetails(product: Product)
     }

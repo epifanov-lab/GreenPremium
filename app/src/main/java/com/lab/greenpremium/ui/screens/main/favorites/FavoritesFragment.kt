@@ -37,12 +37,12 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View {
         presenter.onViewCreated()
     }
 
-    override fun initializeFavoritesList(favorites: List<Product>) {
+    override fun initializeFavoritesList(favorites: List<Product>, isDemo: Boolean) {
         if (favorites.isNotEmpty()) {
             label_empty_list.visibility = View.GONE
             recycler_plants.visibility = View.VISIBLE
             recycler_plants.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-            recycler_plants.adapter = PlantRecyclerAdapter(favorites, context?.resources?.getDimension(R.dimen.space_24)?.toInt(),
+            recycler_plants.adapter = PlantRecyclerAdapter(favorites, context?.resources?.getDimension(R.dimen.space_24)?.toInt(), isDemo = isDemo,
                     listener = object : PlantRecyclerAdapter.PlantsRecyclerListener {
                         override fun onProductSelected(product: Product) {
                             //ignore

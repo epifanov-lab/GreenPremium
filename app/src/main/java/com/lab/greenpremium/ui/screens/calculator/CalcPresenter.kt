@@ -17,6 +17,10 @@ class CalcPresenter @Inject constructor(val view: CalcContract.View) : CalcContr
 
     private val model = CalcServiceRequest()
 
+    override fun onViewCreated() {
+        view.setCalcButtonEnabled(!repository.isInDemoMode())
+    }
+
     @SuppressLint("CheckResult")
     override fun initializeDataInput(plantsCount1: Observable<String>, potsCount1: Observable<String>,
                                      plantsCount2: Observable<String>, potsCount2: Observable<String>,

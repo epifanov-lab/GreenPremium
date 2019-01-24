@@ -20,7 +20,7 @@ class FavoritesPresenter @Inject constructor(val view: FavoritesContract.View) :
                 CartModel.syncFavoritesWithCart()
                 CartModel.syncCatalogWithFavorites()
                 CartModel.favorites?.let {
-                    this@FavoritesPresenter.view.initializeFavoritesList(CartModel.favorites!!)
+                    this@FavoritesPresenter.view.initializeFavoritesList(CartModel.favorites!!, repository.isInDemoMode())
                 }
             }
         })

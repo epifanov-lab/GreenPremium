@@ -22,6 +22,7 @@ class MessagePresenter @Inject constructor(val view: MessageContract.View) : Mes
     override fun onViewCreated(type: MessageScreenType) {
         this.type = type
         view.initViewByType(type)
+        view.setSendButtonEnabled(!repository.isInDemoMode())
     }
 
     @SuppressLint("CheckResult")

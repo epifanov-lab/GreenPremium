@@ -32,22 +32,18 @@ class StartActivity : BaseActivity(), StartContract.View {
     }
 
     override fun initViews() {
-        button_auth.setOnClickListener { goToAuthScreen() }
+        presenter.onViewCreated()
 
-        button_support.setOnClickListener {
-                val intent = Intent(Intent.ACTION_DIAL)
-                intent.data = Uri.parse("tel:$GP_OFFICE_PHONE_NUMBER")
-                applicationContext.startActivity(intent)
-        }
-
-        initializeGradientTitle()
+        button_auth.setOnClickListener { presenter.onClickAuth() }
+        button_demo.setOnClickListener { presenter.onClickDemo() }
+        button_support.setOnClickListener { presenter.onClickSupport() }
 
         setTouchAnimationShrink(button_auth)
         setTouchAnimationShrink(button_demo)
         setTouchAnimationShrink(button_register)
     }
 
-    private fun initializeGradientTitle() {
+    override fun initializeGradientTitle() {
         val context = this
         container_main.viewTreeObserver.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
@@ -59,5 +55,18 @@ class StartActivity : BaseActivity(), StartContract.View {
         })
     }
 
+    override fun callToOffice() {
+        val intent = Intent(Intent.ACTION_DIAL)
+        intent.data = Uri.parse("tel:$GP_OFFICE_PHONE_NUMBER")
+        applicationContext.startActivity(intent)
+    }
+
+    override fun goToAuth() {
+        goToAuthScreen()
+    }
+
+    override fun goToMain() {
+        goToMainScreen()
+    }
 }
 

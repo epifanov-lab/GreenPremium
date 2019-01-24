@@ -28,6 +28,8 @@ class CalcActivity : BaseActivity(), CalcContract.View {
     }
 
     override fun initViews() {
+        presenter.onViewCreated()
+
         presenter.initializeDataInput(
                 RxTextView.textChanges(input_plants_s1).map { it.toString() }, RxTextView.textChanges(input_pots_s1).map { it.toString() },
                 RxTextView.textChanges(input_plants_s2).map { it.toString() }, RxTextView.textChanges(input_pots_s2).map { it.toString() },
@@ -48,5 +50,9 @@ class CalcActivity : BaseActivity(), CalcContract.View {
                 finishWithResult(Activity.RESULT_OK)
             }
         })
+    }
+
+    override fun setCalcButtonEnabled(isEnabled: Boolean) {
+        button_request.isEnabled = isEnabled
     }
 }

@@ -30,7 +30,7 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
                     sections[sectionPosition].products?.let { products ->
                         CartModel.syncCatalogWithCart()
                         CartModel.syncCatalogWithFavorites()
-                        this@PlantsSubPresenter.view.initializeCatalog(products)
+                        this@PlantsSubPresenter.view.initializeCatalog(products, repository.isInDemoMode())
                     }
                 }
             })

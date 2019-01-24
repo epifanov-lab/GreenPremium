@@ -11,6 +11,7 @@ import com.lab.greenpremium.utills.setTouchAnimationShrink
 class PlantRecyclerAdapter(private val list: List<Product>,
                            private val margin: Int?,
                            private val type: PlantItemView.PlantViewType = PlantItemView.PlantViewType.CATALOG,
+                           private val isDemo: Boolean = false,
                            private val listener: PlantsRecyclerListener?) : RecyclerView.Adapter<PlantRecyclerAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -21,7 +22,7 @@ class PlantRecyclerAdapter(private val list: List<Product>,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.setData(list[position], type)
+        holder.view.setData(list[position], type, isDemo)
 
         if (margin != null) {
             holder.view.setMargins(

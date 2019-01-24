@@ -7,6 +7,7 @@ import devliving.online.securedpreferencestore.SecuredPreferenceStore
 import javax.inject.Inject
 
 const val KEY_AUTH_TOKEN = "key_auth_token"
+const val KEY_IS_DEMO_MODE = "key_is_demo_mode"
 
 class PreferencesManager @Inject constructor(val context: Context) {
 
@@ -67,6 +68,15 @@ class PreferencesManager @Inject constructor(val context: Context) {
 
     fun getToken() : String {
         return getString(KEY_AUTH_TOKEN)
+    }
+
+
+    fun setDemoMode(isDemo: Boolean) {
+        putBoolean(KEY_IS_DEMO_MODE, isDemo)
+    }
+
+    fun getIsDemoMode() : Boolean {
+        return getBoolean(KEY_IS_DEMO_MODE)
     }
 
 }

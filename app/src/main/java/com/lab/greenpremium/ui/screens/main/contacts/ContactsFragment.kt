@@ -64,7 +64,6 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
     }
 
     override fun setButtonScheduleEnabled(enabled: Boolean) {
-        LogUtil.e("setButtonScheduleEnabled: $enabled")
         button_schedule_meet.isEnabled = enabled
     }
 

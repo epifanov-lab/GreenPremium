@@ -11,6 +11,7 @@ import com.lab.greenpremium.ui.components.Listener
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_message.*
+
 import javax.inject.Inject
 
 class MessageActivity : BaseActivity(), MessageContract.View {
@@ -59,5 +60,9 @@ class MessageActivity : BaseActivity(), MessageContract.View {
                 finishWithResult(Activity.RESULT_OK)
             }
         })
+    }
+
+    override fun setSendButtonEnabled(isEnabled: Boolean) {
+        button_send.isEnabled = isEnabled
     }
 }

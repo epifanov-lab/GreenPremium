@@ -36,10 +36,10 @@ class DeliveryActivity : BaseActivity(), DeliveryContract.View {
         button_back.setOnClickListener { onBackPressed() }
     }
 
-    override fun initializeProductsList(products: List<Product>) {
+    override fun initializeProductsList(products: List<Product>, isDemo: Boolean) {
         recycler_plants.layoutManager = LinearLayoutManager(applicationContext, LinearLayout.VERTICAL, false)
         recycler_plants.adapter = PlantRecyclerAdapter(products, applicationContext?.resources?.getDimension(R.dimen.space_24)?.toInt(),
-                PlantItemView.PlantViewType.OTHER, object : PlantRecyclerAdapter.PlantsRecyclerListener {
+                PlantItemView.PlantViewType.OTHER, isDemo, object : PlantRecyclerAdapter.PlantsRecyclerListener {
             override fun onProductSelected(product: Product) {
                 //ignore
             }
@@ -49,5 +49,4 @@ class DeliveryActivity : BaseActivity(), DeliveryContract.View {
             }
         })
     }
-
 }

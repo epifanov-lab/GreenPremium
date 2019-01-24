@@ -14,8 +14,9 @@ class CartPresenter @Inject constructor(val view: CartContract.View) : CartContr
 
     override fun onViewCreated() {
         view.updateTotalCost(CartModel.getCartTotalCost())
+        view.setBillButtonEnabled(!repository.isInDemoMode())
         CartModel.cart?.let {
-            view.initializeCartProductsList(CartModel.cart!!.products)
+            view.initializeCartProductsList(CartModel.cart!!.products, repository.isInDemoMode())
             view.initializeServiceText(CartModel.cart!!.service_text)
         }
     }
