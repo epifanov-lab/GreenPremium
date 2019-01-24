@@ -18,7 +18,9 @@
             style="@style/Button.Green"
             android:layout_width="@dimen/contacts_button_width"
             android:layout_height="@dimen/green_button_height"
+            android:layout_alignParentTop="true"
             android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/space_8"
             android:text="@string/contacts_schedule_meet" />
 
         <TextView
@@ -43,7 +45,7 @@
             android:background="@drawable/ic_calendar"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingTop="@dimen/space_4">
+            android:padding="@dimen/space_8">
 
             <TextView
                 android:id="@+id/text_date_day"
@@ -53,6 +55,7 @@
                 android:gravity="center"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_14"
+                android:layout_marginTop="@dimen/space_8"
                 tools:text="10" />
 
             <TextView

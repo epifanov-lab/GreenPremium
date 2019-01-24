@@ -4,17 +4,12 @@ import android.content.Intent
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
-import com.lab.greenpremium.App
-import com.lab.greenpremium.KEY_RESULT_ADD_MEETING
-import com.lab.greenpremium.R
+import com.lab.greenpremium.*
 import com.lab.greenpremium.data.MeetingAddedEvent
 import com.lab.greenpremium.data.entity.Contact
 import com.lab.greenpremium.ui.screens.base.BaseFragment
 import com.lab.greenpremium.ui.screens.meeting.MeetingActivity
-import com.lab.greenpremium.utills.geDayFromTimestamp
-import com.lab.greenpremium.utills.getMonthStringFromTimestamp
-import com.lab.greenpremium.utills.getTimeFromTimestamp
-import com.lab.greenpremium.utills.setTouchAnimationShrink
+import com.lab.greenpremium.utills.*
 import kotlinx.android.synthetic.main.fragment_contacts.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -66,6 +61,11 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
             text_date_day.text = geDayFromTimestamp(timestamp)
             text_date_month.text = getMonthStringFromTimestamp(timestamp)
         }
+    }
+
+    override fun setButtonScheduleEnabled(enabled: Boolean) {
+        LogUtil.e("setButtonScheduleEnabled: $enabled")
+        button_schedule_meet.isEnabled = enabled
     }
 
     override fun onStart() {

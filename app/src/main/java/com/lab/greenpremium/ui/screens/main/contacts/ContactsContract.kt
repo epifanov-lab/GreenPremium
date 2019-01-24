@@ -8,6 +8,7 @@ interface ContactsContract {
     interface View : BaseContract.BaseView {
         fun initializeContactsCarousel(contacts: List<Contact>)
         fun updateNextMeetingLabels(timestamp: Long?)
+        fun setButtonScheduleEnabled(enabled: Boolean)
     }
 
     interface Presenter {
