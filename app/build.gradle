@@ -80,6 +80,7 @@ dependencies {
     implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.0.6" // carousel dots indication
     implementation 'org.greenrobot:eventbus:3.1.1' // event bus
     implementation 'online.devliving:securedpreferencestore:0.5.0' // secured preferences
+    implementation 'com.asksira.android:bsimagepicker:1.1.0' // image picker
 
     //images downloading
     kapt "com.github.bumptech.glide:compiler:${glide_version}"

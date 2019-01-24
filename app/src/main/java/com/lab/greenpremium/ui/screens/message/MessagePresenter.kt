@@ -39,6 +39,10 @@ class MessagePresenter @Inject constructor(val view: MessageContract.View) : Mes
         this.rating = rating.toInt()
     }
 
+    override fun onClickAddPhoto() {
+        view.showPhotoPickerDialog()
+    }
+
     override fun onClickSend() {
 
         val listener = object : DefaultCallbackListener(view) {

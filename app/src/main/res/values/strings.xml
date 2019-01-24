@@ -81,6 +81,7 @@
     <string name="messages_screen_succes_add_letter">Сообщение отправлено</string>
     <string name="messages_screen_succes_add_rating">Сообщение отправлено</string>
     <string name="messages_screen_succes_add_complain">Сообщение отправлено</string>
+    <string name="messages_screen_add_photo_button_text">+ Добавить фото</string>
 
     <string name="dialog_please_wait">Пожалуйста, подождите…</string>
     <string name="dialog_on_logout">Вы действительно хотите выйти?</string>

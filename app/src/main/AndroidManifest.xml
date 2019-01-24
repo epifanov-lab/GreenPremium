@@ -19,6 +19,12 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:host="greenpremium"
+                    android:scheme="greenpremium" />
             </intent-filter>
         </activity>
 
@@ -35,6 +41,16 @@
         <activity android:name=".ui.screens.calculator.CalcActivity" />
         <activity android:name=".ui.screens.delivery.DeliveryActivity" />
         <activity android:name=".ui.screens.gallery.GalleryActivity" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.lab.greenpremium.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
+        </provider>
 
     </application>
 
