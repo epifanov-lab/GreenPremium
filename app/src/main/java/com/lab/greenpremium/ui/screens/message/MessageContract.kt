@@ -9,6 +9,7 @@ interface MessageContract {
         fun initViewByType(type: MessageScreenType)
         fun onSentSuccess(messageResId: Int)
         fun setSendButtonEnabled(isEnabled: Boolean)
+        fun InitializeRecyclerPhotos()
         fun showPhotoPickerDialog()
     }
 

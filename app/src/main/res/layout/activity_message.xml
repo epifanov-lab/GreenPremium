@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/space_24">
+    android:paddingLeft="@dimen/space_24"
+    android:paddingTop="@dimen/space_24"
+    android:paddingRight="@dimen/space_24">
 
     <ImageView
         android:id="@+id/button_back"
@@ -78,18 +80,13 @@
         android:visibility="gone"
         tools:visibility="visible" />
 
-    <TextView
-        android:id="@+id/button_add_photo"
-        android:layout_width="92dp"
-        android:layout_height="92dp"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recycler_photo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_24"
-        android:text="@string/messages_screen_add_photo_button_text"
-        android:fontFamily="@font/sfuitext_regular"
-        android:textSize="@dimen/font_size_12"
-        android:gravity="center"
-        android:visibility="gone"
-        tools:visibility="visible"
-        android:background="@drawable/bcg_add_photo"/>
+        android:isScrollContainer="false"
+        android:orientation="horizontal" />
 
     <Button
         android:id="@+id/button_send"

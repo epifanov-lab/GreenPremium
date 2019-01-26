@@ -17,8 +17,8 @@
     <color name="gray_light_1">#c5ccd6</color>
     <color name="gray_light_1_20">#41c5ccd6</color>
     <color name="gray_light_2">#f2f2f2</color>
+    <color name="gray_light_3">#e1e3e8</color>
 
-    <color name="light_green">#eef3ec</color>
     <color name="green_1">#215f2e</color>
     <color name="green_1_50">#87215f2e</color>
     <color name="green_2">#276430</color>
@@ -27,7 +27,9 @@
     <color name="green_3_10">#195d9243</color>
     <color name="green_3_50">#805D9243</color>
     <color name="green_4_60">#85b9e1a9</color>
+    <color name="green_4_75">#BFB9E1A9</color>
     <color name="green_5">#467e3c</color>
+    <color name="light_green">#eef3ec</color>
     <color name="green_light">#eef4ec</color>
 
     <color name="yellow">#fff176</color>

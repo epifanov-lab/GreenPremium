@@ -21,14 +21,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
 
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:host="greenpremium"
+
+                <data
+                    android:host="greenpremium"
                     android:scheme="greenpremium" />
             </intent-filter>
         </activity>
 
         <activity android:name=".ui.screens.start.StartActivity" />
+
         <activity android:name=".ui.screens.auth.AuthActivity" />
 
         <activity
@@ -36,10 +40,15 @@
             android:label="@string/app_name" />
 
         <activity android:name=".ui.screens.message.MessageActivity" />
+
         <activity android:name=".ui.screens.meeting.MeetingActivity" />
+
         <activity android:name=".ui.screens.plant_detail.PlantDetailActivity" />
+
         <activity android:name=".ui.screens.calculator.CalcActivity" />
+
         <activity android:name=".ui.screens.delivery.DeliveryActivity" />
+
         <activity android:name=".ui.screens.gallery.GalleryActivity" />
 
         <provider
@@ -49,7 +58,7 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"/>
+                android:resource="@xml/file_paths" />
         </provider>
 
     </application>

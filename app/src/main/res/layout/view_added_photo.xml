@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/view_add_photo_size"
+    android:layout_height="@dimen/view_add_photo_size"
+    android:layout_marginEnd="@dimen/space_8">
+
+    <ImageView
+        android:id="@+id/view_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        tools:src="@drawable/dummy_plant_1" />
+
+    <ImageView
+        android:id="@+id/button_cancel"
+        android:layout_width="12dp"
+        android:layout_height="12dp"
+        android:layout_alignTop="@id/view_photo"
+        android:layout_alignEnd="@id/view_photo"
+        android:src="@drawable/ic_cancel_1" />
+
+    <TextView
+        android:id="@+id/button_add_photo"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:background="@drawable/bcg_add_photo"
+        android:fontFamily="@font/sfuitext_regular"
+        android:gravity="center"
+        android:text="@string/messages_screen_add_photo_button_text"
+        android:textColor="@color/gray"
+        android:textSize="@dimen/font_size_12" />
+</RelativeLayout>

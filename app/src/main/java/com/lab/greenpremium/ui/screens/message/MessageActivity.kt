@@ -3,14 +3,15 @@ package com.lab.greenpremium.ui.screens.message
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.net.Uri
+import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.asksira.bsimagepicker.BSImagePicker
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
+import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.components.Listener
 import com.lab.greenpremium.ui.screens.base.BaseActivity
-import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_message.*
 import javax.inject.Inject
@@ -36,15 +37,12 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnMu
     @SuppressLint("CheckResult")
     override fun initViews() {
         presenter.onViewCreated(intent.extras.getSerializable(KEY_OBJECT) as MessageScreenType)
-        button_back.setOnClickListener { finish() }
+        button_back.setOnClickListener { finishWithResult(Activity.RESULT_CANCELED) }
 
         rating_bar.setOnRatingChangeListener { v, rating -> presenter.onRatingChanged(rating) }
 
         presenter.initializeThemeInput(RxTextView.textChanges(input_subject).map { it.toString() })
         presenter.initializeMessageInput(RxTextView.textChanges(input_message.getTextView()).map { it.toString() })
-
-        button_add_photo.setOnClickListener { presenter.onClickAddPhoto() }
-        setTouchAnimationShrink(button_add_photo)
 
         button_send.setOnClickListener { presenter.onClickSend() }
         setTouchAnimationShrink(button_send)
@@ -54,9 +52,9 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnMu
         title_label.text = getString(type.titleResId)
         rating_bar.visibility = if (type.hasRatingBar) View.VISIBLE else View.GONE
         container_subject.visibility = if (type.hasSubjectInput) View.VISIBLE else View.GONE
-        container_subject.visibility = if (type.hasSubjectInput) View.VISIBLE else View.GONE
         input_message.visibility = if (type.hasMessageInput) View.VISIBLE else View.GONE
-        button_add_photo.visibility = if (type.hasPhotoAdding) View.VISIBLE else View.GONE
+
+        if (type.hasPhotoAdding) InitializeRecyclerPhotos()
     }
 
     override fun onSentSuccess(messageResId: Int) {
@@ -71,6 +69,26 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnMu
         button_send.isEnabled = isEnabled
     }
 
+    override fun InitializeRecyclerPhotos() {
+        recycler_photo.visibility = View.VISIBLE
+
+        recycler_photo.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recycler_photo.adapter = RecyclerPhotosAdapter(resources.getDimensionPixelSize(R.dimen.view_add_photo_size),
+                object : AddPhotoViewListener {
+                    override fun onClickDelete(index: Int) {
+                        (recycler_photo.adapter as RecyclerPhotosAdapter).removeItem(index)
+                    }
+
+                    override fun onClickPhoto(index: Int) {
+                        //todo go to gallery
+                    }
+
+                    override fun onClickAdd() {
+                        presenter.onClickAddPhoto()
+                    }
+                })
+    }
+
     override fun showPhotoPickerDialog() {
         BSImagePicker.Builder("com.yourdomain.yourpackage.fileprovider")
                 .isMultiSelect()
@@ -83,8 +101,6 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnMu
     }
 
     override fun onMultiImageSelected(uriList: MutableList<Uri>?, tag: String?) {
-        uriList?.forEach {
-            LogUtil.e("$it")
-        }
+        (recycler_photo.adapter as RecyclerPhotosAdapter).addItems(uriList)
     }
 }
