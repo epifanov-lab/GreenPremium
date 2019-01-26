@@ -5,7 +5,6 @@ import com.lab.greenpremium.data.network.DefaultCallbackListener
 import com.lab.greenpremium.data.repo.Repository
 import io.reactivex.Observable
 import javax.inject.Inject
-import kotlin.collections.ArrayList
 
 class MessagePresenter @Inject constructor(val view: MessageContract.View) : MessageContract.Presenter {
 
@@ -16,7 +15,6 @@ class MessagePresenter @Inject constructor(val view: MessageContract.View) : Mes
 
     private var theme: String? = null
     private var message: String? = null
-    private var photos: List<String>? = ArrayList()
     private var rating: Int = 5
 
     override fun onViewCreated(type: MessageScreenType) {
@@ -52,10 +50,10 @@ class MessagePresenter @Inject constructor(val view: MessageContract.View) : Mes
         }
 
         when(type) {
-            MessageScreenType.NEW_PROJECT -> repository.addProjects(message!!, photos!!, listener)
-            MessageScreenType.LETTER -> repository.addMessageRequest(theme!!, message!!, photos!!, listener)
+            MessageScreenType.NEW_PROJECT -> repository.addProjects(message!!, view.getPreparedPhotosList(), listener)
+            MessageScreenType.LETTER -> repository.addMessageRequest(theme!!, message!!, view.getPreparedPhotosList(), listener)
             MessageScreenType.RATING -> repository.addRating(rating, message!!, listener)
-            MessageScreenType.COMPLAIN -> repository.addClaim(message!!, photos!!, listener)
+            MessageScreenType.COMPLAIN -> repository.addClaim(message!!, view.getPreparedPhotosList(), listener)
         }
     }
 

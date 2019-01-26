@@ -1,8 +1,15 @@
 package com.lab.greenpremium.utills
 
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.net.Uri
+import android.util.Base64
 import android.view.View
 import android.view.ViewGroup
+import com.lab.greenpremium.PHOTO_FOR_JSON_COMPRESSION_QUALITY
 import com.lab.greenpremium.data.network.ApiError
+import java.io.ByteArrayOutputStream
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.ParseException
@@ -82,4 +89,20 @@ fun getMonthStringFromTimestamp(timestamp: Long): String {
     val calendar = Calendar.getInstance()
     calendar.time = Date(timestamp)
     return ruMonthNames[calendar.get(Calendar.MONTH)]
+}
+
+private fun getStringFromBitmap(bitmapPicture: Bitmap): String {
+    val encodedImage: String
+    val byteArrayBitmapStream = ByteArrayOutputStream()
+    bitmapPicture.compress(Bitmap.CompressFormat.PNG, PHOTO_FOR_JSON_COMPRESSION_QUALITY,
+            byteArrayBitmapStream)
+    val b = byteArrayBitmapStream.toByteArray()
+    encodedImage = Base64.encodeToString(b, Base64.DEFAULT)
+    return encodedImage
+}
+
+fun getEncodedStringFromUri(context: Context, uri: Uri): String {
+    val imageStream = context.contentResolver.openInputStream(uri)
+    val selectedImage = BitmapFactory.decodeStream(imageStream)
+    return getStringFromBitmap(selectedImage)
 }

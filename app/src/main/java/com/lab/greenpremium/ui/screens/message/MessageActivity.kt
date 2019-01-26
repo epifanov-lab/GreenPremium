@@ -76,7 +76,8 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnMu
         recycler_photo.adapter = RecyclerPhotosAdapter(resources.getDimensionPixelSize(R.dimen.view_add_photo_size),
                 object : AddPhotoViewListener {
                     override fun onClickDelete(index: Int) {
-                        (recycler_photo.adapter as RecyclerPhotosAdapter).removeItem(index)
+                        val adapter = recycler_photo.adapter as RecyclerPhotosAdapter
+                        adapter.removeItem(index)
                     }
 
                     override fun onClickPhoto(index: Int) {
@@ -101,6 +102,12 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnMu
     }
 
     override fun onMultiImageSelected(uriList: MutableList<Uri>?, tag: String?) {
-        (recycler_photo.adapter as RecyclerPhotosAdapter).addItems(uriList)
+        val adapter = recycler_photo.adapter as RecyclerPhotosAdapter
+        adapter.addItems(uriList)
+    }
+
+    override fun getPreparedPhotosList(): List<String> {
+        val adapter = recycler_photo.adapter as RecyclerPhotosAdapter
+        return adapter.getListEncodedList(applicationContext)
     }
 }

@@ -11,6 +11,8 @@ interface MessageContract {
         fun setSendButtonEnabled(isEnabled: Boolean)
         fun InitializeRecyclerPhotos()
         fun showPhotoPickerDialog()
+
+        fun getPreparedPhotosList() : List<String>
     }
 
     interface Presenter {

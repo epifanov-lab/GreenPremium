@@ -11,6 +11,7 @@ import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.lab.greenpremium.R
+import com.lab.greenpremium.utills.getEncodedStringFromUri
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.view_added_photo.view.*
 
@@ -56,9 +57,14 @@ class RecyclerPhotosAdapter(private val photoViewSize: Int,
         return list[position]
     }
 
+
     fun removeItem(position: Int) {
         list.removeAt(position)
         notifyDataSetChanged()
+    }
+
+    fun getListEncodedList(context: Context): List<String> {
+        return list.subList(0, list.lastIndex).map { wrapper -> getEncodedStringFromUri(context, wrapper.uri) }
     }
 
     class ViewHolder(val view: AddedPhotoView) : RecyclerView.ViewHolder(view)
