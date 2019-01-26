@@ -51,8 +51,8 @@ class MapFragment : BaseFragment(), MapContract.View {
         presenter.onViewCreated()
 
         map.map.move(
-                CameraPosition(GP_OFFICE_POINT, 12.0f, 0.0f, 0.0f),
-                Animation(Animation.Type.SMOOTH, 0f),
+                CameraPosition(GP_OFFICE_POINT, 15.0f, 0.0f, 0.0f),
+                Animation(Animation.Type.SMOOTH, 2f),
                 null)
     }
 
