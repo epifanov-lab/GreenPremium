@@ -9,8 +9,11 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.data.BaseEvent
 import com.lab.greenpremium.data.ProductPaginationStateChanging
 import com.lab.greenpremium.data.entity.Product
+import com.lab.greenpremium.ui.dialog.RadioButtonPickerDialog
+import com.lab.greenpremium.ui.dialog.RadioButtonPickerDialog.Companion.show
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.ui.screens.base.BaseFragment
+import com.lab.greenpremium.utills.LogUtil
 import kotlinx.android.synthetic.main.sub_fragment_plants.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -61,6 +64,17 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
                     override fun onRecyclerBottomReached(size: Int) {
                         presenter.onProductsRecyclerBottomReached(size)
                     }
+
+                    override fun onClickHeightSelector(product: Product) {
+                        val items = product.offers
+                        show(this@PlantsSubFragment.context!!, items, 0, //todo def index
+                                object : RadioButtonPickerDialog.PickerListener {
+                                    override fun <T> onItemPicked(item: T) {
+                                        LogUtil.e("$item")
+                                    }
+                                }
+                        )
+                    }
                 })
     }
 
@@ -75,9 +89,11 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: BaseEvent) {
         when (event::class) {
+
             ProductPaginationStateChanging::class -> {
                 presenter.onProductPaginationStateChanged((event as ProductPaginationStateChanging).enabled)
             }
+
         }
     }
 

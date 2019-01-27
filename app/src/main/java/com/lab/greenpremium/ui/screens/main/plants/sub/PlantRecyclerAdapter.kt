@@ -1,6 +1,7 @@
 package com.lab.greenpremium.ui.screens.main.plants.sub
 
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import android.view.ViewGroup
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.components.item.PlantItemView
@@ -40,6 +41,8 @@ class PlantRecyclerAdapter(private val list: List<Product>,
 
         if (position == list.lastIndex) listener?.onRecyclerBottomReached(list.size)
 
+        holder.view.setHeightSelectorListener(View.OnClickListener { listener?.onClickHeightSelector(list[position]) })
+
     }
 
     override fun getItemCount(): Int {
@@ -51,5 +54,6 @@ class PlantRecyclerAdapter(private val list: List<Product>,
     interface PlantsRecyclerListener {
         fun onProductSelected(product: Product)
         fun onRecyclerBottomReached(size: Int)
+        fun onClickHeightSelector(product: Product) {}
     }
 }

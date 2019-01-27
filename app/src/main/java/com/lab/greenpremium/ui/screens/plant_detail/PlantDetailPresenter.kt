@@ -6,7 +6,7 @@ import com.lab.greenpremium.data.network.DefaultCallbackListener
 import com.lab.greenpremium.data.repo.Repository
 import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.currencyFormat
-import com.lab.greenpremium.utills.eventbus.CartUpdatedEvent
+import com.lab.greenpremium.data.CartUpdatedEvent
 import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
 

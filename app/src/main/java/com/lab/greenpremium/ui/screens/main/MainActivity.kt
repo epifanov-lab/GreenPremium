@@ -24,8 +24,8 @@ import com.lab.greenpremium.ui.screens.main.plants.PlantsFragment
 import com.lab.greenpremium.ui.screens.main.portfolio.PortfolioFragment
 import com.lab.greenpremium.ui.screens.main.profile.ProfileFragment
 import com.lab.greenpremium.ui.screens.message.MessageScreenType
-import com.lab.greenpremium.utills.eventbus.BaseEvent
-import com.lab.greenpremium.utills.eventbus.ProductQuantityChangedEvent
+import com.lab.greenpremium.data.BaseEvent
+import com.lab.greenpremium.data.ProductQuantityChangedEvent
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe

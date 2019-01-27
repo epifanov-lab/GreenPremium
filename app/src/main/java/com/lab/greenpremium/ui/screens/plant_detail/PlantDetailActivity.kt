@@ -11,8 +11,8 @@ import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.data.entity.getPhotosUrls
 import com.lab.greenpremium.ui.components.item.PlantItemCountControlsHelper
 import com.lab.greenpremium.ui.screens.base.BaseActivity
-import com.lab.greenpremium.utills.eventbus.BaseEvent
-import com.lab.greenpremium.utills.eventbus.ProductQuantityChangedEvent
+import com.lab.greenpremium.data.BaseEvent
+import com.lab.greenpremium.data.ProductQuantityChangedEvent
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_plant_detail.*
 import kotlinx.android.synthetic.main.view_plant_photos_preview.*

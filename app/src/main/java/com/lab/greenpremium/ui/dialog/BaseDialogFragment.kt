@@ -15,7 +15,7 @@ import com.lab.greenpremium.R
 abstract class BaseDialogFragment : DialogFragment() {
 
     private val dialogBuilder: AlertDialog.Builder
-        get() = AlertDialog.Builder(activity, R.style.TransparentDialogFragment)
+        get() = AlertDialog.Builder(activity, R.style.Base_Theme_MaterialComponents_Dialog)
 
     protected abstract fun layoutResId(): Int
     protected abstract fun initViews()
@@ -31,8 +31,7 @@ abstract class BaseDialogFragment : DialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        val dialog = dialog
-        dialog?.window?.setLayout(WRAP_CONTENT, WRAP_CONTENT)
+        dialog.window?.setLayout(WRAP_CONTENT, WRAP_CONTENT)
         dialog.window?.setGravity(Gravity.CENTER)
         dialog.setCanceledOnTouchOutside(true)
     }

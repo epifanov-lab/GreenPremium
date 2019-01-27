@@ -11,10 +11,10 @@ import android.widget.RelativeLayout
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.ProductQuantityChangedEvent
 import com.lab.greenpremium.data.entity.Offer
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.utills.currencyFormat
-import com.lab.greenpremium.utills.eventbus.ProductQuantityChangedEvent
 import kotlinx.android.synthetic.main.view_item_plant.view.*
 import org.greenrobot.eventbus.EventBus
 
@@ -68,7 +68,6 @@ class PlantItemView : RelativeLayout {
             else -> ""
         }
 
-
         text_info_2.text =
                 when {
                     isLargePlant -> when (type) {
@@ -97,7 +96,11 @@ class PlantItemView : RelativeLayout {
     private fun showHeightSelector(enabled: Boolean) {
         height_selector.visibility = if (enabled) View.VISIBLE else View.GONE
         space.visibility = if (enabled) View.VISIBLE else View.GONE
-        if (enabled) height_selector.text = "${offer.height.value}м"
+        if (enabled) height_selector.text = "${offer.height.value}"
+    }
+
+    fun setHeightSelectorListener(listener: OnClickListener) {
+        height_selector.setOnClickListener(listener)
     }
 
     fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {

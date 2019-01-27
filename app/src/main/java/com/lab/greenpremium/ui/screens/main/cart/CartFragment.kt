@@ -11,8 +11,8 @@ import com.lab.greenpremium.ui.screens.base.BaseFragment
 import com.lab.greenpremium.ui.screens.main.MainActivity
 import com.lab.greenpremium.ui.screens.main.plants.sub.PlantRecyclerAdapter
 import com.lab.greenpremium.utills.currencyFormat
-import com.lab.greenpremium.utills.eventbus.BaseEvent
-import com.lab.greenpremium.utills.eventbus.CartUpdatedEvent
+import com.lab.greenpremium.data.BaseEvent
+import com.lab.greenpremium.data.CartUpdatedEvent
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.fragment_cart.*
 import org.greenrobot.eventbus.EventBus
