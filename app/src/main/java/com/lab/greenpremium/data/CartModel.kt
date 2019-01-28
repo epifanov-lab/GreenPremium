@@ -21,8 +21,8 @@ object CartModel {
         catalog?.sections?.forEach iterator@ { sections ->
             sections.products?.forEach { catalogProduct ->
 
-                val offerFromCart = cartProduct.getChosenOffer()
-                val offerFromCatalog = catalogProduct.getChosenOffer()
+                val offerFromCart = cartProduct.getSelectedOffer() // TODO check, maybe need fix
+                val offerFromCatalog = catalogProduct.getSelectedOffer()
 
                 if (offerFromCatalog.product_id == offerFromCart.product_id) {
                     catalogProduct.quantity = cartProduct.quantity
@@ -48,8 +48,8 @@ object CartModel {
     fun syncFavoritesWithCartByProduct(other: Product) {
         favorites?.forEach {favoriteProduct ->
 
-            val offerFromCart = other.getChosenOffer()
-            val offerFromFavorites = favoriteProduct.getChosenOffer()
+            val offerFromCart = other.getSelectedOffer()
+            val offerFromFavorites = favoriteProduct.getSelectedOffer()
 
             if (offerFromFavorites.product_id == offerFromCart.product_id) {
                 favoriteProduct.quantity = other.quantity
@@ -62,8 +62,8 @@ object CartModel {
     fun syncCatalogWithFavoritesByProduct(other: Product) {
         catalog?.sections?.forEach {sections ->
             sections.products?.forEach { catalogProduct ->
-                val offerFromCatalog = catalogProduct.getChosenOffer()
-                val offerFromFavorites = other.getChosenOffer()
+                val offerFromCatalog = catalogProduct.getSelectedOffer()
+                val offerFromFavorites = other.getSelectedOffer()
 
                 if (offerFromCatalog.product_id == offerFromFavorites.product_id) {
                     catalogProduct.isFavorite = true

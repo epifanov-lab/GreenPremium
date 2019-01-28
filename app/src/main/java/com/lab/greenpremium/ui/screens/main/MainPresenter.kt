@@ -19,7 +19,7 @@ class MainPresenter @Inject constructor(val view: MainContract.View) : MainContr
     }
 
     override fun onProductQuantityChanged(product: Product) {
-        repository.addToCart(product.getChosenOffer().product_id, product.quantity, object : DefaultCallbackListener(view) {
+        repository.addToCart(product.getSelectedOffer().product_id, product.quantity, object : DefaultCallbackListener(view) {
             override fun onSuccess() {
                 CartModel.cart?.let {
                     this@MainPresenter.view.updateCartIndicator(CartModel.cart!!.products.size)

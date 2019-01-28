@@ -14,12 +14,13 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.data.ProductQuantityChangedEvent
 import com.lab.greenpremium.data.entity.Offer
 import com.lab.greenpremium.data.entity.Product
+import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.currencyFormat
 import kotlinx.android.synthetic.main.view_item_plant.view.*
 import org.greenrobot.eventbus.EventBus
 
 
-class PlantItemView : RelativeLayout {
+class PlantItemView : RelativeLayout, Product.Listener {
 
     enum class PlantViewType {
         CATALOG, // Есть возможность выбора высоты, в случае, если несколько офферов.
@@ -29,6 +30,7 @@ class PlantItemView : RelativeLayout {
     private lateinit var product: Product
     private lateinit var offer: Offer
     lateinit var type: PlantViewType
+    lateinit var helper: PlantItemCountControlsHelper
 
     constructor(context: Context) : this(context, null)
 
@@ -39,8 +41,9 @@ class PlantItemView : RelativeLayout {
     }
 
     fun setData(product: Product, type: PlantViewType, isDemo: Boolean) {
+        product.listener = this
+        this.offer = product.offers[product.selectedOfferPosition]
         this.product = product
-        this.offer = product.offers[0]
         this.type = type
 
         text_name.text = product.name
@@ -51,13 +54,19 @@ class PlantItemView : RelativeLayout {
                     .into(image)
         }
 
-        updateViewByType()
+        updateViewByType(product.selectedOfferPosition)
 
         container_controls.visibility = if (isDemo) View.GONE else View.VISIBLE
-        if (!isDemo) PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
+        if (!isDemo) {
+            helper = PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
+        }
     }
 
-    private fun updateViewByType() {
+    private fun updateViewByType(selectedOfferIndex: Int) {
+        LogUtil.e("OFFER_BEFORE: ${product.selectedOfferPosition} $offer")
+        this.offer = product.offers[selectedOfferIndex]
+        LogUtil.e("OFFER_AFTER: $selectedOfferIndex $offer")
+
         showHeightSelector(false)
         val isLargePlant = offer.height != null && offer.crown_width != null
         val isStandartPlant = offer.plant_size != null && offer.item_height != null && offer.pot_count != null && offer.pot_size != null
@@ -101,6 +110,11 @@ class PlantItemView : RelativeLayout {
 
     fun setHeightSelectorListener(listener: OnClickListener) {
         height_selector.setOnClickListener(listener)
+    }
+
+    override fun onSelectedOfferPositionChanged(position: Int) {
+        updateViewByType(position)
+        helper?.updateCounters()
     }
 
     fun setMargins(left: Int, top: Int, right: Int, bottom: Int) {
@@ -164,12 +178,16 @@ class PlantItemCountControlsHelper(val product: Product,
             }
         }
 
-        setCounter(product.quantity)
+        updateCounters()
+    }
+
+    fun updateCounters() {
+        setCounter(product.getSelectedOffer().quantity)
     }
 
     private fun setCounter(n: Int) {
         if (n >= 0 && product.quantity != n) {
-            product.quantity = n
+            product.getSelectedOffer().quantity = n
             EventBus.getDefault().post(ProductQuantityChangedEvent(product))
         }
 

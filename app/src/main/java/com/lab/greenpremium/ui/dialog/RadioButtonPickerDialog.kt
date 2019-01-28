@@ -2,10 +2,12 @@ package com.lab.greenpremium.ui.dialog
 
 import android.app.Activity
 import android.content.Context
+import android.os.Handler
 import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.RadioButton
 import android.widget.RadioGroup
+import com.lab.greenpremium.CLICK_ACTION_THRESHOLD
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Offer
 import com.lab.greenpremium.utills.LogUtil
@@ -18,7 +20,7 @@ class RadioButtonPickerDialog<T> : BaseDialogFragment() {
     var defIndex: Int? = null
 
     interface PickerListener {
-        fun <T> onItemPicked(item: T)
+        fun <T> onItemPicked(index: Int, item: T)
     }
 
     override fun layoutResId(): Int {
@@ -49,8 +51,20 @@ class RadioButtonPickerDialog<T> : BaseDialogFragment() {
                 val button = rbView.findViewById<RadioButton>(R.id.radio_button)
                 button.id = index + 100
                 button.text = getItemTitle(item)
+
+                button.setOnCheckedChangeListener { button, checked ->
+                    button.setButtonDrawable(if (checked) R.drawable.ic_circle_checked else R.drawable.ic_circle_unchecked)
+                    if (checked) {
+                        listener?.onItemPicked(index, item)
+                        Handler().postDelayed({ this@RadioButtonPickerDialog.dismiss() },
+                                CLICK_ACTION_THRESHOLD.toLong())
+                    }
+                }
+
                 group.addView(button)
             }
+
+
         }
 
     }

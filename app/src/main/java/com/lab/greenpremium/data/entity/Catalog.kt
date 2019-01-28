@@ -31,12 +31,30 @@ data class Product(
         val gallery: List<Photo>,
         val photo: Photo,
 
-        var selectedOfferPosition: Int = 0,
-        var isFavorite: Boolean = false,
-        var quantity: Int = 0
+        var isFavorite: Boolean = false
+
 ) : Serializable {
 
-    fun getChosenOffer(): Offer {
+    interface Listener {
+        fun onSelectedOfferPositionChanged(position: Int)
+    }
+
+    var listener: Listener? = null
+
+    var selectedOfferPosition: Int = 0
+        set (value) {
+            listener?.onSelectedOfferPositionChanged(value)
+            field = value
+        }
+
+    var quantity: Int = 0
+        get() = getSelectedOffer().quantity
+        set(value) {
+            getSelectedOffer().quantity = value
+            field = value
+        }
+
+    fun getSelectedOffer(): Offer {
         return offers[selectedOfferPosition]
     }
 
@@ -65,7 +83,9 @@ data class Offer(
         val item_height: OfferParam,
         val plant_size: OfferParam,
         val pot_count: OfferParam,
-        val pot_size: OfferParam
+        val pot_size: OfferParam,
+
+        var quantity: Int = 0
 ) : Serializable {
 
     fun getParams(): Array<OfferParam?> {

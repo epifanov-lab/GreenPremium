@@ -26,6 +26,7 @@ import com.lab.greenpremium.ui.screens.main.profile.ProfileFragment
 import com.lab.greenpremium.ui.screens.message.MessageScreenType
 import com.lab.greenpremium.data.BaseEvent
 import com.lab.greenpremium.data.ProductQuantityChangedEvent
+import com.lab.greenpremium.utills.LogUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
@@ -190,6 +191,7 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: BaseEvent) {
+        LogUtil.e("EVENT_CATCH: $event")
         when (event) {
             is ProductQuantityChangedEvent -> presenter.onProductQuantityChanged(event.product)
         }

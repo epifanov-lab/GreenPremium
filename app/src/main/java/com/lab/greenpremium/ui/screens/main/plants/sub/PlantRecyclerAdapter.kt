@@ -56,4 +56,5 @@ class PlantRecyclerAdapter(private val list: List<Product>,
         fun onRecyclerBottomReached(size: Int)
         fun onClickHeightSelector(product: Product) {}
     }
+
 }

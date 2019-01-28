@@ -20,7 +20,7 @@ class PlantDetailPresenter @Inject constructor(val view: PlantDetailContract.Vie
     override fun onViewCreated(product: Product) {
         LogUtil.e("PLANT_DETAIL: $product")
         this.product = product
-        val offer = product.getChosenOffer()
+        val offer = product.getSelectedOffer()
 
         view.setTitle(product.name)
         view.setPhoto(product.photo)
@@ -42,7 +42,7 @@ class PlantDetailPresenter @Inject constructor(val view: PlantDetailContract.Vie
     }
 
     override fun onProductQuantityChanged(product: Product) {
-        repository.addToCart(product.getChosenOffer().product_id, product.quantity, object : DefaultCallbackListener(view) {
+        repository.addToCart(product.getSelectedOffer().product_id, product.quantity, object : DefaultCallbackListener(view) {
             override fun onSuccess() {
                 CartModel.syncCatalogWithCartByProduct(product)
                 EventBus.getDefault().post(CartUpdatedEvent())
