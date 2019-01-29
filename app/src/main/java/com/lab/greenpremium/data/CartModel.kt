@@ -7,6 +7,8 @@ import com.lab.greenpremium.data.entity.Product
 
 object CartModel {
 
+    //TODO REFACTOR THIS! need to be one common pool of products!!!
+
     var cart: CartResponse? = null
     var favorites: MutableList<Product>? = null
     var catalog: CatalogSectionsResponse? = null
@@ -21,11 +23,11 @@ object CartModel {
         catalog?.sections?.forEach iterator@ { sections ->
             sections.products?.forEach { catalogProduct ->
 
-                val offerFromCart = cartProduct.getSelectedOffer() // TODO check, maybe need fix
                 val offerFromCatalog = catalogProduct.getSelectedOffer()
+                val offerFromCart = cartProduct.getSelectedOffer()
 
                 if (offerFromCatalog.product_id == offerFromCart.product_id) {
-                    catalogProduct.quantity = cartProduct.quantity
+                    offerFromCatalog.quantity = offerFromCart.quantity
                     return@iterator
                 }
 
@@ -34,48 +36,38 @@ object CartModel {
     }
 
     fun syncFavoritesWithCart() {
-        cart?.products?.forEach{
-            syncFavoritesWithCartByProduct(it)
-        }
-    }
+        cart?.products?.forEach{cartProduct ->
+            favorites?.forEach {favoriteProduct ->
 
-    fun syncCatalogWithFavorites() {
-        favorites?.forEach {
-            syncCatalogWithFavoritesByProduct(it)
-        }
-    }
+                val offerFromCart = cartProduct.getSelectedOffer()
+                val offerFromFavorites = favoriteProduct.getSelectedOffer()
 
-    fun syncFavoritesWithCartByProduct(other: Product) {
-        favorites?.forEach {favoriteProduct ->
-
-            val offerFromCart = other.getSelectedOffer()
-            val offerFromFavorites = favoriteProduct.getSelectedOffer()
-
-            if (offerFromFavorites.product_id == offerFromCart.product_id) {
-                favoriteProduct.quantity = other.quantity
-            }
-        }
-    }
-
-    //TODO REFACTOR THIS! need to be one common pool of products!!!
-
-    fun syncCatalogWithFavoritesByProduct(other: Product) {
-        catalog?.sections?.forEach {sections ->
-            sections.products?.forEach { catalogProduct ->
-                val offerFromCatalog = catalogProduct.getSelectedOffer()
-                val offerFromFavorites = other.getSelectedOffer()
-
-                if (offerFromCatalog.product_id == offerFromFavorites.product_id) {
-                    catalogProduct.isFavorite = true
+                if (offerFromFavorites.product_id == offerFromCart.product_id) {
+                    offerFromFavorites.quantity = offerFromCart.quantity
                 }
             }
         }
     }
 
+    fun syncCatalogWithFavorites() {
+        favorites?.forEach {favoriteProduct ->
+            catalog?.sections?.forEach {sections ->
+                sections.products?.forEach { catalogProduct ->
+
+                    val offerFromCatalog = catalogProduct.getSelectedOffer()
+                    val offerFromFavorites = favoriteProduct.getSelectedOffer()
+
+                    if (offerFromCatalog.product_id == offerFromFavorites.product_id) {
+                        catalogProduct.isFavorite = true
+                    }
+                }
+            }
+        }
+    }
 
     fun getCartTotalCost(): Double {
         var result = 0.0
-        cart?.products?.forEach { result += it.offers[0].price * it.quantity }
+        cart?.products?.forEach { result += it.getSelectedOffer().price * it.getSelectedOffer().quantity }
         return result
     }
 

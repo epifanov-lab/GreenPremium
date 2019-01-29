@@ -54,7 +54,7 @@ class PlantItemView : RelativeLayout, Product.Listener {
                     .into(image)
         }
 
-        updateViewByType(product.selectedOfferPosition)
+        updateViewByType()
 
         container_controls.visibility = if (isDemo) View.GONE else View.VISIBLE
         if (!isDemo) {
@@ -62,10 +62,8 @@ class PlantItemView : RelativeLayout, Product.Listener {
         }
     }
 
-    private fun updateViewByType(selectedOfferIndex: Int) {
-        LogUtil.e("OFFER_BEFORE: ${product.selectedOfferPosition} $offer")
-        this.offer = product.offers[selectedOfferIndex]
-        LogUtil.e("OFFER_AFTER: $selectedOfferIndex $offer")
+    private fun updateViewByType() {
+        this.offer = product.getSelectedOffer()
 
         showHeightSelector(false)
         val isLargePlant = offer.height != null && offer.crown_width != null
@@ -113,7 +111,7 @@ class PlantItemView : RelativeLayout, Product.Listener {
     }
 
     override fun onSelectedOfferPositionChanged(position: Int) {
-        updateViewByType(position)
+        updateViewByType()
         helper?.updateCounters()
     }
 
@@ -147,7 +145,7 @@ class PlantItemCountControlsHelper(val product: Product,
     init {
 
         add.run {
-            setOnClickListener { setCounter(product.quantity + 1) }
+            setOnClickListener { setCounter(product.getSelectedOffer().quantity + 1) }
             setOnLongClickListener {
                 isIncrementing = true
                 repeatUpdateHandler.post(RptUpdater())
@@ -163,7 +161,7 @@ class PlantItemCountControlsHelper(val product: Product,
         }
 
         remove.run {
-            setOnClickListener { setCounter(product.quantity - 1) }
+            setOnClickListener { setCounter(product.getSelectedOffer().quantity - 1) }
             setOnLongClickListener {
                 isDecrementing = true
                 repeatUpdateHandler.post(RptUpdater())
@@ -191,17 +189,17 @@ class PlantItemCountControlsHelper(val product: Product,
             EventBus.getDefault().post(ProductQuantityChangedEvent(product))
         }
 
-        counter.text = product.quantity.toString()
+        counter.text = product.getSelectedOffer().quantity.toString()
     }
 
     inner class RptUpdater : Runnable {
         override fun run() {
             if (isIncrementing) {
-                setCounter(product.quantity + 1)
+                setCounter(product.getSelectedOffer().quantity + 1)
                 repeatUpdateHandler.postDelayed(RptUpdater(), 100)
 
             } else if (isDecrementing) {
-                setCounter(product.quantity - 1)
+                setCounter(product.getSelectedOffer().quantity - 1)
                 repeatUpdateHandler.postDelayed(RptUpdater(), 100)
             }
         }

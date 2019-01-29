@@ -30,6 +30,7 @@ data class Product(
         val offers: List<Offer>,
         val gallery: List<Photo>,
         val photo: Photo,
+        var quantity: Int,
 
         var isFavorite: Boolean = false
 
@@ -43,15 +44,8 @@ data class Product(
 
     var selectedOfferPosition: Int = 0
         set (value) {
+            field = value
             listener?.onSelectedOfferPositionChanged(value)
-            field = value
-        }
-
-    var quantity: Int = 0
-        get() = getSelectedOffer().quantity
-        set(value) {
-            getSelectedOffer().quantity = value
-            field = value
         }
 
     fun getSelectedOffer(): Offer {
