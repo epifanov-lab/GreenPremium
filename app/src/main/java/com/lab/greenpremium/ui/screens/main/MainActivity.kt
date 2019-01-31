@@ -26,6 +26,7 @@ import com.lab.greenpremium.ui.screens.main.profile.ProfileFragment
 import com.lab.greenpremium.ui.screens.message.MessageScreenType
 import com.lab.greenpremium.data.BaseEvent
 import com.lab.greenpremium.data.ProductQuantityChangedEvent
+import com.lab.greenpremium.ui.components.Listener
 import com.lab.greenpremium.utills.LogUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
@@ -125,8 +126,11 @@ class MainActivity : BaseActivity(), MainContract.View {
         }
 
         button_logout.setOnClickListener {
-            //TODO "Вы действительно хотите выйти?
-            presenter.onClickLogout()
+            showDialogQuestion(R.string.dialog_on_logout, object : Listener {
+                override fun onEvent() {
+                    presenter.onClickLogout()
+                }
+            })
         }
 
         activateFabMenu(true)
@@ -212,7 +216,11 @@ class MainActivity : BaseActivity(), MainContract.View {
     }
 
     override fun onBackPressed() {
-        finishAffinity()
+        showDialogQuestion(R.string.dialog_on_logout, object : Listener {
+            override fun onEvent() {
+                finishAffinity()
+            }
+        })
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

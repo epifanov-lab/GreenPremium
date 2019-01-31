@@ -76,5 +76,10 @@ object CartModel {
         favorites = null
         catalog = null
     }
+
+    fun clearCart() {
+        cart?.let { CartModel.cart!!.products.clear() }
+        syncCatalogWithCart()
+    }
 }
 

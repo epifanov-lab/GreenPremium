@@ -28,7 +28,7 @@ class CartPresenter @Inject constructor(val view: CartContract.View) : CartContr
     override fun onClickBillRequest() {
         repository.makeOrder(object : DefaultCallbackListener(view) {
             override fun onSuccess(item: Serializable?) {
-                CartModel.cart?.let { CartModel.cart!!.products.clear() }
+                CartModel.clearCart()
                 this@CartPresenter.view.updateTotalCost(0.0)
                 this@CartPresenter.view.onBillRequestSuccess((item as MakeOrderResponse).message)
             }

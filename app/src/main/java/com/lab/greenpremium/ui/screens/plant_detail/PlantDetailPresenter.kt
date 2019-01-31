@@ -38,6 +38,11 @@ class PlantDetailPresenter @Inject constructor(val view: PlantDetailContract.Vie
             override fun onSuccess() {
                 this@PlantDetailPresenter.view.updateFavoriteButtonState(product.isFavorite)
             }
+
+            override fun onError(throwable: Throwable) {
+                super.onError(throwable)
+                product.changeFavoriteState()
+            }
         })
     }
 

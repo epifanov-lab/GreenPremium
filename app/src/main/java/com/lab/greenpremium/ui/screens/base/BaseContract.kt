@@ -11,6 +11,7 @@ interface BaseContract {
         fun finishWithMessage(message: String?)
         fun showDialogMessage(text: String?, textResId: Int?, listener: Listener?)
         fun finishWithResult(result: Int)
+        fun showDialogQuestion(textResId: Int?, listener: Listener?)
     }
 
     interface BasePresenter

@@ -66,8 +66,8 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
                         item?.let {
 
                             val tempProduct = it as Product
+                            tempProduct.getSelectedOffer().sync(product.getSelectedOffer())
                             tempProduct.isFavorite = product.isFavorite
-                            tempProduct.getSelectedOffer().quantity = product.getSelectedOffer().quantity
                             this@PlantsSubPresenter.view.goToDetails(tempProduct)
 
                         }

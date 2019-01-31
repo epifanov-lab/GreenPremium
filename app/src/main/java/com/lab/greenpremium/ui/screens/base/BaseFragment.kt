@@ -41,6 +41,10 @@ abstract class BaseFragment : Fragment(), BaseContract.BaseView {
         (activity as BaseActivity).showDialogMessage(text, textResId, listener)
     }
 
+    override fun showDialogQuestion(textResId: Int?, listener: Listener?) {
+        (activity as BaseActivity).showDialogQuestion(textResId, listener)
+    }
+
     override fun showLoadingDialog(show: Boolean) {
         (activity as BaseActivity).showLoadingDialog(show)
     }

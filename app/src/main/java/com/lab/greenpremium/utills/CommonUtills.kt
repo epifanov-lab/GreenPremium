@@ -55,7 +55,7 @@ fun getErrorMessage(throwable: Throwable): String? {
     return (throwable as? ApiError)?.title ?: throwable.message
 }
 
-fun getTimestampFromDateString(dateString: String?, dateFormat: SimpleDateFormat = SimpleDateFormat("dd-mm-yyyy hh:mm:ss", Locale.getDefault())): Long? {
+fun getTimestampFromDateString(dateString: String?, dateFormat: SimpleDateFormat = SimpleDateFormat("dd-MM-yyyy hh:mm:ss", Locale.getDefault())): Long? {
 
     if (dateString == null) return null
 
@@ -84,8 +84,8 @@ fun geDayFromTimestamp(timestamp: Long): String {
 }
 
 fun getMonthStringFromTimestamp(timestamp: Long): String {
-    val ruMonthNames = arrayOf("Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
-            "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь")
+    val ruMonthNames = arrayOf("Января", "Февраля", "Марта", "Апреля", "Мая", "Июня",
+            "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря")
     val calendar = Calendar.getInstance()
     calendar.time = Date(timestamp)
     return ruMonthNames[calendar.get(Calendar.MONTH)]

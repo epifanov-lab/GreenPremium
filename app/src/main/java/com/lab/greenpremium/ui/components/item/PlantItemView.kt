@@ -59,6 +59,7 @@ class PlantItemView : RelativeLayout, Product.Listener {
         container_controls.visibility = if (isDemo) View.GONE else View.VISIBLE
         if (!isDemo) {
             helper = PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
+            container_controls.setOnTouchListener { v, event -> true }
         }
     }
 
@@ -184,7 +185,7 @@ class PlantItemCountControlsHelper(val product: Product,
     }
 
     private fun setCounter(n: Int) {
-        if (n >= 0 && product.quantity != n) {
+        if (n >= 0 && product.getSelectedOffer().quantity != n) {
             product.getSelectedOffer().quantity = n
             EventBus.getDefault().post(ProductQuantityChangedEvent(product))
         }

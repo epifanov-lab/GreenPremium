@@ -27,13 +27,11 @@ data class Product(
         val name: String,
         val sort: String,
         val detail_text: String,
-        val offers: List<Offer>,
+        var offers: List<Offer>,
         val gallery: List<Photo>,
         val photo: Photo,
         var quantity: Int,
-
         var isFavorite: Boolean = false
-
 ) : Serializable {
 
     interface Listener {
@@ -52,32 +50,32 @@ data class Product(
         return offers[selectedOfferPosition]
     }
 
-    fun changeFavoriteState() {
-        isFavorite = !isFavorite
-    }
-
     fun getGalleryUrlsList(): ArrayList<String> {
         val result = arrayListOf<String>()
         gallery.forEach { result.add(it.url) }
         return result
     }
 
+    fun changeFavoriteState() {
+        isFavorite = !isFavorite
+    }
+
 }
 
 data class Offer(
-        val product_id: Int,
-        val price: Double,
-        val old_price: Double?,
+        var product_id: Int,
+        var price: Double,
+        var old_price: Double?,
 
         //Только у крупномеров
-        val height: OfferParam,
-        val crown_width: OfferParam,
+        var height: OfferParam,
+        var crown_width: OfferParam,
 
         //У остальных
-        val item_height: OfferParam,
-        val plant_size: OfferParam,
-        val pot_count: OfferParam,
-        val pot_size: OfferParam,
+        var item_height: OfferParam,
+        var plant_size: OfferParam,
+        var pot_count: OfferParam,
+        var pot_size: OfferParam,
 
         var quantity: Int = 0
 ) : Serializable {
@@ -86,6 +84,19 @@ data class Offer(
         return arrayOf(height, crown_width,
                 item_height, plant_size,
                 pot_count, pot_size)
+    }
+
+    fun sync(other: Offer) {
+        this.product_id = other.product_id
+        this.price = other.price
+        this.old_price = other.old_price
+        this.height = other.height
+        this.crown_width = other.crown_width
+        this.item_height = other.item_height
+        this.plant_size = other.plant_size
+        this.pot_count = other.pot_count
+        this.pot_size = other.pot_size
+        this.quantity = other.quantity
     }
 }
 

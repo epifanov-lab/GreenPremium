@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.activity_message.*
 import javax.inject.Inject
 
 
-class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnMultiImageSelectedListener {
+class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnSingleImageSelectedListener {
 
     @Inject
     internal lateinit var presenter: MessagePresenter
@@ -91,20 +91,25 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnMu
     }
 
     override fun showPhotoPickerDialog() {
-        BSImagePicker.Builder("com.yourdomain.yourpackage.fileprovider")
-                .isMultiSelect()
-                .setMinimumMultiSelectCount(1)
-                .setMaximumMultiSelectCount(9)
-                .setMultiSelectBarBgColor(android.R.color.white)
-                .disableOverSelectionMessage()
+        BSImagePicker.Builder("com.lab.greenpremium.fileprovider")
+                .setMaximumDisplayingImages(24) //Default: Integer.MAX_VALUE. Don't worry about performance :)
+                .setSpanCount(3) //Default: 3. This is the number of columns
+                .hideGalleryTile()
                 .build()
                 .show(supportFragmentManager, "photo_picker")
     }
 
+    override fun onSingleImageSelected(uri: Uri?, tag: String?) {
+        val adapter = recycler_photo.adapter as RecyclerPhotosAdapter
+        adapter.addItem(uri)
+    }
+
+    /*
     override fun onMultiImageSelected(uriList: MutableList<Uri>?, tag: String?) {
         val adapter = recycler_photo.adapter as RecyclerPhotosAdapter
         adapter.addItems(uriList)
     }
+    */
 
     override fun getPreparedPhotosList(): List<String> {
         val adapter = recycler_photo.adapter as RecyclerPhotosAdapter

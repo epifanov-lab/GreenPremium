@@ -46,6 +46,11 @@ class RecyclerPhotosAdapter(private val photoViewSize: Int,
         return list.size
     }
 
+    fun addItem(uri: Uri?) {
+        uri?.let { this.list.add(0, PhotoUriWrapper(uri)) }
+        notifyDataSetChanged()
+    }
+
     fun addItems(list: MutableList<Uri>?) {
         list?.let {
             this.list.addAll(0, list.map { PhotoUriWrapper(it) })

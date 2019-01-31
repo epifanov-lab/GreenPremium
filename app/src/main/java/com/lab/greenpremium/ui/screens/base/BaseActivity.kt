@@ -135,6 +135,29 @@ abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {
         alertDialog.show()
     }
 
+
+    override fun showDialogQuestion(textResId: Int?, listener: Listener?) {
+        val alertDialog = AlertDialog.Builder(this@BaseActivity).create()
+        alertDialog.setTitle("Сообщение")
+
+        textResId?.let { alertDialog.setMessage(getString(textResId)) }
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Нет") { dialog, _ ->
+            run {
+                dialog.dismiss()
+            }
+        }
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Да") { dialog, _ ->
+            run {
+                listener?.onEvent()
+                dialog.dismiss()
+            }
+        }
+
+        alertDialog.show()
+    }
+
     fun showToast(text: String? = null, textResId: Int? = null) {
         text?.let { Toast.makeText(this, text, Toast.LENGTH_SHORT).show() }
         textResId?.let { Toast.makeText(this, textResId, Toast.LENGTH_SHORT).show() }
