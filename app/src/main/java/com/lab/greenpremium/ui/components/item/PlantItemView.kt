@@ -14,7 +14,6 @@ import com.lab.greenpremium.R
 import com.lab.greenpremium.data.ProductQuantityChangedEvent
 import com.lab.greenpremium.data.entity.Offer
 import com.lab.greenpremium.data.entity.Product
-import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.currencyFormat
 import kotlinx.android.synthetic.main.view_item_plant.view.*
 import org.greenrobot.eventbus.EventBus
@@ -23,7 +22,11 @@ import org.greenrobot.eventbus.EventBus
 class PlantItemView : RelativeLayout, Product.Listener {
 
     enum class PlantViewType {
-        CATALOG, // Есть возможность выбора высоты, в случае, если несколько офферов.
+        CATALOG, // Есть возможность выбора высоты, в случае, если несколько офферов
+
+        // Без выбора высоты, только текстовые поля с информацией по растению,
+        DELIVERY,        // +- не работают, нет цены
+
         OTHER // Без выбора высоты, только текстовые поля с информацией по растению
     }
 
@@ -70,6 +73,11 @@ class PlantItemView : RelativeLayout, Product.Listener {
         val isLargePlant = offer.height != null && offer.crown_width != null
         val isStandartPlant = offer.plant_size != null && offer.item_height != null && offer.pot_count != null && offer.pot_size != null
 
+        offer.old_price?.let {
+            text_discount.visibility = View.VISIBLE
+            text_discount.text = currencyFormat(it)
+        }
+
         text_info_1.text = when {
             isLargePlant -> context.getString(R.string.template_s_s, offer.crown_width.name, offer.crown_width.value)
             isStandartPlant -> context.getString(R.string.template_s_s, offer.plant_size.name, offer.plant_size.value)
@@ -80,10 +88,16 @@ class PlantItemView : RelativeLayout, Product.Listener {
                 when {
                     isLargePlant -> when (type) {
                         PlantViewType.CATALOG -> when (product.offers.size > 1) {
-                            true -> context.getText(R.string.title_height).also { showHeightSelector(true) }
+                            true -> context.getText(R.string.title_height)
+                                    .also { showHeightSelector(true) }
+
                             false -> context.getString(R.string.template_s_s, offer.height.name, offer.height.value)
                         }
+                        PlantViewType.DELIVERY -> context.getString(R.string.template_s_s, offer.height.name, offer.height.value)
+                                .also { container_price.visibility = View.INVISIBLE }
+
                         PlantViewType.OTHER -> context.getString(R.string.template_s_s, offer.height.name, offer.height.value)
+
                     }
                     isStandartPlant -> context.getString(R.string.template_s_s, offer.item_height.name, offer.item_height.value)
                     else -> ""
@@ -91,12 +105,8 @@ class PlantItemView : RelativeLayout, Product.Listener {
 
         text_price.text = currencyFormat(offer.price)
 
-        offer.old_price?.let {
-            text_discount.visibility = View.VISIBLE
-            text_discount.text = currencyFormat(it)
-        }
-
-        val controlsVisibility = if (type == PlantViewType.CATALOG) View.VISIBLE else View.GONE
+        // TODO: передвинуть флаги в енам
+        val controlsVisibility = if (type == PlantViewType.CATALOG || type == PlantViewType.OTHER) View.VISIBLE else View.GONE
         button_add.visibility = controlsVisibility
         button_remove.visibility = controlsVisibility
     }

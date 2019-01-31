@@ -91,22 +91,22 @@ fun getMonthStringFromTimestamp(timestamp: Long): String {
     return ruMonthNames[calendar.get(Calendar.MONTH)]
 }
 
-private fun getStringFromBitmap(bitmapPicture: Bitmap): String {
+fun getEncodedStringFromUri(context: Context, uri: Uri): String {
+    val imageStream = context.contentResolver.openInputStream(uri)
+    val selectedImage = BitmapFactory.decodeStream(imageStream)
     val encodedImage: String
     val byteArrayBitmapStream = ByteArrayOutputStream()
-    bitmapPicture.compress(Bitmap.CompressFormat.PNG, PHOTO_FOR_JSON_COMPRESSION_QUALITY,
+    selectedImage.compress(Bitmap.CompressFormat.PNG, PHOTO_FOR_JSON_COMPRESSION_QUALITY,
             byteArrayBitmapStream)
     val b = byteArrayBitmapStream.toByteArray()
     encodedImage = Base64.encodeToString(b, Base64.DEFAULT)
     return encodedImage
 }
 
-fun getEncodedStringFromUri(context: Context, uri: Uri): String {
-    val imageStream = context.contentResolver.openInputStream(uri)
-    val selectedImage = BitmapFactory.decodeStream(imageStream)
-    return getStringFromBitmap(selectedImage)
+fun getEncodedStringFromUri2(uri: Uri): String {
+    val bm = BitmapFactory.decodeFile(uri.path)
+    val baos = ByteArrayOutputStream()
+    bm.compress(Bitmap.CompressFormat.JPEG, 100, baos) //bm is the bitmap object
+    val b = baos.toByteArray()
+    return Base64.encodeToString(b, Base64.DEFAULT)
 }
-
-/*    fun getListEncodedList(context: Context): List<String> {
-        return photos.subList(0, photos.lastIndex).map { wrapper -> getEncodedStringFromUri(context, wrapper.uri) }
-    }*/

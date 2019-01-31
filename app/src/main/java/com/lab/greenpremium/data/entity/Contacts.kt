@@ -3,19 +3,20 @@ package com.lab.greenpremium.data.entity
 import com.google.gson.annotations.SerializedName
 
 data class ContactsResponse(@SerializedName("office") val office: Contact,
-                            @SerializedName("managers") val managers: MutableList<Contact>) {
+                            @SerializedName("managers") val managers: MutableList<Contact>?) {
 
     val time: Long = System.currentTimeMillis()
 
     fun getManagers(useOffice: Boolean = false): MutableList<Contact> {
-        val result: MutableList<Contact> = managers
-        if (useOffice) managers.add(office)
+        val result: MutableList<Contact> = mutableListOf<Contact>()
+        if (managers != null) result.addAll(managers)
+        if (useOffice) result.add(office)
         return result
     }
 
     fun getManagersAvailableForMeeting(): MutableList<Contact> {
         val result: MutableList<Contact> = ArrayList()
-        managers.forEach { if (it.is_meeting_available) result.add(it) }
+        managers?.forEach { if (it.is_meeting_available) result.add(it) }
         return result
     }
 }

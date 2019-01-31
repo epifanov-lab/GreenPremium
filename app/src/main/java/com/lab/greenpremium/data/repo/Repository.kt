@@ -14,6 +14,7 @@ import com.lab.greenpremium.data.network.ApiMethods
 import com.lab.greenpremium.data.network.CallbackListener
 import com.lab.greenpremium.ui.screens.message.RecyclerPhotosAdapter
 import com.lab.greenpremium.utills.LogUtil
+import com.lab.greenpremium.utills.getEncodedStringFromUri2
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
@@ -40,6 +41,8 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     @SuppressLint("CheckResult")
     fun updateContacts(listener: CallbackListener) {
 
+        if (checkAuthorization(listener)) return
+
         if (UserModel.contactsResponse != null) {
             if (System.currentTimeMillis() - UserModel.contactsResponse!!.time < REQUEST_REFRESH_TIME_MS) {
                 listener.onSuccess()
@@ -47,7 +50,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
             }
         }
 
-        apiMethods.getContacts()
+        apiMethods.getContacts(preferences.getToken())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
@@ -405,9 +408,12 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun addProjects(message: String, photos: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
+    fun addProjects(message: String, photosUris: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
 
         if (checkAuthorization(listener)) return
+
+        val photos = photosUris.subList(0, photosUris.lastIndex)
+                .map { wrapper -> getEncodedStringFromUri2(wrapper.uri) }
 
         apiMethods.addProjects(preferences.getToken(), AddProjectRequest(message, photos))
                 .subscribeOn(Schedulers.io())
@@ -421,9 +427,12 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun addMessageRequest(theme: String, message: String, photos: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
+    fun addMessageRequest(theme: String, message: String, photosUris: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
 
         if (checkAuthorization(listener)) return
+
+        val photos = photosUris.subList(0, photosUris.lastIndex)
+                .map { wrapper -> getEncodedStringFromUri2(wrapper.uri) }
 
         apiMethods.addMessages(preferences.getToken(), AddMessageRequest(theme, message, photos))
                 .subscribeOn(Schedulers.io())
@@ -437,9 +446,12 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun addClaim(message: String, photos: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
+    fun addClaim(message: String, photosUris: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
 
         if (checkAuthorization(listener)) return
+
+        val photos = photosUris.subList(0, photosUris.lastIndex)
+                .map { wrapper -> getEncodedStringFromUri2(wrapper.uri) }
 
         apiMethods.addClaims(preferences.getToken(), AddClaimRequest(message, photos))
                 .subscribeOn(Schedulers.io())

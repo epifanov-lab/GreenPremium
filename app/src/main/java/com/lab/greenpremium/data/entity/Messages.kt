@@ -1,7 +1,5 @@
 package com.lab.greenpremium.data.entity
 
-import java.util.*
-
 //post /projects/add
 data class AddProjectRequest(val message: String, val photos: List<String>)
 

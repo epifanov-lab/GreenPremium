@@ -19,8 +19,8 @@
         android:id="@+id/close"
         android:layout_width="@dimen/gallery_close_button_size"
         android:layout_height="@dimen/gallery_close_button_size"
-        android:layout_marginTop="@dimen/space_28"
-        android:layout_marginEnd="@dimen/space_28"
+        android:layout_marginTop="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_16"
         android:src="@drawable/ic_close"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

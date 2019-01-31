@@ -3,7 +3,6 @@ package com.lab.greenpremium.data.network
 import com.lab.greenpremium.data.entity.*
 import io.reactivex.Single
 import retrofit2.http.*
-import java.util.*
 import javax.inject.Inject
 
 
@@ -45,8 +44,8 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
 
 
     //region CONTACTS
-    fun getContacts(): Single<BaseResponse<ContactsResponse>> {
-        return api.getContacts()
+    fun getContacts(token: String): Single<BaseResponse<ContactsResponse>> {
+        return api.getContacts(token)
     }
 
     fun getMeetingsList(token: String): Single<BaseResponse<List<Meeting>>> {
@@ -174,7 +173,7 @@ interface GpApi {
 
     //region CONTACTS
     @GET("contacts")
-    fun getContacts(): Single<BaseResponse<ContactsResponse>>
+    fun getContacts(@Header("X-Auth-Token") token: String): Single<BaseResponse<ContactsResponse>>
 
     @GET("meetings")
     fun getMeetingsList(@Header("X-Auth-Token") token: String): Single<BaseResponse<List<Meeting>>>

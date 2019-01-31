@@ -48,7 +48,7 @@
     <dimen name="green_button_height">42dp</dimen>
     <dimen name="contacts_button_width">170dp</dimen>
     <dimen name="card_button_width">135dp</dimen>
-    <dimen name="gallery_close_button_size">36dp</dimen>
+    <dimen name="gallery_close_button_size">24dp</dimen>
 
     <dimen name="gallery_preview_else_view_size">50dp</dimen>
     <dimen name="gallery_preview_image_size">94dp</dimen>
