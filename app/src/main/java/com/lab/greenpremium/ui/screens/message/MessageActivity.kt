@@ -54,7 +54,7 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnSi
         container_subject.visibility = if (type.hasSubjectInput) View.VISIBLE else View.GONE
         input_message.visibility = if (type.hasMessageInput) View.VISIBLE else View.GONE
 
-        if (type.hasPhotoAdding) InitializeRecyclerPhotos()
+        if (type.hasPhotoAdding) initializeRecyclerPhotos()
     }
 
     override fun onSentSuccess(messageResId: Int) {
@@ -69,7 +69,7 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnSi
         button_send.isEnabled = isEnabled
     }
 
-    override fun InitializeRecyclerPhotos() {
+    override fun initializeRecyclerPhotos() {
         recycler_photo.visibility = View.VISIBLE
 
         recycler_photo.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
@@ -111,8 +111,8 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnSi
     }
     */
 
-    override fun getPreparedPhotosList(): List<String> {
+    override fun getPhotos(): MutableList<RecyclerPhotosAdapter.PhotoUriWrapper> {
         val adapter = recycler_photo.adapter as RecyclerPhotosAdapter
-        return adapter.getListEncodedList(applicationContext)
+        return adapter.photos
     }
 }

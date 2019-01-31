@@ -106,3 +106,7 @@ fun getEncodedStringFromUri(context: Context, uri: Uri): String {
     val selectedImage = BitmapFactory.decodeStream(imageStream)
     return getStringFromBitmap(selectedImage)
 }
+
+/*    fun getListEncodedList(context: Context): List<String> {
+        return photos.subList(0, photos.lastIndex).map { wrapper -> getEncodedStringFromUri(context, wrapper.uri) }
+    }*/

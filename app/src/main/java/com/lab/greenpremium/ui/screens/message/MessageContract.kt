@@ -9,10 +9,10 @@ interface MessageContract {
         fun initViewByType(type: MessageScreenType)
         fun onSentSuccess(messageResId: Int)
         fun setSendButtonEnabled(isEnabled: Boolean)
-        fun InitializeRecyclerPhotos()
+        fun initializeRecyclerPhotos()
         fun showPhotoPickerDialog()
 
-        fun getPreparedPhotosList() : List<String>
+        fun getPhotos() : MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>
     }
 
     interface Presenter {

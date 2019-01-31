@@ -12,6 +12,7 @@ import com.lab.greenpremium.data.local.PreferencesManager
 import com.lab.greenpremium.data.network.ApiError
 import com.lab.greenpremium.data.network.ApiMethods
 import com.lab.greenpremium.data.network.CallbackListener
+import com.lab.greenpremium.ui.screens.message.RecyclerPhotosAdapter
 import com.lab.greenpremium.utills.LogUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -404,7 +405,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun addProjects(message: String, photos: List<String>, listener: CallbackListener) {
+    fun addProjects(message: String, photos: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
 
         if (checkAuthorization(listener)) return
 
@@ -420,7 +421,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun addMessageRequest(theme: String, message: String, photos: List<String>, listener: CallbackListener) {
+    fun addMessageRequest(theme: String, message: String, photos: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
 
         if (checkAuthorization(listener)) return
 
@@ -436,7 +437,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun addClaim(message: String, photos: List<String>, listener: CallbackListener) {
+    fun addClaim(message: String, photos: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
 
         if (checkAuthorization(listener)) return
 

@@ -11,7 +11,6 @@ import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.lab.greenpremium.R
-import com.lab.greenpremium.utills.getEncodedStringFromUri
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.view_added_photo.view.*
 
@@ -25,10 +24,10 @@ class RecyclerPhotosAdapter(private val photoViewSize: Int,
                             private val listener: AddPhotoViewListener?)
     : RecyclerView.Adapter<RecyclerPhotosAdapter.ViewHolder>() {
 
-    private val list: MutableList<PhotoUriWrapper> = ArrayList()
+    val photos: MutableList<PhotoUriWrapper> = ArrayList()
 
     init {
-        list.add(PhotoUriWrapper(Uri.EMPTY, true))
+        photos.add(PhotoUriWrapper(Uri.EMPTY, true))
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -38,38 +37,34 @@ class RecyclerPhotosAdapter(private val photoViewSize: Int,
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.view.setData(list[position], position)
+        holder.view.setData(photos[position], position)
         holder.view.setClickListener(listener)
     }
 
     override fun getItemCount(): Int {
-        return list.size
+        return photos.size
     }
 
     fun addItem(uri: Uri?) {
-        uri?.let { this.list.add(0, PhotoUriWrapper(uri)) }
+        uri?.let { this.photos.add(0, PhotoUriWrapper(uri)) }
         notifyDataSetChanged()
     }
 
     fun addItems(list: MutableList<Uri>?) {
         list?.let {
-            this.list.addAll(0, list.map { PhotoUriWrapper(it) })
+            this.photos.addAll(0, list.map { PhotoUriWrapper(it) })
             notifyDataSetChanged()
         }
     }
 
     fun getItem(position: Int): PhotoUriWrapper {
-        return list[position]
+        return photos[position]
     }
 
 
     fun removeItem(position: Int) {
-        list.removeAt(position)
+        photos.removeAt(position)
         notifyDataSetChanged()
-    }
-
-    fun getListEncodedList(context: Context): List<String> {
-        return list.subList(0, list.lastIndex).map { wrapper -> getEncodedStringFromUri(context, wrapper.uri) }
     }
 
     class ViewHolder(val view: AddedPhotoView) : RecyclerView.ViewHolder(view)

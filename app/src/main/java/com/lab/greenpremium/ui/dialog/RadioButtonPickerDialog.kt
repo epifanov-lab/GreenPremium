@@ -38,7 +38,7 @@ class RadioButtonPickerDialog<T> : BaseDialogFragment() {
     override fun initViews() {
 
         if (items == null) {
-            LogUtil.e("Picker dialog error: list is empty!")
+            LogUtil.e("Picker dialog error: photos is empty!")
             dismiss()
             return
         }
