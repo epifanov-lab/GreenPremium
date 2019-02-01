@@ -9,6 +9,9 @@ import android.view.View
 import android.view.ViewGroup
 import com.lab.greenpremium.PHOTO_FOR_JSON_COMPRESSION_QUALITY
 import com.lab.greenpremium.data.network.ApiError
+import org.apache.http.entity.mime.HttpMultipartMode
+import org.apache.http.entity.mime.MultipartEntity
+import org.apache.http.entity.mime.content.ByteArrayBody
 import java.io.ByteArrayOutputStream
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -109,4 +112,16 @@ fun getEncodedStringFromUri2(uri: Uri): String {
     bm.compress(Bitmap.CompressFormat.JPEG, 100, baos) //bm is the bitmap object
     val b = baos.toByteArray()
     return Base64.encodeToString(b, Base64.DEFAULT)
+}
+
+fun getMultipartEntityFromPhotoUri(uri: Uri, index: Int): String {
+    val bm = BitmapFactory.decodeFile(uri.path)
+    val baos = ByteArrayOutputStream()
+    bm.compress(Bitmap.CompressFormat.JPEG, 50, baos)
+    val data = baos.toByteArray()
+
+    val bab = ByteArrayBody(data, uri.lastPathSegment)
+    val entity = MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE)
+    entity.addPart("photos[$index]", bab)
+    return entity.toString()
 }

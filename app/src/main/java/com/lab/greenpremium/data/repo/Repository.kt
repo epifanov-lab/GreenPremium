@@ -15,6 +15,7 @@ import com.lab.greenpremium.data.network.CallbackListener
 import com.lab.greenpremium.ui.screens.message.RecyclerPhotosAdapter
 import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.getEncodedStringFromUri2
+import com.lab.greenpremium.utills.getMultipartEntityFromPhotoUri
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import org.greenrobot.eventbus.EventBus
@@ -413,7 +414,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
         if (checkAuthorization(listener)) return
 
         val photos = photosUris.subList(0, photosUris.lastIndex)
-                .map { wrapper -> getEncodedStringFromUri2(wrapper.uri) }
+                .mapIndexed { index, wrapper -> getMultipartEntityFromPhotoUri(wrapper.uri, index) }
+
+        LogUtil.i("MP\n ${photos[0]}")
 
         apiMethods.addProjects(preferences.getToken(), AddProjectRequest(message, photos))
                 .subscribeOn(Schedulers.io())

@@ -95,4 +95,8 @@ dependencies {
 
     //yandex maps
     implementation 'com.yandex.android:mapkit:3.2.0'
+    implementation files('libs/httpmime-4.5.7.jar')
+
+    //multipart entity for sending photos via json
+    implementation 'org.apache.httpcomponents:httpmime:4.5.7'
 }
