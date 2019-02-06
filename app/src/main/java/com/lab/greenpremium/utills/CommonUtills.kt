@@ -9,9 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.lab.greenpremium.PHOTO_FOR_JSON_COMPRESSION_QUALITY
 import com.lab.greenpremium.data.network.ApiError
-import org.apache.http.entity.mime.HttpMultipartMode
-import org.apache.http.entity.mime.MultipartEntity
-import org.apache.http.entity.mime.content.ByteArrayBody
+import okhttp3.MediaType
+import okhttp3.MultipartBody
 import java.io.ByteArrayOutputStream
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
@@ -19,6 +18,9 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
+import okhttp3.RequestBody
+
+
 
 
 operator fun ViewGroup.get(pos: Int): View = getChildAt(pos)
@@ -114,7 +116,15 @@ fun getEncodedStringFromUri2(uri: Uri): String {
     return Base64.encodeToString(b, Base64.DEFAULT)
 }
 
-fun getMultipartEntityFromPhotoUri(uri: Uri, index: Int): String {
+fun getMultipartEntityFromPhotoUri(context: Context, uri: Uri, index: Int): MultipartBody.Part {
+    val file = FileUtils.getFile(context, uri)
+    val requestFile = RequestBody.create(MediaType.parse(context.contentResolver.getType(uri)), file) /*CRASHES HERE*/
+    return MultipartBody.Part.createFormData("photos[$index]", file.name, requestFile)
+}
+
+/* !!! TODO CLEAN UP CODE !!! */
+
+/*fun getMultipartEntityFromPhotoUri(uri: Uri, index: Int): String {
     val bm = BitmapFactory.decodeFile(uri.path)
     val baos = ByteArrayOutputStream()
     bm.compress(Bitmap.CompressFormat.JPEG, 50, baos)
@@ -125,7 +135,11 @@ fun getMultipartEntityFromPhotoUri(uri: Uri, index: Int): String {
     entity.addPart("photos[$index]", bab)
     LogUtil.e(entity.toString())
     return entity.toString()
-}
+}*/
+
+/*
+* https://futurestud.io/tutorials/retrofit-2-how-to-upload-files-to-server
+* */
 
 /*
 *

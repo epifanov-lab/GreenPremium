@@ -44,7 +44,7 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnSi
         presenter.initializeThemeInput(RxTextView.textChanges(input_subject).map { it.toString() })
         presenter.initializeMessageInput(RxTextView.textChanges(input_message.getTextView()).map { it.toString() })
 
-        button_send.setOnClickListener { presenter.onClickSend() }
+        button_send.setOnClickListener { presenter.onClickSend(applicationContext) }
         setTouchAnimationShrink(button_send)
     }
 

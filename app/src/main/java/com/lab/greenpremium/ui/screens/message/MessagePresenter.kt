@@ -1,9 +1,13 @@
 package com.lab.greenpremium.ui.screens.message
 
 import android.annotation.SuppressLint
+import android.content.Context
 import com.lab.greenpremium.data.network.DefaultCallbackListener
-import com.lab.greenpremium.data.repo.Repository
+import com.lab.greenpremium.data.repository.Repository
+import com.lab.greenpremium.utills.LogUtil
+import com.lab.greenpremium.utills.getMultipartEntityFromPhotoUri
 import io.reactivex.Observable
+import okhttp3.MultipartBody
 import javax.inject.Inject
 
 class MessagePresenter @Inject constructor(val view: MessageContract.View) : MessageContract.Presenter {
@@ -41,7 +45,7 @@ class MessagePresenter @Inject constructor(val view: MessageContract.View) : Mes
         view.showPhotoPickerDialog()
     }
 
-    override fun onClickSend() {
+    override fun onClickSend(context: Context) {
 
         val listener = object : DefaultCallbackListener(view) {
             override fun onSuccess() {
@@ -50,11 +54,24 @@ class MessagePresenter @Inject constructor(val view: MessageContract.View) : Mes
         }
 
         when(type) {
-            MessageScreenType.NEW_PROJECT -> repository.addProjects(message!!, view.getPhotos(), listener)
+            MessageScreenType.NEW_PROJECT -> repository.addProjects(message!!, getPreparedPhotos(context), listener)
             MessageScreenType.LETTER -> repository.addMessageRequest(theme!!, message!!, view.getPhotos(), listener)
             MessageScreenType.COMPLAIN -> repository.addClaim(message!!, view.getPhotos(), listener)
             MessageScreenType.RATING -> repository.addRating(rating, message!!, listener)
         }
+    }
+
+    private fun getPreparedPhotos(context: Context): List<MultipartBody.Part> {
+        var result = listOf<MultipartBody.Part>()
+        val photos = view.getPhotos()
+        if (!photos.isNullOrEmpty()) {
+            result = photos.subList(0, photos.lastIndex)
+                    .mapIndexed { index, wrapper -> getMultipartEntityFromPhotoUri(context, wrapper.uri, index) }
+
+            LogUtil.i("MP\n ${photos[0]}")
+
+        }
+        return result
     }
 
 }

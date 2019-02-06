@@ -1,7 +1,9 @@
 package com.lab.greenpremium.data.entity
 
+import okhttp3.MultipartBody
+
 //post /projects/add
-data class AddProjectRequest(val message: String, val photos: List<String>)
+data class AddProjectRequest(val message: String, val photos: List<MultipartBody.Part>)
 
 data class AddProjectResponse(val project_id: Int, val event_id: Int)
 

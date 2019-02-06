@@ -2,7 +2,7 @@ package com.lab.greenpremium.ui.screens.main.favorites
 
 import com.lab.greenpremium.data.CartModel
 import com.lab.greenpremium.data.network.DefaultCallbackListener
-import com.lab.greenpremium.data.repo.Repository
+import com.lab.greenpremium.data.repository.Repository
 import javax.inject.Inject
 
 class FavoritesPresenter @Inject constructor(val view: FavoritesContract.View) : FavoritesContract.Presenter {

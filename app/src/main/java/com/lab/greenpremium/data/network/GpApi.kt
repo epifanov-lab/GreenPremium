@@ -2,6 +2,7 @@ package com.lab.greenpremium.data.network
 
 import com.lab.greenpremium.data.entity.*
 import io.reactivex.Single
+import okhttp3.MultipartBody
 import retrofit2.http.*
 import javax.inject.Inject
 
@@ -246,10 +247,11 @@ interface GpApi {
 
     //region MESSAGES
     @FormUrlEncoded
+    @Multipart
     @POST("projects/add")
     fun addProjects(@Header("X-Auth-Token") token: String,
                     @Field("message") message: String,
-                    @Field("photos") photos: List<String>): Single<BaseResponse<AddProjectResponse>>
+                    @Part("photos") photos: List<MultipartBody.Part>): Single<BaseResponse<AddProjectResponse>>
 
     @FormUrlEncoded
     @POST("messages/add")

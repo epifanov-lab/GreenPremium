@@ -4,7 +4,7 @@ import com.lab.greenpremium.PAGE_SIZE
 import com.lab.greenpremium.data.CartModel
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.data.network.DefaultCallbackListener
-import com.lab.greenpremium.data.repo.Repository
+import com.lab.greenpremium.data.repository.Repository
 import java.io.Serializable
 import javax.inject.Inject
 

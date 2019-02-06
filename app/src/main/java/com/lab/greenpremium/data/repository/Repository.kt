@@ -1,4 +1,4 @@
-package com.lab.greenpremium.data.repo
+package com.lab.greenpremium.data.repository
 
 import android.annotation.SuppressLint
 import com.google.gson.JsonParser
@@ -15,9 +15,9 @@ import com.lab.greenpremium.data.network.CallbackListener
 import com.lab.greenpremium.ui.screens.message.RecyclerPhotosAdapter
 import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.getEncodedStringFromUri2
-import com.lab.greenpremium.utills.getMultipartEntityFromPhotoUri
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import okhttp3.MultipartBody
 import org.greenrobot.eventbus.EventBus
 import retrofit2.HttpException
 import javax.inject.Inject
@@ -409,14 +409,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun addProjects(message: String, photosUris: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
+    fun addProjects(message: String, photos: List<MultipartBody.Part>, listener: CallbackListener) {
 
         if (checkAuthorization(listener)) return
-
-        val photos = photosUris.subList(0, photosUris.lastIndex)
-                .mapIndexed { index, wrapper -> getMultipartEntityFromPhotoUri(wrapper.uri, index) }
-
-        LogUtil.i("MP\n ${photos[0]}")
 
         apiMethods.addProjects(preferences.getToken(), AddProjectRequest(message, photos))
                 .subscribeOn(Schedulers.io())

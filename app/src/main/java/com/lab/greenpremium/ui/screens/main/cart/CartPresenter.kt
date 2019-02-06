@@ -3,7 +3,7 @@ package com.lab.greenpremium.ui.screens.main.cart
 import com.lab.greenpremium.data.CartModel
 import com.lab.greenpremium.data.entity.MakeOrderResponse
 import com.lab.greenpremium.data.network.DefaultCallbackListener
-import com.lab.greenpremium.data.repo.Repository
+import com.lab.greenpremium.data.repository.Repository
 import java.io.Serializable
 import javax.inject.Inject
 

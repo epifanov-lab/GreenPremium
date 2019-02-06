@@ -4,7 +4,7 @@ import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.entity.Meeting
 import com.lab.greenpremium.data.entity.MeetingStatusCode
 import com.lab.greenpremium.data.network.DefaultCallbackListener
-import com.lab.greenpremium.data.repo.Repository
+import com.lab.greenpremium.data.repository.Repository
 import com.lab.greenpremium.utills.getTimestampFromDateString
 import javax.inject.Inject
 
