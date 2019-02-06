@@ -51,18 +51,24 @@ class ContactsFragment : BaseFragment(), ContactsContract.View {
         recycler_contacts.adapter = ContactsRecyclerAdapter(contacts, LinearLayoutManager.VERTICAL, context?.resources?.getDimension(R.dimen.space_24)?.toInt())
     }
 
+    /* Информация по встрече спрятана по просьбе Юлии */
     override fun updateNextMeetingLabels(timestamp: Long?) {
-        text_time?.visibility = if (timestamp != null) VISIBLE else INVISIBLE
-        container_date?.visibility = if (timestamp != null) VISIBLE else INVISIBLE
-        text_message?.text = getString(if (timestamp != null) R.string.contacts_message_employee_meeting_when_set else R.string.contacts_message_employee_meeting)
+        var tempTimestamp = timestamp
 
-        timestamp?.let {
-            text_time.text = getTimeFromTimestamp(timestamp)
-            text_date_day.text = geDayFromTimestamp(timestamp)
-            text_date_month.text = getMonthStringFromTimestamp(timestamp)
+        tempTimestamp = null // TODO DELETE FOR CORRECT WORK
+
+        text_time?.visibility = if (tempTimestamp != null) VISIBLE else INVISIBLE
+        container_date?.visibility = if (tempTimestamp != null) VISIBLE else INVISIBLE
+        text_message?.text = getString(if (tempTimestamp != null) R.string.contacts_message_employee_meeting_when_set else R.string.contacts_message_employee_meeting)
+
+        tempTimestamp?.let {
+            text_time.text = getTimeFromTimestamp(tempTimestamp)
+            text_date_day.text = geDayFromTimestamp(tempTimestamp)
+            text_date_month.text = getMonthStringFromTimestamp(tempTimestamp)
         }
     }
 
+    /* по просьбе Юлии: кнопка всегда доступна (кроме демо) */
     override fun setButtonScheduleEnabled(enabled: Boolean) {
         button_schedule_meet.isEnabled = enabled
     }

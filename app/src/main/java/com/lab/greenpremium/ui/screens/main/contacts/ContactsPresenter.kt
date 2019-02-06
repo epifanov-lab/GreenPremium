@@ -33,7 +33,8 @@ class ContactsPresenter @Inject constructor(val view: ContactsContract.View) : C
                     val meeting = getFirstApprovedMeeting(UserModel.meetingsListResponse!!.meetings)
                     val timestamp = getTimestampFromDateString(meeting?.date)
                     this@ContactsPresenter.view.updateNextMeetingLabels(timestamp)
-                    this@ContactsPresenter.view.setButtonScheduleEnabled(timestamp == null && !repository.isInDemoMode())
+                    //this@ContactsPresenter.view.setButtonScheduleEnabled(timestamp == null && !repository.isInDemoMode())
+                    this@ContactsPresenter.view.setButtonScheduleEnabled(true)
                 }
             }
 

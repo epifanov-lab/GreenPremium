@@ -123,5 +123,18 @@ fun getMultipartEntityFromPhotoUri(uri: Uri, index: Int): String {
     val bab = ByteArrayBody(data, uri.lastPathSegment)
     val entity = MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE)
     entity.addPart("photos[$index]", bab)
+    LogUtil.e(entity.toString())
     return entity.toString()
 }
+
+/*
+*
+Русофт Тимофей, [01.02.19 00:52]
+Кос я вот так делаю
+multipartFormData.append(photoFile.data, withName: "photos[\(key)]", fileName: photoFile.name, mimeType: photoFile.mimeType)
+
+Русофт Тимофей, [01.02.19 00:52]
+а потом
+((value as! String).data(using: String.Encoding.utf8)!, withName: key)
+*
+* */

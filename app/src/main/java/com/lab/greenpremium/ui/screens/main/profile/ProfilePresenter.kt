@@ -1,10 +1,9 @@
 package com.lab.greenpremium.ui.screens.main.profile
 
 import com.lab.greenpremium.PAGE_SIZE
-import com.lab.greenpremium.data.repo.Repository
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.network.DefaultCallbackListener
-import com.lab.greenpremium.utills.LogUtil
+import com.lab.greenpremium.data.repo.Repository
 import javax.inject.Inject
 
 class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : ProfileContract.Presenter {

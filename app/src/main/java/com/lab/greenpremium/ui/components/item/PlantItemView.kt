@@ -59,9 +59,12 @@ class PlantItemView : RelativeLayout, Product.Listener {
 
         updateViewByType()
 
+        helper = PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
+
         container_controls.visibility = if (isDemo) View.GONE else View.VISIBLE
+        container_price.visibility = if (isDemo) View.GONE else View.VISIBLE
+        
         if (!isDemo) {
-            helper = PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
             container_controls.setOnTouchListener { v, event -> true }
         }
     }
@@ -97,9 +100,11 @@ class PlantItemView : RelativeLayout, Product.Listener {
                                 .also { container_price.visibility = View.INVISIBLE }
 
                         PlantViewType.OTHER -> context.getString(R.string.template_s_s, offer.height.name, offer.height.value)
-
                     }
+
                     isStandartPlant -> context.getString(R.string.template_s_s, offer.item_height.name, offer.item_height.value)
+                            .also { if (type == PlantViewType.DELIVERY) container_price.visibility = View.INVISIBLE }
+
                     else -> ""
                 }
 

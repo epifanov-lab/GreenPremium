@@ -11,10 +11,9 @@ import android.view.View.VISIBLE
 import android.view.ViewAnimationUtils
 import com.getbase.floatingactionbutton.FloatingActionsMenu
 import com.lab.greenpremium.*
-import com.lab.greenpremium.data.MeetingAddedEvent
-import com.lab.greenpremium.data.MessageSentEvent
-import com.lab.greenpremium.data.ServiceCalculatedEvent
+import com.lab.greenpremium.data.*
 import com.lab.greenpremium.ui.components.BottomNavigationViewHelper
+import com.lab.greenpremium.ui.components.Listener
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.ui.screens.main.cart.CartFragment
 import com.lab.greenpremium.ui.screens.main.contacts.ContactsFragment
@@ -24,9 +23,6 @@ import com.lab.greenpremium.ui.screens.main.plants.PlantsFragment
 import com.lab.greenpremium.ui.screens.main.portfolio.PortfolioFragment
 import com.lab.greenpremium.ui.screens.main.profile.ProfileFragment
 import com.lab.greenpremium.ui.screens.message.MessageScreenType
-import com.lab.greenpremium.data.BaseEvent
-import com.lab.greenpremium.data.ProductQuantityChangedEvent
-import com.lab.greenpremium.ui.components.Listener
 import com.lab.greenpremium.utills.LogUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import org.greenrobot.eventbus.EventBus
@@ -52,11 +48,16 @@ class MainActivity : BaseActivity(), MainContract.View {
                 .inject(this)
     }
 
+    private var lastClickedMenuItemId = R.id.nav_profile
+
     private val onNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
 
         BottomNavigationViewHelper.setUncheckable(navigation, false)
         button_favorite.setImageResource(R.drawable.ic_favorites)
         button_cart.setImageResource(R.drawable.ic_cart)
+
+        if (lastClickedMenuItemId == item.itemId) return@OnNavigationItemSelectedListener false
+        else lastClickedMenuItemId = item.itemId
 
         when (item.itemId) {
             R.id.nav_profile -> {
@@ -94,6 +95,7 @@ class MainActivity : BaseActivity(), MainContract.View {
                 return@OnNavigationItemSelectedListener true
             }
         }
+
         false
     }
 
@@ -108,21 +110,27 @@ class MainActivity : BaseActivity(), MainContract.View {
         BottomNavigationViewHelper.disableShiftMode(navigation)
 
         button_favorite.setOnClickListener {
-            title_text.setText(R.string.screen_title_favorites)
-            button_favorite.setImageResource(R.drawable.ic_favorites_choosen)
-            button_cart.setImageResource(R.drawable.ic_cart)
-            swapFragment(FavoritesFragment.newInstance())
-            BottomNavigationViewHelper.setUncheckable(navigation, true)
-            activateFabMenu(false)
+            if (lastClickedMenuItemId != R.id.button_favorite){
+                title_text.setText(R.string.screen_title_favorites)
+                button_favorite.setImageResource(R.drawable.ic_favorites_choosen)
+                button_cart.setImageResource(R.drawable.ic_cart)
+                swapFragment(FavoritesFragment.newInstance())
+                BottomNavigationViewHelper.setUncheckable(navigation, true)
+                activateFabMenu(false)
+                lastClickedMenuItemId = R.id.button_favorite
+            }
         }
 
         button_cart.setOnClickListener {
-            title_text.setText(R.string.screen_title_basket)
-            button_cart.setImageResource(R.drawable.ic_basket_choosen)
-            button_favorite.setImageResource(R.drawable.ic_favorites)
-            swapFragment(CartFragment.newInstance())
-            BottomNavigationViewHelper.setUncheckable(navigation, true)
-            activateFabMenu(false)
+            if (lastClickedMenuItemId != R.id.button_cart){
+                title_text.setText(R.string.screen_title_basket)
+                button_cart.setImageResource(R.drawable.ic_basket_choosen)
+                button_favorite.setImageResource(R.drawable.ic_favorites)
+                swapFragment(CartFragment.newInstance())
+                BottomNavigationViewHelper.setUncheckable(navigation, true)
+                activateFabMenu(false)
+                lastClickedMenuItemId = R.id.button_cart
+            }
         }
 
         button_logout.setOnClickListener {
@@ -225,6 +233,13 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
+
+            KEY_RESULT_CALCULATOR -> {
+                Handler().post { EventBus.getDefault().post(ServiceCalculatedEvent()) }
+            }
+            KEY_RESULT_MESSAGE_SENT -> {
+                Handler().post { EventBus.getDefault().post(MessageSentEvent()) }
+            }
             KEY_RESULT_ADD_MEETING -> {
                 Handler().post {
                     data?.let {
@@ -234,9 +249,6 @@ class MainActivity : BaseActivity(), MainContract.View {
                     }
                 }
             }
-
-            KEY_RESULT_CALCULATOR -> { Handler().post { EventBus.getDefault().post(ServiceCalculatedEvent()) } }
-            KEY_RESULT_MESSAGE_SENT -> { Handler().post { EventBus.getDefault().post(MessageSentEvent()) } }
 
         }
     }

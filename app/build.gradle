@@ -4,6 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
+
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.lab.greenpremium"
@@ -15,6 +16,7 @@ android {
         renderscriptTargetApi 24
         renderscriptSupportModeEnabled true
     }
+
     buildTypes {
         release {
             /*
@@ -24,9 +26,21 @@ android {
             */
         }
     }
+
     compileOptions {
         sourceCompatibility = '1.8'
         targetCompatibility = '1.8'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/ASL2.0'
     }
 }
 
@@ -95,7 +109,6 @@ dependencies {
 
     //yandex maps
     implementation 'com.yandex.android:mapkit:3.2.0'
-    implementation files('libs/httpmime-4.5.7.jar')
 
     //multipart entity for sending photos via json
     implementation 'org.apache.httpcomponents:httpmime:4.5.7'

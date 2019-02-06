@@ -86,7 +86,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         container_delivery_schedule.visibility = if (isDeliveryExpected) VISIBLE else GONE
 
         if (isDeliveryExpected) {
-            val timestamp = getTimestampFromDateString(order_supply_date, SimpleDateFormat("dd.mm.yyyy", Locale.getDefault()))
+            val timestamp = getTimestampFromDateString(order_supply_date, SimpleDateFormat("dd.MM.yyyy", Locale.getDefault()))
             timestamp?.let {
                 text_date_day.text = geDayFromTimestamp(timestamp)
                 text_date_month.text = getMonthStringFromTimestamp(timestamp)
