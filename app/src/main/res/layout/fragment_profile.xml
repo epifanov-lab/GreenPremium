@@ -38,7 +38,8 @@
             android:layout_marginBottom="@dimen/space_24"
             android:gravity="center"
             android:text="@string/profile_calc_service"
-            android:visibility="visible" />
+            android:visibility="invisible"
+            tools:visibility="visible" />
 
         <LinearLayout
             android:id="@+id/container_cost"
@@ -48,7 +49,8 @@
             android:orientation="horizontal"
             android:paddingLeft="@dimen/space_24"
             android:paddingRight="@dimen/space_24"
-            android:visibility="visible">
+            android:visibility="invisible"
+            tools:visibility="visible">
 
             <TextView
                 android:layout_width="0dp"
@@ -80,7 +82,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space_28"
             android:layout_marginBottom="@dimen/space_12"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="invisible"
+            tools:visibility="visible">
 
             <LinearLayout
                 android:id="@+id/container_date"
@@ -141,7 +145,8 @@
             android:focusable="true"
             android:orientation="horizontal"
             android:padding="@dimen/space_20"
-            android:visibility="visible">
+            android:visibility="invisible"
+            tools:visibility="visible">
 
             <TextView
                 android:layout_width="0dp"
@@ -182,7 +187,8 @@
         android:paddingLeft="@dimen/space_24"
         android:paddingRight="@dimen/space_24"
         android:scrollbars="none"
-        android:visibility="visible">
+        android:visibility="invisible"
+        tools:visibility="visible">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler_events"
