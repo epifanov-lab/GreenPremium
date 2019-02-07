@@ -152,6 +152,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     private fun showFabMenuAndLogout(enabled: Boolean) {
         fab_menu.visibility = if (enabled) VISIBLE else GONE
         button_logout.visibility = if (enabled) VISIBLE else GONE
+        button_favorite.visibility = if (enabled) GONE else VISIBLE
 
         if (!enabled) {
             fab_menu.collapse()
