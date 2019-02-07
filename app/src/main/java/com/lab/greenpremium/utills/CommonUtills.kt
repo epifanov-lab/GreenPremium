@@ -1,26 +1,19 @@
 package com.lab.greenpremium.utills
 
 import android.content.Context
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
-import android.util.Base64
 import android.view.View
 import android.view.ViewGroup
-import com.lab.greenpremium.PHOTO_FOR_JSON_COMPRESSION_QUALITY
 import com.lab.greenpremium.data.network.ApiError
 import okhttp3.MediaType
 import okhttp3.MultipartBody
-import java.io.ByteArrayOutputStream
+import okhttp3.RequestBody
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.math.roundToInt
-import okhttp3.RequestBody
-
-
 
 
 operator fun ViewGroup.get(pos: Int): View = getChildAt(pos)
@@ -96,59 +89,8 @@ fun getMonthStringFromTimestamp(timestamp: Long): String {
     return ruMonthNames[calendar.get(Calendar.MONTH)]
 }
 
-fun getEncodedStringFromUri(context: Context, uri: Uri): String {
-    val imageStream = context.contentResolver.openInputStream(uri)
-    val selectedImage = BitmapFactory.decodeStream(imageStream)
-    val encodedImage: String
-    val byteArrayBitmapStream = ByteArrayOutputStream()
-    selectedImage.compress(Bitmap.CompressFormat.PNG, PHOTO_FOR_JSON_COMPRESSION_QUALITY,
-            byteArrayBitmapStream)
-    val b = byteArrayBitmapStream.toByteArray()
-    encodedImage = Base64.encodeToString(b, Base64.DEFAULT)
-    return encodedImage
-}
-
-fun getEncodedStringFromUri2(uri: Uri): String {
-    val bm = BitmapFactory.decodeFile(uri.path)
-    val baos = ByteArrayOutputStream()
-    bm.compress(Bitmap.CompressFormat.JPEG, 100, baos) //bm is the bitmap object
-    val b = baos.toByteArray()
-    return Base64.encodeToString(b, Base64.DEFAULT)
-}
-
 fun getMultipartEntityFromPhotoUri(context: Context, uri: Uri, index: Int): MultipartBody.Part {
     val file = FileUtils.getFile(context, uri)
-    val requestFile = RequestBody.create(MediaType.parse(context.contentResolver.getType(uri)), file) /*CRASHES HERE*/
+    val requestFile = RequestBody.create(MediaType.parse("image/*"), file)
     return MultipartBody.Part.createFormData("photos[$index]", file.name, requestFile)
 }
-
-/* !!! TODO CLEAN UP CODE !!! */
-
-/*fun getMultipartEntityFromPhotoUri(uri: Uri, index: Int): String {
-    val bm = BitmapFactory.decodeFile(uri.path)
-    val baos = ByteArrayOutputStream()
-    bm.compress(Bitmap.CompressFormat.JPEG, 50, baos)
-    val data = baos.toByteArray()
-
-    val bab = ByteArrayBody(data, uri.lastPathSegment)
-    val entity = MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE)
-    entity.addPart("photos[$index]", bab)
-    LogUtil.e(entity.toString())
-    return entity.toString()
-}*/
-
-/*
-* https://futurestud.io/tutorials/retrofit-2-how-to-upload-files-to-server
-* */
-
-/*
-*
-Русофт Тимофей, [01.02.19 00:52]
-Кос я вот так делаю
-multipartFormData.append(photoFile.data, withName: "photos[\(key)]", fileName: photoFile.name, mimeType: photoFile.mimeType)
-
-Русофт Тимофей, [01.02.19 00:52]
-а потом
-((value as! String).data(using: String.Encoding.utf8)!, withName: key)
-*
-* */

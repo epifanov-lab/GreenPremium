@@ -27,7 +27,7 @@ import com.lab.greenpremium.ui.screens.start.StartActivity
 import com.lab.greenpremium.utills.getErrorMessage
 import com.lab.greenpremium.utills.hideKeyboard
 import java.io.Serializable
-import java.util.ArrayList
+import java.util.*
 
 
 abstract class BaseActivity : AppCompatActivity(), BaseContract.BaseView {

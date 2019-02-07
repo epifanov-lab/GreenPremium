@@ -1,8 +1,8 @@
 package com.lab.greenpremium.ui.screens.main.map
 
-import com.lab.greenpremium.data.repository.Repository
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.network.DefaultCallbackListener
+import com.lab.greenpremium.data.repository.Repository
 import javax.inject.Inject
 
 class MapPresenter @Inject constructor(val view: MapContract.View) : MapContract.Presenter {

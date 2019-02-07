@@ -2,10 +2,10 @@ package com.lab.greenpremium.ui.screens.calculator
 
 import android.annotation.SuppressLint
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.repository.Repository
 import com.lab.greenpremium.data.entity.CalcServiceRequest
 import com.lab.greenpremium.data.entity.CalcServiceResponse
 import com.lab.greenpremium.data.network.DefaultCallbackListener
+import com.lab.greenpremium.data.repository.Repository
 import io.reactivex.Observable
 import java.io.Serializable
 import javax.inject.Inject

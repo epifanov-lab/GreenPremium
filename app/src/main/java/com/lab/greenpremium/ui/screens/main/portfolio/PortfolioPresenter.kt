@@ -1,8 +1,8 @@
 package com.lab.greenpremium.ui.screens.main.portfolio
 
-import com.lab.greenpremium.data.repository.Repository
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.network.DefaultCallbackListener
+import com.lab.greenpremium.data.repository.Repository
 import javax.inject.Inject
 
 class PortfolioPresenter @Inject constructor(val view: PortfolioContract.View) : PortfolioContract.Presenter {

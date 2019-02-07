@@ -63,35 +63,35 @@ class MainActivity : BaseActivity(), MainContract.View {
             R.id.nav_profile -> {
                 title_text.setText(R.string.screen_title_profile)
                 swapFragment(ProfileFragment.newInstance())
-                activateFabMenu(true)
+                showFabMenuAndLogout(true)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_plants -> {
                 title_text.setText(R.string.screen_title_plants)
                 swapFragment(PlantsFragment.newInstance())
-                activateFabMenu(false)
+                showFabMenuAndLogout(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_portfolio -> {
                 title_text.setText(R.string.screen_title_portfolio)
                 swapFragment(PortfolioFragment.newInstance())
-                activateFabMenu(false)
+                showFabMenuAndLogout(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_contacts -> {
                 title_text.setText(R.string.screen_title_contacts)
                 swapFragment(ContactsFragment.newInstance())
-                activateFabMenu(false)
+                showFabMenuAndLogout(false)
                 return@OnNavigationItemSelectedListener true
             }
 
             R.id.nav_map -> {
                 title_text.setText(R.string.screen_title_map)
                 swapFragment(MapFragment.newInstance())
-                activateFabMenu(false)
+                showFabMenuAndLogout(false)
                 return@OnNavigationItemSelectedListener true
             }
         }
@@ -116,7 +116,7 @@ class MainActivity : BaseActivity(), MainContract.View {
                 button_cart.setImageResource(R.drawable.ic_cart)
                 swapFragment(FavoritesFragment.newInstance())
                 BottomNavigationViewHelper.setUncheckable(navigation, true)
-                activateFabMenu(false)
+                showFabMenuAndLogout(false)
                 lastClickedMenuItemId = R.id.button_favorite
             }
         }
@@ -128,7 +128,7 @@ class MainActivity : BaseActivity(), MainContract.View {
                 button_favorite.setImageResource(R.drawable.ic_favorites)
                 swapFragment(CartFragment.newInstance())
                 BottomNavigationViewHelper.setUncheckable(navigation, true)
-                activateFabMenu(false)
+                showFabMenuAndLogout(false)
                 lastClickedMenuItemId = R.id.button_cart
             }
         }
@@ -141,15 +141,18 @@ class MainActivity : BaseActivity(), MainContract.View {
             })
         }
 
-        activateFabMenu(true)
+        showFabMenuAndLogout(true)
         fab_project.setOnClickListener { goToMessageScreen(MessageScreenType.NEW_PROJECT).also { fab_menu.collapse() } }
         fab_letter.setOnClickListener { goToMessageScreen(MessageScreenType.LETTER).also { fab_menu.collapse() } }
         fab_rating.setOnClickListener { goToMessageScreen(MessageScreenType.RATING).also { fab_menu.collapse() } }
         fab_complain.setOnClickListener { goToMessageScreen(MessageScreenType.COMPLAIN).also { fab_menu.collapse() } }
     }
 
-    private fun activateFabMenu(enabled: Boolean) {
+    /* Кнопки логаут и FAB показываем только в профиле */
+    private fun showFabMenuAndLogout(enabled: Boolean) {
         fab_menu.visibility = if (enabled) VISIBLE else GONE
+        button_logout.visibility = if (enabled) VISIBLE else GONE
+
         if (!enabled) {
             fab_menu.collapse()
             obstructor.visibility = GONE

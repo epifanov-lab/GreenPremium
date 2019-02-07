@@ -12,9 +12,7 @@ import com.lab.greenpremium.data.local.PreferencesManager
 import com.lab.greenpremium.data.network.ApiError
 import com.lab.greenpremium.data.network.ApiMethods
 import com.lab.greenpremium.data.network.CallbackListener
-import com.lab.greenpremium.ui.screens.message.RecyclerPhotosAdapter
 import com.lab.greenpremium.utills.LogUtil
-import com.lab.greenpremium.utills.getEncodedStringFromUri2
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
@@ -425,12 +423,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun addMessageRequest(theme: String, message: String, photosUris: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
+    fun addMessageRequest(theme: String, message: String, photos: List<MultipartBody.Part>, listener: CallbackListener) {
 
         if (checkAuthorization(listener)) return
-
-        val photos = photosUris.subList(0, photosUris.lastIndex)
-                .map { wrapper -> getEncodedStringFromUri2(wrapper.uri) }
 
         apiMethods.addMessages(preferences.getToken(), AddMessageRequest(theme, message, photos))
                 .subscribeOn(Schedulers.io())
@@ -444,12 +439,9 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun addClaim(message: String, photosUris: MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>, listener: CallbackListener) {
+    fun addClaim(message: String, photos: List<MultipartBody.Part>, listener: CallbackListener) {
 
         if (checkAuthorization(listener)) return
-
-        val photos = photosUris.subList(0, photosUris.lastIndex)
-                .map { wrapper -> getEncodedStringFromUri2(wrapper.uri) }
 
         apiMethods.addClaims(preferences.getToken(), AddClaimRequest(message, photos))
                 .subscribeOn(Schedulers.io())

@@ -1,12 +1,11 @@
 package com.lab.greenpremium.ui.screens.plant_detail
 
 import com.lab.greenpremium.data.CartModel
+import com.lab.greenpremium.data.CartUpdatedEvent
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.data.network.DefaultCallbackListener
 import com.lab.greenpremium.data.repository.Repository
-import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.currencyFormat
-import com.lab.greenpremium.data.CartUpdatedEvent
 import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
 
@@ -18,7 +17,6 @@ class PlantDetailPresenter @Inject constructor(val view: PlantDetailContract.Vie
     lateinit var product: Product
 
     override fun onViewCreated(product: Product) {
-        LogUtil.e("PLANT_DETAIL: $product")
         this.product = product
         val offer = product.getSelectedOffer()
 

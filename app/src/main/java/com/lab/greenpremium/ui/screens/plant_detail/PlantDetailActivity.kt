@@ -5,14 +5,14 @@ import com.bumptech.glide.Glide
 import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.BaseEvent
+import com.lab.greenpremium.data.ProductQuantityChangedEvent
 import com.lab.greenpremium.data.entity.OfferParam
 import com.lab.greenpremium.data.entity.Photo
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.data.entity.getPhotosUrls
 import com.lab.greenpremium.ui.components.item.PlantItemCountControlsHelper
 import com.lab.greenpremium.ui.screens.base.BaseActivity
-import com.lab.greenpremium.data.BaseEvent
-import com.lab.greenpremium.data.ProductQuantityChangedEvent
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_plant_detail.*
 import kotlinx.android.synthetic.main.view_plant_photos_preview.*
@@ -22,8 +22,6 @@ import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
-
-    //TODO photos -> gallery
 
     @Inject
     internal lateinit var presenter: PlantDetailPresenter

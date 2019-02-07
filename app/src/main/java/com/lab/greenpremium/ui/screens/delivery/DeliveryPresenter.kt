@@ -1,9 +1,9 @@
 package com.lab.greenpremium.ui.screens.delivery
 
-import com.lab.greenpremium.data.repository.Repository
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.entity.OrderRequest
 import com.lab.greenpremium.data.network.DefaultCallbackListener
+import com.lab.greenpremium.data.repository.Repository
 import javax.inject.Inject
 
 class DeliveryPresenter @Inject constructor(val view: DeliveryContract.View) : DeliveryContract.Presenter {

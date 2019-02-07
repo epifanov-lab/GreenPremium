@@ -4,7 +4,10 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.LinearSnapHelper
 import com.github.piasy.biv.BigImageViewer
 import com.github.piasy.biv.loader.glide.GlideImageLoader
-import com.lab.greenpremium.*
+import com.lab.greenpremium.App
+import com.lab.greenpremium.KEY_CHOSEN_IMAGE_NUM
+import com.lab.greenpremium.KEY_IMAGES_URLS_LIST
+import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_gallery.*
 import javax.inject.Inject

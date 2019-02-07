@@ -246,25 +246,24 @@ interface GpApi {
 
 
     //region MESSAGES
-    @FormUrlEncoded
     @Multipart
     @POST("projects/add")
     fun addProjects(@Header("X-Auth-Token") token: String,
-                    @Field("message") message: String,
-                    @Part("photos") photos: List<MultipartBody.Part>): Single<BaseResponse<AddProjectResponse>>
+                    @Part("message") message: String,
+                    @Part photos: List<MultipartBody.Part>): Single<BaseResponse<AddProjectResponse>>
 
-    @FormUrlEncoded
+    @Multipart
     @POST("messages/add")
     fun addMessages(@Header("X-Auth-Token") token: String,
-                    @Field("theme") theme: String,
-                    @Field("message") message: String,
-                    @Field("photos") photos: List<String>): Single<BaseResponse<AddMessageResponse>>
+                    @Part("theme") theme: String,
+                    @Part("message") message: String,
+                    @Part photos: List<MultipartBody.Part>): Single<BaseResponse<AddMessageResponse>>
 
-    @FormUrlEncoded
+    @Multipart
     @POST("claims/add")
     fun addClaims(@Header("X-Auth-Token") token: String,
-                  @Field("message") message: String,
-                  @Field("photos") photos: List<String>): Single<BaseResponse<AddClaimResponse>>
+                  @Part("message") message: String,
+                  @Part photos: List<MultipartBody.Part>): Single<BaseResponse<AddClaimResponse>>
 
     @FormUrlEncoded
     @POST("ratings/add")
