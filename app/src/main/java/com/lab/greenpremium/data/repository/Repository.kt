@@ -2,6 +2,7 @@ package com.lab.greenpremium.data.repository
 
 import android.annotation.SuppressLint
 import com.google.gson.JsonParser
+import com.lab.greenpremium.PAGE_SIZE
 import com.lab.greenpremium.REQUEST_REFRESH_TIME_MS
 import com.lab.greenpremium.data.CartModel
 import com.lab.greenpremium.data.EventsPaginationStateChanging
@@ -88,6 +89,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
         if (!forced && UserModel.eventsResponse != null) {
             if (System.currentTimeMillis() - UserModel.eventsResponse!!.time < REQUEST_REFRESH_TIME_MS) {
+                EventBus.getDefault().post(EventsPaginationStateChanging(false))
                 listener.onSuccess()
                 return
             }
@@ -496,13 +498,14 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
                 EventsResponse::class -> {
                     val eventsResponse = response.data as EventsResponse
+                    val events = eventsResponse.events
+
                     if (eventsResponse.page == 1) {
                         UserModel.eventsResponse = eventsResponse
-                        EventBus.getDefault().post(EventsPaginationStateChanging(true))
+                        EventBus.getDefault().post(EventsPaginationStateChanging(events.size == PAGE_SIZE))
                     } else {
-                        val events = eventsResponse.events
                         if (events.isNotEmpty()) UserModel.eventsResponse?.events?.addAll(events)
-                        else EventBus.getDefault().post(EventsPaginationStateChanging(false))
+                        EventBus.getDefault().post(EventsPaginationStateChanging(events.size % PAGE_SIZE == 0))
                     }
                 }
 

@@ -11,7 +11,7 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
     @Inject
     internal lateinit var repository: Repository
 
-    private var isEventsPaginationEnabled = true
+    private var isEventsPaginationEnabled = false
 
     override fun onViewCreated() {
         updateObjectInfo()
@@ -59,10 +59,6 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
         })
     }
 
-    override fun onClickEventPdf(file_path: String) {
-        view.openUrlInBrowser(file_path)
-    }
-
     override fun onEventRecyclerBottomReached(size: Int) {
         val events = UserModel.eventsResponse?.events
         if (isEventsPaginationEnabled && events != null) {
@@ -73,6 +69,10 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
                 }
             })
         }
+    }
+
+    override fun onClickEventPdf(file_path: String) {
+        view.openUrlInBrowser(file_path)
     }
 
     override fun onEventsPaginationStateChanged(enabled: Boolean) {
