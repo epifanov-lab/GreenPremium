@@ -491,7 +491,6 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
                 ObjectInfoResponse::class -> {
                     val objectInfoResponse = response.data as ObjectInfoResponse
-                    objectInfoResponse.updateBiologists()
                     UserModel.objectInfoResponse = objectInfoResponse
                 }
 

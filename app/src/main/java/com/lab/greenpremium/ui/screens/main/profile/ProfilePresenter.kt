@@ -25,7 +25,7 @@ class ProfilePresenter @Inject constructor(val view: ProfileContract.View) : Pro
 
                 info?.let {
 
-                    val biologists = info.biologists
+                    val biologists = info.carousel
                     biologists?.let {
                         if (biologists.isNotEmpty()) this@ProfilePresenter.view.initializeContactsCarousel(biologists)
                         else updateContacts()

@@ -1,7 +1,7 @@
 package com.lab.greenpremium.data.entity
 
 data class ObjectInfoResponse(
-        var biologists: List<Contact>,
+        var carousel: List<Contact>,
         val id: String,
         val order_id: Int?,
         val payment: Double,
@@ -9,15 +9,6 @@ data class ObjectInfoResponse(
         val order_supply_date: String?) {
 
     val time: Long = System.currentTimeMillis()
-
-    //менеджеры обладают свойством is_meeting_available == true и должны идти первыми в списке
-    //schedule должен быть только у биологов
-    fun updateBiologists() {
-        biologists = biologists.sortedWith(compareBy { !it.is_meeting_available })
-        biologists.forEach {
-            if (!it.is_meeting_available) it.schedule = schedule
-        }
-    }
 }
 
 /**
