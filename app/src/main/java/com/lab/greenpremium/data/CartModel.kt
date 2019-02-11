@@ -71,7 +71,7 @@ object CartModel {
         return result
     }
 
-    fun clearModel() {
+    fun clear() {
         cart = null
         favorites = null
         catalog = null

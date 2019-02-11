@@ -19,7 +19,7 @@ object UserModel {
 
     var mapObjectsResponse: MapObjectsResponse? = null
 
-    fun clearModel() {
+    fun clear() {
         contactsResponse = null
         objectInfoResponse = null
         eventsResponse = null

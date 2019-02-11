@@ -22,6 +22,7 @@ import retrofit2.HttpException
 import javax.inject.Inject
 
 
+//TODO разбить репозиторий на подклассы
 class Repository @Inject constructor(private val apiMethods: ApiMethods,
                                      private val preferences: PreferencesManager) {
 
@@ -493,6 +494,16 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
                 ObjectInfoResponse::class -> {
                     val objectInfoResponse = response.data as ObjectInfoResponse
+
+                    // в демо-режиме отсекаем все контакты кроме "офис",
+                    // который всегда приходит первым
+                    val carousel = objectInfoResponse.carousel
+                    carousel.let {
+                        if (isInDemoMode() && carousel.isNotEmpty()) {
+                            objectInfoResponse.carousel = carousel.subList(0, 1)
+                        }
+                    }
+
                     UserModel.objectInfoResponse = objectInfoResponse
                 }
 
@@ -618,17 +629,17 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
         return false
     }
 
-    fun isAuthorized() : Boolean {
+    fun isAuthorized(): Boolean {
         return !preferences.getToken().isNullOrEmpty()
     }
 
-    fun isInDemoMode() : Boolean {
+    fun isInDemoMode(): Boolean {
         return preferences.getIsDemoMode()
     }
 
     fun logout() {
-        UserModel.clearModel()
-        CartModel.clearModel()
+        UserModel.clear()
+        CartModel.clear()
         preferences.clear()
     }
 
