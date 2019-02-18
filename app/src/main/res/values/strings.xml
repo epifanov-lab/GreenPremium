@@ -27,7 +27,8 @@
 
     <string name="screen_title_plants">Растения</string>
     <string name="screen_title_portfolio">Портфолио</string>
-    <string name="screen_title_profile">Профиль</string>
+    <string name="screen_title_profile">Кабинет</string>
+    <string name="screen_title_profile_2">Личный кабинет</string>
     <string name="screen_title_contacts">Контакты</string>
     <string name="screen_title_map">Карта</string>
     <string name="screen_title_basket">Корзина</string>
@@ -52,7 +53,6 @@
 
     <string name="profile_calc_service">Рассчитать стоимость сервиса</string>
     <string name="profile_label_hint_no_events">Ваши покупки появятся\nздесь</string>
-    <string name="profile_label_hint_service_cost">Стоимость обслуживания\nсоставляет</string>
     <string name="profile_label_hint_delivery_scheduled">Запланирована поставка\nрастений</string>
     <string name="profile_label_shop">Начать\nпокупки</string>
 

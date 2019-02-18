@@ -47,31 +47,31 @@
             android:layout_height="@dimen/green_button_height"
             android:layout_marginBottom="@dimen/space_24"
             android:orientation="horizontal"
-            android:paddingLeft="@dimen/space_24"
-            android:paddingRight="@dimen/space_24"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingRight="@dimen/space_20"
             android:visibility="invisible"
             tools:visibility="visible">
 
             <TextView
+                android:id="@+id/label_service_cost"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="3"
+                android:layout_weight="4"
                 android:fontFamily="@font/sfuitext_regular"
                 android:gravity="end|center_vertical"
-                android:text="@string/profile_label_hint_service_cost"
+                tools:text="Стоимость обслуживания\n в месяц составляет"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12" />
+                android:textSize="@dimen/font_size_14" />
 
             <TextView
                 android:id="@+id/text_service_price"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginEnd="@dimen/space_12"
-                android:layout_weight="2"
+                android:layout_weight="2.5"
                 android:fontFamily="@font/sfuitext_medium"
                 android:gravity="center"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_20"
+                android:textSize="@dimen/font_size_22"
                 tools:text="33.000$" />
 
         </LinearLayout>
@@ -80,7 +80,7 @@
             android:id="@+id/container_delivery_schedule"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/space_28"
+            android:layout_marginLeft="@dimen/space_20"
             android:layout_marginBottom="@dimen/space_12"
             android:orientation="horizontal"
             android:visibility="invisible"
@@ -90,50 +90,54 @@
                 android:id="@+id/container_date"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="@dimen/space_20"
                 android:background="@drawable/ic_calendar_white"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="@dimen/space_8">
+                android:paddingTop="@dimen/space_12"
+                android:paddingLeft="@dimen/space_6"
+                android:paddingRight="@dimen/space_6"
+                android:paddingBottom="@dimen/space_2">
 
                 <TextView
                     android:id="@+id/text_date_day"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sfuitext_medium"
                     android:gravity="center"
-                    android:textColor="@color/gray_light_1"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/font_size_14"
                     tools:text="10" />
 
                 <TextView
                     android:id="@+id/text_date_month"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/sfuitext_medium"
                     android:gravity="center"
-                    android:textColor="@color/gray_light_1"
+                    android:textColor="@color/black"
                     android:textSize="@dimen/font_size_9"
-                    tools:text="июля" />
+                    tools:text="февраля" />
             </LinearLayout>
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="2"
+                android:layout_weight="3"
                 android:fontFamily="@font/sfuitext_regular"
+                android:layout_marginLeft="@dimen/space_28"
                 android:gravity="center_vertical"
                 android:text="@string/profile_label_hint_delivery_scheduled"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12" />
+                android:textSize="@dimen/font_size_14" />
 
             <ImageView
                 android:id="@+id/delivery"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="0.3"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_list" />
+                android:src="@drawable/ic_list"
+                android:layout_marginRight="@dimen/space_20" />
 
         </LinearLayout>
 
@@ -156,7 +160,7 @@
                 android:gravity="center_vertical"
                 android:text="@string/profile_label_hint_no_events"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12" />
+                android:textSize="@dimen/font_size_14" />
 
             <TextView
                 android:id="@+id/button_start_shopping"
@@ -170,7 +174,7 @@
                 android:padding="@dimen/space_8"
                 android:text="@string/profile_label_shop"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12" />
+                android:textSize="@dimen/font_size_14" />
 
         </LinearLayout>
 
@@ -184,8 +188,8 @@
         android:background="@color/beige"
         android:orientation="vertical"
         android:overScrollMode="never"
-        android:paddingLeft="@dimen/space_24"
-        android:paddingRight="@dimen/space_24"
+        android:paddingLeft="@dimen/space_16"
+        android:paddingRight="@dimen/space_16"
         android:scrollbars="none"
         android:visibility="invisible"
         tools:visibility="visible">

@@ -16,28 +16,28 @@
             android:layout_width="@dimen/item_event_height"
             android:layout_height="@dimen/item_event_height"
             android:layout_gravity="center"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="@dimen/space_16"
             android:background="@drawable/bcg_circle_event"
             android:gravity="center"
             android:textColor="@color/white"
-            android:textSize="@dimen/font_size_20"
+            android:textSize="@dimen/font_size_22"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="01" />
 
         <TextView
-            android:id="@+id/text_info"
+            android:id="@+id/text_schedule"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="@dimen/space_16"
+            android:layout_marginTop="@dimen/space_16"
+            android:layout_marginEnd="@dimen/space_16"
             android:layout_toEndOf="@id/text_num"
-            android:fontFamily="@font/sfuitext_medium"
+            android:fontFamily="@font/sfuitext_regular"
             android:gravity="start"
             android:textColor="@color/black"
-            android:textSize="@dimen/font_size_11"
+            android:textSize="@dimen/font_size_13"
             app:layout_constraintEnd_toStartOf="@+id/container_pdf"
             app:layout_constraintStart_toEndOf="@+id/text_num"
             app:layout_constraintTop_toTopOf="parent"
@@ -49,15 +49,15 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@id/text_num"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            android:fontFamily="@font/sfuitext_medium"
+            android:layout_marginTop="@dimen/space_4"
+            android:layout_marginEnd="@dimen/space_16"
+            android:layout_marginBottom="@dimen/space_8"
+            android:fontFamily="@font/sfuitext_regular"
             android:textColor="@color/gray"
-            android:textSize="@dimen/font_size_11"
+            android:textSize="@dimen/font_size_12"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/container_pdf"
-            app:layout_constraintTop_toBottomOf="@+id/text_info"
+            app:layout_constraintTop_toBottomOf="@+id/text_schedule"
             tools:text="20.04.2016 16:20" />
 
         <LinearLayout
@@ -84,7 +84,7 @@
                 android:gravity="center"
                 android:text="PDF"
                 android:textColor="@color/white"
-                android:textSize="@dimen/font_size_12" />
+                android:textSize="@dimen/font_size_13" />
 
             <ImageView
                 android:layout_width="match_parent"

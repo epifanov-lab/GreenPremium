@@ -62,19 +62,19 @@ class ContactItemView : RelativeLayout {
     }
 
     fun updateView() {
-        contact?.let {
-            text_name.text = it.name
-            text_position.text = it.position
+        contact?.let {c ->
+            text_name.text = c.name
+            text_position.text = c.position
 
-            text_phone.text = it.phone
-            button_call.visibility = if (contact?.phone.isNullOrEmpty()) GONE else VISIBLE
+            text_phone.text = c.phone
+            button_call.visibility = if (c.phone.isNullOrEmpty()) GONE else VISIBLE
 
-            text_mail.text = it.email
-            button_mail.visibility = if (contact?.email.isNullOrEmpty()) GONE else VISIBLE
+            text_mail.text = c.email
+            button_mail.visibility = if (c.email.isNullOrEmpty()) GONE else VISIBLE
 
-            text_info.text = it.schedule
+            text_schedule.text = c.schedule
 
-            if (!it.photo.isNullOrEmpty()) {
+            if (!c.photo.isNullOrEmpty()) {
                 GlideApp.with(context)
                         .load(contact?.photo)
                         .into(image)

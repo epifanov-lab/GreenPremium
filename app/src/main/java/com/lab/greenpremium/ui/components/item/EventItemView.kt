@@ -28,7 +28,7 @@ class EventItemView : RelativeLayout {
     }
 
     private fun updateView() {
-        text_info.text = event?.message
+        text_schedule.text = event?.message
         text_date_time.text = event?.created
         event?.let { container_pdf.visibility = if (event?.file_path.isNullOrEmpty()) View.INVISIBLE else View.VISIBLE }
     }

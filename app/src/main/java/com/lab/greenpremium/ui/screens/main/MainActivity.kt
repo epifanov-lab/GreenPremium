@@ -61,7 +61,7 @@ class MainActivity : BaseActivity(), MainContract.View {
 
         when (item.itemId) {
             R.id.nav_profile -> {
-                title_text.setText(R.string.screen_title_profile)
+                title_text.setText(R.string.screen_title_profile_2)
                 swapFragment(ProfileFragment.newInstance())
                 showFabMenuAndLogout(true)
                 return@OnNavigationItemSelectedListener true
@@ -102,7 +102,7 @@ class MainActivity : BaseActivity(), MainContract.View {
     override fun initViews() {
         presenter.onViewCreated()
 
-        title_text.setText(R.string.screen_title_profile)
+        title_text.setText(R.string.screen_title_profile_2)
         swapFragment(ProfileFragment.newInstance())
 
         navigation.itemIconTintList = null

@@ -81,7 +81,7 @@
         android:gravity="center"
         android:text="@string/contacts_message_employee_meeting"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_size_9" />
+        android:textSize="@dimen/font_size_10" />
 
     <View
         android:id="@+id/line"

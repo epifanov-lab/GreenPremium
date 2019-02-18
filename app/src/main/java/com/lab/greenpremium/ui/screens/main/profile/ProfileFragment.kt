@@ -1,10 +1,13 @@
 package com.lab.greenpremium.ui.screens.main.profile
 
+import android.os.Build
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
+import android.text.Html
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.LinearLayout
+import android.widget.TextView
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.BaseEvent
@@ -74,7 +77,17 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         val isServiceCalculated = payment != null && payment > 0.0
         button_calc_service.visibility = if (isServiceCalculated) GONE else VISIBLE
         container_cost.visibility = if (isServiceCalculated) VISIBLE else GONE
-        if (isServiceCalculated) text_service_price.text = currencyFormat(payment)
+        if (isServiceCalculated) {
+
+            val serviceLabelText = "Стоимость обслуживания<br/><font color='red'>в месяц</font> составляет"
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                label_service_cost.setText(Html.fromHtml(serviceLabelText,  Html.FROM_HTML_MODE_LEGACY), TextView.BufferType.SPANNABLE)
+            } else {
+                label_service_cost.setText(Html.fromHtml(serviceLabelText), TextView.BufferType.SPANNABLE)
+            }
+
+                text_service_price.text = currencyFormat(payment)
+        }
     }
 
     override fun showNoOrdersContainer(show: Boolean) {

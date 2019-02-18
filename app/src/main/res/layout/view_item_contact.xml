@@ -38,7 +38,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="55"
             android:orientation="vertical"
-            android:paddingBottom="@dimen/space_8"
             android:paddingEnd="@dimen/space_8"
             android:paddingTop="@dimen/space_8">
 
@@ -50,7 +49,7 @@
                 android:fontFamily="@font/sfuitext_medium"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_12"
+                android:textSize="@dimen/font_size_14"
                 tools:text="Борискина Юлия Леонидовна" />
 
             <TextView
@@ -61,7 +60,7 @@
                 android:fontFamily="@font/sfuitext_regular"
                 android:gravity="center_vertical"
                 android:textColor="@color/gray_light_1"
-                android:textSize="@dimen/font_size_9"
+                android:textSize="@dimen/font_size_12"
                 tools:text="Генеральный директор" />
 
             <TextView
@@ -72,7 +71,7 @@
                 android:fontFamily="@font/sfuitext_medium"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_10"
+                android:textSize="@dimen/font_size_12"
                 tools:text="+ 7 (495) 994 65 45" />
 
             <TextView
@@ -83,22 +82,22 @@
                 android:fontFamily="@font/sfuitext_regular"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_9"
+                android:textSize="@dimen/font_size_12"
                 tools:text="jb@greenpremium.ru" />
 
             <TextView
-                android:id="@+id/text_info"
+                android:id="@+id/text_schedule"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/text_phone"
                 android:fontFamily="@font/sfuitext_medium"
-                android:gravity="center_vertical"
+                android:gravity="start"
                 android:textColor="@color/black"
-                android:textSize="@dimen/font_size_9"
+                android:textSize="@dimen/font_size_11"
+                android:lines="2"
+                android:layout_marginBottom="@dimen/space_8"
                 tools:text="Мы ухаживаем за вашими растениями в пн., чт., с 11:00 - 13:00" />
 
         </LinearLayout>
-
 
         <LinearLayout
             android:id="@+id/container_controls"

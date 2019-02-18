@@ -55,7 +55,7 @@
         android:gravity="start"
         tools:text="@string/cart_service"
         android:textColor="@color/gray_light_1"
-        android:textSize="@dimen/font_size_9" />
+        android:textSize="@dimen/font_size_10" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recycler_plants"

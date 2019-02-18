@@ -1,7 +1,7 @@
 package com.lab.greenpremium.di.module
 
 
-import com.lab.greenpremium.TEST_URL
+import com.lab.greenpremium.PROD_URL
 import com.lab.greenpremium.data.network.GpInterceptor
 import com.lab.greenpremium.utills.LogUtil
 import dagger.Module
@@ -20,7 +20,7 @@ class NetworkModule {
     @Singleton
     fun provideRetrofit(): Retrofit {
         return Retrofit.Builder()
-                .baseUrl(TEST_URL)
+                .baseUrl(PROD_URL)
                 .client(OkHttpClient.Builder()
                         .addInterceptor(GpInterceptor())
                         .addInterceptor(HttpLoggingInterceptor(LogUtil::d).setLevel(HttpLoggingInterceptor.Level.BODY))

@@ -33,7 +33,7 @@ class AuthActivity : BaseActivity(), AuthContract.View {
         button_auth.setOnClickListener { presenter.validateDataAndProceedAuth() }
 
         button_forgot_pass.setOnClickListener {
-            if (DEBUG_MODE) { //todo исправить когда будешь реализовывать ссылки
+            if (DEBUG_MODE) {
                 input_login.setText(TEST_USER_LOGIN)
                 input_password.setText(TEST_USER_PASSWORD)
             }
