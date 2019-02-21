@@ -7,7 +7,7 @@ import android.net.Uri
 import android.support.v4.content.ContextCompat
 import android.view.ViewTreeObserver
 import com.lab.greenpremium.App
-import com.lab.greenpremium.GP_OFFICE_PHONE_NUMBER
+import com.lab.greenpremium.GP_SUPPORT_PHONE_NUMBER
 import com.lab.greenpremium.R
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.utills.setTouchAnimationShrink
@@ -57,7 +57,7 @@ class StartActivity : BaseActivity(), StartContract.View {
 
     override fun callToOffice() {
         val intent = Intent(Intent.ACTION_DIAL)
-        intent.data = Uri.parse("tel:$GP_OFFICE_PHONE_NUMBER")
+        intent.data = Uri.parse("tel:$GP_SUPPORT_PHONE_NUMBER")
         applicationContext.startActivity(intent)
     }
 

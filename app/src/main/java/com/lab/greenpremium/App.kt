@@ -1,6 +1,7 @@
 package com.lab.greenpremium
 
 import android.app.Application
+import com.bumptech.glide.request.target.ViewTarget
 import com.lab.greenpremium.di.AppComponent
 import com.lab.greenpremium.di.DaggerAppComponent
 import com.lab.greenpremium.di.module.AppModule
@@ -22,5 +23,7 @@ class App : Application() {
                 .networkModule(NetworkModule())
                 .preferencesModule(PreferencesModule(this))
                 .build()
+
+        ViewTarget.setTagId(R.id.glide_tag)
     }
 }

@@ -59,7 +59,7 @@
                 android:layout_weight="4"
                 android:fontFamily="@font/sfuitext_regular"
                 android:gravity="end|center_vertical"
-                tools:text="Стоимость обслуживания\n в месяц составляет"
+                android:text="@string/profile_label_service_cost"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_size_14" />
 

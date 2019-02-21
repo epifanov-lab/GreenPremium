@@ -52,6 +52,7 @@
     <string name="title_height">Высота</string>
 
     <string name="profile_calc_service">Рассчитать стоимость сервиса</string>
+    <string name="profile_label_service_cost">Стоимость обслуживания\nв месяц составляет</string>
     <string name="profile_label_hint_no_events">Ваши покупки появятся\nздесь</string>
     <string name="profile_label_hint_delivery_scheduled">Запланирована поставка\nрастений</string>
     <string name="profile_label_shop">Начать\nпокупки</string>
@@ -75,7 +76,6 @@
 
     <string name="favorites_empty">Список избранных растений пуст</string>
     <string name="cart_empty">Список покупок пуст</string>
-
 
     <string name="messages_screen_succes_add_project">Сообщение отправлено</string>
     <string name="messages_screen_succes_add_letter">Сообщение отправлено</string>
@@ -102,5 +102,7 @@
     <string name="lorem_ipsum_short">Sed ut perspiciatis unde omnis iste natus error</string>
     <string name="lorem_ipsum_medium">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi</string>
     <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</string>
+
+    <item type="id" name="glide_tag" />
 
 </resources>

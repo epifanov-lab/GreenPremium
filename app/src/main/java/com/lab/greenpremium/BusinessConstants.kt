@@ -4,7 +4,7 @@ import com.yandex.mapkit.geometry.Point
 
 const val YANDEX_MAP_KEY = "ca2bbc49-1fce-4e92-8c8f-326e71f85bff"
 
-const val GP_OFFICE_PHONE_NUMBER = "88007757075"
+const val GP_SUPPORT_PHONE_NUMBER = "+7 495 380-39-59"
 
 const val GP_OFFICE_LATITUDE = 55.77612292
 const val GP_OFFICE_LONGITUDE = 37.67787796

@@ -78,15 +78,7 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
         button_calc_service.visibility = if (isServiceCalculated) GONE else VISIBLE
         container_cost.visibility = if (isServiceCalculated) VISIBLE else GONE
         if (isServiceCalculated) {
-
-            val serviceLabelText = "Стоимость обслуживания<br/><font color='red'>в месяц</font> составляет"
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                label_service_cost.setText(Html.fromHtml(serviceLabelText,  Html.FROM_HTML_MODE_LEGACY), TextView.BufferType.SPANNABLE)
-            } else {
-                label_service_cost.setText(Html.fromHtml(serviceLabelText), TextView.BufferType.SPANNABLE)
-            }
-
-                text_service_price.text = currencyFormat(payment)
+            text_service_price.text = currencyFormat(payment)
         }
     }
 
