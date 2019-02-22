@@ -1,23 +1,33 @@
 package com.lab.greenpremium.data.entity
 
+import com.google.gson.annotations.SerializedName
 import okhttp3.MultipartBody
 
 //post /projects/add
-data class AddProjectRequest(val message: String, val photos: List<MultipartBody.Part>)
+data class AddProjectRequest(@SerializedName("message") val message: String,
+                             @SerializedName("photos") val photos: List<MultipartBody.Part>)
 
-data class AddProjectResponse(val project_id: Int, val event_id: Int)
+data class AddProjectResponse(@SerializedName("project_id") val project_id: Int,
+                              @SerializedName("event_id") val event_id: Int)
 
 //post /messages/add
-data class AddMessageRequest(val theme: String, val message: String, val photos:  List<MultipartBody.Part>)
+data class AddMessageRequest(@SerializedName("theme") val theme: String,
+                             @SerializedName("message") val message: String,
+                             @SerializedName("photos") val photos:  List<MultipartBody.Part>)
 
-data class AddMessageResponse(val message_id: Int, val event_id: Int)
+data class AddMessageResponse(@SerializedName("message_id") val message_id: Int,
+                              @SerializedName("event_id") val event_id: Int)
 
 //post /claims/add
-data class AddClaimRequest(val message: String, val photos:  List<MultipartBody.Part>)
+data class AddClaimRequest(@SerializedName("message") val message: String,
+                           @SerializedName("photos") val photos:  List<MultipartBody.Part>)
 
-data class AddClaimResponse(val claim_id: Int, val event_id: Int)
+data class AddClaimResponse(@SerializedName("claim_id") val claim_id: Int,
+                            @SerializedName("event_id") val event_id: Int)
 
 //post /ratings/add
-data class AddRatingRequest(val rating: Int, val message: String)
+data class AddRatingRequest(@SerializedName("rating") val rating: Int,
+                            @SerializedName("message") val message: String)
 
-data class AddRatingResponse(val rating_id: Int, val event_id: Int)
+data class AddRatingResponse(@SerializedName("rating_id") val rating_id: Int,
+                             @SerializedName("event_id") val event_id: Int)

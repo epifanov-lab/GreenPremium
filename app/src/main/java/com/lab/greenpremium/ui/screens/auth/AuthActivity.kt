@@ -3,6 +3,7 @@ package com.lab.greenpremium.ui.screens.auth
 import com.jakewharton.rxbinding2.widget.RxTextView
 import com.lab.greenpremium.*
 import com.lab.greenpremium.ui.screens.base.BaseActivity
+import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_auth.*
 import javax.inject.Inject
@@ -33,7 +34,9 @@ class AuthActivity : BaseActivity(), AuthContract.View {
         button_auth.setOnClickListener { presenter.validateDataAndProceedAuth() }
 
         button_forgot_pass.setOnClickListener {
-            if (DEBUG_MODE) {
+            LogUtil.e("BuildConfig.DEBUG ${BuildConfig.DEBUG}")
+
+            if (BuildConfig.DEBUG) {
                 input_login.setText(TEST_USER_LOGIN)
                 input_password.setText(TEST_USER_PASSWORD)
             }

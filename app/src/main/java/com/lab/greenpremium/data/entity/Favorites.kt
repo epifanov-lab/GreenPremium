@@ -1,12 +1,16 @@
 package com.lab.greenpremium.data.entity
 
+import com.google.gson.annotations.SerializedName
 
 //post /catalog/favorites/add
 //post /catalog/favorites/delete
 //get /catalog/favorites
 
-data class EditFavoritesRequest(val is_favorite: Boolean, val product_id: Int)
-data class EditFavoriteResponse(val is_deleted: Boolean?, val favorite_id: Int?)
+data class EditFavoritesRequest(@SerializedName("is_favorite") val is_favorite: Boolean,
+                                @SerializedName("product_id") val product_id: Int)
 
-data class GetFavoritesResponse(val products: MutableList<Product>)
+data class EditFavoriteResponse(@SerializedName("is_deleted") val is_deleted: Boolean?,
+                                @SerializedName("favorite_id") val favorite_id: Int?)
+
+data class GetFavoritesResponse(@SerializedName("products") val products: MutableList<Product>)
 

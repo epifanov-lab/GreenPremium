@@ -1,16 +1,17 @@
 package com.lab.greenpremium.data.entity
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class PortfolioResponse(val sections: List<PortfolioSection>?) {
+data class PortfolioResponse(@SerializedName("sections") val sections: List<PortfolioSection>?) {
     val time: Long = System.currentTimeMillis()
 }
 
 data class PortfolioSection(
-        val id: String,
-        val name: String,
-        val photos: List<Photo>,
-        val sort: String) : Serializable {
+        @SerializedName("id") val id: String,
+        @SerializedName("name") val name: String,
+        @SerializedName("photos") val photos: List<Photo>,
+        @SerializedName("sort") val sort: String) : Serializable {
 
     fun getPhotosUrls(): ArrayList<String> {
         val result = arrayListOf<String>()
@@ -20,10 +21,10 @@ data class PortfolioSection(
 }
 
 data class Photo(
-        val height: String,
-        val id: String,
-        val url: String,
-        val width: String
+        @SerializedName("height") val height: String,
+        @SerializedName("id") val id: String,
+        @SerializedName("url") val url: String,
+        @SerializedName("width") val width: String
 ) : Serializable
 
 //todo move to utils

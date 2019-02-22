@@ -1,12 +1,14 @@
 package com.lab.greenpremium.data.entity
 
+import com.google.gson.annotations.SerializedName
+
 data class ObjectInfoResponse(
-        var carousel: List<Contact>,
-        val id: String,
-        val order_id: Int?,
-        val payment: Double,
-        val schedule: String,
-        val order_supply_date: String?) {
+        @SerializedName("carousel") var carousel: List<Contact>,
+        @SerializedName("id") val id: String,
+        @SerializedName("order_id") val order_id: Int?,
+        @SerializedName("payment") val payment: Double,
+        @SerializedName("schedule") val schedule: String,
+        @SerializedName("order_supply_date") val order_supply_date: String?) {
 
     val time: Long = System.currentTimeMillis()
 }
@@ -16,23 +18,23 @@ data class ObjectInfoResponse(
  * auth = false
  * */
 data class MapObjectsResponse(
-        val features: List<Feature>,
-        val type: String
+        @SerializedName("features") val features: List<Feature>,
+        @SerializedName("type") val type: String
 )
 
 data class Feature(
-        val geometry: Geometry,
-        val id: Int,
-        val properties: Properties,
-        val type: String
+        @SerializedName("geometry") val geometry: Geometry,
+        @SerializedName("id") val id: Int,
+        @SerializedName("properties") val properties: Properties,
+        @SerializedName("type") val type: String
 )
 
 data class Properties(
-        val balloonContent: String,
-        val iconContent: String
+        @SerializedName("balloonContent") val balloonContent: String,
+        @SerializedName("iconContent") val iconContent: String
 )
 
 data class Geometry(
-        val coordinates: List<Double>,
-        val type: String
+        @SerializedName("coordinates") val coordinates: List<Double>,
+        @SerializedName("type") val type: String
 )

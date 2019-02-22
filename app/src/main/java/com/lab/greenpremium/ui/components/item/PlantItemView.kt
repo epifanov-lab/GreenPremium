@@ -62,7 +62,7 @@ class PlantItemView : RelativeLayout, Product.Listener {
         helper = PlantItemCountControlsHelper(product, text_counter, button_add, button_remove)
 
         container_controls.visibility = if (isDemo) View.GONE else View.VISIBLE
-        container_price.visibility = if (isDemo) View.GONE else View.VISIBLE
+        container_price.visibility = if (isDemo) View.INVISIBLE else View.VISIBLE
         
         if (!isDemo) {
             container_controls.setOnTouchListener { v, event -> true }

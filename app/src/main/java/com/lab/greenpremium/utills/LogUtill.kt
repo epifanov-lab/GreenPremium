@@ -1,18 +1,10 @@
 package com.lab.greenpremium.utills
 
 import android.util.Log
+import com.lab.greenpremium.BuildConfig
 import java.text.MessageFormat
 import java.util.*
 
-
-/**
- * This class wraps [android.util.Log] and automatically adds to log message class name,
- * method name and line number at which log method was invoked. As a tag parameter it uses
- * [.name] field to allow filter logcat messages by its value.
- * Log output can be completely disabled by setting [.loggingEnabled] to false.
- *
- * Created by shirshov on 12.04.2017.
- */
 
 object LogUtil {
 
@@ -20,7 +12,7 @@ object LogUtil {
     private val MAX_LOG_ENTRY_SIZE = 3000
     private val CONTINUE_TAG = "[CONTINUE]"
 
-    private val loggingEnabled = true
+    private val loggingEnabled = BuildConfig.DEBUG
 
     /**
      * List of class names that could be between LogUtil entries in stackTrace. Only start of the

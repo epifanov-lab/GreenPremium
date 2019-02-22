@@ -1,8 +1,9 @@
 package com.lab.greenpremium.data.entity
 
+import com.google.gson.annotations.SerializedName
 
-data class ContactsResponse(val office: Contact,
-                            val managers: MutableList<Contact>?) {
+data class ContactsResponse(@SerializedName("office") val office: Contact,
+                            @SerializedName("managers") val managers: MutableList<Contact>?) {
 
     val time: Long = System.currentTimeMillis()
 
@@ -20,11 +21,11 @@ data class ContactsResponse(val office: Contact,
     }
 }
 
-data class Contact(val id: String,
-                   val name: String,
-                   val email: String,
-                   val phone: String,
-                   val position: String,
-                   val photo: String,
-                   val is_meeting_available: Boolean,
-                   val schedule: String)
+data class Contact(@SerializedName("id") val id: String,
+                   @SerializedName("name") val name: String,
+                   @SerializedName("email") val email: String,
+                   @SerializedName("phone") val phone: String,
+                   @SerializedName("position") val position: String,
+                   @SerializedName("photo") val photo: String,
+                   @SerializedName("is_meeting_available") val is_meeting_available: Boolean,
+                   @SerializedName("schedule") val schedule: String)

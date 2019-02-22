@@ -1,20 +1,21 @@
 package com.lab.greenpremium.data.entity
 
+import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-data class SectionProductListRequest(val section_id: Int)
-data class ProductRequest(val product_id: Int)
+data class SectionProductListRequest(@SerializedName("section_id") val section_id: Int)
+data class ProductRequest(@SerializedName("product_id") val product_id: Int)
 
-data class CatalogSectionsResponse(val sections: MutableList<Section>?) : Serializable {
+data class CatalogSectionsResponse(@SerializedName("sections") val sections: MutableList<Section>?) : Serializable {
     val time: Long = System.currentTimeMillis()
 }
 
 data class Section(
-        val id: Int,
-        val name: String,
-        val sort: String) : Serializable {
+        @SerializedName("id") val id: Int,
+        @SerializedName("name") val name: String,
+        @SerializedName("sort") val sort: String) : Serializable {
 
-    var products: MutableList<Product>? = null
+    @SerializedName("products") var products: MutableList<Product>? = null
 }
 
 data class SectionProductsResponse(val products: MutableList<Product>) {
@@ -23,15 +24,15 @@ data class SectionProductsResponse(val products: MutableList<Product>) {
 }
 
 data class Product(
-        val id: Int,
-        val name: String,
-        val sort: String,
-        val detail_text: String,
-        var offers: List<Offer>,
-        val gallery: List<Photo>,
-        val photo: Photo,
-        var quantity: Int,
-        var isFavorite: Boolean = false
+        @SerializedName("id") val id: Int,
+        @SerializedName("name") val name: String,
+        @SerializedName("sort") val sort: String,
+        @SerializedName("detail_text") val detail_text: String,
+        @SerializedName("offers") var offers: List<Offer>,
+        @SerializedName("gallery") val gallery: List<Photo>,
+        @SerializedName("photo") val photo: Photo,
+        @SerializedName("quantity") var quantity: Int,
+        @SerializedName("isFavorite") var isFavorite: Boolean = false
 ) : Serializable {
 
     interface Listener {
@@ -63,19 +64,19 @@ data class Product(
 }
 
 data class Offer(
-        var product_id: Int,
-        var price: Double,
-        var old_price: Double?,
+        @SerializedName("product_id") var product_id: Int,
+        @SerializedName("price") var price: Double,
+        @SerializedName("old_price") var old_price: Double?,
 
         //Только у крупномеров
-        var height: OfferParam,
-        var crown_width: OfferParam,
+        @SerializedName("height") var height: OfferParam,
+        @SerializedName("crown_width") var crown_width: OfferParam,
 
         //У остальных
-        var item_height: OfferParam,
-        var plant_size: OfferParam,
-        var pot_count: OfferParam,
-        var pot_size: OfferParam,
+        @SerializedName("item_height") var item_height: OfferParam,
+        @SerializedName("plant_size") var plant_size: OfferParam,
+        @SerializedName("pot_count") var pot_count: OfferParam,
+        @SerializedName("pot_size") var pot_size: OfferParam,
 
         var quantity: Int = 0
 ) : Serializable {
@@ -101,8 +102,8 @@ data class Offer(
 }
 
 data class OfferParam(
-        val name: String,
-        val value: String
+        @SerializedName("name") val name: String,
+        @SerializedName("value") val value: String
 ) : Serializable {
 
     override fun toString(): String {
