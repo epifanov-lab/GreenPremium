@@ -12,7 +12,7 @@ object LogUtil {
     private val MAX_LOG_ENTRY_SIZE = 3000
     private val CONTINUE_TAG = "[CONTINUE]"
 
-    private val loggingEnabled = BuildConfig.DEBUG
+    private val loggingEnabled = true
 
     /**
      * List of class names that could be between LogUtil entries in stackTrace. Only start of the
