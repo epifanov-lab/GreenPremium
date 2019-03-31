@@ -2,11 +2,8 @@ package com.lab.greenpremium.data.repository
 
 import android.annotation.SuppressLint
 import com.google.gson.JsonParser
-import com.lab.greenpremium.PAGE_SIZE
 import com.lab.greenpremium.REQUEST_REFRESH_TIME_MS
 import com.lab.greenpremium.data.CartModel
-import com.lab.greenpremium.data.EventsPaginationStateChanging
-import com.lab.greenpremium.data.ProductPaginationStateChanging
 import com.lab.greenpremium.data.UserModel
 import com.lab.greenpremium.data.entity.*
 import com.lab.greenpremium.data.local.PreferencesManager
@@ -17,7 +14,6 @@ import com.lab.greenpremium.utills.LogUtil
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
-import org.greenrobot.eventbus.EventBus
 import retrofit2.HttpException
 import javax.inject.Inject
 
@@ -90,7 +86,6 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
         if (!forced && UserModel.eventsResponse != null) {
             if (System.currentTimeMillis() - UserModel.eventsResponse!!.time < REQUEST_REFRESH_TIME_MS) {
-                EventBus.getDefault().post(EventsPaginationStateChanging(false))
                 listener.onSuccess()
                 return
             }
@@ -510,14 +505,8 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 EventsResponse::class -> {
                     val eventsResponse = response.data as EventsResponse
                     val events = eventsResponse.events
-
-                    if (eventsResponse.page == 1) {
-                        UserModel.eventsResponse = eventsResponse
-                        EventBus.getDefault().post(EventsPaginationStateChanging(events.size == PAGE_SIZE))
-                    } else {
-                        if (events.isNotEmpty()) UserModel.eventsResponse?.events?.addAll(events)
-                        EventBus.getDefault().post(EventsPaginationStateChanging(events.size % PAGE_SIZE == 0))
-                    }
+                    if (eventsResponse.page == 1) UserModel.eventsResponse = eventsResponse
+                    else UserModel.eventsResponse?.events?.addAll(events)
                 }
 
                 CalcServiceResponse::class -> {
@@ -555,13 +544,8 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                             val sectionProductsResponse = response.data as SectionProductsResponse
                             if (section.id == parameters[0]) {
                                 val products = sectionProductsResponse.products
-                                if (sectionProductsResponse.page == 1) {
-                                    section.products = products
-                                    EventBus.getDefault().post(ProductPaginationStateChanging(true))
-                                } else {
-                                    if (products.isNotEmpty()) section.products?.addAll(products)
-                                    else EventBus.getDefault().post(ProductPaginationStateChanging(false))
-                                }
+                                if (sectionProductsResponse.page == 1) section.products = products
+                                else section.products?.addAll(products)
                             }
                         }
                     } catch (e: Exception) {

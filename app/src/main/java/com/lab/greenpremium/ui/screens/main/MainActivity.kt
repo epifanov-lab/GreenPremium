@@ -207,7 +207,6 @@ class MainActivity : BaseActivity(), MainContract.View {
 
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: BaseEvent) {
-        LogUtil.e("EVENT_CATCH: $event")
         when (event) {
             is ProductQuantityChangedEvent -> presenter.onProductQuantityChanged(event.product)
         }

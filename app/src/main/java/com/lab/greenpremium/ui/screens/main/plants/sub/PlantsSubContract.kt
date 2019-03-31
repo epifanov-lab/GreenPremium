@@ -15,6 +15,5 @@ interface PlantsSubContract {
         fun onViewCreated(sectionPosition: Int)
         fun onProductSelected(product: Product)
         fun onProductsRecyclerBottomReached(size: Int)
-        fun onProductPaginationStateChanged(enable: Boolean)
     }
 }

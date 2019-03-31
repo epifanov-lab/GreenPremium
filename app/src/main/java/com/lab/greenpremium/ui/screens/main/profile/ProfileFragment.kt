@@ -1,17 +1,13 @@
 package com.lab.greenpremium.ui.screens.main.profile
 
-import android.os.Build
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.PagerSnapHelper
-import android.text.Html
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.LinearLayout
-import android.widget.TextView
 import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.BaseEvent
-import com.lab.greenpremium.data.EventsPaginationStateChanging
 import com.lab.greenpremium.data.MessageSentEvent
 import com.lab.greenpremium.data.ServiceCalculatedEvent
 import com.lab.greenpremium.data.entity.Contact
@@ -148,14 +144,8 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     @Subscribe(threadMode = ThreadMode.MAIN)
     fun onEvent(event: BaseEvent) {
         when (event::class) {
-
             ServiceCalculatedEvent::class -> presenter.updateEvents(true)
             MessageSentEvent::class -> presenter.updateEvents(true)
-
-            EventsPaginationStateChanging::class -> {
-                presenter.onEventsPaginationStateChanged((event as EventsPaginationStateChanging).enabled)
-            }
-
         }
     }
 }

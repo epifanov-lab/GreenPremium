@@ -8,9 +8,6 @@ class MeetingAddedEvent : BaseEvent()
 class ServiceCalculatedEvent : BaseEvent()
 class MessageSentEvent : BaseEvent()
 
-class EventsPaginationStateChanging(val enabled: Boolean) : BaseEvent()
-class ProductPaginationStateChanging(val enabled: Boolean) : BaseEvent()
-
 class ProductQuantityChangedEvent(val product: Product) : BaseEvent()
 
 class CartUpdatedEvent : BaseEvent()

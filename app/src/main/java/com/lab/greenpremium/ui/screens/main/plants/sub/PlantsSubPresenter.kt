@@ -15,7 +15,6 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
 
     private var sectionPosition: Int = 0
     private var sectionId: Int = 0
-    private var isProductsPaginationEnabled = true
 
     override fun onViewCreated(sectionPosition: Int) {
         updateSectionProducts(sectionPosition)
@@ -37,10 +36,9 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
         }
     }
 
-    // TODO REFACTOR THIS. возможно нужно объединить методы в один на уровне репозитория или нетворка
     override fun onProductsRecyclerBottomReached(size: Int) {
         val page = (size / PAGE_SIZE) + 1
-        if (isProductsPaginationEnabled && page > 1) {
+        if (size % PAGE_SIZE == 0 && page > 1) {
             CartModel.catalog?.sections?.let { sections ->
                 repository.getSectionProductsListNextPage(sectionId, page, object : DefaultCallbackListener(view) {
                     override fun onSuccess() {
@@ -74,9 +72,5 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
                                 ?: (this@PlantsSubPresenter.view.showError(Throwable("Error while receiving product data")))
                     }
                 })
-    }
-
-    override fun onProductPaginationStateChanged(enabled: Boolean) {
-        isProductsPaginationEnabled = enabled
     }
 }

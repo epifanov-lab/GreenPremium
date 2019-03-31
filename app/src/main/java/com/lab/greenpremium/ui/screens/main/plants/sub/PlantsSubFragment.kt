@@ -6,8 +6,6 @@ import android.widget.LinearLayout
 import com.lab.greenpremium.App
 import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
-import com.lab.greenpremium.data.BaseEvent
-import com.lab.greenpremium.data.ProductPaginationStateChanging
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.dialog.RadioButtonPickerDialog
 import com.lab.greenpremium.ui.dialog.RadioButtonPickerDialog.Companion.show
@@ -15,9 +13,6 @@ import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.ui.screens.base.BaseFragment
 import com.lab.greenpremium.utills.LogUtil
 import kotlinx.android.synthetic.main.sub_fragment_plants.*
-import org.greenrobot.eventbus.EventBus
-import org.greenrobot.eventbus.Subscribe
-import org.greenrobot.eventbus.ThreadMode
 import javax.inject.Inject
 
 
@@ -85,27 +80,6 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
 
     override fun goToDetails(product: Product) {
         (activity as BaseActivity).goToPlantDetailActivity(product)
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    fun onEvent(event: BaseEvent) {
-        when (event::class) {
-
-            ProductPaginationStateChanging::class -> {
-                presenter.onProductPaginationStateChanged((event as ProductPaginationStateChanging).enabled)
-            }
-
-        }
-    }
-
-    override fun onStart() {
-        super.onStart()
-        EventBus.getDefault().register(this)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        EventBus.getDefault().unregister(this)
     }
 
     override fun onResume() {

@@ -25,6 +25,5 @@ interface ProfileContract {
         fun updateEvents(forced: Boolean)
         fun onClickEventPdf(file_path: String)
         fun onEventRecyclerBottomReached(size: Int)
-        fun onEventsPaginationStateChanged(enable: Boolean)
     }
 }
