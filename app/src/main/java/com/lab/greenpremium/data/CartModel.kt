@@ -77,6 +77,10 @@ object CartModel {
         catalog = null
     }
 
+    fun clearCatalog() {
+        catalog = null
+    }
+
     fun clearCart() {
         cart?.let { CartModel.cart!!.products.clear() }
         syncCatalogWithCart()

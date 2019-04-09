@@ -45,12 +45,13 @@ class PlantDetailPresenter @Inject constructor(val view: PlantDetailContract.Vie
     }
 
     override fun onProductQuantityChanged(product: Product) {
-        repository.addToCart(product.getSelectedOffer().product_id, product.quantity, object : DefaultCallbackListener(view) {
-            override fun onSuccess() {
-                CartModel.syncCatalogWithCartByProduct(product)
-                EventBus.getDefault().post(CartUpdatedEvent())
-            }
-        })
+        repository.addToCart(product.getSelectedOffer().product_id, product.getSelectedOffer().quantity,
+                object : DefaultCallbackListener(view) {
+                    override fun onSuccess() {
+                        CartModel.syncCatalogWithCartByProduct(product)
+                        EventBus.getDefault().post(CartUpdatedEvent())
+                    }
+                })
     }
 
     override fun onClickImage(pos: Int) {

@@ -11,10 +11,10 @@ interface MainContract {
     }
 
     interface Presenter {
-        fun onViewCreated()
+        fun onViewStarted()
 
         fun onProductQuantityChanged(product: Product)
-        fun updateCart()
+        fun updateCartAndFavorites()
         fun updateFavoritesList()
 
         fun onClickLogout()

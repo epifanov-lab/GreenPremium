@@ -14,8 +14,8 @@ class MainPresenter @Inject constructor(val view: MainContract.View) : MainContr
     @Inject
     internal lateinit var repository: Repository
 
-    override fun onViewCreated() {
-        updateCart()
+    override fun onViewStarted() {
+        updateCartAndFavorites()
     }
 
     override fun onProductQuantityChanged(product: Product) {
@@ -31,7 +31,7 @@ class MainPresenter @Inject constructor(val view: MainContract.View) : MainContr
         })
     }
 
-    override fun updateCart() {
+    override fun updateCartAndFavorites() {
         repository.getCart(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
                 CartModel.cart?.let {

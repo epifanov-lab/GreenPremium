@@ -31,6 +31,7 @@ class CartPresenter @Inject constructor(val view: CartContract.View) : CartContr
                 CartModel.clearCart()
                 this@CartPresenter.view.updateTotalCost(0.0)
                 this@CartPresenter.view.onBillRequestSuccess((item as MakeOrderResponse).message)
+                CartModel.clearCatalog()
             }
         })
     }
