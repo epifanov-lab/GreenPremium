@@ -7,8 +7,10 @@ import com.lab.greenpremium.App
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.components.item.PlantItemView
+import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.ui.screens.base.BaseFragment
 import com.lab.greenpremium.ui.screens.main.plants.sub.PlantRecyclerAdapter
+import com.lab.greenpremium.utills.LogUtil
 import kotlinx.android.synthetic.main.fragment_favorites.*
 import javax.inject.Inject
 
@@ -47,7 +49,7 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View {
                     PlantItemView.PlantViewType.OTHER, isDemo,
                     listener = object : PlantRecyclerAdapter.PlantsRecyclerListener {
                         override fun onProductSelected(product: Product) {
-                            //ignore
+                            presenter.onProductSelected(product)
                         }
 
                         override fun onRecyclerBottomReached(size: Int) {
@@ -58,6 +60,10 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View {
             label_empty_list.visibility = View.VISIBLE
             recycler_plants.visibility = View.GONE
         }
+    }
+
+    override fun goToDetails(product: Product) {
+        (activity as BaseActivity).goToPlantDetailActivity(product)
     }
 
     override fun onResume() {

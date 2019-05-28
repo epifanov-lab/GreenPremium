@@ -81,7 +81,6 @@
         android:fontFamily="@font/sfuitext_regular"
         android:text="@string/reference_title_forgot_password"
         android:textColor="@color/gray"
-        android:textSize="@dimen/font_size_10"
-        android:alpha="0"/>
+        android:textSize="@dimen/font_size_10" />
 
 </LinearLayout>

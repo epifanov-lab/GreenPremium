@@ -269,7 +269,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
     }
 
     @SuppressLint("CheckResult")
-    fun getProductDetail(section_id: Int, product_id: Int, listener: CallbackListener) {
+    fun getProductDetail(section_id: Int?, product_id: Int, listener: CallbackListener) {
 
         if (checkAuthorization(listener)) return
 
@@ -470,7 +470,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
     private inline fun <reified DATA> handleResponse(response: BaseResponse<DATA>,
                                                      listener: CallbackListener,
-                                                     vararg parameters: Int) {
+                                                     vararg parameters: Int?) {
 
         LogUtil.i("HANDLE_HTTP_RESPONSE: ${response.data}")
 
