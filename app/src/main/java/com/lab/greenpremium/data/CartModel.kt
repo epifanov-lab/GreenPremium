@@ -2,15 +2,23 @@ package com.lab.greenpremium.data
 
 import com.lab.greenpremium.data.entity.CartResponse
 import com.lab.greenpremium.data.entity.CatalogSectionsResponse
+import com.lab.greenpremium.data.entity.FavoritesResponse
 import com.lab.greenpremium.data.entity.Product
 
 
 object CartModel {
 
-    //TODO REFACTOR THIS! need to be one common pool of products!!!
+    /* TODO Общий пул айтемов
+    *  Sync методы убрать
+    *  Хранить все продукты в одной мапе
+    *  ключ = product_id
+    *  value = product
+    *  if (product_id != offer_id) new Product(offer_id)
+    *  подумать
+    * */
 
     var cart: CartResponse? = null
-    var favorites: MutableList<Product>? = null
+    var favorites: FavoritesResponse? = null
     var catalog: CatalogSectionsResponse? = null
 
     fun syncCatalogWithCart() {
@@ -20,7 +28,7 @@ object CartModel {
     }
 
     fun syncCatalogWithCartByProduct(cartProduct: Product) {
-        catalog?.sections?.forEach iterator@ { sections ->
+        catalog?.sections?.forEach iterator@{ sections ->
             sections.products?.forEach { catalogProduct ->
 
                 val offerFromCatalog = catalogProduct.getSelectedOffer()
@@ -36,8 +44,8 @@ object CartModel {
     }
 
     fun syncFavoritesWithCart() {
-        cart?.products?.forEach{cartProduct ->
-            favorites?.forEach {favoriteProduct ->
+        cart?.products?.forEach { cartProduct ->
+            favorites?.products?.forEach { favoriteProduct ->
 
                 val offerFromCart = cartProduct.getSelectedOffer()
                 val offerFromFavorites = favoriteProduct.getSelectedOffer()
@@ -50,15 +58,22 @@ object CartModel {
     }
 
     fun syncCatalogWithFavorites() {
-        favorites?.forEach {favoriteProduct ->
-            catalog?.sections?.forEach {sections ->
-                sections.products?.forEach { catalogProduct ->
+        favorites?.products?.apply {
+            if (size > 0) {
+                forEach { favoriteProduct ->
+                    catalog?.sections?.forEach { sections ->
+                        sections.products?.forEach { catalogProduct ->
 
-                    val offerFromCatalog = catalogProduct.getSelectedOffer()
-                    val offerFromFavorites = favoriteProduct.getSelectedOffer()
-
-                    if (offerFromCatalog.product_id == offerFromFavorites.product_id) {
-                        catalogProduct.isFavorite = true
+                            val offerFromFavorites = favoriteProduct.getSelectedOffer()
+                            val offerFromCatalog = catalogProduct.getSelectedOffer()
+                            catalogProduct.isFavorite = offerFromCatalog.product_id == offerFromFavorites.product_id
+                        }
+                    }
+                }
+            } else {
+                catalog?.sections?.forEach { sections ->
+                    sections.products?.forEach { catalogProduct ->
+                        catalogProduct.isFavorite = false
                     }
                 }
             }

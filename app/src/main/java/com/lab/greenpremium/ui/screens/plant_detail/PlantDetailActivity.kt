@@ -84,6 +84,7 @@ class PlantDetailActivity : BaseActivity(), PlantDetailContract.View {
     override fun initializeGallery(photos: List<Photo>) {
         gallery_preview.gallery = photos
 
+        image.setOnClickListener { presenter.onClickImage(0) }
         image_1.setOnClickListener { presenter.onClickImage(0) }
         image_2.setOnClickListener { presenter.onClickImage(1) }
         image_else.setOnClickListener { presenter.onClickImage(2) }

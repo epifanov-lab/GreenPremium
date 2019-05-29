@@ -11,7 +11,7 @@ interface FavoritesContract {
     }
 
     interface Presenter {
-        fun onViewCreated()
+        fun onViewResumed()
         fun updateFavoritesList()
         fun onProductSelected(product: Product)
     }

@@ -363,7 +363,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                 .doOnSubscribe { listener.doBefore() }
                 .doFinally { listener.doAfter() }
                 .subscribe(
-                        { response -> handleResponse(BaseResponse(response.status, response.title, GetFavoritesResponse(response.data)), listener) },
+                        { response -> handleResponse(BaseResponse(response.status, response.title, FavoritesResponse(response.data)), listener) },
                         { error -> handleError(error, listener) }
                 )
 
@@ -521,8 +521,8 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
                     //ignore
                 }
 
-                GetFavoritesResponse::class -> {
-                    CartModel.favorites = (response.data as GetFavoritesResponse).products
+                FavoritesResponse::class -> {
+                    CartModel.favorites = response.data as FavoritesResponse
                 }
 
                 MeetingsListResponse::class -> {

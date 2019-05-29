@@ -12,7 +12,7 @@ class FavoritesPresenter @Inject constructor(val view: FavoritesContract.View) :
     @Inject
     internal lateinit var repository: Repository
 
-    override fun onViewCreated() {
+    override fun onViewResumed() {
         updateFavoritesList()
     }
 
@@ -22,7 +22,7 @@ class FavoritesPresenter @Inject constructor(val view: FavoritesContract.View) :
                 CartModel.syncFavoritesWithCart()
                 CartModel.syncCatalogWithFavorites()
                 CartModel.favorites?.let {
-                    this@FavoritesPresenter.view.initializeFavoritesList(CartModel.favorites!!, repository.isInDemoMode())
+                    this@FavoritesPresenter.view.initializeFavoritesList(CartModel.favorites!!.products, repository.isInDemoMode())
                 }
             }
         })
@@ -40,7 +40,7 @@ class FavoritesPresenter @Inject constructor(val view: FavoritesContract.View) :
 
                             val tempProduct = it as Product
                             tempProduct.getSelectedOffer().sync(product.getSelectedOffer())
-                            tempProduct.isFavorite = product.isFavorite
+                            tempProduct.isFavorite = true
                             this@FavoritesPresenter.view.goToDetails(tempProduct)
 
                         }

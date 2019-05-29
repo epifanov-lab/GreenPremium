@@ -37,7 +37,7 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View {
     }
 
     override fun initViews() {
-        presenter.onViewCreated()
+        //ignore
     }
 
     override fun initializeFavoritesList(favorites: List<Product>, isDemo: Boolean) {
@@ -68,6 +68,6 @@ class FavoritesFragment : BaseFragment(), FavoritesContract.View {
 
     override fun onResume() {
         super.onResume()
-        recycler_plants.adapter?.notifyDataSetChanged()
+        presenter.onViewResumed()
     }
 }

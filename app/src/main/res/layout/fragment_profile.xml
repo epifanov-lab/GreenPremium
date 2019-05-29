@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/recycler_contacts"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/space_24"
+        android:layout_marginBottom="@dimen/space_20"
         app:spi_dotColor="@color/green_1_50"
         app:spi_dotSelectedColor="@color/green_1" />
 
@@ -35,7 +35,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginLeft="@dimen/space_28"
             android:layout_marginRight="@dimen/space_28"
-            android:layout_marginBottom="@dimen/space_24"
+            android:layout_marginBottom="@dimen/space_20"
             android:gravity="center"
             android:text="@string/profile_calc_service"
             android:visibility="invisible"
@@ -45,7 +45,7 @@
             android:id="@+id/container_cost"
             android:layout_width="match_parent"
             android:layout_height="@dimen/green_button_height"
-            android:layout_marginBottom="@dimen/space_24"
+            android:layout_marginBottom="@dimen/space_20"
             android:orientation="horizontal"
             android:paddingLeft="@dimen/space_20"
             android:paddingRight="@dimen/space_20"
@@ -93,8 +93,8 @@
                 android:background="@drawable/ic_calendar_white"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:paddingTop="@dimen/space_12"
                 android:paddingLeft="@dimen/space_6"
+                android:paddingTop="@dimen/space_12"
                 android:paddingRight="@dimen/space_6"
                 android:paddingBottom="@dimen/space_2">
 
@@ -122,9 +122,9 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/space_28"
                 android:layout_weight="3"
                 android:fontFamily="@font/sfuitext_regular"
-                android:layout_marginLeft="@dimen/space_28"
                 android:gravity="center_vertical"
                 android:text="@string/profile_label_hint_delivery_scheduled"
                 android:textColor="@color/black"
@@ -134,10 +134,10 @@
                 android:id="@+id/delivery"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/space_20"
                 android:layout_weight="0.3"
                 android:scaleType="centerInside"
-                android:src="@drawable/ic_list"
-                android:layout_marginRight="@dimen/space_20" />
+                android:src="@drawable/ic_list" />
 
         </LinearLayout>
 
@@ -145,10 +145,12 @@
             android:id="@+id/container_no_orders"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/space_12"
             android:clickable="true"
             android:focusable="true"
             android:orientation="horizontal"
-            android:padding="@dimen/space_20"
+            android:paddingLeft="@dimen/space_20"
+            android:paddingRight="@dimen/space_20"
             android:visibility="invisible"
             tools:visibility="visible">
 

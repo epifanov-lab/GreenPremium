@@ -100,9 +100,9 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
     }
 
     override fun initializeEventsList(events: List<Event>) {
-        container_events.visibility = VISIBLE
-        recycler_events.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
-        recycler_events.adapter = EventsRecyclerAdapter(events, object : EventsRecyclerAdapter.EventsRecyclerListener {
+        container_events?.visibility = VISIBLE
+        recycler_events?.layoutManager = LinearLayoutManager(context, LinearLayout.VERTICAL, false)
+        recycler_events?.adapter = EventsRecyclerAdapter(events, object : EventsRecyclerAdapter.EventsRecyclerListener {
             override fun onClickPdf(file_path: String) {
                 presenter.onClickEventPdf(file_path)
             }
@@ -111,7 +111,6 @@ class ProfileFragment : BaseFragment(), ProfileContract.View {
                 presenter.onEventRecyclerBottomReached(size)
             }
         })
-
     }
 
     override fun notifyEventsRecyclerDataChanged() {

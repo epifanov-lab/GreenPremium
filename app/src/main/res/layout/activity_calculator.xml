@@ -39,7 +39,6 @@
             android:id="@+id/label_tip"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button_bill"
             android:layout_marginStart="24dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="24dp"
@@ -123,7 +122,8 @@
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
                         android:inputType="number"
-                        android:text="0"
+                        android:hint="0"
+                        android:textColorHint="@drawable/selector_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
@@ -145,7 +145,8 @@
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
                         android:inputType="number"
-                        android:text="0"
+                        android:hint="0"
+                        android:textColorHint="@drawable/selector_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
 
@@ -183,7 +184,8 @@
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
                         android:inputType="number"
-                        android:text="0"
+                        android:hint="0"
+                        android:textColorHint="@drawable/selector_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
@@ -205,7 +207,8 @@
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
                         android:inputType="number"
-                        android:text="0"
+                        android:hint="0"
+                        android:textColorHint="@drawable/selector_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
 
@@ -243,7 +246,8 @@
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
                         android:inputType="number"
-                        android:text="0"
+                        android:hint="0"
+                        android:textColorHint="@drawable/selector_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
@@ -265,7 +269,8 @@
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
                         android:inputType="number"
-                        android:text="0"
+                        android:hint="0"
+                        android:textColorHint="@drawable/selector_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
 
@@ -303,7 +308,8 @@
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
                         android:inputType="number"
-                        android:text="0"
+                        android:hint="0"
+                        android:textColorHint="@drawable/selector_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
@@ -325,7 +331,8 @@
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
                         android:inputType="number"
-                        android:text="0"
+                        android:hint="0"
+                        android:textColorHint="@drawable/selector_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
 
@@ -363,7 +370,8 @@
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
                         android:inputType="number"
-                        android:text="0"
+                        android:hint="0"
+                        android:textColorHint="@drawable/selector_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
@@ -385,7 +393,8 @@
                         android:fontFamily="@font/sfuitext_regular"
                         android:gravity="center"
                         android:inputType="number"
-                        android:text="0"
+                        android:hint="0"
+                        android:textColorHint="@drawable/selector_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
 

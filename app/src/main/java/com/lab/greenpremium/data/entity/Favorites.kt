@@ -12,5 +12,5 @@ data class EditFavoritesRequest(@SerializedName("is_favorite") val is_favorite: 
 data class EditFavoriteResponse(@SerializedName("is_deleted") val is_deleted: Boolean?,
                                 @SerializedName("favorite_id") val favorite_id: Int?)
 
-data class GetFavoritesResponse(@SerializedName("products") val products: MutableList<Product>)
+data class FavoritesResponse(@SerializedName("products") val products: MutableList<Product>)
 
