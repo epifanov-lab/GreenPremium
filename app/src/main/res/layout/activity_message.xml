@@ -93,6 +93,6 @@
         style="@style/Button.Green"
         android:layout_gravity="center_horizontal"
         android:layout_marginBottom="@dimen/space_8"
-        android:text="@string/button_title_sent" />
+        android:text="@string/button_title_send" />
 
 </LinearLayout>

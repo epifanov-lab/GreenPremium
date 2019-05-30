@@ -17,16 +17,19 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.ScrollView
 import com.lab.greenpremium.*
 
+fun showKeyboard(context: Context) {
+    val imm = context.getSystemService(Service.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+}
 
 fun requestFocusAndShowKeyboard(context: Context, view: View?) {
     if (view != null) {
         view.requestFocus()
-        val imm = context.getSystemService(Service.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+        showKeyboard(context)
     }
 }
 
-fun hideKeyboard(context: Context) {
+/*fun hideKeyboard(context: Context) {
     if (context is Activity) {
         val view = context.currentFocus
         if (view != null) {
@@ -34,6 +37,17 @@ fun hideKeyboard(context: Context) {
             imm.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
+}*/
+
+fun hideKeyboard(activity: Activity) {
+    val imm = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    //Find the currently focused view, so we can grab the correct window token from it.
+    var view = activity.currentFocus
+    //If no view currently has focus, create a new one, just so we can grab a window token from it
+    if (view == null) {
+        view = View(activity)
+    }
+    imm.hideSoftInputFromWindow(view.windowToken, 0)
 }
 
 interface KeyboardListener {

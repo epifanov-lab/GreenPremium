@@ -71,12 +71,9 @@ class CartFragment : BaseFragment(), CartContract.View {
     }
 
     override fun onBillRequestSuccess(message: String) {
-        showDialogMessage(message, null, object : Listener {
-            override fun onEvent() {
-                initializeCartProductsList(null, false)
-                (activity as MainActivity).updateCartIndicator(0)
-            }
-        })
+        showDialogMessage(message, null, null)
+        initializeCartProductsList(null, false)
+        (activity as MainActivity).updateCartIndicator(0)
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)

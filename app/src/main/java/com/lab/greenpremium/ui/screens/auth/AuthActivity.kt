@@ -6,6 +6,7 @@ import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.utills.LogUtil
 import com.lab.greenpremium.utills.setTouchAnimationShrink
 import kotlinx.android.synthetic.main.activity_auth.*
+import com.lab.greenpremium.ui.dialog.RestorePasswordDialog
 import javax.inject.Inject
 
 class AuthActivity : BaseActivity(), AuthContract.View {
@@ -34,11 +35,14 @@ class AuthActivity : BaseActivity(), AuthContract.View {
         button_auth.setOnClickListener { presenter.validateDataAndProceedAuth() }
 
         button_forgot_pass.setOnClickListener {
-            LogUtil.e("BuildConfig.DEBUG ${BuildConfig.DEBUG}")
+            RestorePasswordDialog.getInstance().also {
+                it.listener = object : RestorePasswordDialog.RestorePasswordDialogListener {
+                    override fun onClickSend(email: String) {
+                        presenter.onRestorePasswordEmailSend(email, it)
+                    }
+                }
 
-            if (BuildConfig.DEBUG) {
-                input_login.setText(TEST_USER_LOGIN)
-                input_password.setText(TEST_USER_PASSWORD)
+                it.show(this)
             }
         }
 
@@ -67,5 +71,18 @@ class AuthActivity : BaseActivity(), AuthContract.View {
 
     override fun goToMain() {
         super.goToMainScreen()
+    }
+
+    override fun onRestorePasswordSuccess() {
+        showSnackbar(null, R.string.dialog_restore_password_done)
+    }
+
+    private fun setAuthTestAccountData() {
+        LogUtil.e("BuildConfig.DEBUG ${BuildConfig.DEBUG}")
+
+        if (BuildConfig.DEBUG) {
+            input_login.setText(TEST_USER_LOGIN)
+            input_password.setText(TEST_USER_PASSWORD)
+        }
     }
 }

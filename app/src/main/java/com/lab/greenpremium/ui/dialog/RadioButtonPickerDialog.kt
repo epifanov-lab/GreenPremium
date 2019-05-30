@@ -15,13 +15,15 @@ import com.lab.greenpremium.utills.LogUtil
 
 class RadioButtonPickerDialog<T> : BaseDialogFragment() {
 
+    interface PickerListener {
+        fun <T> onItemPicked(index: Int, item: T)
+    }
+
     var items: List<T>? = null
     var listener: PickerListener? = null
     var defIndex: Int? = null
 
-    interface PickerListener {
-        fun <T> onItemPicked(index: Int, item: T)
-    }
+    private val group: RadioGroup by lazy { dialogView.findViewById<RadioGroup>(R.id.radio_button_group) }
 
     override fun layoutResId(): Int {
         return R.layout.dialog_radio_group
@@ -29,8 +31,7 @@ class RadioButtonPickerDialog<T> : BaseDialogFragment() {
 
     override fun onStart() {
         super.onStart()
-        dialog.window?.setLayout(resources.getDimensionPixelSize(R.dimen.dialog_pick_height_width),
-                ViewGroup.LayoutParams.WRAP_CONTENT)
+        dialog.window?.setLayout(resources.getDimensionPixelSize(R.dimen.dialog_pick_height_width), ViewGroup.LayoutParams.WRAP_CONTENT)
         dialog.window?.setGravity(Gravity.START or Gravity.BOTTOM)
         dialog.setCanceledOnTouchOutside(true)
     }
@@ -42,8 +43,6 @@ class RadioButtonPickerDialog<T> : BaseDialogFragment() {
             dismiss()
             return
         }
-
-        val group = dialogView.findViewById<RadioGroup>(R.id.radio_button_group)
 
         items?.let {
             for ((index, item) in items!!.withIndex()) {
@@ -60,13 +59,9 @@ class RadioButtonPickerDialog<T> : BaseDialogFragment() {
                                 CLICK_ACTION_THRESHOLD.toLong())
                     }
                 }
-
                 group.addView(button)
             }
-
-
         }
-
     }
 
     private fun getItemTitle(item: T): String {

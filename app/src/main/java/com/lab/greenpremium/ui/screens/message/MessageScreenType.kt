@@ -11,9 +11,9 @@ enum class MessageScreenType(var titleResId: Int,
                              val hasDocsAdding: Boolean,
                              val successMessageResId: Int) : Serializable {
 
-    NEW_PROJECT(R.string.fab_project, false, false, true, true, true, R.string.messages_screen_succes_add_project),
-    LETTER(R.string.fab_letter, false, true, true, true, true, R.string.messages_screen_succes_add_letter),
-    RATING(R.string.fab_praise, true, false, true, false, false, R.string.messages_screen_succes_add_rating),
-    COMPLAIN(R.string.fab_complain, false, false, true, true, false, R.string.messages_screen_succes_add_complain);
+    NEW_PROJECT(R.string.fab_project, false, false, true, true, true, R.string.messages_screen_success),
+    LETTER(R.string.fab_letter, false, true, true, true, true, R.string.messages_screen_success),
+    RATING(R.string.fab_praise, true, false, true, false, false, R.string.messages_screen_success),
+    COMPLAIN(R.string.fab_complain, false, false, true, true, false, R.string.messages_screen_success);
 
 }

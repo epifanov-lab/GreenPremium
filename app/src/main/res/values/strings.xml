@@ -16,7 +16,7 @@
 
     <string name="input_title_subject">Тема</string>
     <string name="input_tip_message">Сообщение</string>
-    <string name="button_title_sent">Отправить</string>
+    <string name="button_title_send">Отправить</string>
 
     <string name="button_title_demo">Демо-режим</string>
     <string name="button_title_registration">Зарегистрироваться</string>
@@ -77,22 +77,27 @@
     <string name="favorites_empty">Список избранных растений пуст</string>
     <string name="cart_empty">Список покупок пуст</string>
 
-    <string name="messages_screen_succes_add_project">Сообщение отправлено</string>
-    <string name="messages_screen_succes_add_letter">Сообщение отправлено</string>
-    <string name="messages_screen_succes_add_rating">Сообщение отправлено</string>
-    <string name="messages_screen_succes_add_complain">Сообщение отправлено</string>
+    <string name="messages_screen_success">Сообщение отправлено</string>
     <string name="messages_screen_add_photo_button_text">+ Добавить фото</string>
 
     <string name="dialog_please_wait">Пожалуйста, подождите…</string>
     <string name="dialog_on_logout">Вы действительно хотите выйти?</string>
 
+    <string name="dialog_restore_password_hint">Введите email</string>
+    <string name="dialog_restore_password_cancel">Отмена</string>
+    <string name="dialog_restore_password_send">Отправить</string>
+    <string name="dialog_restore_password_title">Восстановление пароля</string>
+    <string name="dialog_restore_password_error">Введенный e-mail не найден</string>
+    <string name="dialog_restore_password_done">Ссылка для восстановления направлена на вашу почту</string>
+
     <!-- Validations and errors -->
-    <string name="error_empty_field">"Заполните поле %1$s"</string>
-    <string name="error_wrong_phone">"Некорректный номер телефона"</string>
-    <string name="error_wrong_email">"Некорректный email"</string>
-    <string name="error_wrong_pass">"Допустимые символы: a–z, A–Z, 0–9 и @.#$_-"</string>
-    <string name="error_wrong_double">"Не является дробным числом"</string>
-    <string name="error_wrong_data">"Некорректные данные"</string>
+    <string name="error_empty_field">Заполните поле %1$s</string>
+    <string name="error_empty_field_2">Пожалуйста, заполните поле</string>
+    <string name="error_wrong_phone">Некорректный номер телефона</string>
+    <string name="error_wrong_email">Некорректный email</string>
+    <string name="error_wrong_pass">Допустимые символы: a–z, A–Z, 0–9 и @.#$_-</string>
+    <string name="error_wrong_double">Не является дробным числом</string>
+    <string name="error_wrong_data">Некорректные данные</string>
 
     <string name="template_s_s">%1$s %2$s</string>
     <string name="template_s_s_n_s_s">%1$s %2$s\n%3$s %4$s</string>

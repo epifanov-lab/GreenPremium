@@ -124,7 +124,7 @@
         app:fab_addButtonColorPressed="@color/green_3"
         app:fab_addButtonSize="normal"
         app:fab_expandDirection="up"
-        app:fab_labelStyle="@style/menu_labels_style">
+        app:fab_labelStyle="@style/MenuLabelsStyle">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_project"

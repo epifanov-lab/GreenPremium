@@ -24,7 +24,7 @@ enum class ValidationPatterns constructor(val pattern: String, val maxLength: In
             "[pP][+-]?(\\p{Digit}+)))[fFdD]?))[\\x00-\\x20]*",
             20, R.string.error_wrong_double),
 
-    EMPTY_PATTERN(".*", 10, R.string.error_wrong_data);
+    EMPTY_PATTERN(".*", 30, R.string.error_empty_field_2);
 
     fun validate(s: String): Boolean {
         val pattern = Pattern.compile(this.pattern)
@@ -33,7 +33,7 @@ enum class ValidationPatterns constructor(val pattern: String, val maxLength: In
     }
 
     companion object {
-        fun asList(): List<ValidationPatterns> {
+        private fun asList(): List<ValidationPatterns> {
             return ArrayList(EnumSet.allOf(ValidationPatterns::class.java))
         }
 

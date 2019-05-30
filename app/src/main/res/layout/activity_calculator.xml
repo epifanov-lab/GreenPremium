@@ -123,7 +123,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:hint="0"
-                        android:textColorHint="@drawable/selector_calc_hint"
+                        android:textColorHint="@drawable/states_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
@@ -146,7 +146,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:hint="0"
-                        android:textColorHint="@drawable/selector_calc_hint"
+                        android:textColorHint="@drawable/states_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
 
@@ -185,7 +185,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:hint="0"
-                        android:textColorHint="@drawable/selector_calc_hint"
+                        android:textColorHint="@drawable/states_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
@@ -208,7 +208,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:hint="0"
-                        android:textColorHint="@drawable/selector_calc_hint"
+                        android:textColorHint="@drawable/states_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
 
@@ -247,7 +247,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:hint="0"
-                        android:textColorHint="@drawable/selector_calc_hint"
+                        android:textColorHint="@drawable/states_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
@@ -270,7 +270,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:hint="0"
-                        android:textColorHint="@drawable/selector_calc_hint"
+                        android:textColorHint="@drawable/states_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
 
@@ -309,7 +309,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:hint="0"
-                        android:textColorHint="@drawable/selector_calc_hint"
+                        android:textColorHint="@drawable/states_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
@@ -332,7 +332,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:hint="0"
-                        android:textColorHint="@drawable/selector_calc_hint"
+                        android:textColorHint="@drawable/states_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
 
@@ -371,7 +371,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:hint="0"
-                        android:textColorHint="@drawable/selector_calc_hint"
+                        android:textColorHint="@drawable/states_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
                 </FrameLayout>
@@ -394,7 +394,7 @@
                         android:gravity="center"
                         android:inputType="number"
                         android:hint="0"
-                        android:textColorHint="@drawable/selector_calc_hint"
+                        android:textColorHint="@drawable/states_calc_hint"
                         android:textColor="@color/black"
                         android:textSize="@dimen/font_size_18" />
 

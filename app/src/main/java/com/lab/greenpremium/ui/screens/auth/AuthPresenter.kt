@@ -2,6 +2,7 @@ package com.lab.greenpremium.ui.screens.auth
 
 import android.annotation.SuppressLint
 import com.lab.greenpremium.R
+import com.lab.greenpremium.data.network.CallbackListener
 import com.lab.greenpremium.data.network.DefaultCallbackListener
 import com.lab.greenpremium.data.repository.Repository
 import io.reactivex.Observable
@@ -66,5 +67,26 @@ class AuthPresenter @Inject constructor(val view: AuthContract.View) : AuthContr
 
             }
         }
+    }
+
+    override fun onRestorePasswordEmailSend(email: String, listener: CallbackListener) {
+        repository.passwordRecovery(email, object : DefaultCallbackListener(view) {
+            override fun doBefore() {
+                listener.doBefore()
+            }
+
+            override fun doAfter() {
+                listener.doAfter()
+            }
+
+            override fun onError(throwable: Throwable) {
+                listener.onError(throwable)
+            }
+
+            override fun onSuccess() {
+                listener.onSuccess()
+                this@AuthPresenter.view.onRestorePasswordSuccess()
+            }
+        })
     }
 }

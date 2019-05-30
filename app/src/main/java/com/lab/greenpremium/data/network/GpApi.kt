@@ -13,6 +13,10 @@ class ApiMethods @Inject constructor(private val api: GpApi) {
     fun auth(request: AuthRequest): Single<BaseResponse<AuthResponse>> {
         return api.auth(request.login, request.password)
     }
+
+    fun passwordRecovery(email: String): Single<BaseResponse<Any>> {
+        return api.passwordRecovery(email)
+    }
     //endregion
 
 
@@ -146,6 +150,10 @@ interface GpApi {
     @POST("auth")
     fun auth(@Field("login") login: String,
              @Field("password") password: String): Single<BaseResponse<AuthResponse>>
+
+    @FormUrlEncoded
+    @POST("forgot_password")
+    fun passwordRecovery(@Field("email") login: String): Single<BaseResponse<Any>>
     //endregion
 
 

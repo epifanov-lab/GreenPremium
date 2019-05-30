@@ -8,7 +8,6 @@ import com.lab.greenpremium.KEY_OBJECT
 import com.lab.greenpremium.R
 import com.lab.greenpremium.data.entity.Product
 import com.lab.greenpremium.ui.dialog.RadioButtonPickerDialog
-import com.lab.greenpremium.ui.dialog.RadioButtonPickerDialog.Companion.show
 import com.lab.greenpremium.ui.screens.base.BaseActivity
 import com.lab.greenpremium.ui.screens.base.BaseFragment
 import com.lab.greenpremium.utills.LogUtil
@@ -62,7 +61,7 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
 
                     override fun onClickHeightSelector(product: Product) {
                         val items = product.offers
-                        show(this@PlantsSubFragment.context!!, items, 0, //todo def index
+                        RadioButtonPickerDialog.show(this@PlantsSubFragment.context!!, items, 0, //todo def index
                                 object : RadioButtonPickerDialog.PickerListener {
                                     override fun <T> onItemPicked(index: Int, item: T) {
                                         LogUtil.e("$item")

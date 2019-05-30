@@ -18,13 +18,26 @@ import retrofit2.HttpException
 import javax.inject.Inject
 
 
-//TODO разбить репозиторий на подклассы
+//TODO разбить репозиторий на подклассы (SOL*I*D)
 class Repository @Inject constructor(private val apiMethods: ApiMethods,
                                      private val preferences: PreferencesManager) {
 
     @SuppressLint("CheckResult")
     fun auth(login: String, password: String, listener: CallbackListener) {
         apiMethods.auth(AuthRequest(login, password))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe { listener.doBefore() }
+                .doFinally { listener.doAfter() }
+                .subscribe(
+                        { response -> handleResponse(response, listener) },
+                        { error -> handleError(error, listener) }
+                )
+    }
+
+    @SuppressLint("CheckResult")
+    fun passwordRecovery(email: String, listener: CallbackListener) {
+        apiMethods.passwordRecovery(email)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe { listener.doBefore() }
