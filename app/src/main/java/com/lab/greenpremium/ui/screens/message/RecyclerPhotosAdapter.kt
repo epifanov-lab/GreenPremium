@@ -1,6 +1,7 @@
 package com.lab.greenpremium.ui.screens.message
 
 import android.content.Context
+import android.graphics.Rect
 import android.net.Uri
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
@@ -24,10 +25,10 @@ class RecyclerPhotosAdapter(private val photoViewSize: Int,
                             private val listener: AddPhotoViewListener?)
     : RecyclerView.Adapter<RecyclerPhotosAdapter.ViewHolder>() {
 
-    val photos: MutableList<PhotoUriWrapper> = ArrayList()
+    val photos: MutableList<Uri> = ArrayList()
 
     init {
-        photos.add(PhotoUriWrapper(Uri.EMPTY, true))
+        photos.add(Uri.EMPTY)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -46,18 +47,18 @@ class RecyclerPhotosAdapter(private val photoViewSize: Int,
     }
 
     fun addItem(uri: Uri?) {
-        uri?.let { this.photos.add(0, PhotoUriWrapper(uri)) }
+        uri?.let { this.photos.add(0,uri) }
         notifyDataSetChanged()
     }
 
     fun addItems(list: MutableList<Uri>?) {
         list?.let {
-            this.photos.addAll(0, list.map { PhotoUriWrapper(it) })
+            this.photos.addAll(0, list)
             notifyDataSetChanged()
         }
     }
 
-    fun getItem(position: Int): PhotoUriWrapper {
+    fun getItem(position: Int): Uri {
         return photos[position]
     }
 
@@ -68,9 +69,6 @@ class RecyclerPhotosAdapter(private val photoViewSize: Int,
     }
 
     class ViewHolder(val view: AddedPhotoView) : RecyclerView.ViewHolder(view)
-
-    class PhotoUriWrapper(val uri: Uri,
-                          val isAddButton: Boolean = false)
 
     class AddedPhotoView : RelativeLayout {
 
@@ -85,8 +83,8 @@ class RecyclerPhotosAdapter(private val photoViewSize: Int,
         private var photoUri: Uri? = null
         var position: Int = 0
 
-        fun setData(item: PhotoUriWrapper, position: Int) {
-            this.photoUri = item.uri
+        fun setData(uri: Uri, position: Int) {
+            this.photoUri = uri
             this.position = position
             initialize()
         }
@@ -117,5 +115,22 @@ class RecyclerPhotosAdapter(private val photoViewSize: Int,
                 setTouchAnimationShrink(button_add_photo)
             }
         }
+    }
+
+    class MarginItemDecoration(private val spaceSize: Int,
+                               private val toTop: Boolean = false,
+                               private val toRight: Boolean = false,
+                               private val toBottom: Boolean = false,
+                               private  val toLeft: Boolean = false) : RecyclerView.ItemDecoration() {
+
+        override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
+            with(outRect) {
+                if (parent.getChildAdapterPosition(view) == 0 && toTop) top = spaceSize
+                if (toRight) left =  spaceSize
+                if (toBottom) right = spaceSize
+                if (toLeft) bottom = spaceSize
+            }
+        }
+
     }
 }

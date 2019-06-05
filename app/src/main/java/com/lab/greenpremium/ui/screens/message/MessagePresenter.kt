@@ -66,7 +66,7 @@ class MessagePresenter @Inject constructor(val view: MessageContract.View) : Mes
         val photos = view.getPhotos()
         if (!photos.isNullOrEmpty()) {
             result = photos.subList(0, photos.lastIndex)
-                    .mapIndexed { index, wrapper -> getMultipartEntityFromPhotoUri(context, wrapper.uri, index) }
+                    .mapIndexed { index, uri -> getMultipartEntityFromPhotoUri(context, uri, index) }
 
             LogUtil.i("MP\n ${photos[0]}")
 

@@ -23,7 +23,7 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnSi
     internal lateinit var presenter: MessagePresenter
 
     override fun layoutResId(): Int {
-        return com.lab.greenpremium.R.layout.activity_message
+        return R.layout.activity_message
     }
 
     override fun initializeDaggerComponent() {
@@ -72,7 +72,8 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnSi
     override fun initializeRecyclerPhotos() {
         recycler_photo.visibility = View.VISIBLE
 
-        recycler_photo.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
+        recycler_photo.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        recycler_photo.addItemDecoration(RecyclerPhotosAdapter.MarginItemDecoration(resources.getDimensionPixelSize(R.dimen.space_8), toRight = true))
         recycler_photo.adapter = RecyclerPhotosAdapter(resources.getDimensionPixelSize(R.dimen.view_add_photo_size),
                 object : AddPhotoViewListener {
                     override fun onClickDelete(index: Int) {
@@ -111,7 +112,7 @@ class MessageActivity : BaseActivity(), MessageContract.View, BSImagePicker.OnSi
     }
     */
 
-    override fun getPhotos(): MutableList<RecyclerPhotosAdapter.PhotoUriWrapper> {
+    override fun getPhotos(): MutableList<Uri> {
         val adapter = recycler_photo.adapter as RecyclerPhotosAdapter
         return adapter.photos
     }

@@ -12,7 +12,9 @@
         android:fontFamily="@font/sfuitext_semibold"
         android:text="@string/title_gallery"
         android:textColor="@color/black"
-        android:textSize="@dimen/font_size_14" />
+        android:textSize="@dimen/font_size_14"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/image_1"

@@ -1,6 +1,7 @@
 package com.lab.greenpremium.ui.screens.message
 
 import android.content.Context
+import android.net.Uri
 import com.lab.greenpremium.ui.screens.base.BaseContract
 import io.reactivex.Observable
 
@@ -13,7 +14,7 @@ interface MessageContract {
         fun initializeRecyclerPhotos()
         fun showPhotoPickerDialog()
 
-        fun getPhotos() : MutableList<RecyclerPhotosAdapter.PhotoUriWrapper>
+        fun getPhotos() : MutableList<Uri>
     }
 
     interface Presenter {
