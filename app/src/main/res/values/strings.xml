@@ -42,7 +42,7 @@
     <string name="calc_title_column_pots">Количество кашпо</string>
     <string name="calc_title_row_s1">Растения до 1 метра</string>
     <string name="calc_title_row_s2">Растения от 1 до 1,5 метров</string>
-    <string name="calc_title_row_s3">Растения до 1,5 метров</string>
+    <string name="calc_title_row_s3">Растения от 1,5 метров</string>
     <string name="calc_title_row_s4">Суккуленты и кактусы</string>
     <string name="calc_title_row_s5">Цветущие растения</string>
     <string name="calc_title_button_request">Запросить</string>
