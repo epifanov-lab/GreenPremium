@@ -351,7 +351,7 @@ class Repository @Inject constructor(private val apiMethods: ApiMethods,
 
         if (checkAuthorization(listener)) return
 
-        val request = EditFavoritesRequest(product.isFavorite, product.getSelectedOffer().product_id)
+        val request = EditFavoritesRequest(product.isFavorite, product.id)
 
         apiMethods.editFavorites(preferences.getToken(), request)
                 .subscribeOn(Schedulers.io())
