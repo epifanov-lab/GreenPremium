@@ -57,27 +57,8 @@ object CartModel {
         }
     }
 
-    fun syncCatalogWithFavorites() {
-        favorites?.products?.apply {
-            if (size > 0) {
-                forEach { favoriteProduct ->
-                    catalog?.sections?.forEach { sections ->
-                        sections.products?.forEach { catalogProduct ->
-
-                            val offerFromFavorites = favoriteProduct.getSelectedOffer()
-                            val offerFromCatalog = catalogProduct.getSelectedOffer()
-                            catalogProduct.isFavorite = offerFromCatalog.product_id == offerFromFavorites.product_id
-                        }
-                    }
-                }
-            } else {
-                catalog?.sections?.forEach { sections ->
-                    sections.products?.forEach { catalogProduct ->
-                        catalogProduct.isFavorite = false
-                    }
-                }
-            }
-        }
+    fun isProductFavorite(product: Product) : Boolean? {
+        return favorites?.products?.contains(product)
     }
 
     fun getCartTotalCost(): Double {
@@ -97,7 +78,7 @@ object CartModel {
     }
 
     fun clearCart() {
-        cart?.let { CartModel.cart!!.products.clear() }
+        cart?.let { cart!!.products.clear() }
         syncCatalogWithCart()
     }
 }

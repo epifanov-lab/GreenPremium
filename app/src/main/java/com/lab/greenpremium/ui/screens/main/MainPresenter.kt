@@ -50,7 +50,6 @@ class MainPresenter @Inject constructor(val view: MainContract.View) : MainContr
         repository.getFavorites(object : DefaultCallbackListener(view) {
             override fun onSuccess() {
                 CartModel.syncFavoritesWithCart()
-                CartModel.syncCatalogWithFavorites()
             }
         })
     }

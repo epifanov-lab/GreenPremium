@@ -28,7 +28,6 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
                 override fun onSuccess() {
                     sections[sectionPosition].products?.let { products ->
                         CartModel.syncCatalogWithCart()
-                        CartModel.syncCatalogWithFavorites()
                         this@PlantsSubPresenter.view.initializeCatalog(products, repository.isInDemoMode())
                     }
                 }
@@ -44,7 +43,6 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
                     override fun onSuccess() {
                         sections[sectionPosition].products?.let { products ->
                             CartModel.syncCatalogWithCart()
-                            CartModel.syncCatalogWithFavorites()
                             this@PlantsSubPresenter.view.notifyRecyclerDataChanged()
                         }
                     }
@@ -58,14 +56,14 @@ class PlantsSubPresenter @Inject constructor(val view: PlantsSubContract.View) :
     }
 
     private fun getProductDetails(product: Product) {
+
         repository.getProductDetail(sectionId, product.id,
                 object : DefaultCallbackListener(view) {
                     override fun onSuccess(item: Serializable?) {
                         item?.let {
-
                             val tempProduct = it as Product
+                            tempProduct.isFavorite = CartModel.isProductFavorite(product) ?: false
                             tempProduct.getSelectedOffer().sync(product.getSelectedOffer())
-                            tempProduct.isFavorite = product.isFavorite
                             this@PlantsSubPresenter.view.goToDetails(tempProduct)
 
                         }

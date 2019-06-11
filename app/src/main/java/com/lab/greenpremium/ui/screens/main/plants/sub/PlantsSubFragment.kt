@@ -64,7 +64,6 @@ class PlantsSubFragment : BaseFragment(), PlantsSubContract.View {
                         RadioButtonPickerDialog.show(this@PlantsSubFragment.context!!, items, 0, //todo def index
                                 object : RadioButtonPickerDialog.PickerListener {
                                     override fun <T> onItemPicked(index: Int, item: T) {
-                                        LogUtil.e("$item")
                                         product.selectedOfferPosition = index
                                     }
                                 }

@@ -60,7 +60,6 @@ data class Product(
     fun changeFavoriteState() {
         isFavorite = !isFavorite
     }
-
 }
 
 data class Offer(
